@@ -5,4 +5,6 @@ Hey there:D, i created this repository to start off the project. No one else can
 
 If you clone this repository like we did in Task 1, everything should work perfectly. Open the terminal and type node index.js , the port should open, and if you type in your browser localhost:3000 , it'll open the site.
 
+Anyone who uses any files and wants to upload a new method or story or whatever should select when committing a new branch, and start a pull request so that the reviewers can review the code first. PLEASE PLEASE do not forget to record the hours spent on a story.
+
 Here's a list of git commands that are commonly used : https://github.com/joshnh/Git-Commands
