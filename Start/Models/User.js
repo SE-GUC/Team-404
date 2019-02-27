@@ -1,4 +1,4 @@
-const uuid = require('uuid')
+//const uuid = require('uuid')
 
 // The User Model
 class User {
@@ -10,8 +10,8 @@ class User {
         this.dateofregistration=dateofregistration;
         this.phonenumber=phonenumber;
         this.usertype=usertype;
-        this.id = uuid.v4();
-        this.notifications=notifications;
+      //  this.id = uuid.v4();
+        //this.notifications=notifications;
         this.location=location;
     };
 };

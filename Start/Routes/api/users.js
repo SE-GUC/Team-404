@@ -1,8 +1,10 @@
 // Dependencies
 const express = require('express');
-const Joi = require('joi');
-const uuid = require('uuid');
+//const Joi = require('Joi');
+//const uuid = require('uuid');
 const router = express.Router();
+const app = express();
+app.use(express.json());
 
 // Models
 const User = require('../../models/User');
@@ -17,13 +19,56 @@ const users = [
     new User('Hania Ghannam','haniaghannam','hii123123','haniaghannam@student.guc.edu.eg','','432312')
 ];
 
-// Instead of app use route
-// No need to write the full route
-// res.json() Automatically sends a status of 200
-
-// Get all users
 router.get('/', (req, res) => res.json({ data: users }));
 
 // Create a new user
+router.post('/', (req, res) => {
+	const name = req.body.name;
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
+    const dateofregistration = req.body.dateofregistration;
+    const phonenumber = req.body.phonenumber;
+    const usertype = req.body.usertype;
+    const location = req.body.location;
+
+    if (!name) return res.status(400).send({ err: 'Name field is required' });
+	if (typeof name !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
+	if (!username) return res.status(400).send({ err: 'Username field is required' });
+    if (typeof username !== 'string') return res.status(400).send({ err: 'Invalid Username type' });
+    if(username == users.username) return res.status(400).send({ err: 'Username already in use' });
+    if (!password) return res.status(400).send({ err: 'password field is required' });
+    //if (typeof Password !== 'string') return res.status(400).send({ err: 'Invalid Password type' });
+    if (!email) return res.status(400).send({ err: 'email field is required' });
+    if (typeof email !== 'string') return res.status(400).send({ err: 'Invalid email type' });
+    if (!phonenumber) return res.status(400).send({ err: 'phonenumber field is required' });
+    if (typeof phonenumber !== 'string') return res.status(400).send({ err: 'Invalid phonenumber type' });
+    // if (!usertype) return res.status(400).send({ err: 'usertype field is required' });
+    // if(!location) return res.status(400).send({err : 'location unvalid'});
+
+    const newUser = {
+		name,
+        username,
+        password,
+        email,
+        dateofregistration,
+        phonenumber,
+        usertype,
+        location,
+		//id: uuid.v4(),
+    };
+
+   
+    users.push(newUser)
+    return res.json({data: newUser});
+})
+    
+
+
+
 
 module.exports = router;
+
+
+const port = process.env.PORT | 3000;
+app.listen(port, () => console.log(`Server up and running on port ${port}`));
