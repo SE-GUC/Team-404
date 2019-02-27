@@ -4,16 +4,17 @@ const express = require("express");
 const app = express();
 // Use it with post
 app.use(express.json());
-const applications = require("./Routes/api/applications");
+
+const notifications = require("./Routes/api/notifications");
 
 //shows a message on the homepage indicated by '/' directory
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
- <a href ="api/applications">Applications</a>
+ <a href ="api/notifications">notifications</a>
  `);
 });
 
-app.use("/api/applications" , applications);
+app.use("/api/notifications" , notifications);
 
 
 app.use((req, res) => {
