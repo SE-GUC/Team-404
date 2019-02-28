@@ -25,16 +25,13 @@ router.post('/', (req, res) => {
 	if (!text) return res.status(400).send({ err: 'notification text required' });
 	if (typeof text !== 'string') return res.status(400).send({ err: 'Invalid value for text' });
 	
-
-	const newNotification = {
-		Notification(text)
+	
+	const newNotification = new Notification(text) 
 		
-	};
+	
 
 	notifications.push(newNotification)
 	return res.json({ data: newNotification });
-	
-	
 	
 });
 
