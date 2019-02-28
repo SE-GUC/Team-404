@@ -37,6 +37,7 @@ router.post('/', (req, res) => {
 
 
 
+
 router.get('/', (req, res) => res.json({ data: notifications }))
 
 module.exports = router

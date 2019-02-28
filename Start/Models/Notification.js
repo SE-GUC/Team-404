@@ -6,7 +6,7 @@ class Notification{
         var date        = today.getFullYear() + '';
         var time        = today.getHours() + '';
         var dateTime    = date + time;
-        
+        this.id         = uuidv4()
         this.text       = text;
         this.time       = dateTime;
         
