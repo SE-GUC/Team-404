@@ -1,14 +1,16 @@
+const uuid = require('uuid') 
 class Task {
-    constructor(ID, Description, eta, levelofcommitment, partner, monetarycompensation, skills, lifecyclestatus, experienceneeded ) {
-        this.ID = ID;
-        this.Description = Description;
-        this.eta = eta;
-        this.levelofcommitment = levelofcommitment;
-        this.partner= partner;
-        this.monetarycompensation = monetarycompensation;
-        this.skills = skills;
-        this.lifecyclestatus = lifecyclestatus;
-        this.experienceneeded = lifecyclestatus;
+    constructor(Description, eta, levelofcommitment, partner, monetarycompensation, skills, lifecyclestatus, experienceneeded,consultancy ) {
+        this.id                    = uuid.v4();
+        this.Description            = Description;
+        this.eta                    = eta;
+        this.levelofcommitment      = levelofcommitment;
+        this.partner                = partner;
+        this.monetarycompensation   =  monetarycompensation;
+        this.skills                 = skills;
+        this.lifecyclestatus        = lifecyclestatus;
+        this.experienceneeded       = experienceneeded;
+        this.consultancy            = consultancy;
         
     };
 }
