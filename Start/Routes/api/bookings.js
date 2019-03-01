@@ -1,9 +1,12 @@
 
 const express = require('express')
 const router = express.Router()
+const app = express()
+app.use(express.json())
+
 
 // We will be connecting using database 
-//const Book = require('../../models/Book')
+const Booking = require('../../models/Booking')
 
 // temporary data created as if it was pulled out of the database ...
 const bookings = [
@@ -23,4 +26,37 @@ const bookings = [
 
 router.get('/', (req, res) => res.json({ data: bookings }))
 
+//view bookings
+app.get('/api/bookings', (req, res) => {
+    res.send(bookings)
+
+})
+//create a booking 
+router.post('/', (req, res) => {
+    const event = req.body.event
+    const partner = req.body.partner
+    const attendee = req.body.attendee
+    const dateofbooking = req.body.dateofbooking
+    
+    const booking = new Booking(event, partner, attendee, dateofbooking)    
+       
+    bookings.push(booking)
+    return res.json({data: booking})
+
+})
+
+
+
+//delete a booking 
+router.delete('/:id', (req, res) => {
+    const bookingId = req.body.id 
+    const booking = bookings.find(booking => booking.id === bookingId)
+    const index = bookings.indexOf(booking)
+    bookings.splice(index,1)
+    res.send(bookings)
+})
+
 module.exports = router
+
+//app.listen(port, () => console.log(`Listening on port ${port}`));
+
