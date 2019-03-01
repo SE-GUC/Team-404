@@ -139,5 +139,3 @@ router.delete('/:id', (req, res) => {
     res.send(events)
 })
 
-const port = process.env.PORT | 3030;
-app.listen(port, () => console.log(`Server up and running on port ${port}`))
