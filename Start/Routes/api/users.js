@@ -1,10 +1,9 @@
-// Dependencies
 const express = require('express');
-//const Joi = require('Joi');
-//const uuid = require('uuid');
+const uuid = require('uuid');
 const router = express.Router();
 const app = express();
 app.use(express.json());
+const Joi = require('joi');
 
 // Models
 const User = require('../../models/User');
@@ -31,6 +30,7 @@ router.post('/', (req, res) => {
     const phonenumber = req.body.phonenumber;
     const usertype = req.body.usertype;
     const location = req.body.location;
+    const id =uuid.v4();
 
     if (!name) return res.status(400).send({ err: 'Name field is required' });
 	if (typeof name !== 'string') return res.status(400).send({ err: 'Invalid value for name' });
@@ -44,8 +44,7 @@ router.post('/', (req, res) => {
     if (!phonenumber) return res.status(400).send({ err: 'phonenumber field is required' });
     if (typeof phonenumber !== 'string') return res.status(400).send({ err: 'Invalid phonenumber type' });
     // if (!usertype) return res.status(400).send({ err: 'usertype field is required' });
-    // if(!location) return res.status(400).send({err : 'location unvalid'});
-
+    // if(!location) return res.status(400).send({err : 'location unvalid'});no
     const newUser = {
 		name,
         username,
@@ -55,13 +54,79 @@ router.post('/', (req, res) => {
         phonenumber,
         usertype,
         location,
-		//id: uuid.v4(),
+	    id
     };
-
-   
     users.push(newUser)
     return res.json({data: newUser});
+});
+    router.put('/:id', (req, res) => {
+        const id = req.params.id
+        const User=users.find(curr => curr.id == id)
+        const name = req.body.name;
+        const username = req.body.username;
+        const password = req.body.password;
+        const email = req.body.email;
+        const phonenumber = req.body.phonenumber;
+        const usertype = req.body.usertype;
+        const location = req.body.location;
+        const dateofregistration = req.body.dateofregistration;
+    const schema ={
+       name: Joi.string(),
+       username: Joi.string(),
+       password: Joi.string(),
+       email: Joi.string(),
+       phonenumber: Joi.string(),
+       usertype: Joi.string(),
+       location: Joi.string(),
+       dateofregistration: Joi.string()
+    }    
+    const result = Joi.validate(req.body, schema);
+    if(result.error){
+        return res.status(400).send({ err : 'Why you enter wrong stuff ma dude?'})
+    }
+    if(name){
+        User.name=name
+    }
+    if(username){
+    User.username=username
+    }
+    if(password){
+        User.password=password
+    }
+    if(email){
+        User.email=email
+    }
+    if(dateofregistration){
+        return res.status(400).send({ err : 'Cant update this field'})
+    }
+    if(phonenumber){
+        User.phonenumber=phonenumber
+    }
+    if(usertype){
+        User.usertype=usertype
+    }
+    if(location){
+        User.location=location
+    }
+    res.send(users)
+    });
+
+
+   
+  
+
+
+router.delete('/:id', (req, res) => {
+    const id = req.params.id
+    const User = users.find(User => User.id == id)
+    const index = users.indexOf(User)
+    users.splice(index,1)
+    res.send(users)
 })
+
+
+
+
     
 
 
@@ -70,5 +135,5 @@ router.post('/', (req, res) => {
 module.exports = router;
 
 
-const port = process.env.PORT | 3000;
-app.listen(port, () => console.log(`Server up and running on port ${port}`));
+//const port = process.env.PORT | 3000;
+//app.listen(port, () => console.log(`Server up and running on port ${port}`));

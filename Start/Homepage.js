@@ -21,5 +21,5 @@ app.use("/api/users" , users);
 //  })
 
 //opens the port at 3000
-const port = process.env.PORT | 3030;
+const port = process.env.PORT | 6040;
 app.listen(port, () => console.log(`Server up and running on port ${port}`));
