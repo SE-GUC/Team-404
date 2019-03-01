@@ -6,16 +6,18 @@ const app = express();
 app.use(express.json());
 
 const applications = require("./Routes/api/applications");
-
+const candidates = require("./Routes/api/candidates")
 //shows a message on the homepage indicated by '/' directory
+
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
  <a href ="api/applications">Applications</a>
+ <a href ="api/candidates">candidates</a>
  `);
 });
 
 app.use("/api/applications" , applications);
-
+app.use("/api/candidates/" , candidates)
 
 app.use((req, res) => {
     res.status(404).send({err: 'We can not find what you are looking for'});
