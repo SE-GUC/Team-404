@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 // Use it with post
 app.use(express.json());
+
 const applications = require("./Routes/api/applications");
 
 //shows a message on the homepage indicated by '/' directory
