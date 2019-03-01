@@ -15,9 +15,12 @@ const notifications = [
     new Notification('notification text 1'),
     new Notification('notification text 2'),
     new Notification('notification text 3'),
-    new Notification('notificatoin text 4')
+    new Notification('notification text 4')
     
 ];
+
+router.get('/', (req, res) => res.json({ data: notifications }))
+
 
 router.post('/', (req, res) => {
 	const text = req.body.text;
@@ -35,9 +38,13 @@ router.post('/', (req, res) => {
 	
 });
 
+router.delete('/:id',(req,res) =>{
+	const notificationID = req.body.id
+	const newNotification = notifications.find(newNotification => newNotification.id === notificationID)
+	const index  = notifications.indexOf(newNotification)
+	notifications.splice(index,1)
+	res.send(notifications)
+})
 
-
-
-router.get('/', (req, res) => res.json({ data: notifications }))
 
 module.exports = router
