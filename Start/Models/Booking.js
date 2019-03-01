@@ -11,9 +11,9 @@ class Booking{
     this.event=event;
     this.partner=partner;
     this.attendee=attendee;
-    this.dateofbooking=dateofbooking;
+    this.dateofbooking = dateTime;
     this.id=uuidv1();
-    this.dateofbooking = dateTime
+    
     };
 
 };

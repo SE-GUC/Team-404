@@ -72,20 +72,7 @@ router.post('/', (req, res) => {
     if (!approvalstatus) return res.status(400).send({ err: 'approvalstatus field is required' });
     if (typeof approvalstatus !== 'string') return res.status(400).send({ err: 'Invalid value for approvalstatus' });
 
-    const newEvent = {
-        name: name,
-        organizer: organizer,
-        location: location,
-        description: description,
-        remainingplaces: remainingplaces,
-        speakers: speakers,
-        maximumplaces: maximumplaces,
-        topicscovered: topicscovered,
-        feedbackid: feedbackid,
-        field: field,
-        approvalstatus: approvalstatus,
-        id: events.length + 1
-    }
+   const newEvent = new Event(name, organizer,location,description,remainingplaces,speakers,maximumplaces,topicscovered,feedbackid,field,approvalstatus)
 
     events.push(newEvent)
     res.send(events)
