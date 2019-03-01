@@ -19,7 +19,14 @@ const tasks = [
 
 ];
 
+//view a task
 router.get('/', (req, res) => res.json({ data: tasks }))
+
+router.get('/:id', (req, res) => {
+const tasksID = req.params.id
+const task = tasks.find (task => task.id === tasksID)
+res.send(task) 
+})
 
 // update task
 router.put('/:id', (req, res) => {
