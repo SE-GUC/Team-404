@@ -19,6 +19,50 @@ const tasks = [
 
 ];
 
+router.post('/', (req, res) => {
+   
+     const Description = req.body.Description
+     const eta = req.body.eta
+     const levelofcommitment = req.body.levelofcommitment
+     const partner = req.body.partner
+     const monetarycompensation = req.body.monetarycompensation
+     const skills = req.body.skills
+     const lifecyclestatus = req.body.lifecyclestatus
+     const experienceneeded = req.body.experienceneeded
+     const id =uuid.v4()
+
+    if (!Description) return res.status(400).send({ err: 'Description field is required' });
+	if (typeof Description !== 'string') return res.status(400).send({ err: 'Invalid value for Description' });
+	if (!eta) return res.status(400).send({ err: 'eta field is required' });
+    if (typeof eta !== 'number') return res.status(400).send({ err: 'Invalid eta type' });
+    if (!levelofcommitment) return res.status(400).send({ err: 'levelofcommitment field is required' });
+    if (typeof levelofcommitment !== 'string') return res.status(400).send({ err: 'Invalid levelofcommitment type' });
+    if (!partner) return res.status(400).send({ err: 'partner field is required' });
+    if (typeof partner !== 'string') return res.status(400).send({ err: 'Invalid partner type' });
+    if (!monetarycompensation) return res.status(400).send({ err: 'monetarycompensation field is required' });
+    if (typeof monetarycompensation !== 'number') return res.status(400).send({ err: 'Invalid monetarycompensation type' });
+    if (!skills) return res.status(400).send({ err: 'skills field is required' });
+	if (typeof skills !== 'string') return res.status(400).send({ err: 'Invalid value for skills' });
+	if (!lifecyclestatus) return res.status(400).send({ err: 'lifecyclestatus field is required' });
+    if (typeof lifecyclestatus !== 'string') return res.status(400).send({ err: 'Invalid lifecyclestatus type' });
+    if (!experienceneeded) return res.status(400).send({ err: 'experienceneeded field is required' });
+    if (typeof experienceneeded !== 'string') return res.status(400).send({ err: 'Invalid experienceneeded type' });
+     
+     const task = {
+         Description,
+         eta,
+         levelofcommitment,
+         partner,
+         monetarycompensation,
+         skills,
+         lifecyclestatus,
+         experienceneeded,
+         id
+     }
+     tasks.push(task)
+    return res.json({data: task})
+ })
+
 //view a task
 router.get('/', (req, res) => res.json({ data: tasks }))
 
@@ -98,12 +142,15 @@ router.put('/:id', (req, res) => {
 
 
 //Delete a task
-app.delete('/:ID', (req, res) => {
+router.delete('/:id', (req, res) => {
    const tasksID = req.params.id 
    const tas = tasks.find(tas => tas.id === tasksID)
    const index = tasks.indexOf(tas)
    tasks.splice(index,1)//*9
    res.send(tasks)
 })
+
+
 module.exports = router
+
 
