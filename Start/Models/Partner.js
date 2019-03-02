@@ -1,4 +1,5 @@
-const Partner = requied('partners')
+const Partner = require('partners')
+const uuid = require("uuid/v4")
 
 class partner{
     constructor(organisationname,basicinformation,partners,boardmembers, eventsorganized,fieldofwork,projecthistory,feedbackform){
