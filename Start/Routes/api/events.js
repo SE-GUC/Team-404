@@ -17,6 +17,12 @@ const events = [
 
 router.get('/', (req, res) => res.json({ data: events }))
 
+router.get('/:id', (req, res) => {
+    const eventId = req.params.id
+    const even = events.find(Event => Event.id === eventId)
+    res.send(even)
+});
+
 module.exports = router
 
 // Default route (entry point)
