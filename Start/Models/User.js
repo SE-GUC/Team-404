@@ -2,7 +2,7 @@ const uuid = require('uuid')
 
 // The User Model
 class User {
-    constructor(name,username,password,email,dateofregistration,phonenumber,usertype,notifications,location) {
+    constructor(name,username,password,email,dateofregistration,phonenumber,usertype,location) {
         this.name = name;
         this.password= password;
         this.username=username;
@@ -11,7 +11,7 @@ class User {
         this.phonenumber=phonenumber;
         this.usertype=usertype;
         this.id = uuid.v4();
-        this.notifications=notifications;
+        //this.notifications=notifications;
         this.location=location;
     };
 };
