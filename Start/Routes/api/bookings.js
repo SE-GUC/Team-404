@@ -1,4 +1,5 @@
 
+
 const express = require('express')
 const router = express.Router()
 const app = express()
@@ -20,8 +21,6 @@ const bookings = [
     new Booking('be a programmer', 'Hania Ghannam', 'Omar Yasser'),
     new Booking('be a programmer', 'Clara Kamel', 'Karim El-Mahdy'),
     new Booking('be a programmer', 'Hania Ghannam', 'Omar Yasser'),
-
-
 ];
 
 router.get('/', (req, res) => res.json({ data: bookings }))
@@ -47,7 +46,28 @@ router.post('/', (req, res) => {
 
 })
 
-
+router.put('/:id', (req, res) => {
+    const bookigId = req.params.id 
+    const booking = bookings.find(Booking => Booking.id === bookigId)
+    if(req.body.event){
+    const updatedevent = req.body.event;
+    booking.event = updatedevent;
+    }
+    if(req.body.partner){
+    const updatedpartner = req.body.partner;
+    booking.partner = updatedpartner;
+    }
+    if( req.body.attendee){
+    const updatedattendee = req.body.attendee;
+    booking.attendee = updatedattendee;
+    }
+    if(req.body.dateofbooking){
+    const updateddateofbooking = req.body.dateofbooking;
+    booking.dateofbooking = updateddateofbooking;
+    }
+    
+    res.send(bookings)
+});
 
 //delete a booking 
 router.delete('/:id', (req, res) => {
@@ -60,5 +80,5 @@ router.delete('/:id', (req, res) => {
 
 module.exports = router
 
-//app.listen(port, () => console.log(`Listening on port ${port}`));
+
 
