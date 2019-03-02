@@ -104,6 +104,6 @@ app.delete('/:ID', (req, res) => {
    const index = tasks.indexOf(tas)
    tasks.splice(index,1)//*9
    res.send(tasks)
-//})
+})
 module.exports = router
 
