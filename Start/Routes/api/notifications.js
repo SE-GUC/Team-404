@@ -21,6 +21,11 @@ const notifications = [
 
 router.get('/', (req, res) => res.json({ data: notifications }))
 
+router.get('/:id', (req, res) => {
+    const notificationId = req.params.id
+    const notify = notifications.find(Notification => Notification.id === notificationId)
+    res.send(notify)
+});
 
 router.post('/', (req, res) => {
 	const text = req.body.text;
