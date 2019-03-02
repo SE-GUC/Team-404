@@ -7,7 +7,6 @@ class Candidate{
         this.pasteventsandtasks=pasteventsandtasks;
         this.reviewsrecieved=reviewsrecieved;
         this.id=uuid();
-    
     };
 };
 module.exports = Candidate;
