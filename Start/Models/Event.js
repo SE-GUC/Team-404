@@ -1,5 +1,5 @@
-const Event = required('Events');
-const eid = required('eid');
+
+const uuid = require('uuid/v4');
 
 
 class Event{
@@ -15,7 +15,7 @@ class Event{
         this.feedbackid=feedbackid;
         this.field=field;
         this.approvalstatus=approvalstatus;
-        this.id=eid.v4();
+        this.id=uuid();
 
     }
 }
