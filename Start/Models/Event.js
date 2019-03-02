@@ -1,5 +1,5 @@
 
-const uuidv1 = require('uuid/v1');
+const uuid = require('uuid/v4');
 
 
 class Event{
@@ -15,7 +15,7 @@ class Event{
         this.feedbackid=feedbackid;
         this.field=field;
         this.approvalstatus=approvalstatus;
-        this.id=uuidv1();
+        this.id=uuid();
 
     }
 }
