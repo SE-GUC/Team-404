@@ -1,4 +1,4 @@
-const uuidv1 = require('uuid/v1')
+const uuid = require('uuid/v4')
 
 class Notification{
     
@@ -7,7 +7,7 @@ class Notification{
         var date        = today.getFullYear() + '';
         var time        = today.getHours() + '';    
         var dateTime    = date + time;
-        this.id         = uuidv1();
+        this.id         = uuid();
         this.text       = text;
         this.time       = dateTime;
         
