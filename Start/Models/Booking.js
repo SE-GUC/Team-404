@@ -1,6 +1,6 @@
 //const Booking= required('Booking');
 //const Bid= required('Bid');
-const uuidv1 = require('uuid/v1')
+const uuid = require('uuid/v4')
 
 class Booking{
     constructor(event,partner,attendee){
@@ -12,7 +12,7 @@ class Booking{
     this.partner=partner;
     this.attendee=attendee;
     this.dateofbooking = dateTime;
-    this.id=uuidv1();
+    this.id=uuid();
     
     };
 
