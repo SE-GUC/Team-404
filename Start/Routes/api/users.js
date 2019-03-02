@@ -20,6 +20,12 @@ const users = [
 
 router.get('/', (req, res) => res.json({ data: users }));
 
+router.get('/:id', (req, res) => {
+    const usersId = req.params.id
+    const uses = users.find(User => User.id === usersId)
+    res.send(uses)
+});
+
 // Create a new user
 router.post('/', (req, res) => {
 	const name = req.body.name;
