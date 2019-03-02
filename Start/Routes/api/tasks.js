@@ -97,14 +97,13 @@ router.put('/:id', (req, res) => {
 })
 
 
-// Delete a task
-//app.delete('/api/tasks/:ID', (req, res) => {
-  //  const tasksID = req.params.id 
-
-    //const tasks = tasks.find(tasks => tasks.id === tasksID)
-    //const index = tasks.indexOf(tasks)
-    //tasks.splice(index,1)*9
-    //res.send(tasks)
+Delete a task
+app.delete('/:ID', (req, res) => {
+   const tasksID = req.params.id 
+   const tas = tasks.find(tas => tas.id === tasksID)
+   const index = tasks.indexOf(tas)
+   tasks.splice(index,1)//*9
+   res.send(tasks)
 //})
 module.exports = router
 
