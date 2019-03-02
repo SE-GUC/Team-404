@@ -27,10 +27,12 @@ const bookings = [
 router.get('/', (req, res) => res.json({ data: bookings }))
 
 //view bookings
-app.get('/api/bookings', (req, res) => {
-    res.send(bookings)
+router.get('/:id', (req, res) => {
+    const bookingsId = req.params.id
+    const book = bookings.find(Booking => Booking.id === bookingsId)
+    res.send(book)
+});
 
-})
 //create a booking 
 router.post('/', (req, res) => {
     const event = req.body.event
