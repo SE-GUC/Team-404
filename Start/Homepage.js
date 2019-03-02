@@ -11,8 +11,10 @@ const bookings = require("./Routes/api/bookings");
 const events = require("./Routes/api/events");
 const users = require("./Routes/api/users");
 const tasks = require ("./Routes/api/tasks")
-
+const applications = require("./Routes/api/applications");
+const candidates = require("./Routes/api/candidates")
 //shows a message on the homepage indicated by '/' directory
+
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
  <a href ="api/notifications">notifications</a>
@@ -20,15 +22,17 @@ app.get("/", (req, res) => {
  <a href ="api/events">events</a>
  <a href ="api/users">users</a>
  <a href = "api/tasks"> tasks </a>
+<a href ="api/applications">applications</a>
+ <a href = "api/candidates"> candidates </a>
  `);
 });
-
 
 app.use("/api/notifications" , notifications);
 app.use("/api/bookings" , bookings);
 app.use("/api/events" , events);
 app.use("/api/users" , users);
 app.use("/api/tasks",tasks);
+
 
 
 app.use ((req,res)=>{
