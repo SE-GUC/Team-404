@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
     if (!feedbackid) return res.status(400).send({ err: 'feedbackid field is required' });
     if (typeof feedbackid !== 'string') return res.status(400).send({ err: 'Invalid value for feedbackid ' });
 
-    if (!fieldl) return res.status(400).send({ err: 'the field field is required' });
+    if (!field) return res.status(400).send({ err: 'the field field is required' });
     if (typeof field !== 'string') return res.status(400).send({ err: 'Invalid value for field' });
 
     if (!approvalstatus) return res.status(400).send({ err: 'approvalstatus field is required' });
