@@ -1,6 +1,6 @@
-const express = require('express')
-const mongoose = require('mongoose')
 
+// Import express
+const express = require("express");
 // Create the app
 const app = express();
 // Use it with post
@@ -15,7 +15,6 @@ const feedbacks = require("./Routes/api/feedbacks");
 const notifications = require("./Routes/api/notifications");
 const tasks = require("./Routes/api/tasks");
 
-const db = require('./config/keys').mongoURI
 
 //shows a message on the homepage indicated by '/' directory
 app.get("/", (req, res) => {

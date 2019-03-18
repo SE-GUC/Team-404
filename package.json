@@ -2,10 +2,10 @@
   "name": "express-test",
   "version": "1.0.0",
   "description": "",
-  "main": "homepage.js",
+  "main": "Start/Homepage.js",
   "scripts": {
-    "start": "node homepage",
-    "dev": "nodemon homepage"
+    "start": "node Homepage.js",
+    "dev": "nodemon Homepage.js"
   },
   "keywords": [],
   "author": "",
