@@ -1,11 +1,6 @@
-
-// Import express
 const express = require("express");
-// Create the app
 const app = express();
-
 const mongoose = require('mongoose')
-// DB Config
 const db = require('./config/keys').mongoURI
 
 // Connect to mongo
@@ -44,7 +39,7 @@ app.get("/", (req, res) => {
  `);
 });
 
-app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
+//app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
 
 app.use("/api/applications" , applications);
 /*app.use("/api/partners" , partners);
