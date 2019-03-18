@@ -1,12 +1,22 @@
 const express = require('express')
+const mongoose= require('mongoose');
+var bodyParser=require('body-parser');
 const router = express.Router()
 const app = express()
-const uuid = require('uuid/v4');
-// We will be connecting using database 
-const Application = require('../../Models/Application')
 
-app.use(express.json())
+// We will be connecting using database 
+const schema = require('../../Models/Application')
+
+
+router.get('/', async (req,res) => {
+    const books = await Book.find()
+    res.json({data: books})
+})
+
+//app.use(express.json())
 // temporary data created as if it was pulled out of the database ...
+
+/*
 const application = [
     new Application('Karim El-Mahdy', 'Islam Sanad', '1/7/2018 5:56', 'help me', 'pending' , 1),
     new Application('Karim El-Mahdy', 'Islam Sanad', '9/4/2018 14:00', 'kill me', 'accepted' ,2),
@@ -89,7 +99,7 @@ router.delete('/:id', (req, res) => {
     res.send(application)
 })
 
-
+*/
 
 module.exports = router
 

@@ -3,10 +3,23 @@
 const express = require("express");
 // Create the app
 const app = express();
-// Use it with post
-app.use(express.json());
+
+const mongoose = require('mongoose')
+// DB Config
+const db = require('./config/keys').mongoURI
+
+// Connect to mongo
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
+
+// Init middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 const applications = require("./Routes/api/applications");
-const partners = require("./Routes/api/partners");
+/*const partners = require("./Routes/api/partners");
 const events = require("./Routes/api/events");
 const users = require("./Routes/api/users");
 const bookings = require("./Routes/api/bookings");
@@ -14,7 +27,7 @@ const candidates = require("./Routes/api/candidates");
 const feedbacks = require("./Routes/api/feedbacks");
 const notifications = require("./Routes/api/notifications");
 const tasks = require("./Routes/api/tasks");
-
+*/
 
 //shows a message on the homepage indicated by '/' directory
 app.get("/", (req, res) => {
@@ -31,8 +44,10 @@ app.get("/", (req, res) => {
  `);
 });
 
+app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
+
 app.use("/api/applications" , applications);
-app.use("/api/partners" , partners);
+/*app.use("/api/partners" , partners);
 app.use("/api/events" , events);
 app.use("/api/users" , users);
 app.use("/api/bookings" , bookings);
@@ -40,7 +55,7 @@ app.use("/api/candidates" , candidates);
 app.use("/api/feedbacks" , feedbacks);
 app.use("/api/notifications" , notifications);
 app.use("/api/tasks" , tasks);
-
+*/
 app.use((req, res) => {
     res.status(404).send({err: 'We can not find what you are looking for'});
  })
