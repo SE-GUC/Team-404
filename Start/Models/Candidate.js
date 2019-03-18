@@ -1,5 +1,5 @@
-const Candidate= required('Candidates');
 
+const uuid = require('uuid/v4');
 class Candidate{
     constructor(age,skills,interests,pasteventsandtasks,reviewsrecieved){
         this.age=age;
@@ -7,6 +7,8 @@ class Candidate{
         this.interests=interests;
         this.pasteventsandtasks=pasteventsandtasks;
         this.reviewsrecieved=reviewsrecieved;
-    }
-}
+        this.id=uuid();
+    
+    };
+};
 module.exports = Candidate;
