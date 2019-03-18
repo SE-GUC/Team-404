@@ -109,4 +109,8 @@ router.delete('/:id', (req, res) => {
     res.send(partners)
 }); 
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> bbbaa2298d6f3c289387f707ca0b226abf70abc3

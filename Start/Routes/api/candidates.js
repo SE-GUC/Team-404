@@ -83,6 +83,7 @@ router.put('/:id', (req, res) => {
     res.send(candidates)
 });
 
+<<<<<<< HEAD
 
 router.delete('/:id', (req, res) => {
     
@@ -100,3 +101,17 @@ module.exports = router;
 
 
 
+=======
+
+router.delete('/:id', (req, res) => {
+    
+    const candidateId = req.params.id;
+    const candidate = candidates.find(Candidate => Candidate.id === candidateId)
+    const index=candidates.indexOf(candidate)
+    candidates.splice(index,1)
+    res.send(candidates)
+ 
+}); 
+
+module.exports = router;
+>>>>>>> bbbaa2298d6f3c289387f707ca0b226abf70abc3

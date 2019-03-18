@@ -1,5 +1,5 @@
-const Application=required('Application');
-const Aid =required('Aid');
+//const Applications=required('Application');
+const uuid = require('uuid/v4');
 
 class Application{
     constructor(candidate,partner,datetime,task,status){
@@ -8,7 +8,8 @@ class Application{
         this.datetime=datetime;
         this.task=task;
         this.status=status;
-        this.id=Aid.v4();
-    
-    }
+        this.id=uuid();   
+    };
 }
+
+module.exports = Application
