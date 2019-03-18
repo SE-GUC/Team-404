@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 const router = express.Router()
-const Notification = require('../../models/Notification')
+const Notification = require('../../Models/Notification')
 
 
 const notifications = [
