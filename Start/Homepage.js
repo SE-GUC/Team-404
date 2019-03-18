@@ -1,6 +1,6 @@
+const express = require('express')
+const mongoose = require('mongoose')
 
-// Import express
-const express = require("express");
 // Create the app
 const app = express();
 // Use it with post
@@ -15,6 +15,7 @@ const feedbacks = require("./Routes/api/feedbacks");
 const notifications = require("./Routes/api/notifications");
 const tasks = require("./Routes/api/tasks");
 
+const db = require('./config/keys').mongoURI
 
 //shows a message on the homepage indicated by '/' directory
 app.get("/", (req, res) => {
@@ -46,5 +47,6 @@ app.use((req, res) => {
  })
 
 //opens the port at 3000
-const port = process.env.PORT | 3000;
-app.listen(port, () => console.log(`Server up and running on port ${port}`));
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
