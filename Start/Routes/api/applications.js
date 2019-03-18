@@ -13,7 +13,7 @@ router.get('/', async (req,res) => {
     res.json({data: books})
 })
 
-//app.use(express.json())
+app.use(express.json())
 // temporary data created as if it was pulled out of the database ...
 
 /*
