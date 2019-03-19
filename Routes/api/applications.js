@@ -1,17 +1,27 @@
 const express = require('express')
 const router = express.Router()
+const mongoose= require('mongoose');
+var bodyParser=require('body-parser');
+const config=require('../config/config');
 const app = express()
 const uuid = require('uuid/v4');
 // We will be connecting using database 
 const Application = require('../../Models/Application')
 
-app.use(express.json())
+const mongoURL = `mongodb://${config.db.host}/${config.db.name}?${config.db.auth}`;
+mongoose.set('useCreateIndex', true);
+mongoose.set('useNewUrlParser', true);
+router.use(bodyParser.urlencoded({ extended: false }))
+
+
+/*
+THIS IS ALL PRE MONGO
 // temporary data created as if it was pulled out of the database ...
 const application = [
-    new Application('Karim El-Mahdy', 'Islam Sanad', '1/7/2018 5:56', 'help me', 'pending' , 1),
-    new Application('Karim El-Mahdy', 'Islam Sanad', '9/4/2018 14:00', 'kill me', 'accepted' ,2),
-    new Application('Karim El-Mahdy', 'Gomana El-Shimy', '5/5/2018 6:05', 'feed me', 'rejected',3),
-    new Application('Karim El-Mahdy', 'Gomana El-Shimy', '7/8/2018 2:17', 'drive me', 'pending',4)
+    new Application('Karim El-Mahdy', 'Islam Sanad', '1/7/2018 5:56', 'help me', 'pending', 1),
+    new Application('Karim El-Mahdy', 'Islam Sanad', '9/4/2018 14:00', 'kill me', 'accepted', 2),
+    new Application('Karim El-Mahdy', 'Gomana El-Shimy', '5/5/2018 6:05', 'feed me', 'rejected', 3),
+    new Application('Karim El-Mahdy', 'Gomana El-Shimy', '7/8/2018 2:17', 'drive me', 'pending', 4)
 ];
 
 router.get('/', (req, res) => res.json({ data: application }))
@@ -89,7 +99,7 @@ router.delete('/:id', (req, res) => {
     res.send(application)
 })
 
-
+*/
 
 module.exports = router
 
