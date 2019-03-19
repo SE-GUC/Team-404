@@ -1,19 +1,18 @@
-//const uuid = require('uuid/v4');
-const mongoose=require('mongoose');
-const schema=mongoose.Schema;
+// const uuid = require('uuid/v4');
+const mongoose = require('mongoose')
+const schema = mongoose.Schema
 
-const ApplicationSchema = new schema ({
-        candidate:{type: String ,required: true , unique: true},
-        partner:{type: String ,required: true , unique: true},
-        datetime:{type: Date ,required: false , unique: true},
-        task:{type: String ,required: true , unique: true},
-        status:{type: Boolean ,required: true , unique: true},
+const ApplicationSchema = new schema({
+  candidate: { type: String, required: true, unique: false },
+  partner: { type: String, required: true, unique: false },
+  datetime: { type: Date, required: true, unique: true },
+  task: { type: String, required: true, unique: false },
+  status: { type: Boolean, required: false, unique: false }
 
-       // id=uuid(v)   
-    
-});
+  // id=uuid(v)
 
-const Application = mongoose.model('Application', ApplicationSchema);
+})
 
+const Application = mongoose.model('Application', ApplicationSchema)
 
 module.exports = Application

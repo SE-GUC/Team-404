@@ -2,19 +2,28 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const app = express()
-//const uuid = require('uuid/v4');
-// We will be connecting using database 
+// const uuid = require('uuid/v4');
+// We will be connecting using database
 const Application = require('../../Models/Application')
 
+const validator = require('../../Validation/applicationValid')
 
-
-//const validator = require('../../validations/bookValidations')
-
-router.get('/', async (req,res) => {
-    const applications = await Application.find()
-    res.json({data: applications})
+router.get('/', async (req, res) => {
+  const applications = await Application.find()
+  res.json({ data: applications })
 })
 
+router.post('/', async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body)
+    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    const newApplication = await Application.create(req.body)
+    res.json({ msg: 'Application was created successfully', data: newApplication })
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error)
+  }
+})
 
 /*
 THIS IS ALL PRE MONGO
@@ -56,7 +65,7 @@ router.post('/', (req, res) => {
     };
     application.push(newApplication);
 	return res.json({ data: newApplication });
-	
+
 });
 
 router.get('/:id', (req, res) => {
@@ -67,7 +76,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    const applicationId = req.params.id 
+    const applicationId = req.params.id
     const appli = application.find(appli => appli.id === applicationId)
     if(req.body.candidate){
     const updatedcandidate = req.body.candidate;
@@ -94,7 +103,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    const appliID = req.body.id 
+    const appliID = req.body.id
     const appli = application.find(appli => appli.id === appliID)
     const index = application.indexOf(appli)
     application.splice(index,1)
@@ -105,5 +114,5 @@ router.delete('/:id', (req, res) => {
 
 module.exports = router
 
-//9 to 11:25
-//8:30 to 9:50
+// 9 to 11:25
+// 8:30 to 9:50
