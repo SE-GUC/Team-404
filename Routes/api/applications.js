@@ -1,17 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const mongoose= require('mongoose');
-var bodyParser=require('body-parser');
-const config=require('../config/config');
+const mongoose = require('mongoose')
 const app = express()
-const uuid = require('uuid/v4');
+//const uuid = require('uuid/v4');
 // We will be connecting using database 
 const Application = require('../../Models/Application')
 
-const mongoURL = `mongodb://${config.db.host}/${config.db.name}?${config.db.auth}`;
-mongoose.set('useCreateIndex', true);
-mongoose.set('useNewUrlParser', true);
-router.use(bodyParser.urlencoded({ extended: false }))
+
+
+//const validator = require('../../validations/bookValidations')
+
+router.get('/', async (req,res) => {
+    const applications = await Application.find()
+    res.json({data: applications})
+})
 
 
 /*

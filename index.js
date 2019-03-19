@@ -3,6 +3,10 @@ const app = express();
 const mongoose = require('mongoose')
 const db = require('./config/keys').mongoURI
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 // Connect to mongo
 mongoose
     .connect(db)
