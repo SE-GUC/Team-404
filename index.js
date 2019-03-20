@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const db = require('./config/keys').mongoURI
+const db = require('./Start/config/keys').mongoURI
 
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
@@ -17,15 +17,15 @@ mongoose
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-const applications = require('./Routes/api/applications')
-const partners = require('./Routes/api/partners')
-const events = require('./Routes/api/events')
-const users = require('./Routes/api/users')
-const bookings = require('./Routes/api/bookings')
-const candidates = require('./Routes/api/candidates')
-const feedbacks = require('./Routes/api/feedbacks')
-const notifications = require('./Routes/api/notifications')
-const tasks = require('./Routes/api/tasks')
+const applications = require('./Start/Routes/api/applications')
+const partners = require('./Start/Routes/api/partners')
+const events = require('./Start/Routes/api/events')
+const users = require('./Start/Routes/api/users')
+const bookings = require('./Start/Routes/api/bookings')
+const candidates = require('./Start/Routes/api/candidates')
+const feedbacks = require('./Start/Routes/api/feedbacks')
+const notifications = require('./Start/Routes/api/notifications')
+const tasks = require('./Start/Routes/api/tasks')
 
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
