@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const db = require('./Start/config/keys').mongoURI
+const Logger = require('./Start/middleware/Logger')
 
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
@@ -16,6 +17,11 @@ mongoose
 // Init middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
+app.use((request, response, next) => {
+  Logger.log(`${request.method} => ${request.originalUrl}`)
+  next()
+})
 
 const applications = require('./Start/Routes/api/applications')
 const partners = require('./Start/Routes/api/partners')
