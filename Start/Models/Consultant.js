@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ConsultantSchema = new Schema({
+    _id: schema.Types.ObjectId,
+
     name: {
         type: String,
         required: true
@@ -31,4 +33,8 @@ const ConsultantSchema = new Schema({
     
 })
 
+ApplicationSchema.index({ candidate: 1, partner: 1, task: 1 }, { unique: true })
+
+
 module.exports = Consultant = mongoose.model('consultants', ConsultantSchema)
+module.exports = Application
