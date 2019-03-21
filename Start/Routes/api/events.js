@@ -5,7 +5,7 @@ const app = express()
 app.use(express.json())
 
 // We will be connecting using database 
-const Event = require('../../models/Event')
+const Event = require('../../Models/Event')
 
 // temporary data created as if it was pulled out of the database ...
 const events = [

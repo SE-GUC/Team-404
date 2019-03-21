@@ -6,7 +6,7 @@ app.use(express.json());
 const Joi = require('joi');
 
 // Models
-const User = require('../../models/User');
+const User = require('../../Models/User');
 
 // temporary data created as if it was pulled out of the database ...
 const users = [

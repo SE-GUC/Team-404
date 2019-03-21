@@ -7,7 +7,7 @@ app.use(express.json())
 
 
 // We will be connecting using database 
-const Booking = require('../../models/Booking')
+const Booking = require('../../Models/Booking')
 
 // temporary data created as if it was pulled out of the database ...
 const bookings = [

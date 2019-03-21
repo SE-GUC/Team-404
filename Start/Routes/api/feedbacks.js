@@ -4,7 +4,7 @@ const uuid = require('uuid/v4')
 const app = express();
 
 // We will be connecting using database 
-const Feedback = require('../../models/Feedback')
+const Feedback = require('../../Models/Feedback')
 
 // temporary data created as if it was pulled out of the database ...
 const feedbacks = [
