@@ -1,36 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const Consultant = require('../Start/Models/Consultant');
+const app = express()
+const joi = require("Joi")
+const validator = require('../../Validation/consultantValid')
+const Consultant = require('../../Models/Consultant');
+const mongoose = require('mongoose')
 
 
-router.get('/', (req,res) => res.json({data: Consultant}))
 
+
+//read
 router.get('/', async (req, res) => {
     const consultants = await Consultant.find()
     res.json({ data: consultants })
   })
 
-router.post('/', async (req,res) => {
-    const { email, name, password, board, pastEvents, reports }  = req.body
-    const consultant = await Consultant.findOne({email})
-    if(consultant) return res.status(400).json({error: 'Email already exists'})
-    
-    const newConsultant = new Consultant({
-            name,
-            password,
-            email,
-            board,
-            pastEvents,
-            reports,
-            
-        })
-    newConsultant
-    .save()
-    .then(consultant => res.json({data: newConsultant}))
-    .catch(err => res.json({error: 'Can not create consultant'}))
-})
 
-.route('/:id')
+//create
+router.post('/', async (req, res) => {
+  try {
+    const isValidated = validator.createValidation(req.body)
+    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    const consultant = await new Consultant({
+      _id: mongoose.Types.ObjectId(),
+      name:req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      board: req.body.board,
+      pastEvents: req.body.pastEvents,
+      reports: req.body.reports
+    }).save()
+    return res.json({ data: consultant })
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error)
+  }
+})
+  
+
+
+router.route('/:id')
 .all(async (request, response, next) => {
   const status = joi.validate(request.params, {
     id: joi.string().length(24).required()
@@ -40,7 +49,7 @@ router.post('/', async (req,res) => {
   }
   next()
 })
-
+//get
 router.get(async (request, response) => {
   try {
     const consultant = await Consultant.findById(request.params.id).exec()
@@ -50,25 +59,60 @@ router.get(async (request, response) => {
   }
 })
 
-router.delete((request, response) => {
-    Consultant.findByIdAndDelete(request.params.id, (err, model) => {
-      if (!err) {
-        return response.json({ data: null })
-      } else {
-        return response.json({ error: `Error, couldn't delete a consultant given the following data` })
-      }
-    })
+router.route('/:id').delete((request, response) => {
+  Consultant.findByIdAndDelete(request.params.id, (err, model) => {
+    if (!err) {
+      return response.json('Deleted')
+    } else {
+      return response.json({ error: `Error, couldn't delete a application given the following data` })
+    }
   })
+})
 
- router.put(async (request, response) => {
-    Consultant.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
+/*
+router.delete('/:id', async (req,res) => {
+  try {
+    const id = req.params.id
+    const consultant = await Consultant.find({id})
+    if(!consultant) return res.status(404).send({error: 'Consultant does not exist'})
+    const deletedConsultant = await Consultant.deleteOne({id})
+    res.json({msg:'consultant was deleted successfully', data: deletedConsultant})
+  }
+  catch(error) {
+      // We will be handling the error later
+      console.log(error)
+  }  
+})
+
+
+
+  //update
+ /*router.put('/:id',async (request, response) => {
+    const id = req.params.id
+    Consultant.findByIdAndUpdate(id, request.body, { new: true }, (err, model) => {
       if (!err) {
         return response.json({ data: model })
       } else {
         return response.json({ error: `Error, couldn't update a consultant given the following data` })
       }
     })
-  })
+  })*/
+
+  router.put('/:id', async (req,res) => {
+    try {
+     const id = req.params.id
+     const consultant = await Consultant.find({id})
+     if(!consultant) return res.status(404).send({error: 'Consultant does not exist'})
+     const isValidated = validator.updateValidation(req.body)
+     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+     const updatedConsultant = await Consultant.updateOne(req.body)
+     res.json({msg: 'Consultant updated successfully'})
+    }
+    catch(error) {
+        // We will be handling the error later
+        console.log(error)
+    }  
+ })
 
 
 module.exports = router
