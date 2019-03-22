@@ -1,12 +1,11 @@
-const uuid = require("uuid/v4")
+const uuid = require('uuid/v4')
 
-class Feedback{
-    constructor(event,response,name){
-        this.event=event;
-        this.response=response;
-        this.name=name;
-        this.id=uuid();
-    }
+class Feedback {
+  constructor (event, response, name) {
+    this.event = event
+    this.response = response
+    this.name = name
+    this.id = uuid()
+  }
 }
-module.exports= Feedback;
-
+module.exports = Feedback
