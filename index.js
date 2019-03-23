@@ -34,7 +34,6 @@ const notifications = require('./Start/Routes/api/notifications')
 const tasks = require('./Start/Routes/api/tasks')
 const consultants = require('./Start/Routes/api/consultants')
 
-
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
@@ -48,7 +47,6 @@ app.get('/', (req, res) => {
  <a href ="api/notifications">Notifications</a>
  <a href ="api/tasks">Tasks</a>
  <a href ="api/consultants">Consultants</a>
-
  `)
 })
 

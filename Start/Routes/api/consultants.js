@@ -69,6 +69,15 @@ router.route('/:id').delete((request, response) => {
   })
 })
 
+router.route('/:id').get(async (request, response) => {
+  try {
+    const consultant = await Consultant.findById(request.params.id).exec()
+    return response.json({ data: consultant })
+  } catch (err) {
+    return response.json({ error: `Error, couldn't find a consultant given the following id` })
+  }
+})
+
 /*
 router.delete('/:id', async (req,res) => {
   try {
