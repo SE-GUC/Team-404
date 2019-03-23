@@ -1,12 +1,14 @@
-const uuid = require("uuid/v4")
+const mongoose = require('mongoose')
 
-class Feedback{
-    constructor(event,response,name){
-        this.event=event;
-        this.response=response;
-        this.name=name;
-        this.id=uuid();
-    }
-}
+const FeedbackSchema =new Schema ({
+id : mongoose.Types.ObjectId(),
+    event :{type:String,required:true,unique:true},
+    response:{type:String,required:true,unique:true},
+    name:{type:String,required:true,unique:true}
+
+})
+   
+const Feedback = mongoose.model('Feedback',FeedbackSchema)
 module.exports= Feedback;
+
 
