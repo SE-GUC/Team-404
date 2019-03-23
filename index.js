@@ -8,6 +8,8 @@ mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
+app.get('/favicon.ico', (req, res) => res.status(204))
+
 // Connect to mongo
 mongoose
   .connect(process.env.MONGODB_URI)
