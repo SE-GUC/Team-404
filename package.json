@@ -13,6 +13,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
+    "install": "^0.12.2",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
     "moment": "^2.24.0",
@@ -20,7 +21,8 @@
     "mongoose": "^5.4.19",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",

@@ -1,16 +1,16 @@
-// const Partner = required('partners')
-const uuid = require('uuid/v4')
-class Partner {
-  constructor (organisationname, basicinformation, partnerss, boardmembers, eventsorganized, fieldofwork, projecthistory, feedbackform) {
-    this.organisationname = organisationname
-    this.basicinformation = basicinformation
-    this.partnerss = partnerss
-    this.boardmembers = boardmembers
-    this.eventsorganized = eventsorganized
-    this.fieldofwork = fieldofwork
-    this.projecthistory = projecthistory
-    this.feedbackform = feedbackform
-    this.id = uuid()
-  }
-}
+const mongoose = require('mongoose')
+const schema = mongoose.Schema
+
+const PartnerSchema = new schema({
+  organisationname: { type: String, required: true, unique: false },
+  partners: { type: String, required: false, unique: false },
+  boardmembers: { type: String, required: true, unique: false },
+  eventsorganized: { type: String, required: false, unique: false },
+  fieldofwork: { type: String, required: true, unique: false },
+  projecthistory: { type: String, required: false, unique: false },
+  feedbackform: { type: String, required: false, unique: false },
+})
+
+const Partner = mongoose.model('partners', PartnerSchema)
+
 module.exports = Partner
