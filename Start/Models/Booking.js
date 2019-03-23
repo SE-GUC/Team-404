@@ -1,21 +1,11 @@
-//const Booking= required('Booking');
-//const Bid= required('Bid');
-const uuid = require('uuid/v4')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-class Booking{
-    constructor(event,partner,attendee){
-        var today       = new Date();
-        var date        = today.getFullYear() + '';
-        var time        = today.getHours() + '';    
-        var dateTime    = date + time;
-    this.event=event;
-    this.partner=partner;
-    this.attendee=attendee;
-    this.dateofbooking = dateTime;
-    this.id=uuid();
-    
-    };
+const BookingSchema = new Schema({
+  event: { type: String, required: true, unique: true },
+  partner: { type: String, required: true },
+  attendee: { type: String, required: true },
+  dateofbooking: { type: Date, required: true }
+})
 
-};
-
-module.exports =Booking 
+module.exports = mongoose.model('bookings', BookingSchema)
