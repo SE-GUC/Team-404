@@ -3,10 +3,10 @@ const Joi = require('joi')
 module.exports = {
   createValidation: request => {
     const createSchema = {
-      candidate: Joi.string().required(),
+      event: Joi.string().required(),
       partner: Joi.string().required(),
-      task: Joi.number().required(),
-      status: Joi.string()
+      attendee: Joi.string().required(),
+      dateofbooking: Joi.date().required()
     }
 
     return Joi.validate(request, createSchema)
@@ -14,10 +14,10 @@ module.exports = {
 
   updateValidation: request => {
     const updateSchema = {
-      candidate: Joi.string(),
+      event: Joi.string(),
       partner: Joi.string(),
-      task: Joi.number(),
-      status: Joi.string()
+      attendee: Joi.string(),
+      dateofbooking: Joi.date()
     }
 
     return Joi.validate(request, updateSchema)
