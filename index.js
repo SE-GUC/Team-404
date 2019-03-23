@@ -32,6 +32,7 @@ const candidates = require('./Start/Routes/api/candidates')
 const feedbacks = require('./Start/Routes/api/feedbacks')
 const notifications = require('./Start/Routes/api/notifications')
 const tasks = require('./Start/Routes/api/tasks')
+const consultants = require('./Start/Routes/api/consultants')
 
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
@@ -45,6 +46,7 @@ app.get('/', (req, res) => {
  <a href ="api/feedbacks">Feedbacks</a>
  <a href ="api/notifications">Notifications</a>
  <a href ="api/tasks">Tasks</a>
+ <a href ="api/consultants">Consultants</a>
  `)
 })
 
@@ -59,6 +61,7 @@ app.use('/api/candidates', candidates)
 app.use('/api/feedbacks', feedbacks)
 app.use('/api/notifications', notifications)
 app.use('/api/tasks', tasks)
+app.use('/api/consultants', consultants)
 
 app.use((req, res) => {
   res.status(404).send({ err: 'We can not find what you are looking for' })
