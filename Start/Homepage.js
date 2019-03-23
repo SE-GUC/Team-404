@@ -1,35 +1,7 @@
-<<<<<<< HEAD
 // Import express
 const express = require('express')
-// Create the app
-const app = express()
-// Use it with post
-app.use(express.json())
-const candidates = require("./Routes/api/candidates")
-
-//shows a message on the homepage indicated by '/' directory
-app.get('/' ,(req,res) => {
-  res.send(`<h1>Welcome Team404</h1>
-  <a href ="api/candidates">candidates</a>
-  `);
-}
-)
-
-app.use("/api/candidates/" , candidates)
-app.get('/' ,(req,res) => {
-  res.send(`<h1>Welcome Team404</h1>
-  <a href ="api/partners">partners</a>
-  `);
-}
-)
-
-//opens the port at 3000
-const port = process.env.PORT | 3000
-app.listen(port, () => console.log(`Server up and running on port ${port}`))
-=======
 
 // Import express
-const express = require("express");
 // Create the app
 const app = express();
 // Use it with post
@@ -43,7 +15,12 @@ const candidates = require("./Routes/api/candidates");
 const feedbacks = require("./Routes/api/feedbacks");
 const notifications = require("./Routes/api/notifications");
 const tasks = require("./Routes/api/tasks");
-
+const mongoose = require('mongoose');
+const db = require("./config/configdb").mongoURI;
+mongoose
+    .connect(db)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err))
 
 //shows a message on the homepage indicated by '/' directory
 app.get("/", (req, res) => {
@@ -78,4 +55,4 @@ app.use((req, res) => {
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
->>>>>>> bbbaa2298d6f3c289387f707ca0b226abf70abc3
+

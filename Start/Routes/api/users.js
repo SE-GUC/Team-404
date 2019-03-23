@@ -65,7 +65,8 @@ router.post('/', (req, res) => {
     users.push(newUser)
     return res.json({data: newUser});
 });
-    router.put('/:id', (req, res) => {
+
+router.put('/:id', (req, res) => {
         const id = req.params.id
         const User=users.find(curr => curr.id == id)
         const name = req.body.name;
@@ -129,13 +130,6 @@ router.delete('/:id', (req, res) => {
     users.splice(index,1)
     res.send(users)
 })
-
-
-
-
-    
-
-
 
 
 module.exports = router;
