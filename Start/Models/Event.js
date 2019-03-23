@@ -1,6 +1,3 @@
-
-//const Event = require('Event');
-//const eid = require('eid');
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
@@ -18,7 +15,7 @@ topicscovered:{type:String,required:true},
 feedbackid:{type:Number,required:false},
 field:{type:String,required:true},
 approvalstatus:{type:String,required:false}
-//id:{type:Number,required:true,unique:true}
 });
 
 module.exports = mongoose.model('events', EventSchema);
+
