@@ -1,3 +1,4 @@
+
 const Joi = require('joi')
 
 module.exports = {
@@ -11,3 +12,4 @@ module.exports = {
     return Joi.validate(request, createSchema)
   }
 }
+

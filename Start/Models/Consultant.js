@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
@@ -12,4 +13,5 @@ const ConsultantSchema = new schema({
     
 })
 const Consultant = mongoose.model('Consultant', ConsultantSchema)
+
 module.exports = Consultant

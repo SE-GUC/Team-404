@@ -14,10 +14,12 @@ router.post('/', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-    const user = await User.findOne({email})
-    if(user) return res.status(400).json({error: 'Email already exists'})
-    const user1 = await User.findOne({username})
-    if(user1) return res.status(400).json({error: 'username already exists'})
+
+   // const user = await User.findOne({email})
+    //if(user) return res.status(400).json({error: 'Email already exists'})
+    //const user1 = await User.findOne({username})
+    //if(user1) return res.status(400).json({error: 'username already exists'})
+
     
     //const salt = bcrypt.genSaltSync(10)
     //const hashedPassword = bcrypt.hashSync(password,salt)
@@ -31,11 +33,12 @@ router.post('/', async (req,res) => {
             usertype:req.body.usertype,
             location: req.body.location
         })
-    newUser
+
     .save()
-    .then(user => res.json({msg:'User was created successfully', data:user}))
+    return res.json({ data: newUser })
   }
-  catch{
+  catch(error){
+
     console.log(error)
   }
     

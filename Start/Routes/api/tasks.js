@@ -8,7 +8,8 @@ const router = express.Router()
 const Task = require('../../Models/Task')
 const joi = require("Joi")
 
-const validator = require('/Users/HaniaGhannam/Documents/Team-404/Start/Validation/taskvalidations.js')
+const validator = require('../../Validation/taskvalidations')
+
 
 router.get('/', async (req, res) => {
   const tasks = await Task.find()
