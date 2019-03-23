@@ -4,7 +4,7 @@ module.exports = {
     createValidation: request => {
         const createSchema = {
             event: Joi.string().required(),
-            response: Joi.string().min(20).max(200).required(),
+            response: Joi.string().min(5).max(200).required(),
             name: Joi.string().required(),
         
         }
@@ -14,9 +14,9 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            event: Joi.string().required(),
-            response: Joi.string().min(20).max(200).required(),
-            name: Joi.string().required(),
+            event: Joi.string(),
+            response: Joi.string().min(20).max(200),
+            name: Joi.string()
         }
 
         return Joi.validate(request, updateSchema)
