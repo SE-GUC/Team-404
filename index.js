@@ -10,7 +10,7 @@ mongoose.set('useCreateIndex', true)
 
 // Connect to mongo
 mongoose
-  .connect(db)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log(err))
 
