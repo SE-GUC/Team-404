@@ -1,20 +1,24 @@
 
-const uuid = require('uuid/v4')
+//const Event = require('Event');
+//const eid = require('eid');
+const mongoose=require('mongoose');
+const Schema=mongoose.Schema;
 
-class Event {
-  constructor (name, organizer, location, description, remainingplaces, speakers, maximumplaces, topicscovered, feedbackid, field, approvalstatus) {
-    this.name = name
-    this.organizer = organizer
-    this.location = location
-    this.description = description
-    this.remainingplaces = remainingplaces
-    this.speakers = speakers
-    this.maximumplaces = maximumplaces
-    this.topicscovered = topicscovered
-    this.feedbackid = feedbackid
-    this.field = field
-    this.approvalstatus = approvalstatus
-    this.id = uuid()
-  }
-}
-module.exports = Event
+
+
+const EventSchema = new Schema({
+name:{type:String,required:true},
+organizer:{type:String,required:true},
+location:{type:String,required:true},
+description:{type:String,required:true},
+remainingplaces:{type:Number,required:true},
+speakers:{type:String,required:true},
+maximumplaces:{type:Number,required:true},
+topicscovered:{type:String,required:true},
+feedbackid:{type:Number,required:false},
+field:{type:String,required:true},
+approvalstatus:{type:String,required:false}
+//id:{type:Number,required:true,unique:true}
+});
+
+module.exports = mongoose.model('events', EventSchema);
