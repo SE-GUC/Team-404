@@ -8,11 +8,10 @@ mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
-app.get('/favicon.ico', (req, res) => res.status(204))
 
 // Connect to mongo
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect('mongodb+srv://isanad:sebastien300@cluster0-ny6mj.mongodb.net/test?retryWrites=true')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log(err))
 
