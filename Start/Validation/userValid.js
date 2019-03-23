@@ -19,6 +19,7 @@ module.exports = {
 
     updatValidation: request => {
         const updateSchema = {
+
             name: Joi.string().min(3).max(500),
             email: Joi.string().min(10).max(500),
             password: Joi.string().min(8).max(80),
@@ -27,6 +28,7 @@ module.exports = {
             phonenumber: Joi.number().min(1).max(300),
             usertype: Joi.string().min(3).max(500),
             location: Joi.string().min(3).max(500)
+
         }
 
         return Joi.validate(request, updateSchema)

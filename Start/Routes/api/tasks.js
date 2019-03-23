@@ -10,6 +10,7 @@ const joi = require("Joi")
 
 const validator = require('../../Validation/taskvalidations')
 
+
 router.get('/', async (req, res) => {
   const tasks = await Task.find()
   res.json({ data: tasks })
