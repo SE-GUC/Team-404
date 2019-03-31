@@ -26,11 +26,19 @@ router.post('/', async (req,res) => {
    const isValidated = validator.createValidation(req.body)
    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
    const newCandidate = await new Candidate({
-      age: req.body.age,
-      skills: req.body.skills,
-      interests: req.body.interests,
-      pasteventsandtasks: req.body.pasteventsandtasks,
-      reviewsrecieved: req.body.reviewsrecieved
+     
+    name: req.body.name,  
+    email: req.body.email,
+    password: req.body.password,
+    age: req.body.age,
+    username: req.body.username,
+    phonenumber: req.body.phonenumber,
+    usertype: req.body.usertype,
+    location: req.body.location,
+    skills: req.body.skills,
+    interests: req.body.interests,
+    pasteventsandtasks: req.body.pasteventsandtasks,
+    reviewsrecieved: req.body.reviewsrecieved
    }).save()
    //newCandidate.save()
    return res.json({ data: newCandidate })
