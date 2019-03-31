@@ -2,7 +2,14 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
-            age: Joi.number().min(1).max(200).required(),
+            name: Joi.string().required(),  
+            email: Joi.string().required(),
+            password: Joi.string().required(),
+            age: Joi.number().required(),
+            username: Joi.string().required(),
+            phonenumber:Joi.number().required(),
+            usertype: Joi.string().required(),
+            location: Joi.string().required(),
             skills: Joi.string().min(3).max(20).required(),
             interests: Joi.string().min(3).max(20).required(),
             pasteventsandtasks: Joi.string().min(3).max(20).required(),
@@ -15,7 +22,14 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            age: Joi.number().min(1).max(200).required(),
+            name: Joi.string().required(),  
+            email: Joi.string().required(),
+            password: Joi.string().required(),
+            age: Joi.number().required(),
+            username: Joi.string().required(),
+            phonenumber:Joi.number().required(),
+            usertype: Joi.string().required(),
+            location: Joi.string().required(),
             skills: Joi.string().min(3).max(20).required(),
             interests: Joi.string().min(3).max(20).required(),
             pasteventsandtasks: Joi.string().min(3).max(20).required(),

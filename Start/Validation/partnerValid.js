@@ -4,7 +4,14 @@
 module.exports = {
   createValidation: request => {
     const createSchema = {
-      id: Joi.string(),
+      name: Joi.string().required(),  
+            email: Joi.string().required(),
+            password: Joi.string().required(),
+            age: Joi.number().required(),
+            username: Joi.string().required(),
+            phonenumber:Joi.number().required(),
+            usertype: Joi.string().required(),
+            location: Joi.string().required(),
       organisationname: Joi.string().required(),
       partnerss: Joi.string(),
       boardmembers: Joi.string().required(),
@@ -19,7 +26,15 @@ module.exports = {
 
   updateValidation: request => {
     const updateSchema = {
-        organisationname: Joi.string(),
+      name: Joi.string().required(),  
+            email: Joi.string().required(),
+            password: Joi.string().required(),
+            age: Joi.number().required(),
+            username: Joi.string().required(),
+            phonenumber:Joi.number().required(),
+            usertype: Joi.string().required(),
+            location: Joi.string().required(),  
+      organisationname: Joi.string(),
         partnerss: Joi.string(),
         boardmembers: Joi.string(),
         eventsorganized: Joi.string(),
