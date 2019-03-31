@@ -25,7 +25,7 @@ router.post('/', async (req,res) => {
     //const hashedPassword = bcrypt.hashSync(password,salt)
     const newUser = await new User({
             name: req.body.name,
-            password: req.body.password, //hashedPassword ,
+            password: req.body.password,
             email: req.body.email,
             age: req.body.age,
             username: req.body.username,

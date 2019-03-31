@@ -18,7 +18,14 @@ router.post('/', async (req, res) => {
       const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const partner = await new Partner({
-      _id: mongoose.Types.ObjectId(),
+      name: req.body.name,
+      password: req.body.password,
+      email: req.body.email,
+      age: req.body.age,
+      username: req.body.username,
+      phonenumber: req.body.phonenumber,
+      usertype:req.body.usertype,
+      location: req.body.location,
       organisationname: req.body.organisationname,
       partners: req.body.partners,
       boardmembers: req.body.boardmembers,
