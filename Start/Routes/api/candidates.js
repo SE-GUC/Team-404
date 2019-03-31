@@ -1,5 +1,4 @@
 
-// Dependencies
 const mongoose= require('mongoose');
 const express = require('express');
 
@@ -27,18 +26,11 @@ router.post('/', async (req,res) => {
    const isValidated = validator.createValidation(req.body)
    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
    const newCandidate = await new Candidate({
-    name: req.body.name,
-    password: req.body.password,
-    email: req.body.email,
-    age: req.body.age,
-    username: req.body.username,
-    phonenumber: req.body.phonenumber,
-    usertype:req.body.usertype,
-    location: req.body.location,  
-    skills: req.body.skills,
-    interests: req.body.interests,
-    pasteventsandtasks: req.body.pasteventsandtasks,
-    reviewsrecieved: req.body.reviewsrecieved
+      age: req.body.age,
+      skills: req.body.skills,
+      interests: req.body.interests,
+      pasteventsandtasks: req.body.pasteventsandtasks,
+      reviewsrecieved: req.body.reviewsrecieved
    }).save()
    //newCandidate.save()
    return res.json({ data: newCandidate })
@@ -75,5 +67,3 @@ router.delete('/:id',async(req,res)=>{
 });
 
 module.exports = router;
-
-

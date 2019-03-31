@@ -1,9 +1,8 @@
-
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const joi = require("Joi")
-const User = require('../../Models/Temp')
+const User = require('../../models/User')
 const validator = require('../../Validation/userValid')
 
 router.get('/', async (req,res) => {
@@ -25,7 +24,7 @@ router.post('/', async (req,res) => {
     //const hashedPassword = bcrypt.hashSync(password,salt)
     const newUser = await new User({
             name: req.body.name,
-            password: req.body.password,
+            password: req.body.password, //hashedPassword ,
             email: req.body.email,
             age: req.body.age,
             username: req.body.username,

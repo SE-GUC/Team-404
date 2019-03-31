@@ -22,14 +22,10 @@ router.post('/', async (req, res) => {
     const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const consultant = await new Consultant({
-      name: req.body.name,
-      password: req.body.password,
+      _id: mongoose.Types.ObjectId(),
+      name:req.body.name,
       email: req.body.email,
-      age: req.body.age,
-      username: req.body.username,
-      phonenumber: req.body.phonenumber,
-      usertype:req.body.usertype,
-      location: req.body.location,
+      password: req.body.password,
       board: req.body.board,
       pastEvents: req.body.pastEvents,
       reports: req.body.reports
@@ -96,9 +92,6 @@ router.delete('/:id', async (req,res) => {
       console.log(error)
   }  
 })
-
-
-
   //update
  /*router.put('/:id',async (request, response) => {
     const id = req.params.id

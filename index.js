@@ -38,7 +38,7 @@ const consultants = require('./Start/Routes/api/consultants')
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
  <a href ="api/applications">Applications</a>
- <a href ="api/Partners">Partners</a>
+ <a href ="api/partners">Partners</a>
  <a href ="api/events">Events</a>
  <a href ="api/users">Users</a>
  <a href ="api/bookings">Bookings</a>
