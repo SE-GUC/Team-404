@@ -9,7 +9,7 @@ const validator = require('../../Validation/notificationValid')
 
 const Partner = require("../../Models/Partner")
 const Candidate = require("../../Models/Candidate")
-const User = require("../../Models/User")
+const User = require("../../Models/Temp")
 const Consultant = require("../../Models/Consultant")
 
 //const partners = require("../../Models/partners")
