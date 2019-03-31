@@ -1,4 +1,4 @@
-const jest = require("jest")
+/*const jest = require("jest")
 const application = require("../Routes/api/applications")
 
-test post(){}
+test post(){}*/

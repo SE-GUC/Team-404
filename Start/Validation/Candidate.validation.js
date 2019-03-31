@@ -2,11 +2,13 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
-            age: Joi.number().min(1).max(200).required(),
             skills: Joi.string().min(3).max(20).required(),
             interests: Joi.string().min(3).max(20).required(),
-            pasteventsandtasks: Joi.string().min(3).max(20).required(),
-            reviewsrecieved: Joi.string().min(3).max(20).required()
+            pastEvents: Joi.array().required(),
+            pastTasks: Joi.array().required(),
+            reviewsreceived: Joi.string().min(3).max(20).required(),
+            certificatesAndMasterclass: Joi.string().min(3).max(20).required()
+
         }
 
         return Joi.validate(request, createSchema)
@@ -15,11 +17,13 @@ module.exports = {
 
     updateValidation: request => {
         const updateSchema = {
-            age: Joi.number().min(1).max(200).required(),
+            
             skills: Joi.string().min(3).max(20).required(),
             interests: Joi.string().min(3).max(20).required(),
-            pasteventsandtasks: Joi.string().min(3).max(20).required(),
-            reviewsrecieved: Joi.string().min(3).max(20).required()
+            pastEvents: Joi.array().required(),
+            pastTasks: Joi.array().required(),
+            reviewsreceived: Joi.string().min(3).max(20).required(),
+            certificatesAndMasterclass: Joi.string().min(3).max(20).required()
         }
 
 
