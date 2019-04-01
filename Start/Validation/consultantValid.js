@@ -1,3 +1,4 @@
+
 const Joi = require('joi')
 
 module.exports = {
@@ -18,14 +19,15 @@ module.exports = {
     updateValidation: request => {
         const updateSchema = {
             _id: Joi.string(),
-            name: Joi.string().required(),
-            email: Joi.string().required(),
-            password: Joi.string().required(),
-            board: Joi.string().required(),
+            name: Joi.string(),
+            email: Joi.string(),
+            password: Joi.string(),
+            board: Joi.string(),
             pastEvents: Joi.string(),
             reports: Joi.string(),
         }
     
         return Joi.validate(request, updateSchema)
     }
+
 }
