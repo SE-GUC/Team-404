@@ -1,4 +1,8 @@
-const jest = require("jest")
-const application = require("../Routes/api/applications")
+const funcs = require('./feedbacks.functions');
 
-test post(){}
+test('get all feedbacks', async () => {
+    const feedbacks = await funcs.getAllFeedbacks();
+    expect(Array.isArray(feedbacks)).toBe(true);
+});
+
+// test('get specific feedback')

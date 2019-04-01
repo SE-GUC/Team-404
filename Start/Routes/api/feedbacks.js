@@ -35,8 +35,7 @@ router.get('/', async (req, res) => {
   })
 
 // Create a feedback // work here 
-
-router.post('/fillfeedbackform/:fid' ,async(req,res)=>
+router.post('/:fid' ,async(req,res)=>
 {
   var Mid = req.body.mid
   var Fid = req.params.fid
