@@ -1,65 +1,28 @@
-const funcs = require('./tasks.functions.js');
+const funcs = require('./tasks.functions');
+let tasks;
+test('create new task', async () => {
+    const tasks = await funcs.createTask();
+    expect(tasks.eta).toBe('dummydata2');
+    tasks = tasks;
+})
 
-test('adds 1 + 2 to be 3', () => {
-  expect(funcs.add(1, 2)).toBe(3);
+test('get all tasks', async () => {
+    const tasks = await funcs.getTask();
+    expect(Array.isArray(tasks)).toBe(true);
+});
+
+test('get specific task', async () => {
+    const _tasks = await funcs.getTask(tasks.id);
+    expect(_tasks.id).toBe(tasks.id);
 });
 
 
-//To be exact comparison, with objects use toEqual
-test('object assignment', () => {
-    const data = {one: 1};
-    data['two'] = 2;
-    expect(data).toEqual({one: 1, two: 2});
-  });
+test('update specific task', async () => {
+    const _tasks = await funcs.updateTask(tasks.id);
+    expect(_tasks.skills).toBe('dummydata6');
+});
 
-  test('adding positive numbers is not zero', () => {
-        const a = 1
-        const b = 2
-        expect(a + b).not.toBe(0);
-  });
-
-  test('adding floating point numbers', () => {
-    const value = 0.1 + 0.2;
-    //expect(value).toBe(0.3);           This won't work because of rounding error
-    expect(value).toBeCloseTo(0.3); // This works.
-  });
-
-  test('there is no I in team', () => {
-    expect('team').not.toMatch(/I/);
-  });
-  
-  test('but there is a "stop" in Christoph', () => {
-    expect('Christoph').toMatch(/stop/);
-  });
-
-  const people = [
-    'Ammar',
-    'Leo',
-    'Barney',
-    'Jaime',
-    'Tywin',
-  ];
-  
-  test('The list of people has Ammar on it', () => {
-    expect(people).toContain('Ammar');
-  });
-
-
-//Working with async
-  test('First book should be Crime and Punishment', async () => {
-    expect.assertions(1)
-    const response =  await funcs.getBooks()
-    expect(response.data.data[0].title).toEqual('Crime and Puishment')
-  });
-
-  test('Number of books should be 11', async () => {
-    expect.assertions(1)
-    const response =  await funcs.getBooks()
-    expect(response.data.data.length).toBe(11)
-  });
-
-  test(`User's name should be  Leanne Graham`, async () => {
-    expect.assertions(1)
-    const user =  await funcs.getUser()
-    expect(user.data.name).toEqual('Leanne Graham')
-  });
+test('delete specific tasks', async () => {
+    const message = await funcs.deleteTask(tasks.id);
+    expect(message).toBe('Task was deleted successfully');
+});

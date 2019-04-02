@@ -179,7 +179,7 @@ if(consultancy){
   
     if (updated != null) {
       return res.json({
-        success: true,
+        success: true, 
         message: 'Task updated',
         updatedTask: updated
       })

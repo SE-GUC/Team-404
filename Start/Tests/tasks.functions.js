@@ -18,7 +18,35 @@ const functions = {
         //const tasks = await axios.get('http://localhost:3000/api/tasks/')
         //return tasks
         },
-        
+        getTask: async (id) => {
+          const tasks = await axios.get(`http://localhost:3000/api/tasks/${(id) ? id : ''}`);
+          return tasks;
+      },
+      updateTask: async (id) => {
+          const tasks = await axios.put(`http://localhost:3000/api/tasks/${id}`, {
+              event: 'success'
+          });
+          return feedback;
+      },
+      deleteTask: async (id) => {
+          const res = await axios.delete(`http://localhost:3000/api/tasks/${id}`);
+          return res.message;
+      },
+      createTask: async () => {
+        const tasks = await axios.post('http://localhost:3000/api/tasks', {
+              Description:'dummydata1' ,
+              eta: 'dummydata2',
+              levelofcommitment: 'dummydata3',
+              partner: 'dummydata4',
+              monetarycompensation: 'dummydata5',
+              skills: 'dummydata6',
+              lifecyclestatus: 'dummydata7',
+              experienceneeded: 'dummydata8',
+              consultancy: 'dummydata9'
+            
+          });
+          return tasks;
+      }    
 };
 router.post('/partners/:Pid/tasks/:Tid',functions.viewTaskstatus)
 module.exports = functions;
