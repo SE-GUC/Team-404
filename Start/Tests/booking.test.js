@@ -1,12 +1,28 @@
-//const jest = require("jest")
+const funcs = require('./bookings.functions');
+let feedback;
+test('create a new booking', async () => {
+    const booking = await funcs.createBooking();
+    expect(booking.event).toBe('anything');
+    booking = booking;
+})
 
-const booking = require('./Start/Routes/api/bookings')
+test('get all bookings', async () => {
+    const bookings = await funcs.getBookings();
+    expect(Array.isArray(bookings)).toBe(true);
+});
 
-test('adds 1 + 2 to be 3', async () => {
-  const response = await booking.
-    expect(candidate.viewEvents()).toBeGreaterThanOrEqual(0)
-  });
+test('get a specific booking', async () => {
+    const _booking = await funcs.getBookings(booking.id);
+    expect(_booking.id).toBe(booking.id);
+});
 
-  test('adds 1 + 2 to be 3', () => {
-    expect(candidate.bookEvent()).toBeNull()
-  });
+
+test('update a specific booking', async () => {
+    const _booking = await funcs.updateBooking(booking.id);
+    expect(_booking.event).toBe('anything');
+});
+
+test('delete a specific booking', async () => {
+    const message = await funcs.deleteBooking(booking.id);
+    expect(message).toBe('Booking was deleted successfully');
+});
