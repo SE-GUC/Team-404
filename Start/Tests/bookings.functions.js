@@ -7,7 +7,7 @@ const functions = {
         return bookings;
     },
     updateBooking: async (id) => {
-        const booking = await axios.put(`http://localhost:3000/api/bookings/{id}`, {
+        const booking = await axios.put(`http://localhost:3000/api/bookings/${id}`, {
             event: 'anything'
         });
         return booking;
