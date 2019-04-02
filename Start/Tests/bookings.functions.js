@@ -2,18 +2,18 @@ const axios = require('axios');
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const functions = {
-    getBookings: async (id) => {
-        const bookings = await axios.get(`http://localhost:3000/api/bookings/${(id) ? id : ''}`);
+    getBookings: async () => {
+        const bookings = await axios.get(`http://localhost:3000/api/bookings/`);
         return bookings;
     },
     updateBooking: async (id) => {
-        const booking = await axios.put(`http://localhost:3000/api/bookings/${id}`, {
-            event: 'anything'
+        const booking = await axios.put(`http://localhost:3000/api/bookings/:id`, {
+            event: 'anything' 
         });
         return booking;
     },
     deleteBooking: async (id) => {
-        const response = await axios.delete(`http://localhost:3000/api/bookings/${id}`);
+        const response = await axios.delete(`http://localhost:3000/api/bookings/:id`);
         return response.message;
     },
     createBooking: async () => {

@@ -18,7 +18,7 @@ test('get a specific booking', async (id) => {
 });
 
 
-test('update a specific booking', async ('/:id') => {
+test('update a specific booking', async (id) => {
     const _booking = await funcs.updateBooking(booking.id);
     expect(_booking.event).toBe('anything');
 });
