@@ -1,65 +1,28 @@
 const funcs = require('./notifications.functions');
+let notification;
 
-test('adds 1 + 2 to be 3', () => {
-  expect(funcs.add(1, 2)).toBe(3);
+test('Create notification', async () => {
+    const notification = await funcs.createFeedback();
+    
+    expect(notification.text).toBe('Testing Creation');
+    expect(notification.recipient).toBe('Testing Creation');
+    expect(notification.recipientType).toBe('Testing Creation');
+    expect(notification.trigger).toBe('Testing Creation');
+    notification = notification;
+})
+
+test('Get notifications', async () => {
+    const notifications = await funcs.getNotifications();
+    expect(Array.isArray(notifications)).toBe(true);
 });
 
+test('Get notification by id', async () => {
+    const notification = await funcs.getNotifications(notification.id);
+    expect(notification.id).toBe(notification.id);
+});
 
-//To be exact comparison, with objects use toEqual
-test('object assignment', () => {
-    const data = {one: 1};
-    data['two'] = 2;
-    expect(data).toEqual({one: 1, two: 2});
-  });
+test('Delete notification by id', async () => {
+    const message = await funcs.deleteNotifications(notification.id);
+    expect(message).toBe('Notification Deleted');
+});
 
-  test('adding positive numbers is not zero', () => {
-        const a = 1
-        const b = 2
-        expect(a + b).not.toBe(0);
-  });
-
-  test('adding floating point numbers', () => {
-    const value = 0.1 + 0.2;
-    //expect(value).toBe(0.3);           This won't work because of rounding error
-    expect(value).toBeCloseTo(0.3); // This works.
-  });
-
-  test('there is no I in team', () => {
-    expect('team').not.toMatch(/I/);
-  });
-  
-  test('but there is a "stop" in Christoph', () => {
-    expect('Christoph').toMatch(/stop/);
-  });
-
-  const people = [
-    'Ammar',
-    'Leo',
-    'Barney',
-    'Jaime',
-    'Tywin',
-  ];
-  
-  test('The list of people has Ammar on it', () => {
-    expect(people).toContain('Ammar');
-  });
-
-
-//Working with async
-  test('First book should be Crime and Punishment', async () => {
-    expect.assertions(1)
-    const response =  await funcs.getBooks()
-    expect(response.data.data[0].title).toEqual('Crime and Puishment')
-  });
-
-  test('Number of books should be 11', async () => {
-    expect.assertions(1)
-    const response =  await funcs.getBooks()
-    expect(response.data.data.length).toBe(11)
-  });
-
-  test(`User's name should be  Leanne Graham`, async () => {
-    expect.assertions(1)
-    const user =  await funcs.getUser()
-    expect(user.data.name).toEqual('Leanne Graham')
-  });

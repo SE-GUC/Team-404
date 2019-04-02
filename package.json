@@ -14,7 +14,7 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
     "install": "^0.12.2",
-    "jest": "^24.5.0",
+    "jest": "^24.6.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
     "loadash": "^1.0.0",
