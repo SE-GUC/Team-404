@@ -1,6 +1,7 @@
-<<<<<<< HEAD
-/
-/Docs
+
+/node_modules
+/package-lock.json
+
 
 
 
@@ -41,6 +42,6 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-=======
-**/node_modules
->>>>>>> a549af3216a29924ba905f690dd5af7e5641337e
+
+
+
