@@ -69,3 +69,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 Please Check the Sprint4 backlog in Docs to know your task :D
+To run you write npm start
