@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const app = express()
-const joi = require('joi')
+//const joi = require('joi')
 
 
 // We will be connecting using database 

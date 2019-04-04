@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const app = express()
-const joi = require("Joi")
+//const joi = require("Joi")
 
 const Partner = require('../../Models/Partner')
 const validator = require('../../Validation/partnerValid')

@@ -2,8 +2,8 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
-const joi = require("Joi")
-const User = require('../../models/User')
+//const joi = require("Joi")
+const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 
 router.get('/', async (req,res) => {

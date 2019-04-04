@@ -2,14 +2,13 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const app = express();
-const joi = require('joi')
+//const joi = require('joi')
 
 // We will be connecting using database 
 const Feedback = require('../../Models/Feedback')
 const Validator = require('../../Validation/Feedback')
 
 // Get method
-
 router.get('/', async (req, res) => {
   const feedbacks = await Feedback.find()
   res.json({ data: feedbacks })
@@ -35,10 +34,21 @@ router.get('/', async (req, res) => {
     }
   })
 
-// Create a feedback
+// Create a feedback // work here 
 
-router.post('/' ,async(req,res)=>
+router.post('/:fid' ,async(req,res)=>
 {
+  var Mid = req.body.mid
+  var Fid = req.params.fid
+  var candidate = await candidate.findById(Mid)//member need to be created first or else itll create and error
+if(!candidate)
+{
+  return res.status(400).send({
+    message: " couldnt find a member with the specified id"
+
+  })
+}
+  // var feedback id here , same as above
     try{
         const isValidated = Validator.createValidation(req.body)
         if (isValidated.error) return res.status(400).send({error: isValidated.error.details[0].message})
@@ -52,7 +62,6 @@ router.post('/' ,async(req,res)=>
 })
 
 //Update a feedback
-
 router.put('/:id',async (req,res)=>{
     try{
         Feedback.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, model) => {
