@@ -6,13 +6,10 @@ app.use(express.json())
 const router = express.Router()
 //const uuid = require('uuid')
 const Task = require('../../Models/Task')
-<<<<<<< HEAD
 const Partner = require('../../Models/Partner')
 
 const joi = require("Joi")
-=======
 //const joi = require("Joi")
->>>>>>> fc1bb38cc7b0a9f6097bbff358f2cbc04a28daf3
 
 const validator = require('../../Validation/taskvalidations')
 
