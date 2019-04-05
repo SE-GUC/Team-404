@@ -1,111 +1,70 @@
 const express = require('express')
-// const Joi = require('joi');
-const uuid = require('uuid/v4')
 const router = express.Router()
+const mongoose = require('mongoose')
+const app = express()
+//const joi = require("Joi")
 
-// We will be connecting using database
 const Partner = require('../../Models/Partner')
-
-// temporary data created as if it was pulled out of the database ...
-const partners = [
-  new Partner('ABC', 'a basic china', 'isanad', 'jason mamoa', 'join the aquas', 'art', '', ''),
-  new Partner('XYZ', 'anything', 'ismailaboulela', 'rob stark', 'kill the lannisters', 'bladesmith', '', ''),
-  new Partner('qwerty', 'abilities', 'gomanaelshimy', 'direwolf', 'im lonely', 'tech', '', '')
-
-]
-router.get('/', (req, res) => res.json({ data: partners }))
-
-// view
-router.get('/:id', (req, res) => {
-  const partnerId = req.params.id
-  const partner = partners.find(partner => partner.id === partnerId)
-  res.send(partner)
-  // return res.json({ data: partner});
+const validator = require('../../Validation/partnerValid')
+//view all
+router.get('/', async (req, res) => {
+  const Partners = await Partner.find()
+  res.json({ data: Partners })
 })
+//create
+router.post('/', async (req, res) => {
 
-// create a Partner
-router.post('/', (req, res) => {
-  const organisationname = req.body.organisationname
-  const basicinformation = req.body.basicinformation
-  const partnerss = req.body.partnerss
-  const boardmembers = req.body.boardmembers
-  const eventsorganized = req.body.eventsorganized
-  const fieldofwork = req.body.fieldofwork
-  const projecthistory = req.body.projecthistory
-  const feedbackform = req.body.feedbackform
-  if (!organisationname) return res.status(400).send({ err: 'organisationname field is required' })
-  if (typeof organisationname !== 'string') return res.status(400).send({ err: 'Invalid value for organisationname field' })
-  if (!basicinformation) return res.status(400).send({ err: 'basicinformation field is required' })
-  if (typeof basicinformation !== 'string') return res.status(400).send({ err: 'Invalid value for basicinformation field' })
-  if (!partnerss) return res.status(400).send({ err: 'partners field is required' })
-  if (typeof partnerss !== 'string') return res.status(400).send({ err: 'Invalid value for partners field' })
-  if (!boardmembers) return res.status(400).send({ err: 'boardmembers field is required' })
-  if (typeof boardmembers !== 'string') return res.status(400).send({ err: 'Invalid value for boardmembers field ' })
-  if (!eventsorganized) return res.status(400).send({ err: 'eventsorganized field is required' })
-  if (typeof eventsorganized !== 'string') return res.status(400).send({ err: 'Invalid value for eventsorganized field' })
-  if (!fieldofwork) return res.status(400).send({ err: 'fieldofwork field is required' })
-  if (typeof fieldofwork !== 'string') return res.status(400).send({ err: 'Invalid value for fieldofwork field' })
-  if (!projecthistory) return res.status(400).send({ err: 'projecthistory field is required' })
-  if (typeof projecthistory !== 'string') return res.status(400).send({ err: 'Invalid value for projecthistory field' })
-  if (!feedbackform) return res.status(400).send({ err: 'feedbackform field is required' })
-  if (typeof feedbackform !== 'string') return res.status(400).send({ err: 'Invalid value for feedbackform field' })
-  const newpartner = {
-    organisationname,
-    basicinformation,
-    partnerss,
-    boardmembers,
-    eventsorganized,
-    fieldofwork,
-    projecthistory,
-    feedbackform,
-    id: uuid()
+  try {
+      const isValidated = validator.createValidation(req.body)
+    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    const partner = await new Partner({
+      _id: mongoose.Types.ObjectId(),
+      organisationname: req.body.organisationname,
+      partners: req.body.partners,
+      boardmembers: req.body.boardmembers,
+      eventsorganized: req.body.eventsorganized,
+      fieldofwork: req.body.fieldofwork,
+      projecthistory: req.body.projecthistory,
+      feedbackform: req.body.feedbackform,
+           }).save()
+  
+           return res.json({ data: partner })
+  
+    } catch (error) {
+      console.log(error)
+    } })
+//read
+router.get("/:id" ,async (request, response) => {
+  try {
+    const partners = await Partner.findById(request.params.id).exec()
+    return response.json({ data: partners })
+  } catch (err) {
+    return response.json({ error: `Error, couldn't find a partner given the following id` })
   }
-  partners.push(newpartner)
-  return res.json({ data: newpartner })
 })
-router.put('/:id', (req, res) => {
-  const partnerId = req.params.id
-  const partner = partners.find(partner => partner.id === partnerId)
-  if (req.body.organisationname) {
-    const updatedorganisationname = req.body.organisationname
-    partner.organisationname = updatedorganisationname
+//update
+router.put('/:id', async (req,res) => {
+  try {
+   const id = req.params.id
+   const requestedPartner = await Partner.findById({id})
+   res.json({msg:'Candidate you asked for', data: requestedPartner})
+   res.json({msg: 'Partner updated successfully'})
   }
-  if (req.body.basicinformation) {
-    const updatedbasicinformation = req.body.basicinformation
-    partner.basicinformation = updatedbasicinformation
-  }
-  if (req.body.partners) {
-    const updatedpartners = req.body.partners
-    partner.partners = updatedpartners
-  }
-  if (req.body.boardmembers) {
-    const updatedboardmembers = req.body.boardmembers
-    partner.boardmembers = updatedboardmembers
-  }
-  if (req.body.eventsorganized) {
-    const updatedeventsorganized = req.body.eventsorganized
-    partner.eventsorganized = updatedeventsorganized
-  }
-  if (req.body.fieldofwork) {
-    const updatedfieldofwork = req.body.fieldofwork
-    partner.fieldofwork = updatedfieldofwork
-  }
-  if (req.body.projecthistory) {
-    const updatedprojecthistory = req.body.projecthistory
-    partner.projecthistory = updatedprojecthistory
-  }
-  if (req.body.feedbackform) {
-    const updatedfeedbackform = req.body.feedbackform
-    partner.feedbackform = updatedfeedbackform
-  }
-  res.send(partners)
+  catch(error) {
+      // We will be handling the error later
+      console.log(error)
+  }  
 })
-router.delete('/:id', (req, res) => {
-  const partnerId = req.params.id
-  const partner = partners.find(partner => partner.id === partnerId)
-  const index = partners.indexOf(partner)
-  partners.splice(index, 1)
-  res.send(partners)
+//delete
+router.delete('/:id', async (req,res) => {
+  try {
+   const id = req.params.id
+   const deletedPartner = await Partner.findByIdAndRemove(id)
+   res.json({msg:'Partner was deleted successfully', data: deletedPartner})
+  }
+  catch(error) {
+      // We will be handling the error later
+      console.log(error)
+  }  
 })
-
 module.exports = router

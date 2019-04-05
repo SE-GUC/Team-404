@@ -10,9 +10,10 @@ mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
+
 // Connect to mongo
 mongoose
-  .connect(db)
+  .connect('mongodb+srv://isanad:sebastien300@cluster0-ny6mj.mongodb.net/test?retryWrites=true')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log(err))
 
@@ -36,8 +37,9 @@ const candidates = require('./Start/Routes/api/candidates')
 const feedbacks = require('./Start/Routes/api/feedbacks')
 const notifications = require('./Start/Routes/api/notifications')
 const tasks = require('./Start/Routes/api/tasks')
-//const consultants = require('./Start/Routes/api/consultants')
 const requests = require('./Start/Routes/api/requests')
+const consultants = require('./Start/Routes/api/consultants')
+
 
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
@@ -54,6 +56,7 @@ app.get('/', (req, res) => {
  <a href ="api/tasks">Tasks</a>
  <a href ="api/consultants">Consultants</a>
  <a href ="api/requests">Requests</a>
+
  `)
 })
 
@@ -69,8 +72,9 @@ app.use('/api/candidates', candidates)
 app.use('/api/feedbacks', feedbacks)
 app.use('/api/notifications', notifications)
 app.use('/api/tasks', tasks)
-//app.use('/api/consultants', consultants)
 app.use('/api/requests', requests)
+app.use('/api/consultants', consultants)
+
 
 app.use((req, res) => {
   res.status(404).send({ err: 'We can not find what you are looking for' })

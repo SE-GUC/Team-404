@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const app = express()
-const joi = require("Joi")
+//const joi = require('Joi')
 // const uuid = require('uuid/v4');
 // We will be connecting using database
 const Application = require('../../Models/Application')
@@ -37,8 +37,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-
-//all of this is working fine, getid put delete
+// all of this is working fine, getid put delete
 router
   .route('/:id')
   .all(async (request, response, next) => {
