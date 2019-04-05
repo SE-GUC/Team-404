@@ -27,14 +27,8 @@ const AdminSchema = new Schema({
         type: Number,
         required: true
     },
-    usertype: {
-        type: String,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    }
+   
+
 
  
 })
