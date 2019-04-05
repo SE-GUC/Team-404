@@ -8,9 +8,10 @@ mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
+
 // Connect to mongo
 mongoose
-  .connect(db)
+  .connect('mongodb+srv://isanad:sebastien300@cluster0-ny6mj.mongodb.net/test?retryWrites=true')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log(err))
 
