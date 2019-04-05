@@ -52,7 +52,6 @@ CreateEvent: async (req,res) => {
         speakers:req.body.speakers,
         maximumplaces:req.body.maximumplaces,
         topicscovered:req.body.topicscovered,
-        feedbackid:req.body.feedbackid,
         field:req.body.field,
         registrationprice:req.body.registrationprices,
         approvalstaus:'pending',
@@ -66,7 +65,7 @@ CreateEvent: async (req,res) => {
 
 
 
-// Confirm partenr's request
+// Admin confirm partenr's request
 ConfirmRequest: async (req,res) => {
    try{
         var Rid = req.params.id

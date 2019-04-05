@@ -1,40 +1,35 @@
-const eventsFunctions = require('./eventsFunctions');
 const Event = require('../../Models/Event')
+const events = require('./api/events');
+let newEvent;
 
 
-  test("Creating an event", async() =>{
-      expect.assertions(2);
-      const response = await events.get();
-      const oldLength = response.data.length;
-      const response1 = await events.post({
-        'requestid': "16",
-        'eventname': "Fun",
-        'organizer': "Hagar",
-        'location': "Home",
-        'remainingplaces':"1",
-        'speakers': "Omar",
-        'maximumplaces': "1",
-        'topicscovered': "Clara",
-        'feedbackid': "20",
-        'field': "funfuna",
-        'registrationprice':"15",
-        'approvalstaus':"pending",
-      });
-expect(response1.data.msg).toEqual('event was created successfully');
-const response2 = await events.get();
-expect(response2.data.length).toEqual(oldLength + 1)
-  
-  },100000);
+test('create a new Event', async () => {
+    const newEvent = await events.post();
+    expect(newEvent.eventname).toBe('name');
+    newEvent = newEvent;
+})
 
-  test("Deleting an event", async() =>{
-    expect.assertions(2);
-    const response = await events.get();
-    const oldLength = response.data.length;
-    var id = '5c96823a583c240d2ba85c25'
-    const response1 = await events.delete(id)({ 
-    });
-expect(response1.data.msg).toEqual('event was deleted successfully');
-const response2 = await events.get();
-expect(response2.data.length).toEqual(oldLength - 1)
 
-},100000);
+ test('get all events', async () => {
+    const vnt = await events.get();
+    expect(Array.isArray(vnt)).toBe(true);
+});
+
+test('get a specific Event', async (id) => {
+    const id = newEvent.id
+    const _event = await events.get(id);
+    expect(_event.id).toBe(newEvent.id);
+});
+
+
+test('update a specific Event', async (id) => {
+    const id = newEvent.id
+    const _event = await events.put(id);
+    expect(_event.eventname).toBe('updated name');
+});
+
+test('delete a specific Event', async (id) => {
+    const id = newEvent.id
+    const message = await events.delete(id);
+    expect(message).toBe('Event was deleted successfully');
+});

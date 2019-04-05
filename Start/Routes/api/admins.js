@@ -31,13 +31,12 @@ router.post('/', async (req,res) => {
    
     const newAdmin = await new Admin({
             name: req.body.name,
+            username: req.body.username,
             password: req.body.password, //hashedPassword ,
             email: req.body.email,
             age: req.body.age,
-            username: req.body.username,
             phonenumber: req.body.phonenumber,
-            usertype:req.body.usertype,
-            location: req.body.location
+            
         })
 
     .save()

@@ -37,7 +37,6 @@ app.get('/', (req, res) => {
         speakers: req.body.speakers,
         maximumplaces: req.body.maximumplaces,
         topicscovered: req.body.topicscovered,
-        feedbackid: req.body.feedbackid,
         field: req.body.field,
         registrationprice: req.body.field,
         approvalstatus: 'pending'
