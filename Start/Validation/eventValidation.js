@@ -4,7 +4,7 @@ const Joi = require('joi')
 module.exports = {
     createValidation: request => {
         const createSchema = {
-            name: Joi.string().required(),
+            eventname: Joi.string().required(),
             organizer: Joi.string().required(),
             location: Joi.string().required(),
             description: Joi.string().required(),
@@ -14,6 +14,7 @@ module.exports = {
             topicscovered: Joi.string().required(),
             feedbackid: Joi.number().required(),
             field: Joi.string().required(),
+            registrationprice: Joi.number().required(),
             approvalstatus: Joi.string().required()
     
         }
