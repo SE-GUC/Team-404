@@ -5,23 +5,35 @@ import CandidateInfo from "./CandidateInfo";
 
 export class Application extends Component {
   render() {
+    const { id, name } = this.props.candidateInfo;
     return (
       //outputs the names , references
-      
-        <div style={formFormat} >
-                 
 
-          <p>
-            Name: {this.props.candidateInfo.name}
-            <br />
-            <br />
-            ID: {this.props.candidateInfo.id}
-          </p>
-        
+      <div style={formFormat}>
+        <p>
+          Name: {name}
+          <br />
+          <br />
+          ID: {id}
+
+          <button onClick={this.props.delApplication.bind(this, id)} style={btnStyle}>
+            X
+          </button>
+        </p>
       </div>
     );
   }
 }
+
+const btnStyle = {
+    background: "#f00",
+    color: "#fff",
+    padding: "5px 10px",
+    borderRadius: "50%",
+    float: "right",
+    marginBottom: "40px"
+  };
+  
 
 const formFormat = {
   background: "#0E4DBA",

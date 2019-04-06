@@ -8,10 +8,12 @@ import CandidateInfo from "./Components/CandidateInfo";
 class App extends Component {
   state = {
     candidate: [
-      {
-        id: 1,
-        name: "John Wick"
-      },
+      /*{
+        skills: null,
+        interests: null,
+        pasteventsandtasks: null,
+        reviewsrecieved: null
+      },*/
       {
         id: 2,
         name: "Wick John"
@@ -22,7 +24,12 @@ class App extends Component {
       }
     ]
   };
-  /*todos: [
+  /*getDataFromDb = () =>{
+    fetch("localhost:3001/api/Candidate")
+    .then()
+  }
+  
+  todos: [
       {
         id: 1,
         title: "take out the trash",
@@ -51,18 +58,19 @@ class App extends Component {
       })
     });
   };
-
-  delTodo = (id) => {
-    this.setState({todos:[...this.state.todos.filter(todo => todo.id !==id)]})
-  }
 */
+
+  delApplication = (id) => {
+    this.setState({candidate:[...this.state.candidate.filter(candidate => candidate.id !==id)]})
+  }
+
   render() {
     console.log(this.state.candidate);
     return (
       <div>
         <div>
-          <Header/>
-          <CandidateInfo candidateInfo={this.state.candidate} />
+          <Header />
+          <CandidateInfo candidateInfo={this.state.candidate} delApplication = {this.delApplication}/>
         </div>
       </div>
     );
