@@ -1,13 +1,28 @@
 import React, { Component } from "react";
 import "./App.css";
-import Todo from "./Components/ToDo";
-import Header from './Components/Layout/Header';
-import AddTodo  from "./Components/AddTodo";
- 
+import Application from "./Components/Application";
+import Header from "./Components/Layout/Header";
+import CandidateInfo from "./Components/CandidateInfo";
+//import CandidateInfo from "./Components/CandidateInfo";
 
 class App extends Component {
   state = {
-    todos: [
+    candidate: [
+      {
+        id: 1,
+        name: "John Wick"
+      },
+      {
+        id: 2,
+        name: "Wick John"
+      },
+      {
+        id: 3,
+        name: "Jick Whon"
+      }
+    ]
+  };
+  /*todos: [
       {
         id: 1,
         title: "take out the trash",
@@ -40,13 +55,15 @@ class App extends Component {
   delTodo = (id) => {
     this.setState({todos:[...this.state.todos.filter(todo => todo.id !==id)]})
   }
-
+*/
   render() {
+    console.log(this.state.candidate);
     return (
-      <div className="App">
-      <Header/>
-      <AddTodo/>
-        <Todo todo={this.state.todos} delTodo = {this.delTodo} markComplete={this.markComplete} />
+      <div>
+        <div>
+          <Header />
+          <CandidateInfo candidateInfo={this.state.candidate} />
+        </div>
       </div>
     );
   }
