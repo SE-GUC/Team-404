@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Header from "./Layout/Header";
 import PropTypes from "prop-types";
-import CandidateInfo from "./CandidateInfo";
+import ApplicationInfo from "./ApplicationInfo";
 
 export class Application extends Component {
   render() {
-    const { id, name } = this.props.candidateInfo;
+    const { id, name } = this.props.applicationInfo;
     return (
       //outputs the names , references
 
@@ -28,7 +28,7 @@ export class Application extends Component {
 const btnStyle = {
     background: "#f00",
     color: "#fff",
-    padding: "5px 10px",
+    padding:  "10px",
     borderRadius: "50%",
     float: "right",
     marginBottom: "40px"
@@ -36,15 +36,17 @@ const btnStyle = {
   
 
 const formFormat = {
-  background: "#0E4DBA",
+  background: "#4F5AF6",
   padding: "5px 10px",
   borderRadius: "5px",
-  margin: "10px"
+  borderBottom: "1px",
+  margin: "5px",
+  marginBottom: "20px"
 };
 
 //stays the type of the bigger class
 Application.propTypes = {
-  candidateInfo: PropTypes.object.isRequired
+  applicationInfo: PropTypes.object.isRequired
 };
 
 const infoFormat = {

@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import "./App.css";
 import Application from "./Components/Application";
 import Header from "./Components/Layout/Header";
-import CandidateInfo from "./Components/CandidateInfo";
-//import CandidateInfo from "./Components/CandidateInfo";
+import ApplicationInfo from "./Components/ApplicationInfo";
 
 class App extends Component {
   state = {
-    candidate: [
+    application: []
       /*{
         skills: null,
         interests: null,
         pasteventsandtasks: null,
         reviewsrecieved: null
-      },*/
+      },
       {
         id: 2,
         name: "Wick John"
@@ -23,12 +22,16 @@ class App extends Component {
         name: "Jick Whon"
       }
     ]
+  }; */
+    
   };
-  /*getDataFromDb = () =>{
-    fetch("localhost:3001/api/Candidate")
-    .then()
+
+  getDataFromDb = () => {
+    fetch("http://localhost:3001/api/Applications")
+      .then(application => application.json())
+      .then(res => this.setState({ application: res.application }));
   }
-  
+  /*
   todos: [
       {
         id: 1,
@@ -60,21 +63,36 @@ class App extends Component {
   };
 */
 
-  delApplication = (id) => {
-    this.setState({candidate:[...this.state.candidate.filter(candidate => candidate.id !==id)]})
-  }
+  delApplication = id => {
+    this.setState({
+      application: [
+        ...this.state.application.filter(application => application.id !== id)
+      ]
+    });
+  };
 
   render() {
-    console.log(this.state.candidate);
+    console.log(this.state.application);
     return (
       <div>
-        <div>
+        <div style={together}>
           <Header />
-          <CandidateInfo candidateInfo={this.state.candidate} delApplication = {this.delApplication}/>
+          <ApplicationInfo
+            applicationInfo={this.state.application}
+            delApplication={this.delApplication}
+          />
         </div>
       </div>
     );
   }
 }
+
+const together = {
+  border: "10px",
+  borderRadius: "10px",
+  background: "#9D9FB9",
+  margin: "auto",
+  paddingBottom: "1px"
+};
 
 export default App;
