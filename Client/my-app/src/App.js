@@ -6,14 +6,21 @@ import ApplicationInfo from "./Components/ApplicationInfo";
 
 class App extends Component {
   state = {
-    application: []
-      /*{
-        skills: null,
-        interests: null,
-        pasteventsandtasks: null,
-        reviewsrecieved: null
+    application: [
+    /*{
+        candidate: null,
+        partner: null,
+        datetime: null,
+        task: null
+        status: null
       },
-      {
+    */],
+    candidate:[],
+    partner: [],
+    task:[]
+     
+    /*
+    {
         id: 2,
         name: "Wick John"
       },
@@ -22,15 +29,25 @@ class App extends Component {
         name: "Jick Whon"
       }
     ]
-  }; */
-    
-  };
-
-  getDataFromDb = () => {
-    fetch("http://localhost:3001/api/Applications")
+    */
+  }; 
+  /* application information
+  attempt to put each information in an array and display all of em
+  supposed to display the skills required only in task not from candidate
+  const ApplicationSchema = new schema({
+    candidate: { type: String, required: true, unique: false },
+    partner: { type: String, required: true, unique: false },
+    datetime: { type: Date, required: true, unique: true },
+    task: { type: String, required: true, unique: false },
+    status: { type: String, required: false, unique: false }
+  })
+*/
+  /*componentDidMount() {
+    fetch("http://localhost:3000/api/Applications")
       .then(application => application.json())
       .then(res => this.setState({ application: res.application }));
   }
+*/
   /*
   todos: [
       {
@@ -86,6 +103,7 @@ class App extends Component {
     );
   }
 }
+
 
 const together = {
   border: "10px",
