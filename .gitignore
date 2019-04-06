@@ -1,8 +1,9 @@
-/
-/Docs
+
 /node_modules
-/Start/config
 /package-lock.json
+
+
+
 
 # Compiled source #
 ###################
@@ -41,3 +42,6 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+
