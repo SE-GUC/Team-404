@@ -61,7 +61,7 @@ class App extends Component {
     return (
       <div>
         <div>
-          <Header />
+          <Header/>
           <CandidateInfo candidateInfo={this.state.candidate} />
         </div>
       </div>

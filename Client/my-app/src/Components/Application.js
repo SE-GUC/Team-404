@@ -9,6 +9,8 @@ export class Application extends Component {
       //outputs the names , references
       
         <div style={formFormat} >
+                 
+
           <p>
             Name: {this.props.candidateInfo.name}
             <br />
