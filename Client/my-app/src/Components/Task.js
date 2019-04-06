@@ -3,50 +3,44 @@ import Header from "./Layout/Header";
 import PropTypes from "prop-types";
 import ApplicationInfo from "./ApplicationInfo";
 import TaskInfo from "./TaskInfo";
-import Task from "./Task";
 
-export class Application extends Component {
+export class Task extends Component {
   render() {
     const {
-      id,
-      candidate,
-      partner,
-      datetime,
-      task,
-      status
-    } = this.props.applicationInfo;
+      Description,
+      eta,
+      levelofcommitment,
+      monetarycompensation,
+      lifecyclestatus,
+      experienceneeded,
+      consultancy
+    } = this.props.taskInfo;
 
     return (
-      //outputs the names , references
-
       <div style={formFormat}>
         <p>
-          <h3>Application Info</h3>
+          <h3>Task Info</h3>
           <br />
-          ID: {id}
-          <br />
-          <br />
-          Candidate: {candidate}
+          Description: {Description}
           <br />
           <br />
-          Partner: {partner}
+          eta: {eta}
+          <br />
+          <br /> levelofcommitment:
+          {levelofcommitment}
           <br />
           <br />
-          Date-Time: {datetime}
+          monetarycompensation: {monetarycompensation}
           <br />
           <br />
-          Task: {task}
+          lifecyclestatus: {lifecyclestatus}
           <br />
           <br />
-          Status: {status}
+          experienceneeded: {experienceneeded}
           <br />
-          
-          <button
-            onClick={this.props.delApplication.bind(this, id)}
-            style={btnStyle}
-          >
-            X
-          </button>
+          <br />
+          consultancy: {consultancy}
+         
         </p>
       </div>
     );
@@ -72,12 +66,8 @@ const formFormat = {
 };
 
 //stays the type of the bigger class
-Application.propTypes = {
-  applicationInfo: PropTypes.object.isRequired
+Task.propTypes = {
+  taskInfo: PropTypes.object.isRequired
 };
 
-const infoFormat = {
-  padding: "10px"
-};
-
-export default Application;
+export default Task;

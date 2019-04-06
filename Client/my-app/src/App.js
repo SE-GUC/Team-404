@@ -3,10 +3,21 @@ import "./App.css";
 import Application from "./Components/Application";
 import Header from "./Components/Layout/Header";
 import ApplicationInfo from "./Components/ApplicationInfo";
+import TaskInfo from "./Components/TaskInfo";
+import Task from "./Components/TaskInfo";
 
 class App extends Component {
   state = {
     application: [
+      {
+        id: 1,
+        candidate: "asd",
+        partner: "asdasd",
+        datetime: "qqq",
+        task: "123",
+        status: "333"
+      }
+    ],
     /*{
         candidate: null,
         partner: null,
@@ -14,11 +25,24 @@ class App extends Component {
         task: null
         status: null
       },
-    */],
-    candidate:[],
+    */
+    //canddiate should have name and stuff like that , user data..
+    candidate: [],
     partner: [],
-    task:[]
-     
+    task: [
+      {
+        Description: "{ type: String, required: true }",
+        eta: "{ type: Number, required: true }",
+        levelofcommitment: "{ type: String, required: true, unique: false }",
+        partner: "{ type: String, required: true }",
+        monetarycompensation: "{ type: Number, required: true }",
+        skills: "{ type: String, required: true }",
+        lifecyclestatus: "{ type: String, required: true }",
+        experienceneeded: "{ type: String, required: true }",
+        consultancy: "{ type: String, required: true }"
+      }
+    ]
+
     /*
     {
         id: 2,
@@ -30,7 +54,7 @@ class App extends Component {
       }
     ]
     */
-  }; 
+  };
   /* application information
   attempt to put each information in an array and display all of em
   supposed to display the skills required only in task not from candidate
@@ -89,7 +113,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.application);
     return (
       <div>
         <div style={together}>
@@ -98,12 +121,12 @@ class App extends Component {
             applicationInfo={this.state.application}
             delApplication={this.delApplication}
           />
+          <TaskInfo taskInfo={this.state.task} />
         </div>
       </div>
     );
   }
 }
-
 
 const together = {
   border: "10px",
