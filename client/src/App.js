@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
@@ -8,6 +9,9 @@ import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Consultant from "./components/consultant";
 import Axios from "axios";
+import PartnerHeader from "./components/PartnerHeader";
+import PartnerPage from "./components/page/PartnerPage";
+
 class App extends Component {
   state = {
     application: [],
@@ -37,6 +41,38 @@ class App extends Component {
         experienceneeded: "3 years",
         consultancy: "Consultant"
       }
+    ],
+    partner: [
+      {
+        id: 1,
+        organisationname: "p1-OrganisationName",
+        partners: "p1-Partners",
+        boardmembers: "p1-BoardMembers",
+        eventsorganized: "p1-EventsOrganized",
+        fieldofwork: "p1-FieldOfWork",
+        projecthistory: "p1-ProjectHistory",
+        feedbackform: "p1-FeedBackForm"
+      },
+      {
+        id: 2,
+        organisationname: "p2-OrganisationName",
+        partners: "p2-Partners",
+        boardmembers: "p2-BoardMembers",
+        eventsorganized: "p2-EventsOrganized",
+        fieldofwork: "p2-FieldOfWork",
+        projecthistory: "p2-ProjectHistory",
+        feedbackform: "p2-FeedBackForm"
+      },
+      {
+        id: 3,
+        organisationname: "p3-OrganisationName",
+        partners: "p3-Partners",
+        boardmembers: "p3-BoardMembers",
+        eventsorganized: "p3-EventsOrganized",
+        fieldofwork: "p3-FieldOfWork",
+        projecthistory: "p-3ProjectHistory",
+        feedbackform: "p-3FeedBackForm"
+      }
     ]
   };
 
@@ -50,18 +86,31 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" id="background2">
-        <Login />
-       <Consultant/>
-        <Taskform taskform={this.state.taskform} />
-        <div style={together}>
-          <Header />
-          <ApplicationInfo
-            applicationInfo={this.state.application}
-            delApplication={this.delApplication}
+      <Router>
+        <div className="App" id="background2">
+          <Login />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <React.Fragment>
+                <PartnerHeader />
+                <p style={textStyle}>Welcome To Lirten Hub</p>
+              </React.Fragment>
+            )}
           />
+          <Route path="/page" component={PartnerPage} />
+          <Consultant />
+          <Taskform taskform={this.state.taskform} />
+          <div style={together}>
+            <Header />
+            <ApplicationInfo
+              applicationInfo={this.state.application}
+              delApplication={this.delApplication}
+            />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
@@ -72,6 +121,12 @@ const together = {
   background: "#9D9FB9",
   margin: "auto",
   paddingBottom: "1px"
+};
+
+const textStyle = {
+  textAlign: "left",
+  padding: "10px",
+  fontSize: "5mm"
 };
 
 export default App;
