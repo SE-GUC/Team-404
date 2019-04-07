@@ -50,14 +50,7 @@ class App extends Component {
         status: "333"
       }
     ],
-    /*{
-        candidate: null,
-        partner: null,
-        datetime: null,
-        task: null
-        status: null
-      },
-    */
+
     //canddiate should have name and stuff like that , user data..
     candidate: [],
     partner: [],
@@ -85,36 +78,19 @@ class App extends Component {
         consultancy: "{ type: String, required: true }"
       }
     ]
-
-    /*
-    {
-        id: 2,
-        name: "Wick John"
-      },
-      {
-        id: 3,
-        name: "Jick Whon"
-      }
-    ]
-    */
   };
+
   /* application information
   attempt to put each information in an array and display all of em
   supposed to display the skills required only in task not from candidate
-  const ApplicationSchema = new schema({
-    candidate: { type: String, required: true, unique: false },
-    partner: { type: String, required: true, unique: false },
-    datetime: { type: Date, required: true, unique: true },
-    task: { type: String, required: true, unique: false },
-    status: { type: String, required: false, unique: false }
-  })
 */
-  /*componentDidMount() {
+
+  componentDidMount() {
     fetch("http://localhost:3000/api/Applications")
-      .then(application => application.json())
-      .then(res => this.setState({ application: res.application }));
+      .then(partner => partner.json())
+      .then(res => this.setState({ partner: res.partner }));
   }
-*/
+
   /*
   todos: [
       {
