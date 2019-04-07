@@ -1,27 +1,16 @@
-import React, { Component } from "react";
-import "./App.css";
-import Application from "./Components/Application";
-import Header from "./Components/Layout/Header";
-import ApplicationInfo from "./Components/ApplicationInfo";
+import React, { Component } from 'react';
+import './App.css';
+import './components/Textbox.css';
+import Login from './components/Login';
+import Application from "./components/Application";
+import Header from "./components/Layout/Header";
+import ApplicationInfo from "./components/ApplicationInfo";
 import Axios from "axios";
-
 class App extends Component {
   state = {
     application: []
   };
-
-  /* application information
-  attempt to put each information in an array and display all of em
-  supposed to display the skills required only in task not from candidate
-*/
-/*
-  componentDidMount() {
-    Axios.get("http://localhost:3001/api/applications").then(res =>
-      console.log(res.data)
-    );
-    // .then(res => this.setState({ application: res.application }));
-  }
-*/
+  
   delApplication = id => {
     this.setState({
       application: [
@@ -32,7 +21,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      
+          <div className="App" id='background2'>
+      <Login/>
         <div style={together}>
           <Header />
           <ApplicationInfo
