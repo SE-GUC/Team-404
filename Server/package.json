@@ -2,10 +2,14 @@
   "name": "express-test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "my-app-install": "npm install --prefix my-app",
+    "start": "node server",
+    "server": "nodemon server",
+    "test": "jest",
+    "my-app": "npm start --prefix my-app",
+    "dev": "concurrently \"npm run server\" \"npm run my-app\""
   },
   "keywords": [],
   "author": "",
@@ -13,6 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "install": "^0.12.2",
     "joi": "^14.3.1",
