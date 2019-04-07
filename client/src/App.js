@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import Application from "./Components/Application";
-import Header from "./Components/Layout/Header";
-import ApplicationInfo from "./Components/ApplicationInfo";
+import Application from "./components/Application";
+import Header from "./components/Layout/Header";
+import ApplicationInfo from "./components/ApplicationInfo";
 import Axios from "axios";
 
 class App extends Component {
