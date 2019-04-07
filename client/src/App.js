@@ -10,7 +10,13 @@ class App extends Component {
   state = {
     application: []
   };
-  
+  render() {
+    return (
+      <div>
+        <Consultant/>
+      </div>
+    );
+  }
   delApplication = id => {
     this.setState({
       application: [
