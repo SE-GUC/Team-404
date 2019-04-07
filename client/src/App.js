@@ -6,6 +6,7 @@ import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
+import Consultant from "./components/consultant";
 import Axios from "axios";
 class App extends Component {
   state = {
@@ -51,6 +52,7 @@ class App extends Component {
     return (
       <div className="App" id="background2">
         <Login />
+       <Consultant/>
         <Taskform taskform={this.state.taskform} />
         <div style={together}>
           <Header />
