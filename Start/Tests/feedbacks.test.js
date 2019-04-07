@@ -2,7 +2,7 @@ const funcs = require('./feedbacks.functions');
 let feedback;
 test('create new feedback POST & creating new candidate beforehand', async () => {
     const feedback = await funcs.createFeedback();
-    expect(feedback.name).toBe('Bruh');
+    expect(feedback.name).toBe('dummydata');
     feedback = feedback;
 })
 
@@ -19,7 +19,7 @@ test('get specific feedback', async () => {
 
 test('update specific feedback', async () => {
     const _feedback = await funcs.updateFeedback(feedback.id);
-    expect(_feedback.event).toBe('ayy');
+    expect(_feedback.event).toBe('dummydata');
 });
 
 test('delete specific feedback', async () => {

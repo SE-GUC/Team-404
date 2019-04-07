@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const Booking = require('../../models/Booking')
+const Booking = require('../../Models/Booking')
 const validator = require('../../Validation/bookingValid')
-const joi = require("Joi")
+//const joi = require("Joi")
 
 
 

@@ -1,41 +1,46 @@
-
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
-//const joi = require("Joi")
-const User = require('../../Models/User')
-const validator = require('../../Validation/userValid')
+const app = express()
+const joi = require("Joi")
+const axios = require('axios');
 
+
+
+// We will be connecting using database 
+const Admin = require('../../Models/Admin')
+const validator = require('../../Validation/adminValid')
+
+// View admins
 router.get('/', async (req,res) => {
-  const users = await User.find()
-  res.json({data: users})
+  const admins = await Admin.find()
+  res.json({data: admins})
 })
+
+// Default route (entry point)
+app.get('/', (req, res) => {
+    res.send(`<h1>Welcome</h1>`)
+  })
+
+// Create admin
 router.post('/', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
 
-   // const user = await User.findOne({email})
-    //if(user) return res.status(400).json({error: 'Email already exists'})
-    //const user1 = await User.findOne({username})
-    //if(user1) return res.status(400).json({error: 'username already exists'})
-
-    
-    //const salt = bcrypt.genSaltSync(10)
-    //const hashedPassword = bcrypt.hashSync(password,salt)
-    const newUser = await new User({
+   
+    const newAdmin = await new Admin({
             name: req.body.name,
+            username: req.body.username,
             password: req.body.password, //hashedPassword ,
             email: req.body.email,
             age: req.body.age,
-            username: req.body.username,
             phonenumber: req.body.phonenumber,
-            usertype:req.body.usertype,
-            location: req.body.location
+            
         })
 
     .save()
-    return res.json({ data: newUser })
+    return res.json({ data: newAdmin })
   }
   catch(error){
 
@@ -45,7 +50,7 @@ router.post('/', async (req,res) => {
 
       
 })
-//Not working yet.
+// Update admin
 router
   .route('/:id')
   .all(async (request, response, next) => {
@@ -60,22 +65,22 @@ router
 
 
   .put(async (request, response) => {
-    User.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
+    Admin.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
       if (!err) {
         return response.json({ data: model })
       } else {
-        return response.json({ error: `Error, couldn't update user` })
+        return response.json({ error: `Error, couldn't update admin` })
       }
     })
   })
 
 
-//Done with delete.
+// Delete admin
 router.delete('/:id', async (req,res) => {
   try {
    const id = req.params.id
-   const deletedUser = await User.findByIdAndRemove(id)
-   res.json({msg:'User was deleted successfully', data: deletedUser})
+   const deletedAdmin = await Admin.findByIdAndRemove(id)
+   res.json({msg:'Admin was deleted successfully', data: deletedAdmin})
   }
   catch(error) {
       // We will be handling the error later
@@ -83,6 +88,7 @@ router.delete('/:id', async (req,res) => {
   }  
 })
 
+//////////
+
 
 module.exports = router
-

@@ -19,15 +19,15 @@ const functions = {
     createFeedback: async () => {
         const candidate = await axios.post('http://localhost:3000/api/candidates', {
             age: 23,
-            skills: 'Tatbeel',
-            interests: 'Being a Metabelaty',
-            pasteventsandtasks: 'lmao wtf is this',
-            reviewsrecieved: 'plenty'
+            skills: 'dummydata',
+            interests: 'dummydata',
+            pasteventsandtasks: 'dummydata',
+            reviewsrecieved: 'dummydata'
         });
         const feedback = await axios.post('http://localhost:3000/api/feedbacks', {
-            event: 'Shitty Jam Session',
-            response: 'Hell Yeah totes amazing',
-            name: 'Bruh'
+            event: 'dummydata',
+            response: 'dummydata',
+            name: 'dummydata'
         });
         return feedback;
     }
