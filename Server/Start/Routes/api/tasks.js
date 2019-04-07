@@ -6,6 +6,9 @@ app.use(express.json())
 const router = express.Router()
 //const uuid = require('uuid')
 const Task = require('../../Models/Task')
+const Partner = require('../../Models/Partner')
+
+const joi = require("Joi")
 //const joi = require("Joi")
 
 const validator = require('../../Validation/taskvalidations')
@@ -20,8 +23,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 
 try {
-    const isValidated = validator.createValidation(req.body)
-  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    //const isValidated = validator.createValidation(req.body)
+ // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
     _id: mongoose.Types.ObjectId(),
        Description: req.body.Description,
@@ -83,4 +86,111 @@ try {
     })
   })
 
+
+  router.get('/viewTaskStatus/:tid', async (req, res) => {
+              var Pid = req.body.pid
+              var Tid = req.params.tid
+             //var partner = await Partner.findById(Pid) //partner need to be created first or else it'll create an error
+              // if(!partner){
+              //  return res.status(400).send({
+              //     message:"couldnt find a partner with the specififed id "
+              //   })
+              // }
+              var tasks = await Task.findById(Tid)
+              if(!tasks){
+              return  res.status(400).send({
+                  message:"couldnt find a task with the specififed id "
+                })
+              }
+              var query = {'_id':Tid,
+              'partner':Pid
+            };
+              let foundTask=await Task.findOne(query)
+              if(!foundTask){
+              return  res.status(400).send({
+                  message:"couldnt find a task with the specififed id and partner id "
+                })
+              }
+
+              return res.status(200).send({
+                message:"succuess",
+                lifecycle:foundTask.lifecyclestatus,
+                test:foundTask
+              })
+
+  })
+
+  router.put('/UpdateProjectAttributes/:Tid', async (req, res) => {
+    var Pid = req.body.id
+    var Tid = req.params.Tid
+
+let {Description,eta,levelofcommitment,partner,monetarycompensation,skills,lifecyclestatus,experienceneeded,consultancy
+}=req.body
+
+let updateBody={}
+if(Description){
+  updateBody.Description=Description
+}
+if(eta){
+  updateBody.eta=eta
+}
+if(levelofcommitment){
+  updateBody.levelofcommitment=levelofcommitment
+}
+if(partner){
+  updateBody.partner=partner
+}
+if(monetarycompensation){
+  updateBody.monetarycompensation=monetarycompensation
+}
+if(skills){
+  updateBody.skills=skills
+}
+if(lifecyclestatus){
+  updateBody.lifecyclestatus=lifecyclestatus
+}
+if(experienceneeded){
+  updateBody.experienceneeded=experienceneeded
+}
+if(consultancy){
+  updateBody.consultancy=consultancy
+}
+//     let partner = await Partner.findById(Pid)
+//     if(!partner){
+//       return res.status(400).send({
+//          message:"couldnt find a partner with the specififed id "
+//        })
+//      }
+    var tasks = await Task.findById(Tid)//.exec()
+    if(!tasks){
+      return  res.status(400).send({
+          message:"couldnt find a task with the specififed id "
+        })
+      }
+      var query = {'_id':Tid,
+      'partner':Pid
+    };
+    const updated = await Task.findOneAndUpdate({
+      '_id': Tid 
+    }, {
+      $set: updateBody,
+    }, {
+      new: true
+    })
+  
+    if (updated != null) {
+      return res.json({
+        success: true, 
+        message: 'Task updated',
+        updatedTask: updated
+      })
+    }
+  
+    return res.status(400).json({
+      success: false,
+      message: 'Task update failed'
+    })
+  
+  
+})
 module.exports = router

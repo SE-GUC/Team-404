@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "my-app-install": "npm install --prefix my-app",
+    "client-install": "npm install --prefix client",
     "start": "node server",
     "server": "nodemon server",
     "test": "jest",
-    "my-app": "npm start --prefix my-app",
-    "dev": "concurrently \"npm run server\" \"npm run my-app\""
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -18,19 +18,22 @@
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "install": "^0.12.2",
+    "jest": "^24.6.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
     "moment": "^2.24.0",
     "mongo": "^0.1.0",
-    "mongoose": "^5.4.19",
+    "mongoose": "^5.4.20",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "uuid": "^3.3.2",
     "validator": "^10.11.0"
   },
   "devDependencies": {
+    "jest-cli": "^24.5.0",
     "nodemon": "^1.18.10",
     "standard": "^12.0.1"
   }
