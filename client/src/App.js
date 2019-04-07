@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+import './components/Textbox.css';
 import Login from './components/Login';
-import Textbox from './components/Textbox';
+
 class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" id='background2'>
       <Login/>
       </div>
     );
