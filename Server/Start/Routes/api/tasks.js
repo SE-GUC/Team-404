@@ -20,8 +20,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 
 try {
-    const isValidated = validator.createValidation(req.body)
-  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+   // const isValidated = validator.createValidation(req.body)
+  //if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
     _id: mongoose.Types.ObjectId(),
        Description: req.body.Description,
