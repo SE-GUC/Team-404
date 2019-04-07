@@ -10,6 +10,7 @@ class Textbox extends Component {
         if((this.state.pass!="")&& (this.state.email!="")){
          alert('Logging you in ' + this.state.email);
          event.preventDefault();
+         console.log(this.state.email+" "+this.state.pass);
     }else{
         alert('Enter missing fields');
     }
