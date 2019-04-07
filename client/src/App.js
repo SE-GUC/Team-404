@@ -1,16 +1,44 @@
-import React, { Component } from 'react';
-import './App.css';
-import './components/Textbox.css';
-import Login from './components/Login';
+import React, { Component } from "react";
+import "./App.css";
+import "./components/Textbox.css";
+import Login from "./components/Login";
 import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
+import Taskform from "./components/Taskform";
 import Axios from "axios";
 class App extends Component {
   state = {
-    application: []
+    application: [],
+    taskform: [
+      {
+        id: 1,
+        description: "Fix Cars",
+        eta: "1 month",
+        levelofcommitment: "High",
+        partner: "Toyota",
+        monetarycompensation: 3000,
+        skills: "xxx",
+        lifecyclestatus: "pending",
+        experienceneeded: "3 years",
+        consultancy: "Consultant"
+      },
+
+      {
+        id: 2,
+        description: "Fix Cars",
+        eta: "1 month",
+        levelofcommitment: "High",
+        partner: "Toyota",
+        monetarycompensation: 3000,
+        skills: "xxx",
+        lifecyclestatus: "pending",
+        experienceneeded: "3 years",
+        consultancy: "Consultant"
+      }
+    ]
   };
-  
+
   delApplication = id => {
     this.setState({
       application: [
@@ -21,9 +49,9 @@ class App extends Component {
 
   render() {
     return (
-      
-          <div className="App" id='background2'>
-      <Login/>
+      <div className="App" id="background2">
+        <Login />
+        <Taskform taskform={this.state.taskform} />
         <div style={together}>
           <Header />
           <ApplicationInfo
