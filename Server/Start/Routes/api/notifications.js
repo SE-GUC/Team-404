@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const router = express.Router()
 const Notification = require('../../Models/Notification')
 const validator = require('../../Validation/notificationValid')
+const joi = require('joi')
 
 router.get('/', async (req, res) => {
   const notifications = await Notification.find()

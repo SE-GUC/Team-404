@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const db = require('./Start/config/keys').mongoURI
 const Logger = require('./Start/middleware/Logger')
+const cors = require('cors')
 
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
@@ -17,6 +18,7 @@ mongoose
 
 // Init middleware
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 
 app.use((request, response, next) => {
@@ -69,6 +71,6 @@ app.use((req, res) => {
 })
 
 // opens the port at 3000
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 3001, function () {
   console.log('Express server listening on port %d in %s mode', this.address().port, app.settings.env)
 })

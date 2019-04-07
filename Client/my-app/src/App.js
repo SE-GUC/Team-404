@@ -1,25 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "../node_modules/react";
+import "./App.css";
+import Notifications from "./components/Notifications";
+import axios from "axios";
 
 class App extends Component {
+  state = {
+    Notifications: []
+  };
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:3001/api/notifications")
+      .then(res => {
+        // window.print(err)
+        this.setState({ Notifications: res.data.data });
+        console.log(this.state);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-           Hello Team 404 :D
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>
+          <Notifications notifications={this.state.Notifications} />
+        </h1>
       </div>
     );
   }
