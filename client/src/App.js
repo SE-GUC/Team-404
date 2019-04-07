@@ -14,14 +14,14 @@ class App extends Component {
   attempt to put each information in an array and display all of em
   supposed to display the skills required only in task not from candidate
 */
-
+/*
   componentDidMount() {
     Axios.get("http://localhost:3001/api/applications").then(res =>
       console.log(res.data)
     );
     // .then(res => this.setState({ application: res.application }));
   }
-
+*/
   delApplication = id => {
     this.setState({
       application: [
