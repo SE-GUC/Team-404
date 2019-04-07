@@ -1,27 +1,43 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./components/Textbox.css";
+import Login from "./components/Login";
 import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Axios from "axios";
-
 class App extends Component {
   state = {
-    application: []
+    application: [],
+    taskform: [
+      {
+        id: 1,
+        description: "Fix Cars",
+        eta: "1 month",
+        levelofcommitment: "High",
+        partner: "Toyota",
+        monetarycompensation: 3000,
+        skills: "xxx",
+        lifecyclestatus: "pending",
+        experienceneeded: "3 years",
+        consultancy: "Consultant"
+      },
+
+      {
+        id: 2,
+        description: "Fix Cars",
+        eta: "1 month",
+        levelofcommitment: "High",
+        partner: "Toyota",
+        monetarycompensation: 3000,
+        skills: "xxx",
+        lifecyclestatus: "pending",
+        experienceneeded: "3 years",
+        consultancy: "Consultant"
+      }
+    ]
   };
 
-  /* application information
-  attempt to put each information in an array and display all of em
-  supposed to display the skills required only in task not from candidate
-*/
-/*
-  componentDidMount() {
-    Axios.get("http://localhost:3001/api/applications").then(res =>
-      console.log(res.data)
-    );
-    // .then(res => this.setState({ application: res.application }));
-  }
-*/
   delApplication = id => {
     this.setState({
       application: [
@@ -32,7 +48,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App" id="background2">
+        <Login />
+        <Taskform taskform={this.state.taskform} />
         <div style={together}>
           <Header />
           <ApplicationInfo
