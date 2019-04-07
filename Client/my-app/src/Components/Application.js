@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import Header from "./Layout/Header";
 import PropTypes from "prop-types";
 import ApplicationInfo from "./ApplicationInfo";
-import TaskInfo from "./TaskInfo";
-import Task from "./Task";
-
+import "./Application.css";
 export class Application extends Component {
   render() {
     const {
@@ -12,8 +10,19 @@ export class Application extends Component {
       candidate,
       partner,
       datetime,
-      task,
-      status
+      status,
+      task: [
+        {
+          Description,
+          eta,
+          levelofcommitment,
+          monetarycompensation,
+          skills,
+          lifecyclestatus,
+          experienceneeded,
+          consultancy
+        }
+      ]
     } = this.props.applicationInfo;
 
     return (
@@ -21,26 +30,62 @@ export class Application extends Component {
 
       <div style={formFormat}>
         <p>
-          <h3>Application Info</h3>
-          <br />
-          ID: {id}
-          <br />
-          <br />
-          Candidate: {candidate}
-          <br />
-          <br />
-          Partner: {partner}
-          <br />
-          <br />
-          Date-Time: {datetime}
-          <br />
-          <br />
-          Task: {task}
-          <br />
-          <br />
-          Status: {status}
-          <br />
-          
+          <table>
+            <th colSpan="2">
+              <h3>Application Info</h3>
+            </th>
+            <th colSpan="2">
+              <h3>Task Info</h3>
+            </th>
+            <tr>
+              <td>ID</td>
+              <td> {id}</td>
+              <td> Description </td>
+              <td> {Description}</td>
+            </tr>
+            <tr>
+              <td>Candidate</td>
+              <td>{candidate}</td>
+              <td> eta </td>
+              <td> {eta}</td>
+            </tr>
+            <tr>
+              <td> Partner</td>
+              <td> {partner}</td>
+              <td> levelofcommitment </td>
+              <td> {levelofcommitment}</td>
+            </tr>
+            <tr>
+              <td> Date-Time</td>
+              <td> {datetime}</td>
+              <td> Skills </td>
+              <td> {skills}</td>
+            </tr>
+            <tr>
+              <td>Status </td>
+              <td> {status}</td>
+              <td> monetarycompensation </td>
+              <td> {monetarycompensation}</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> lifecyclestatus </td>
+              <td> {lifecyclestatus}</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> experienceneeded </td>
+              <td>{experienceneeded}</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> consultancy </td>
+              <td> {consultancy}</td>
+            </tr>
+          </table>
           <button
             onClick={this.props.delApplication.bind(this, id)}
             style={btnStyle}
@@ -74,10 +119,6 @@ const formFormat = {
 //stays the type of the bigger class
 Application.propTypes = {
   applicationInfo: PropTypes.object.isRequired
-};
-
-const infoFormat = {
-  padding: "10px"
 };
 
 export default Application;

@@ -3,8 +3,8 @@ import "./App.css";
 import Application from "./Components/Application";
 import Header from "./Components/Layout/Header";
 import ApplicationInfo from "./Components/ApplicationInfo";
-import TaskInfo from "./Components/TaskInfo";
-import Task from "./Components/TaskInfo";
+//import TaskInfo from "./Components/TaskInfo";
+//import Task from "./Components/TaskInfo";
 
 class App extends Component {
   state = {
@@ -14,7 +14,39 @@ class App extends Component {
         candidate: "asd",
         partner: "asdasd",
         datetime: "qqq",
-        task: "123",
+        status: "333",
+        task: [
+          {
+            Description: "{ type: String, required: true }",
+            eta: "{ type: Number, required: true }",
+            levelofcommitment:
+              "{ type: String, required: true, unique: false }",
+            monetarycompensation: "{ type: Number, required: true }",
+            skills: "{ type: String, required: true }",
+            lifecyclestatus: "{ type: String, required: true }",
+            experienceneeded: "{ type: String, required: true }",
+            consultancy: "{ type: String, required: true }"
+          }
+        ]
+      },
+      {
+        id: 2,
+        candidate: "asd",
+        partner: "asdasd",
+        datetime: "qqq",
+        task: [
+          {
+            Description: "{ type: String, required: true }",
+            eta: "{ type: Number, required: true }",
+            levelofcommitment:
+              "{ type: String, required: true, unique: false }",
+            monetarycompensation: "{ type: Number, required: true }",
+            skills: "{ type: String, required: true }",
+            lifecyclestatus: "{ type: String, required: true }",
+            experienceneeded: "{ type: String, required: true }",
+            consultancy: "{ type: String, required: true }"
+          }
+        ],
         status: "333"
       }
     ],
@@ -30,6 +62,17 @@ class App extends Component {
     candidate: [],
     partner: [],
     task: [
+      {
+        Description: "{ type: String, required: true }",
+        eta: "{ type: Number, required: true }",
+        levelofcommitment: "{ type: String, required: true, unique: false }",
+        partner: "{ type: String, required: true }",
+        monetarycompensation: "{ type: Number, required: true }",
+        skills: "{ type: String, required: true }",
+        lifecyclestatus: "{ type: String, required: true }",
+        experienceneeded: "{ type: String, required: true }",
+        consultancy: "{ type: String, required: true }"
+      },
       {
         Description: "{ type: String, required: true }",
         eta: "{ type: Number, required: true }",
@@ -121,7 +164,6 @@ class App extends Component {
             applicationInfo={this.state.application}
             delApplication={this.delApplication}
           />
-          <TaskInfo taskInfo={this.state.task} />
         </div>
       </div>
     );

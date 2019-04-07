@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export class ToDoItem extends Component {
-  getStyle = () => {
+  /*  getStyle = () => {
     if (this.props.todo.completed) {
       return {
         borderBottom: "1px #ccc dotted",
@@ -11,6 +11,7 @@ export class ToDoItem extends Component {
       };
     }
   };
+*/
 
   render() {
     const { id, title } = this.props.todo;
