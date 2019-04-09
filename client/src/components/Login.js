@@ -5,7 +5,7 @@ import './Textbox.css';
 class Login extends Component {    
   render() {
     return (
-      <div >
+      <div id="background2">
        <h1>Login page</h1>
        <Textbox/>
       </div>
