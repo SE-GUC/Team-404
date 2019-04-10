@@ -72,9 +72,40 @@ class App extends Component {
         fieldofwork: "p3-FieldOfWork",
         projecthistory: "p-3ProjectHistory",
         feedbackform: "p-3FeedBackForm"
-      }
+      }],
+      feedbacks: [
+        {
+            id: uuid.v4(),
+            event:'dummydata' ,
+            response :'dummydata',
+            name :'dummydata' ,
+        },
+        {
+            id: uuid.v4(),
+            event:'dummydata' ,
+            response :'dummydata',
+            name :'dummydata' ,
+        },
+        {
+            id: uuid.v4(),
+            event:'dummydata' ,
+            response :'dummydata',
+            name :'dummydata' ,
+        }
+        
     ]
+    
   };
+
+  addFeedback = (name) => {
+    const newFeedback = 
+    {
+      id:uuid.v4(),
+      name,
+      
+    }
+    this.setState({feedbacks:[...this.state.feedbacks,newFeedback] });
+  }
 
   delApplication = id => {
     this.setState({
@@ -108,6 +139,8 @@ class App extends Component {
               applicationInfo={this.state.application}
               delApplication={this.delApplication}
             />
+            <AddFeedback addFeedback={this.addFeedback}/>
+    <Feedback feedbacks={this.state.feedbacks}/>
           </div>
         </div>
       </Router>

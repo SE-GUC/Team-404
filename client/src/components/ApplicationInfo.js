@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import Application from "./Application";
-import PropTypes from "prop-types";
+import PropTypes from "./node_modules/prop-types";
 
 export class ApplicationInfo extends Component {
   render() {
