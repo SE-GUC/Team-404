@@ -7,6 +7,7 @@ import TableCell from './node_modules/@material-ui/core/TableCell';
 import TableHead from './node_modules/@material-ui/core/TableHead';
 import TableRow from './node_modules/@material-ui/core/TableRow';
 import Paper from './node_modules/@material-ui/core/Paper';
+import Material from "@material-ui/core";
 
 const styles = theme => ({
   root: {

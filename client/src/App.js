@@ -11,7 +11,10 @@ import Consultant from "./components/consultant";
 import Axios from "axios";
 import PartnerHeader from "./components/PartnerHeader";
 import PartnerPage from "./components/page/PartnerPage";
-
+import uuid from 'uuid';
+import Feedback from './components/Feedback';
+import AddFeedback from './components/AddFeedback';
+import Material from "@material-ui/core"
 class App extends Component {
   state = {
     application: [],
