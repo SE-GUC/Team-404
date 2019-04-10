@@ -2,19 +2,33 @@
   "name": "express-test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest"
+=======
+    "client-install": "npm install --prefix client",
+    "start": "node server",
+    "server": "nodemon server",
+    "test": "jest",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+>>>>>>> 6e2fc759eb66f84c2ebfe7301c031f7629921cc4
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
+<<<<<<< HEAD
     "cors": "^2.8.5",
+=======
+    "concurrently": "^4.1.0",
+>>>>>>> 6e2fc759eb66f84c2ebfe7301c031f7629921cc4
     "express": "^4.16.4",
     "install": "^0.12.2",
     "jest": "^24.6.0",
@@ -25,6 +39,10 @@
     "mongoose": "^5.4.20",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.8",
     "uuid": "^3.3.2",
     "validator": "^10.11.0"
   },
