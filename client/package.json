@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+<<<<<<< HEAD:Client/my-app/package.json
+=======
+    "dotenv": "^7.0.0",
+>>>>>>> 27b47fdbff74bb3836a2b791c11063161209779a:client/package.json
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^2.1.8"
@@ -22,5 +26,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "http://localhost:3001"
 }
