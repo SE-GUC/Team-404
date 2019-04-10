@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import './App.css';
 import './components/Textbox.css';
 import Login from './components/Login';
 import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Axios from "axios";
+import Axios from "./node_modules/axios";
+import tasks  from "./components/tasks"
 class App extends Component {
   state = {
     application: []
@@ -30,6 +31,7 @@ class App extends Component {
             applicationInfo={this.state.application}
             delApplication={this.delApplication}
           />
+          <Tasks/>
         </div>
       </div>
     );
