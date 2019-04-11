@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import './components/Textbox.css';
-import Login from './components/Login';
-import Application from "./components/Application";
-import Header from "./components/Layout/Header";
-import ApplicationInfo from "./components/ApplicationInfo";
+import './Components/Textbox.css';
+import Login from './Components/Login';
+import Application from "./Components/Application";
+import Header from "./Components/Layout/Header";
+import ApplicationInfo from "./Components/ApplicationInfo";
 import Axios from "axios";
 class App extends Component {
   state = {
