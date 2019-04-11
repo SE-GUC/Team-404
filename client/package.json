@@ -3,16 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD:Client/my-app/package.json
     "prop-types": "^15.7.2",
-=======
     "axios": "^0.18.0",
     "dotenv": "^7.0.0",
-<<<<<<< HEAD
->>>>>>> 6b0935473d350a18f2a60d5b939978a37f8e95c1:client/package.json
-=======
     "@material-ui/core": "^3.9.3",
->>>>>>> 6e2fc759eb66f84c2ebfe7301c031f7629921cc4
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
