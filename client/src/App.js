@@ -3,12 +3,10 @@ import { BrowserRouter as Router, Route ,Link} from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
-import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Consultant from "./components/consultant";
-import Axios from "axios";
 import PartnerHeader from "./components/PartnerHeader";
 import PartnerPage from "./components/page/PartnerPage";
 
@@ -108,10 +106,13 @@ class App extends Component {
           <div style={together}>
             <Header />
             <li>
-              <Link to = "/apps">View apps</Link>
+              <Link to = "/Applications">View Applications</Link>
             </li>
-              <Route path="/apps" component={ApplicationInfo}/>
-            
+              <Route path="/Applications" component={ApplicationInfo}/>
+            <li>
+              <Link to = "/TaskForms">View TaskForms</Link>
+            </li>
+            <Route path="/TaskForms" component={Taskform}/>
           </div>
         </div>
       </Router>

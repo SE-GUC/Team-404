@@ -6,13 +6,14 @@ export class ApplicationInfo extends Component {
   state={
     applications: []
   }
+
   componentDidMount = () =>{
-    console.log("heree")
     Axios.get("http://localhost:3001/Routes/api/applications/" )
     .then(res =>{
-     this.setState
+     this.setState({applicaions : res.data})
     })
   }
+
   render() {
     //ApplicationInfo in the parameter is used in everything else in here , references
     //the one written in the APP
