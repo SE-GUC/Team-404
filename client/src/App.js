@@ -109,10 +109,8 @@ class App extends Component {
               <Link to = "/Applications">View Applications</Link>
             </li>
               <Route path="/Applications" component={ApplicationInfo}/>
-            <li>
-              <Link to = "/TaskForms">View TaskForms</Link>
-            </li>
-            <Route path="/TaskForms" component={Taskform}/>
+           
+
           </div>
         </div>
       </Router>
