@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import Application from "./Application";
-import PropTypes from "prop-types";
-import Axios from 'axios'
+import Axios from "axios";
 export class ApplicationInfo extends Component {
-  state={
+  state = {
     applications: []
-  }
+  };
 
-  componentDidMount = () =>{
-    Axios.get("http://localhost:3001/Routes/api/applications/" )
-    .then(res =>{
-     this.setState({applicaions : res.data})
-    })
-  }
+  componentDidMount = () => {
+    Axios.get("http://localhost:3001/Routes/api/applications/").then(res =>
+      console.log(res.data)
+    );
+  };
 
   render() {
     //ApplicationInfo in the parameter is used in everything else in here , references
@@ -26,9 +24,5 @@ export class ApplicationInfo extends Component {
     ));
   }
 }
-
-// ApplicationInfo.propTypes = {
-//   ApplicationInfo: PropTypes.array.isRequired
-// };
 
 export default ApplicationInfo;
