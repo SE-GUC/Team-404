@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route ,Link} from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
@@ -76,6 +76,8 @@ class App extends Component {
     ]
   };
 
+
+
   delApplication = id => {
     this.setState({
       application: [
@@ -100,14 +102,16 @@ class App extends Component {
             )}
           />
           <Route path="/page" component={PartnerPage} />
-          <Consultant />
+          
+         
           <Taskform taskform={this.state.taskform} />
           <div style={together}>
             <Header />
-            <ApplicationInfo
-              applicationInfo={this.state.application}
-              delApplication={this.delApplication}
-            />
+            <li>
+              <Link to = "/apps">View apps</Link>
+            </li>
+              <Route path="/apps" component={ApplicationInfo}/>
+            
           </div>
         </div>
       </Router>
