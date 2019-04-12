@@ -7,6 +7,9 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import uuid from 'uuid';
+import Feedback from './components/Feedback';
+import AddFeedback from './components/AddFeedback';
 class App extends Component {
   state = {
     applications: [],
