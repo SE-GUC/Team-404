@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import  './Textbox';
+import Textbox from './Textbox';
+import './Textbox.css';
 
 
 class User extends Component {
@@ -22,45 +25,35 @@ class User extends Component {
     this.setUser({ username: user.target.value });
   };
 
-  handleChangeOrganizer = user => {
-    this.setUser({ organizer: user.target.value });
+  handleChangeName = user => {
+    this.setUser({ name: user.target.value });
   };
 
   handleChangeLocation = user => {
     this.setUser({ location: user.target.value });
   };
 
-  handleChangeDescription = user => {
-    this.setUser({ description: user.target.value });
+  handleChangeEmail = user => {
+    this.setUser({ email: user.target.value });
   };
 
-  handleChangeRemainingPlaces = user => {
-    this.setUser({ remainingplaces: user.target.value });
+  handleChangePassword = user => {
+    this.setUser({ password: user.target.value });
   };
 
-  handleChangeSpeakers = user => {
-    this.setUser({ speakers: user.target.value });
+  handleChangeAge = user => {
+    this.setUser({ age: user.target.value });
   };
 
-  handleChangeMaximumPlaces = user => {
-    this.setUser({ maximumplaces: user.target.value });
+  handleChangePhoneNumber = user => {
+    this.setUser({ phonenumber: user.target.value });
   };
 
-  handleChangeTopicsCovered = user => {
-    this.setUser({ topicscovered: user.target.value });
+  handleChangeUserType = user => {
+    this.setUser({ usertype: user.target.value });
   };
 
-  handleChangeField = user => {
-    this.setUser({ field: user.target.value });
-  };
-
-  handleRegistrationPrice = user => {
-    this.setUser({ registrationprice: user.target.value });
-  };
-
-  handleChangeApprovalStatus = user => {
-    this.setUser({ approvalstatus: user.target.value });
-  };
+ 
 
   handeleSubmit = async user => {
     user.prUserDefault();
@@ -77,7 +70,7 @@ class User extends Component {
      };
     console.log(users);
     try {
-      let response= await axios.post("http://localhost:3000/api/admins/", user);
+      let response= await axios.post("http://localhost:3000", user);
       console.log(response);
     } 
     catch(error) {
@@ -119,14 +112,14 @@ class User extends Component {
             />
         </label>
         <label className= "Password">
-            RemainingPlaces:
+            Password:
             <input
             type="text"
             name="Password"
             />
         </label>
         <label className= "Phonenumber">
-            Speakers:
+            Phonenumber:
             <input
             type="number"
             name="Phonenumber"

@@ -5,10 +5,11 @@ import Login from './components/Login';
 import User from "./components/User";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Axios from "axios";
+
 class App extends Component {
   state = {
-    application: []
+    application: [],
+    user: []
   };
   
   delApplication = id => {
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       
           <div className="App" id='background2'>
+         
       <Login/>
         <div style={together}>
           <Header />
@@ -30,11 +32,14 @@ class App extends Component {
             applicationInfo={this.state.application}
             delApplication={this.delApplication}
           />
+           <User/>
         </div>
       </div>
     );
   }
-}
+};
+
+
 
 const together = {
   border: "10px",
