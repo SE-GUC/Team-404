@@ -3,18 +3,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
-import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
-import Consultant from "./components/consultant";
-import Axios from "axios";
-import PartnerHeader from "./components/PartnerHeader";
-import PartnerPage from "./components/page/PartnerPage";
-
+import Partner from "./components/page/Partner";
 class App extends Component {
   state = {
-    application: [],
+    applications: [],
     taskform: [
       {
         id: 1,
@@ -76,6 +71,7 @@ class App extends Component {
     ]
   };
 
+
   delApplication = id => {
     this.setState({
       application: [
@@ -84,44 +80,73 @@ class App extends Component {
     });
   };
 
+  /* <div style={together}>
+            <Header />
+            <li>
+              <Link to="/Applications">View Applications</Link>
+            </li>
+            <Route path="/Applications" component={ApplicationInfo} />
+          </div>
+*/
   render() {
     return (
       <Router>
         <div className="App" id="background2">
-          <Login />
+          <Header />
           <Route
             exact
             path="/"
             render={props => (
               <React.Fragment>
-                <PartnerHeader />
                 <p style={textStyle}>Welcome To Lirten Hub</p>
               </React.Fragment>
             )}
           />
-          <Route path="/page" component={PartnerPage} />
-          <Consultant />
-          <Taskform taskform={this.state.taskform} />
-          <div style={together}>
-            <Header />
-            <ApplicationInfo
-              applicationInfo={this.state.application}
-              delApplication={this.delApplication}
-            />
-          </div>
+
+          <Route
+            exact
+            path="/Partner"
+            render={props => (
+              <React.Fragment>
+                <Partner />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Application"
+            render={props => (
+              <React.Fragment>
+                <ApplicationInfo />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Login"
+            render={props => (
+              <React.Fragment>
+                <Login />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Taskform"
+            render={props => (
+              <React.Fragment>
+                <Taskform taskform={this.state.taskform} />
+              </React.Fragment>
+            )}
+          />
         </div>
       </Router>
     );
   }
 }
-
-const together = {
-  border: "10px",
-  borderRadius: "10px",
-  background: "#9D9FB9",
-  margin: "auto",
-  paddingBottom: "1px"
-};
 
 const textStyle = {
   textAlign: "left",
