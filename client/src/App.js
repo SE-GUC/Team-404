@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './components/Textbox.css';
 import Login from './components/Login';
-import Application from "./components/Application";
+import User from "./components/User";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Axios from "axios";

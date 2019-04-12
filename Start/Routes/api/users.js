@@ -2,7 +2,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
-const joi = require("Joi")
+//const joi = require("Joi")
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 
@@ -15,14 +15,14 @@ router.post('/', async (req,res) => {
     const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
 
-   const user = await User.findOne({email})
-    if(user) return res.status(400).json({error: 'Email already exists'})
-    const user1 = await User.findOne({username})
-    if(user1) return res.status(400).json({error: 'username already exists'})
+   // const user = await User.findOne({email})
+    //if(user) return res.status(400).json({error: 'Email already exists'})
+    //const user1 = await User.findOne({username})
+    //if(user1) return res.status(400).json({error: 'username already exists'})
 
     
-    const salt = bcrypt.genSaltSync(10)
-    const hashedPassword = bcrypt.hashSync(password,salt)
+    //const salt = bcrypt.genSaltSync(10)
+    //const hashedPassword = bcrypt.hashSync(password,salt)
     const newUser = await new User({
             name: req.body.name,
             password: req.body.password, //hashedPassword ,
