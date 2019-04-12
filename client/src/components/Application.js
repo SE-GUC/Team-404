@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import Header from "./Layout/Header";
 import PropTypes from "prop-types";
 import ApplicationInfo from "./ApplicationInfo";
 import "./Application.css";
-=======
-import { connect } from "react-redux";
-import { getApplications } from "../globalState/actions/applicationActions";
-import PropTypes from "prop-types";
-
->>>>>>> 5b76115aa2c894d85ba85cea87d5e29cde9e061f
 export class Application extends Component {
   constructor(props) {
     super(props);

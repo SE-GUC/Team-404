@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
 function Header() {
   return (
@@ -36,15 +35,18 @@ function Header() {
   );
 }
 
+        </header>
+    )
+}
+
+
 const headerStyle = {
-  color: "#fff",
-  textAlign: "left",
-  padding: "10px"
-};
-
-const linkStyle = {
-  color: "#fff",
-  textDecoration: "none"
-};
-
+  //  background : '#333',
+    color: '#fff',
+    textAlign:' center',
+    padding: '5px',
+    borderBottom: "5px #ccc dotted",
+    borderRadius: '5px'
+     
+}
 export default Header;
