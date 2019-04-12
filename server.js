@@ -44,36 +44,31 @@ const consultants = require('./Start/Routes/api/consultants')
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
- <a href ="api/admins">Admins</a>
- <a href ="api/applications">Applications</a>
- <a href ="api/Partners">Partners</a>
- <a href ="api/events">Events</a>
- <a href ="api/users">Users</a>
- <a href ="api/bookings">Bookings</a>
- <a href ="api/candidates">Candidates</a>
- <a href ="api/feedbacks">Feedbacks</a>
- <a href ="api/notifications">Notifications</a>
- <a href ="api/tasks">Tasks</a>
- <a href ="api/consultants">Consultants</a>
- <a href ="api/requests">Requests</a>
-
+  <a href ="/Routes/api/applications/">Applications</a>
+  <a href ="/Routes/api/Partners">Partners</a>
+  <a href ="/Routes/api/events">Events</a>
+  <a href ="/Routes/api/users">Users</a>
+  <a href ="/Routes/api/bookings">Bookings</a>
+  <a href ="/Routes/api/candidates">Candidates</a>
+  <a href ="/Routes/api/feedbacks">Feedbacks</a>
+  <a href ="/Routes/api/notifications">Notifications</a>
+  <a href ="/Routes/api/tasks">Tasks</a>
+  <a href ="/Routes/api/consultants">Consultants</a> 
  `)
 })
 
-// app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
+ app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
 
-app.use('/api/admins', admins)
-app.use('/api/applications', applications)
-app.use('/api/partners', partners)
-app.use('/api/events', events)
-app.use('/api/users', users)
-app.use('/api/bookings', bookings)
-app.use('/api/candidates', candidates)
-app.use('/api/feedbacks', feedbacks)
-app.use('/api/notifications', notifications)
-app.use('/api/tasks', tasks)
-app.use('/api/requests', requests)
-app.use('/api/consultants', consultants)
+app.use('/Routes/api/applications/', applications)
+app.use('/Routes/api/partners', partners)
+app.use('/Routes/api/events', events)
+app.use('/Routes/api/users', users)
+app.use('/Routes/api/bookings', bookings)
+app.use('/Routes/api/candidates', candidates)
+app.use('/Routes/api/feedbacks', feedbacks)
+app.use('/Routes/api/notifications', notifications)
+app.use('/Routes/api/tasks', tasks)
+app.use('/Routes/api/consultants', consultants)
 
 
 app.use((req, res) => {

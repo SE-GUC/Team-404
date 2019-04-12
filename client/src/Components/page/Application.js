@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
+import ApplicationInfo from "../ApplicationInfo";
 
 function Application() {
-    return(
-
-        <React.Fragment>
-            <h1>Application</h1>
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      <ApplicationInfo />
+    </React.Fragment>
+  );
 }
 
 export default Application;
