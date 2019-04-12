@@ -1,11 +1,11 @@
 import React from "react";
 
-function Tasks() {
+function Taskform() {
   return (
     <React.Fragment>
-      <h1>Tasks</h1>
+      <h1>Taskform</h1>
     </React.Fragment>
   );
 }
 
-export default Tasks;
+export default Taskform;

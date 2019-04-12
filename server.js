@@ -3,7 +3,9 @@ const app = express()
 const mongoose = require('mongoose')
 const db = require('./Start/config/keys').mongoURI
 const Logger = require('./Start/middleware/Logger')
+const passport = require('passport')
 const cors = require('cors')
+
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
@@ -25,6 +27,7 @@ app.use((request, response, next) => {
   next()
 })
 
+const admins = require('./Start/Routes/api/admins')
 const applications = require('./Start/Routes/api/applications')
 const partners = require('./Start/Routes/api/partners')
 const events = require('./Start/Routes/api/events')
@@ -34,7 +37,9 @@ const candidates = require('./Start/Routes/api/candidates')
 const feedbacks = require('./Start/Routes/api/feedbacks')
 const notifications = require('./Start/Routes/api/notifications')
 const tasks = require('./Start/Routes/api/tasks')
+const requests = require('./Start/Routes/api/requests')
 const consultants = require('./Start/Routes/api/consultants')
+
 
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
@@ -64,6 +69,7 @@ app.use('/Routes/api/feedbacks', feedbacks)
 app.use('/Routes/api/notifications', notifications)
 app.use('/Routes/api/tasks', tasks)
 app.use('/Routes/api/consultants', consultants)
+
 
 app.use((req, res) => {
   res.status(404).send({ err: 'We can not find what you are looking for' })
