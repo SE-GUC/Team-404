@@ -6,7 +6,7 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 // const passport = require('passport')
 const tokenKey = require('../../config/keys').secretOrKey
-//const User = require('../../Models/User')
+const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 
 //get All
@@ -24,27 +24,6 @@ router.route('/:userType').get(async (request, response) => {
     return response.json({ error: `Error, couldn't find a user given the following user type` })
   }
 })
-router.post('/register', async (req, res) => {
-	try {
-		const isValidated = validator.registerValidation(req.body);
-		if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message });
-		const { email, age, name, password } = req.body;
-		const user = await User.findOne({ email });
-		if (user) return res.status(400).json({ email: 'Email already exists' });
-		const salt = bcrypt.genSaltSync(10);
-		const hashedPassword = bcrypt.hashSync(password, salt);
-		const newUser = new User({
-			name,
-			password: hashedPassword,
-			email,
-			age,
-		});
-		await User.create(newUser);
-		res.json({ msg: 'User created successfully', data: newUser });
-	} catch (error) {
-		res.status(422).send({ error: 'Can not create user' });
-	}
-});
 
 router.post('/login', async (req, res) => {
 	try {
@@ -66,22 +45,22 @@ router.post('/login', async (req, res) => {
 });
 
 //Create user
-router.post('/', async (req,res) => {
+router.post('/register', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
-
-   // const user = await User.findOne({email})
-    //if(user) return res.status(400).json({error: 'Email already exists'})
-    //const user1 = await User.findOne({username})
-    //if(user1) return res.status(400).json({error: 'username already exists'})
+    const { email, age, name, password,username,phoneNumber,userType,location } = req.body;
+    const user = await User.findOne({email})
+    if(user) return res.status(400).json({error: 'Email already exists'})
+    const user1 = await User.findOne({username})
+    if(user1) return res.status(400).json({error: 'username already exists'})
 
     
-    //const salt = bcrypt.genSaltSync(10)
-    //const hashedPassword = bcrypt.hashSync(password,salt)
+    const salt = bcrypt.genSaltSync(10)
+    const hashedPassword = bcrypt.hashSync(password,salt)
     const newUser = await new User({
             name: req.body.name,
-            password: req.body.password, //hashedPassword ,
+            password: hashedPassword, //hashedPassword ,
             email: req.body.email,
             age: req.body.age,
             username: req.body.username,

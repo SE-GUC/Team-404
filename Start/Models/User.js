@@ -40,7 +40,7 @@ const UserSchema = new Schema({
     projectHistory: { type: [String], required: false, unique: false },
  
 })
-const LoginSchema = new Schema({
+/*const LoginSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -58,6 +58,6 @@ const LoginSchema = new Schema({
     }
 })
 
-module.exports = User = mongoose.model('users', LoginSchema)
+module.exports = User = mongoose.model('users', LoginSchema)*/
 
 module.exports = User = mongoose.model('users', UserSchema)

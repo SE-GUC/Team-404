@@ -2,16 +2,6 @@
 const Joi = require('joi')
 
 module.exports = {
-    registerValidation: request => {
-        const registerSchema = {
-            name: Joi.string().min(2).max(30).required(),
-            email: Joi.string().email().required(),
-            password: Joi.string().required(),
-            age: Joi.number()
-        }
-
-        return Joi.validate(request, registerSchema)
-    },
 
     loginValidation: request => {
         const LoginSchema = {
@@ -20,10 +10,10 @@ module.exports = {
         }
         return Joi.validate(request, LoginSchema)
     }
-}
+},
 
 module.exports = {
-    createValidation: request => {
+   createValidation: request => {
         const createSchema = {
             name: Joi.string().min(3).max(500).required(),
             email: Joi.string().min(10).max(500).required(),
