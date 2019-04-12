@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "./Layout/Header";
+import PropTypes from "prop-types";
 import ApplicationInfo from "./ApplicationInfo";
 import "./Application.css";
 export class Application extends Component {
@@ -11,11 +12,12 @@ export class Application extends Component {
 
       <div style={formFormat}>
         <p>
-          <table>
-            <tr>
-              
-            </tr>
-          </table>
+          <button
+            onClick={this.props.delApplication.bind(this, id)}
+            style={btnStyle}
+          >
+            X
+          </button>
         </p>
       </div>
     );
@@ -41,6 +43,8 @@ const formFormat = {
 };
 
 //stays the type of the bigger class
-
+Application.propTypes = {
+  applicationInfo: PropTypes.object.isRequired
+};
 
 export default Application;
