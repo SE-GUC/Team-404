@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 function Header() {
   return (
     <header style={headerStyle}>
@@ -29,19 +28,24 @@ function Header() {
         Login
       </Link>
       |{" "}
+      <Link style={linkStyle} to="/Feedback">
+        Feedback
+      </Link>
     </header>
   );
 }
 
 const headerStyle = {
+  //  background : '#333',
   color: "#fff",
-  textAlign: "left",
-  padding: "10px"
+  textAlign: " center",
+  padding: "5px",
+  borderBottom: "5px #ccc dotted",
+  borderRadius: "5px"
 };
 
 const linkStyle = {
-  color: "#fff",
+  color:"#fff",
   textDecoration: "none"
-};
-
+}
 export default Header;
