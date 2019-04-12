@@ -3,7 +3,9 @@ const app = express()
 const mongoose = require('mongoose')
 const db = require('./Start/config/keys').mongoURI
 const Logger = require('./Start/middleware/Logger')
+const passport = require('passport')
 const cors = require('cors')
+
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)

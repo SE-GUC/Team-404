@@ -7,6 +7,9 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import uuid from "uuid";
+import Feedback from "./components/Feedback";
+import AddFeedback from "./components/AddFeedback";
 class App extends Component {
   state = {
     applications: [],
@@ -71,7 +74,6 @@ class App extends Component {
     ]
   };
 
-
   delApplication = id => {
     this.setState({
       application: [
@@ -79,15 +81,6 @@ class App extends Component {
       ]
     });
   };
-
-  /* <div style={together}>
-            <Header />
-            <li>
-              <Link to="/Applications">View Applications</Link>
-            </li>
-            <Route path="/Applications" component={ApplicationInfo} />
-          </div>
-*/
   render() {
     return (
       <Router>
