@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-//import App from './App';
-import * as serviceWorker from './serviceWorker';
-import Event from './Event';
+//import './index.css';
+import EventPost from './components/EventPost';
+import EventPut from './components/EventPut';
 
-ReactDOM.render(< Event />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();  
+ReactDOM.render(< EventPost />, document.getElementById('root'));
+ReactDOM.render(< EventPut />, document.getElementById('root'));
+
+
