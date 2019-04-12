@@ -10,6 +10,7 @@ import Partner from "./components/page/Partner";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
+
 class App extends Component {
   state = {
     applications: [],
@@ -70,6 +71,26 @@ class App extends Component {
         fieldofwork: "p3-FieldOfWork",
         projecthistory: "p-3ProjectHistory",
         feedbackform: "p-3FeedBackForm"
+      }
+    ],
+    feedbacks: [
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      },
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      },
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
       }
     ]
   };
@@ -132,6 +153,17 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Feedback"
+            render={props => (
+              <React.Fragment>
+                <AddFeedback addFeedback={this.addFeedback} />
+                <Feedback feedbacks={this.state.feedbacks} />{" "}
               </React.Fragment>
             )}
           />

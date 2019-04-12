@@ -40,7 +40,6 @@ const headerStyle = {
   color: "#fff",
   textAlign: " center",
   padding: "5px",
-  borderBottom: "5px #ccc dotted",
   borderRadius: "5px"
 };
 
