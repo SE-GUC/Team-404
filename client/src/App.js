@@ -11,6 +11,7 @@ import Consultant from "./components/consultant";
 import Axios from "axios";
 import PartnerHeader from "./components/PartnerHeader";
 import PartnerPage from "./components/page/PartnerPage";
+import User from "./components/User";
 
 class App extends Component {
   state = {
@@ -110,6 +111,7 @@ class App extends Component {
             />
           </div>
         </div>
+        <User/>
       </Router>
     );
   }
