@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import Header from "./Layout/Header";
-import PropTypes from "prop-types";
+import PropTypes from "./node_modules/prop-types";
 import ApplicationInfo from "./ApplicationInfo";
 import "./Application.css";
 export class Application extends Component {
