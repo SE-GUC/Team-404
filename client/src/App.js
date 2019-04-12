@@ -4,12 +4,11 @@ import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
-import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
-import uuid from 'uuid';
-import Feedback from './components/Feedback';
-import AddFeedback from './components/AddFeedback';
+import uuid from "uuid";
+import Feedback from "./components/Feedback";
+import AddFeedback from "./components/AddFeedback";
 class App extends Component {
   state = {
     applications: [],
@@ -131,16 +130,6 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Partner />
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
-            path="/Application"
-            render={props => (
-              <React.Fragment>
-                <ApplicationInfo />
               </React.Fragment>
             )}
           />

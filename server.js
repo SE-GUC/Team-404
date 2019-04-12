@@ -3,13 +3,9 @@ const app = express()
 const mongoose = require('mongoose')
 const db = require('./Start/config/keys').mongoURI
 const Logger = require('./Start/middleware/Logger')
-<<<<<<< HEAD
 const passport = require('passport')
 const cors = require('cors')
 
-=======
-const cors = require('cors')
->>>>>>> 5b76115aa2c894d85ba85cea87d5e29cde9e061f
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
@@ -70,10 +66,6 @@ app.use('/Routes/api/feedbacks', feedbacks)
 app.use('/Routes/api/notifications', notifications)
 app.use('/Routes/api/tasks', tasks)
 app.use('/Routes/api/consultants', consultants)
-<<<<<<< HEAD
-
-=======
->>>>>>> 5b76115aa2c894d85ba85cea87d5e29cde9e061f
 
 app.use((req, res) => {
   res.status(404).send({ err: 'We can not find what you are looking for' })
