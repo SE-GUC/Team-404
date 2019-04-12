@@ -7,6 +7,7 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import EventRead from './EventRead';
 class App extends Component {
   state = {
     applications: [],
@@ -129,6 +130,16 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Login />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Event"
+            render={props => (
+              <React.Fragment>
+                <EventRead/>
               </React.Fragment>
             )}
           />
