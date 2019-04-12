@@ -1,8 +1,8 @@
-import React from 'react';
-import axios from 'axios';
-import axios from "../axiosInstance";
+import React from './node_modules/react';
+//import axios from './node_modules/axios';
+import axios from "./axiosInstance";
 
-export default class EventPost extends React.Component{
+class EventPut extends React.Component{
 state={
     eventid: '',
       eventname: '',
@@ -93,7 +93,7 @@ handleChangeEventName = event => {
 
           };
 
-          axios.post('http://localhost:3001/api/events/', {Event})
+          axios.put('http://localhost:3001/api/events/id', {Event})
           .then(res => {
               console.log(res);
               console.log(res.data);
@@ -171,8 +171,8 @@ handleChangeEventName = event => {
           </label>
           <button type = "submit"> ADD </button>
             </form>
-        );
+        )
     }
 }
 
-export default EventPost;
+export default EventPut
