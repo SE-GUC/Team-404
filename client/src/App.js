@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import EventPost from "./components/EventPost";
 import EventPut from "./components/EventPut";
-    
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
@@ -12,7 +12,7 @@ import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
-import EventRead from './EventRead';
+import EventRead from "./EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
@@ -164,17 +164,6 @@ class App extends Component {
 
           <Route
             exact
-            path="/Event"
-            render={props => (
-              <React.Fragment>
-                <EventRead/>
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
-            path="/Taskform"
             path="/Feedback"
             render={props => (
               <React.Fragment>
@@ -183,26 +172,22 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-       
-         <Route
-         exact
-         path="/Event"
-         render={props => (
-           <React.Fragment>
-          <EventPost/>
-          <EventPut/>
-           </React.Fragment>
-         )}
-       />
-     
-       </div>
-       </Router>
+
+          <Route
+            exact
+            path="/Event"
+            render={props => (
+              <React.Fragment>
+                <EventRead />
+                <EventPost />
+                <EventPut />
+              </React.Fragment>
+            )}
+          />
+        </div>
+      </Router>
     );
   }
 }
-
-
-
-
 
 export default App;
