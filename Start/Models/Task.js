@@ -1,6 +1,5 @@
 
 const mongoose = require('mongoose')
-//const candidate = require("./Candidate")
 const schema = mongoose.Schema
 const ObjectId = schema.Types.ObjectId
 const TaskSchema = new schema({
@@ -15,7 +14,7 @@ const TaskSchema = new schema({
   experienceNeeded: { type: String, required: true },
   consultancyRequested: { type: Boolean, required: true },
   consultant:{type: String , required: false},
-  applications: { type: [candidate], required: false }
+  applications: { type: [String], required: false }
 })
 
 // TaskSchema.index({ Description: 1, eta: 1, levelofcommitment: 1 }, { unique: true })

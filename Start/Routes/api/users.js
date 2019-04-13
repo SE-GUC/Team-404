@@ -15,16 +15,6 @@ router.get('/', async (req,res) => {
   res.json({data: users})
 })
 
-//get by user type
-router.route('/:userType').get(async (request, response) => {
-  try {
-    const user = await User.findany(request.params.userType).exec()
-    return response.json({ data: user })
-  } catch (err) {
-    return response.json({ error: `Error, couldn't find a user given the following user type` })
-  }
-})
-
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;

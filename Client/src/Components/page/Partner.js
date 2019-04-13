@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Layout/Header";
+//import Header from "../Layout/Header";
 import PartnerTable from "../PartnerTable";
 function Partner() {
   return (
