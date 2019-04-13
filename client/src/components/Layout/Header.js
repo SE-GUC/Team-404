@@ -31,6 +31,7 @@ function Header() {
       <Link style={linkStyle} to="/Feedback">
         Feedback
       </Link>
+      
     </header>
   );
 }
@@ -40,7 +41,6 @@ const headerStyle = {
   color: "#fff",
   textAlign: " center",
   padding: "5px",
-  borderBottom: "5px #ccc dotted",
   borderRadius: "5px"
 };
 
