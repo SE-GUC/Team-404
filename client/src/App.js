@@ -9,13 +9,14 @@ import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
+import Axios from "axios"
 import AddFeedback from "./components/AddFeedback";
 
 class App extends Component {
   state = {
     applications: [],
     taskform: [
-      {
+    /*  {
         id: 1,
         description: "Fix Cars",
         eta: "1 month",
@@ -39,7 +40,7 @@ class App extends Component {
         lifecyclestatus: "pending",
         experienceneeded: "3 years",
         consultancy: "Consultant"
-      }
+      }*/
     ],
     partner: [
       {
@@ -94,6 +95,8 @@ class App extends Component {
       }
     ]
   };
+
+  
 
   delApplication = id => {
     this.setState({
