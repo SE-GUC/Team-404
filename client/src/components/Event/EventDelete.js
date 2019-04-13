@@ -13,7 +13,7 @@ class EventDelete extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.delete(`http://localhost:3001/api/applications/${this.state._id}`)
+    axios.delete(`http://localhost:3001/Routes/api/events/${this.state._id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
