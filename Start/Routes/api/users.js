@@ -11,10 +11,6 @@ router.get('/', async (req,res) => {
   res.json({data: users})
 })
 
-
-
-
-//Create user
 router.post('/', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)
