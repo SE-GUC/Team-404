@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axiosInstance";
-
+import { withRouter } from "react-router-dom";
 class EventDelete extends Component {
   state = {
     _id: ''
@@ -13,8 +13,9 @@ class EventDelete extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.delete(`http://localhost:3001/api/applications/${this.state._id}`)
+    axios.delete(`events/${this.props.match.params.id}`)
       .then(res => {
+        this.props.history.push('/events');
         console.log(res);
         console.log(res.data);
       })
@@ -37,4 +38,4 @@ class EventDelete extends Component {
   }
 }
 
-export default EventDelete
+export default withRouter(EventDelete)

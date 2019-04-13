@@ -11,12 +11,7 @@ function Event() {
       <Link to = "Event/create">
        Create 
       </Link>
-      <Link to = "Event/update">
-      Update
-      </Link>
-      <Link to = "Event/delete">
-      Delete
-      </Link>
+      
       <EventRead></EventRead>
     </React.Fragment>
     

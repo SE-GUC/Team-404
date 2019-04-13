@@ -19,6 +19,16 @@ router.get("/", async (req, res) => {
   res.json({ data: events });
 });
 
+router.get('/:id',async (req,res)=>{
+  try {
+    const id = req.params.id
+    const requestedEvent = await Event.findById(id)
+    res.json({msg:'Event you asked for', data: requestedEvent})
+   }catch(error){
+    console.log(error)
+   }
+   })
+
 
 
 // Create a new newEvent
