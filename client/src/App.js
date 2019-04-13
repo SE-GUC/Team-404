@@ -4,9 +4,11 @@ import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
-import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import uuid from "uuid";
+import Feedback from "./components/Feedback";
+import AddFeedback from "./components/AddFeedback";
 class App extends Component {
   state = {
     applications: [],
@@ -68,9 +70,36 @@ class App extends Component {
         projecthistory: "p-3ProjectHistory",
         feedbackform: "p-3FeedBackForm"
       }
+    ],
+    feedbacks: [
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      },
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      },
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      }
     ]
   };
 
+  addFeedback = name => {
+    const newFeedback = {
+      id: uuid.v4(),
+      name
+    };
+    this.setState({ feedbacks: [...this.state.feedbacks, newFeedback] });
+  };
 
   delApplication = id => {
     this.setState({
@@ -80,14 +109,6 @@ class App extends Component {
     });
   };
 
-  /* <div style={together}>
-            <Header />
-            <li>
-              <Link to="/Applications">View Applications</Link>
-            </li>
-            <Route path="/Applications" component={ApplicationInfo} />
-          </div>
-*/
   render() {
     return (
       <Router>
@@ -115,16 +136,6 @@ class App extends Component {
 
           <Route
             exact
-            path="/Application"
-            render={props => (
-              <React.Fragment>
-                <ApplicationInfo />
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
             path="/Login"
             render={props => (
               <React.Fragment>
@@ -139,6 +150,17 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Feedback"
+            render={props => (
+              <React.Fragment>
+                <AddFeedback addFeedback={this.addFeedback} />
+                <Feedback feedbacks={this.state.feedbacks} />{" "}
               </React.Fragment>
             )}
           />
