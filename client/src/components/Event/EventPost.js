@@ -15,13 +15,13 @@ class EventPost extends React.Component {
     topicsCovered: "",
     field: "",
     registrationPrice: 9,
-    approvalstaus: "",
-    applicants: [],
-    feedbakck: []
+    approvalStatus: "",
+   
   };
 
   handleSubmit = async event => {
     event.preventDefault();
+    console.log(`The state is : ${this.state}` );
     const Event = {
       eventName : this.state.eventName,
       organizer: this.state.organizer,
@@ -33,13 +33,12 @@ class EventPost extends React.Component {
       topicsCovered: this.state.topicsCovered,
       field: this.state.field,
       registrationPrice: this.state.registrationPrice,
-      approvalstaus: this.state.approvalStatus,
-      applicants: this.state.applicants,
-      feedback: this.state.feedback
+      approvalStatus: this.state.approvalStatus,
+    
     };
     try {
       let response = await axios.post(
-        "http://localhost:3001/Routes/api/tasks/",
+        "http://localhost:3001/Routes/api/events/",
         Event
       );
       console.log(response);
@@ -92,17 +91,7 @@ class EventPost extends React.Component {
     this.setState({ approvalStatus: event.target.value });
   };
 
-  handleChangeApplicants = event => {
-    this.setState({ applicants: event.target.value });
-  };
 
-  handleChangeFeedback = event => {
-    this.setState({ feedback: event.target.value });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
 
   /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
       //console.log(res);
@@ -210,24 +199,8 @@ class EventPost extends React.Component {
           />
         </label>
 
-        <label className="Applicants">
-          Applicants:
-          <input
-            type="text"
-            name="appliccants"
-            onChange={this.handleChangeApplicants}
-          />
-        </label>
-
-        <label className="Feedback">
-          Feedback:
-          <input
-            type="text"
-            name="feedback"
-            onChange={this.handleChangeFeedback}
-          />
-        </label>
-        <button type="submit"> ADD </button>
+      
+        <button type="submit" onClick = {this.handleSubmit}> ADD </button>
       </form>
     );
   }

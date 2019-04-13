@@ -15,9 +15,8 @@ state={
       topicsCovered: '',
       field: '',
       registrationPrice: 9,
-      approvalstaus: '',
-      applicants: [],
-      feedbakck: []
+     
+     
 }
 handleChangeeventName = event => {
     this.setState({ eventName: event.target.value });
@@ -59,17 +58,9 @@ handleChangeeventName = event => {
     this.setState({ registrationPrice: event.target.value });
   };
 
-  handleChangeapprovalStatus = event => {
-    this.setState({ approvalStatus: event.target.value });
-  };
+ 
 
-  handleChangeApplicants = event => {
-    this.setState({ applicants: event.target.value });
-  };
-
-  handleChangeFeedback = event => {
-    this.setState({ feedback: event.target.value });
-  };
+  
 
 
 
@@ -87,10 +78,8 @@ handleChangeeventName = event => {
             topicsCovered: this.state.topicsCovered,
             field: this.state.field,
             registrationPrice: this.state.registrationPrice,
-            approvalstaus: this.state.approvalStatus,
-            applicants: this.state.applicants,
-            feedback: this.state.feedback
-
+        
+            
           };
 
           axios.put('http://localhost:3001/api/events/id', {Event})
@@ -155,21 +144,10 @@ handleChangeeventName = event => {
             <input type="text" name="registrationPrice" onChange = {this.handleChangeregistrationPrice}/>
           </label>
 
-          <label className="approvalStatus">
-            approvalStatus:
-            <input type="text" name="approvalStatus" onChange = {this.handleChangeapprovalStatus}/>
-          </label>
+        
 
-          <label className="Applicants">
-            Applicants:
-            <input type="text" name="appliccants" onChange = {this.handleChangeApplicants}/>
-          </label>
-
-          <label className="Feedback">
-            Feedback:
-            <input type="text" name="feedback" onChange = {this.handleChangeFeedback}/>
-          </label>
-          <button type = "submit"> ADD </button>
+          
+          <button type = "submit" onClick = {this.handleSubmit}> ADD </button>
             </form>
         )
     }

@@ -7,7 +7,7 @@ class EventRead extends Component {
     }
     componentDidMount(){
         
-        axios.get('http://localhost:3001/api/applications/')
+        axios.get('http://localhost:3001/Routes/api/events/')
         .then(res => {
             console.log(res)
             this.setState({
@@ -20,9 +20,9 @@ const { events } = this.state;
 const eventList = events.length ? (
     events.map(event => {
     return(
-        <div className= "event card" key={event._id}>
+        <div className= "event card" key={event.eventName}>
         <div className="card-content">
-        <span className="event candidate">{event.candidate}</span>
+        <span className="event candidate">{event.eventName}</span>
         </div>
         </div>
     )
