@@ -6,18 +6,19 @@ app.use(express.json())
 const router = express.Router()
 //const uuid = require('uuid')
 const Task = require('../../Models/Task')
+const authenticateUser = require('../../middleware/authenticate')
 //const joi = require("Joi")
 
 const validator = require('../../Validation/taskValid')
 
 
-router.get('/', async (req, res) => {
+router.get('/', authenticateUser,async (req, res) => {
   const tasks = await Task.find()
   res.json({ data: tasks })
 })
 
 
-router.post('/', async (req, res) => {
+router.post('/', authenticateUser ,async (req, res) => {
 
 try {
     const isValidated = validator.createValidation(req.body)

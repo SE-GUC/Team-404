@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
+import axios from "./axiosInstance";
 import './Textbox.css';
 class Textbox extends Component {
     state ={ 
      email:"",
      pass:"",
       }
+
+      loginVal = async event => {
+        event.preventDefault();
+    
+        const user = {
+          email: this.state.email,
+          password: this.state.pass,
+    
+        };
+        console.log(user);
+        try {
+          let response = await axios.post(
+            "http://localhost:3001/Routes/api/users/login/",
+            user
+          );
+          axios.defaults.headers.common['Authorization'] = response.data.token;
+          console.log(response);
+        } catch (error) {
+          console.log(error);
+        }
+      };
   
-    loginVal=(event) =>{
+    /*loginVal=(event) =>{
         if((this.state.pass!="")&& (this.state.email!="")){
          alert('Logging you in ' + this.state.email);
+         onSubmit(event);
          event.preventDefault();
-         console.log(this.state.email+" "+this.state.pass);
     }else{
         alert('Enter missing fields');
     }
     
-}
+}*/
 check2=(event)=>{
     this.setState({pass: event.target.value})
 
@@ -56,6 +78,5 @@ check1=(event)=> {
         
     }
 }
- 
-  
+
 export default Textbox;
