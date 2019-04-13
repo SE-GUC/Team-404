@@ -14,6 +14,7 @@ import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
+import DeleteTask from "./components/DeleteTask"
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event"
@@ -161,6 +162,7 @@ class App extends Component {
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
                 <AddTask />
+                <DeleteTask />
               </React.Fragment>
             )}
           />

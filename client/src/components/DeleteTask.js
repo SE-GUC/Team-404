@@ -25,12 +25,12 @@ export class DeleteTask extends Component {
           <div>
             <form onSubmit={this.handleSubmit}>
               <label>
-                Person ID:
+                Task ID:
                 <br/>
                 <input type="text" name="id" onChange={this.handleChange} />
               </label>
               <br/>
-              <button type="submit">Delete</button>
+              <button type="Submit">Delete</button>
             </form>
           </div>
         )
