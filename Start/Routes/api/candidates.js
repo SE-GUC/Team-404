@@ -67,6 +67,56 @@ router.delete('/:id',async(req,res)=>{
    }  
 });
 
+const viewEvents = async () => { 
+  try {
+      var view = await Event.find()
+        return view
+        
+      
+      
+      
+  }
+  
+  catch(err) {
+  // handle any possible error and exit gracefully 
+  console.log(err)
+  }
+  
+};
+router.get('/', viewEvents)
+
+const bookEvent = async (req,res) => { 
+  try {
+    var cid = req.params.id
+    var eid = req.params.id
+
+     console.log("success")
+     
+     var candidate = await Candidate.findById(cid).exec();
+     var event = await Event.findById(eid).exec();
+     candidate.pastEvents.push(eid);
+
+
+     var newBooking = new Booking({
+       event: eid,
+       partner: req.body.partner,
+       attendee: cid,
+       dateofbooking: req.body.dateofbooking
+     });
+     console.log(newBooking);
+     var findEvent = Event.findById(eid)
+     findEvent.remainingplaces -= 1
+     Event.updateOne({id: eid}, findEvent)
+     }
+
+ catch(err) {
+ console.log("couldn't book")
+ }
+ 
+};
+
+router.post('/:cid/events/:eid', bookEvent)
+
 module.exports = router;
 
 
