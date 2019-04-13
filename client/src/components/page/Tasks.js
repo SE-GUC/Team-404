@@ -8,7 +8,8 @@ import AddTask from "../Task/AddTask";
 function Tasks() {
   return (
     <React.Fragment>
-      
+      <TaskHeader/>
+      <AddTask/>
     </React.Fragment>
   );
 }

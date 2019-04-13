@@ -1,5 +1,6 @@
-/*import React from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route , Link} from "react-router-dom";
+import AddTaskPage from '../page/AddTaskPage'
 function TaskHeader() {
   return (
     <header style={headerStyle}>
@@ -14,7 +15,7 @@ function TaskHeader() {
       <Link style={linkStyle} to="/AddTaskPage">
         Add Task Page
       </Link>
-      
+      <Route path="AddTaskPage" component={AddTaskPage} />
     </header>
   );
 }
@@ -32,4 +33,3 @@ const linkStyle = {
   textDecoration: "none"
 };
 export default TaskHeader;
-*/

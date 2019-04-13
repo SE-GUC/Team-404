@@ -97,17 +97,16 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route exact path="/Partner" component={Partner} />}
+          <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
           <Route
             exact
             path="/Tasks"
-            
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
-                <AddTask/>
+                <Tasks/>
               </React.Fragment>
             )}
           />

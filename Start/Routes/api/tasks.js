@@ -33,7 +33,7 @@ try {
         partner: req.body.partner,
         monetaryCompensation: req.body.monetaryCompensation,
         skills: req.body.skills,
-        lifeCycleStatus: req.body.lifeCycleStatus,
+        lifeCycleStatus:"Denied",
         experienceNeeded: req.body.experienceNeeded,
         consultancyRequested: req.body.consultancyRequested,
          }).save()

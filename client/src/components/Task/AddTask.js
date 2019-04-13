@@ -12,7 +12,7 @@ class AddTask extends Component {
       partner: "",
       monetaryCompensation: "",
       skills: "",
-      lifeCycleStatus: "",
+      lifeCycleStatus: "Awaiting Approval",
       experienceNeeded: "",
       consultancyRequested: false,
       consultant: "",
@@ -41,9 +41,11 @@ class AddTask extends Component {
       partner: this.state.partner,
       monetaryCompensation: this.state.monetaryCompensation,
       skills: this.state.skills,
-      lifeCycleStatus: this.state.lifeCycleStatus,
-      experienceNeeded: this.state.experienceNeeded,
       consultancyRequested: this.state.consultancyRequested,
+      lifeCycleStatus: "Awaiting Approval",
+
+      experienceNeeded: this.state.experienceNeeded,
+
       consultant: this.state.consultant,
       applications: this.state.applications
     };
@@ -67,12 +69,14 @@ class AddTask extends Component {
   handleChangeMonetarycompensation = e =>
     this.setState({ monetaryCompensation: e.target.value });
   handleChangeSkills = e => this.setState({ skills: e.target.value });
-  handleChangeLifecyclestatus = e =>
-    this.setState({ lifeCycleStatus: e.target.value });
   handleChangeExperienceneeed = e =>
     this.setState({ experienceNeeded: e.target.value });
-  handleChangeConsultancy = e =>
-    this.setState({ consultancyRequested: e.target.value });
+  handleChangeConsultancy = e => {
+    this.setState({ consultancyRequested: e.target.value })
+    
+      if(this.state.consultancyRequested === true)
+      this.setState({lifeCycleStatus: "Awaiting Consultant"})
+  };
 
   render() {
     return (
@@ -136,16 +140,7 @@ class AddTask extends Component {
               onChange={this.handleChangeSkills}
             />
           </label>
-          <br />
-          <br />
-          <label>
-            Life Cycle Status
-            <input
-              type="text"
-              name="lifecyclestatus"
-              onChange={this.handleChangeLifecyclestatus}
-            />
-          </label>
+
           <br />
           <br />
           <label>
@@ -168,16 +163,26 @@ class AddTask extends Component {
               onChange={this.handleChangeConsultancy}
             />{" "}
             No {"  "}
-           <input
-            type="radio"
-            name="consultancy"
-            value="Yes"
-            checked
-            onChange={this.handleChangeConsultancy}
-          />{" "}
-          Yes <br />
-
+            <input
+              type="radio"
+              name="consultancy"
+              value="Yes"
+              checked
+              onChange={this.handleChangeConsultancy}
+            />{" "}
+            Yes <br />
           </label>
+
+          <br />
+
+          <select multiple>
+            <option value="CS">CS</option>
+            <option value="Design">Design</option>
+            <option value="Word">Word</option>
+            <option value="Civil">Civil</option>
+            <option value="Accounting">Accounting</option>
+          </select>
+
           <br />
           <button type="submit">Add</button>
         </form>
