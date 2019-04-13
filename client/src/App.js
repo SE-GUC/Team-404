@@ -13,10 +13,12 @@ import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
+import User from "./components/User";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/Task/AddTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
+
 
 class App extends Component {
   state = {
@@ -122,6 +124,16 @@ class App extends Component {
           />
           <Route
             exact
+            path="/User"
+            render={props => (
+              <React.Fragment>
+                <User />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
             path="/Event"
             render={props => (
               <React.Fragment>
@@ -135,7 +147,9 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+
         </div>
+
       </Router>
     );
   }
