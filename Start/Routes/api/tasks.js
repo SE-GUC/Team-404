@@ -11,7 +11,7 @@ const Partner = require('../../Models/Partner')
 const joi = require("Joi")
 //const joi = require("Joi")
 
-const validator = require('../../Validation/taskvalidations')
+const validator = require('../../Validation/taskValid')
 
 
 router.get('/', async (req, res) => {

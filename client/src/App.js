@@ -2,11 +2,6 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import EventPost from "./components/EventPost";
-import EventPut from "./components/EventPut";
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
@@ -18,10 +13,9 @@ import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
-<<<<<<< HEAD
 import AddTask from "./components/AddTask";
-=======
->>>>>>> react_dev
+import EventPost from "./components/EventPost";
+import EventPut from "./components/EventPut";
 
 class App extends Component {
   state = {
@@ -170,15 +164,7 @@ class App extends Component {
             )}
           />
 
-          <Route
-            exact
-            path="/Add-Task"
-            render={props => (
-              <React.Fragment>
-                <AddTask/>
-              </React.Fragment>
-            )}
-          />
+    
 
           <Route
             exact
