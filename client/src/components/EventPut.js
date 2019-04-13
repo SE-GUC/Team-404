@@ -108,12 +108,12 @@ handleChangeEventName = event => {
           <label className="EventName">
             EventName:
             <input type="text" name="eventname" onChange = {this.handleChangeEventName}/>
-          </label>
+          </label><b/>
 
           <label className="Organizer">
             Organizer:
             <input type="text" name="organizer" onChange = {this.handleChangeOrganizer} />
-          </label>
+          </label><b/>
 
           <label className="Location">
             Location:

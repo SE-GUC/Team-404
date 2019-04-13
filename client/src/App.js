@@ -16,6 +16,7 @@ import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
+import Event from "./components/page/Event"
 
 class App extends Component {
   state = {
@@ -180,13 +181,7 @@ class App extends Component {
             path="/Event"
             render={props => (
               <React.Fragment>
-                <EventRead />
-                <br />
-                <br />
-                <EventPost />
-                <br />
-                <br />
-                <EventPut />
+                <Event />
               </React.Fragment>
             )}
           />

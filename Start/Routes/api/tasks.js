@@ -27,8 +27,8 @@ try {
  // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
     _id: mongoose.Types.ObjectId(),
-       description: req.body.description,
-     eta: req.body.eta,
+        description: req.body.description,
+        eta: req.body.eta,
         levelOfCommitment: req.body.levelOfCommitment,
         partner: req.body.partner,
         monetaryCompensation: req.body.monetaryCompensation,
