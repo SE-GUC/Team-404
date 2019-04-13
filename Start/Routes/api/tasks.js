@@ -44,7 +44,7 @@ try {
 
 
   router
-  .route('/:id')
+  .route('/:id',authenticateUser)
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi.string().length(24).required()
