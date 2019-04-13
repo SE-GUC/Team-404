@@ -114,7 +114,7 @@ class EventPost extends React.Component {
     return (
       <form onSubmit={this.handelSubmit}>
         <label> Events : </label>
-
+        <br/>
         <label className="EventName">
           EventName:
           <input
@@ -122,7 +122,7 @@ class EventPost extends React.Component {
             name="eventname"
             onChange={this.handleChangeEventName}
           />
-        </label>
+        </label><br/>
 
         <label className="Organizer">
           Organizer:
@@ -131,7 +131,7 @@ class EventPost extends React.Component {
             name="organizer"
             onChange={this.handleChangeOrganizer}
           />
-        </label>
+        </label><br/>
 
         <label className="Location">
           Location:
@@ -140,7 +140,7 @@ class EventPost extends React.Component {
             name="location"
             onChange={this.handleChangeLocation}
           />
-        </label>
+        </label><br/>
 
         <label className="Description">
           Description:
@@ -149,7 +149,7 @@ class EventPost extends React.Component {
             name="description"
             onChange={this.handleChangeDescription}
           />
-        </label>
+        </label><br/>
 
         <label className="RemainingPlaces">
           RemainingPlaces:
@@ -158,7 +158,7 @@ class EventPost extends React.Component {
             name="remainingplaces"
             onChange={this.handleChangeRemainingPlaces}
           />
-        </label>
+        </label><br/>
 
         <label className="Speakers">
           Speakers:
@@ -167,7 +167,7 @@ class EventPost extends React.Component {
             name="speakers"
             onChange={this.handleChangeSpeakers}
           />
-        </label>
+        </label><br/>
 
         <label className="MaximumPlaces">
           MaximumPlaces:
@@ -176,7 +176,7 @@ class EventPost extends React.Component {
             name="maximumplaces"
             onChange={this.handleChangeMaximumPlaces}
           />
-        </label>
+        </label><br/>
 
         <label className="TopicsCovered">
           TopicsCovered:
@@ -185,12 +185,12 @@ class EventPost extends React.Component {
             name="topicscovered"
             onChange={this.handleChangeTopicsCovered}
           />
-        </label>
+        </label><br/>
 
         <label className="Field">
           Field:
           <input type="text" name="field" onChange={this.handleChangeField} />
-        </label>
+        </label><br/>
 
         <label className="RegistrationPrice">
           RegistrationPrice:
@@ -199,7 +199,7 @@ class EventPost extends React.Component {
             name="registrationprice"
             onChange={this.handleChangeRegistrationPrice}
           />
-        </label>
+        </label><br/>
 
         <label className="ApprovalStatus">
           ApprovalStatus:
@@ -208,7 +208,7 @@ class EventPost extends React.Component {
             name="approvalstatus"
             onChange={this.handleChangeApprovalStatus}
           />
-        </label>
+        </label><br/>
 
         <label className="Applicants">
           Applicants:
@@ -217,7 +217,7 @@ class EventPost extends React.Component {
             name="appliccants"
             onChange={this.handleChangeApplicants}
           />
-        </label>
+        </label><br/>
 
         <label className="Feedback">
           Feedback:
@@ -226,7 +226,7 @@ class EventPost extends React.Component {
             name="feedback"
             onChange={this.handleChangeFeedback}
           />
-        </label>
+        </label><br/>
         <button type="submit"> ADD </button>
       </form>
     );

@@ -6,7 +6,7 @@ const joi = require('joi')
 
 // We will be connecting using database
 const Event = require("../../Models/Event");
-const validator = require("../../Validation/eventValidation");
+const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
 app.get("/", (req, res) => {

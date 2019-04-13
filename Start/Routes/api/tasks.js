@@ -6,7 +6,6 @@ app.use(express.json())
 const router = express.Router()
 //const uuid = require('uuid')
 const Task = require('../../Models/Task')
-const Partner = require('../../Models/Partner')
 
 const joi = require("Joi")
 //const joi = require("Joi")
@@ -27,8 +26,8 @@ try {
  // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
     _id: mongoose.Types.ObjectId(),
-       description: req.body.description,
-     eta: req.body.eta,
+        description: req.body.description,
+        eta: req.body.eta,
         levelOfCommitment: req.body.levelOfCommitment,
         partner: req.body.partner,
         monetaryCompensation: req.body.monetaryCompensation,
@@ -38,13 +37,14 @@ try {
         consultancyRequested: req.body.consultancyRequested,
          }).save()
 
+         
          return res.json({ data: task })
 
   } catch (error) {
     console.log(error)
   } })
 
-
+ 
   router
   .route('/:id')
   .all(async (request, response, next) => {
@@ -90,12 +90,6 @@ try {
   router.get('/viewTaskStatus/:tid', async (req, res) => {
               var Pid = req.body.pid
               var Tid = req.params.tid
-             //var partner = await Partner.findById(Pid) //partner need to be created first or else it'll create an error
-              // if(!partner){
-              //  return res.status(400).send({
-              //     message:"couldnt find a partner with the specififed id "
-              //   })
-              // }
               var tasks = await Task.findById(Tid)
               if(!tasks){
               return  res.status(400).send({
