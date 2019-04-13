@@ -1,4 +1,5 @@
 
+
 const mongoose=require('mongoose');
 const schema=mongoose.Schema;
 
@@ -13,3 +14,4 @@ const CandidateSchema = new schema({
 const Candidate = mongoose.model('Candidate', CandidateSchema);
 
 module.exports = Candidate;
+

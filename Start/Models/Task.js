@@ -8,12 +8,13 @@ const TaskSchema = new schema({
   eta: { type: Number, required: true },
   levelofcommitment: { type: String, required: true, unique: false },
   partner: { type: String, required: true },
-  monetarycompensation: { type: Number, required: true },
-  skills: { type: String, required: true },
-  lifecyclestatus: { type: String, required: true },
-  experienceneeded: { type: String, required: true },
-  consultancy: { type: String, required: true }
-
+  monetaryCompensation: { type: Number, required: true },
+  skills: { type: String, enum: ["CS" , "Design" , "Word" , "Civil" , "Accounting"], required: true  },
+  lifeCycleStatus: { type: String, enum: ["Awaiting Approval" , "Denied" , "Pending Acceptance" , "Accepted" , "Completed" , "In Progress" ], required: true },
+  experienceNeeded: { type: String, required: true },
+  consultancyRequested: { type: Boolean, required: true },
+  consultant:{type: String , required: false},
+  applications: { type: [String], required: false }
 })
 
 // TaskSchema.index({ Description: 1, eta: 1, levelofcommitment: 1 }, { unique: true })
