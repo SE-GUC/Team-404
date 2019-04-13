@@ -26,7 +26,7 @@ app.use((request, response, next) => {
   Logger.log(`${request.method} => ${request.originalUrl}`)
   next()
 })
-
+const admins = require('./Start/Routes/api/admins')
 const applications = require('./Start/Routes/api/applications')
 const partners = require('./Start/Routes/api/partners')
 const events = require('./Start/Routes/api/events')
@@ -41,6 +41,7 @@ const consultants = require('./Start/Routes/api/consultants')
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
+  <a href ="/Routes/api/admins/">Admins</a>
   <a href ="/Routes/api/applications/">Applications</a>
   <a href ="/Routes/api/Partners">Partners</a>
   <a href ="/Routes/api/events">Events</a>
@@ -56,6 +57,7 @@ app.get('/', (req, res) => {
 
  app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
 
+app.use('/Routes/api/admins/', admins)
 app.use('/Routes/api/applications/', applications)
 app.use('/Routes/api/partners', partners)
 app.use('/Routes/api/events', events)

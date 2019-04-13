@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
+import EventPost from "./components/EventPost";
+import EventPut from "./components/EventPut";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
@@ -7,11 +13,15 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import EventRead from "./EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
+<<<<<<< HEAD
 import AddTask from "./components/AddTask";
+=======
+>>>>>>> react_dev
 
 class App extends Component {
   state = {
@@ -180,16 +190,22 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+
+          <Route
+            exact
+            path="/Event"
+            render={props => (
+              <React.Fragment>
+                <EventRead />
+                <EventPost />
+                <EventPut />
+              </React.Fragment>
+            )}
+          />
         </div>
       </Router>
     );
   }
 }
-
-const textStyle = {
-  textAlign: "left",
-  padding: "10px",
-  fontSize: "5mm"
-};
 
 export default App;
