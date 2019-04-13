@@ -1,3 +1,4 @@
+
 import React from "react";
 import AddTaskPage from "./AddTaskPage";
 import { Link } from "react-router-dom";
@@ -8,16 +9,6 @@ function Tasks() {
   return (
     <React.Fragment>
       
-      <Link style={linkStyle} to="/AddTaskPage">
-        <ul>
-          <br />
-          <br />
-          <br />
-          <li>Add Task</li>
-          
-        </ul>
-      </Link>
-      <AddTask/>
     </React.Fragment>
   );
 }
@@ -34,3 +25,18 @@ const linkStyle = {
   textDecoration: "none"
 };
 export default Tasks;
+
+
+/*
+
+      <Link style={linkStyle} to="/AddTaskPage">
+        <ul>
+          <br />
+          <br />
+          <br />
+          <li>Add Task</li>
+          
+        </ul>
+      </Link>
+      <AddTask/>
+*/

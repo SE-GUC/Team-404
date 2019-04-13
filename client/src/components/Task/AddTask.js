@@ -13,7 +13,7 @@ class AddTask extends Component {
       monetaryCompensation: "",
       skills: "",
       lifeCycleStatus: "",
-      experiencNeeded: "",
+      experienceNeeded: "",
       consultancyRequested: false,
       consultant: "",
       applications: []
