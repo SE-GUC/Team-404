@@ -4,15 +4,14 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import "./App.css";
 import EventPost from "./components/EventPost";
 import EventPut from "./components/EventPut";
-    
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import EventRead from "./components/EventRead";
+import EventDelete from "./components/EventDelete";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
-import EventRead from './EventRead';
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
@@ -191,6 +190,8 @@ class App extends Component {
            <React.Fragment>
           <EventPost/>
           <EventPut/>
+          <EventRead/>
+          <EventDelete/>
            </React.Fragment>
          )}
        />
