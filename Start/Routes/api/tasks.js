@@ -11,7 +11,7 @@ const Partner = require('../../Models/Partner')
 const joi = require("Joi")
 //const joi = require("Joi")
 
-const validator = require('../../Validation/taskvalidations')
+const validator = require('../../Validation/taskValid')
 
 
 router.get('/', async (req, res) => {
@@ -27,15 +27,15 @@ try {
  // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
     _id: mongoose.Types.ObjectId(),
-       Description: req.body.Description,
+       description: req.body.description,
      eta: req.body.eta,
-        levelofcommitment: req.body.levelofcommitment,
+        levelOfCommitment: req.body.levelOfCommitment,
         partner: req.body.partner,
-        monetarycompensation: req.body.monetarycompensation,
+        monetaryCompensation: req.body.monetaryCompensation,
         skills: req.body.skills,
-        lifecyclestatus: req.body.lifecyclestatus,
-        experienceneeded: req.body.experienceneeded,
-        consultancy: req.body.consultancy,
+        lifeCycleStatus: req.body.lifeCycleStatus,
+        experienceNeeded: req.body.experienceNeeded,
+        consultancyRequested: req.body.consultancyRequested,
          }).save()
 
          return res.json({ data: task })

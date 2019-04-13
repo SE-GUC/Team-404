@@ -10,17 +10,22 @@ import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
+import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
+import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
+import AddTask from "./components/AddTask";
+import EventPost from "./components/EventPost ";
+import EventPut from "./components/EventPut";
 
 class App extends Component {
   state = {
     applications: [],
     taskform: [
-      {
+      /*  {
         id: 1,
         description: "Fix Cars",
         eta: "1 month",
@@ -44,7 +49,7 @@ class App extends Component {
         lifecyclestatus: "pending",
         experienceneeded: "3 years",
         consultancy: "Consultant"
-      }
+      }*/
     ],
     partner: [
       {
@@ -100,14 +105,6 @@ class App extends Component {
     ]
   };
 
-  addFeedback = name => {
-    const newFeedback = {
-      id: uuid.v4(),
-      name
-    };
-    this.setState({ feedbacks: [...this.state.feedbacks, newFeedback] });
-  };
-
   delApplication = id => {
     this.setState({
       application: [
@@ -115,7 +112,6 @@ class App extends Component {
       ]
     });
   };
-
   render() {
     return (
       <Router>
@@ -126,7 +122,7 @@ class App extends Component {
             path="/"
             render={props => (
               <React.Fragment>
-                <p style={textStyle}>Welcome To Lirten Hub</p>
+                <p>Welcome To Lirten Hub</p>
               </React.Fragment>
             )}
           />
@@ -137,6 +133,16 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Partner />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Application"
+            render={props => (
+              <React.Fragment>
+                <ApplicationInfo />
               </React.Fragment>
             )}
           />
@@ -157,6 +163,18 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
+                <AddTask />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Feedback"
+            render={props => (
+              <React.Fragment>
+                <AddFeedback addFeedback={this.addFeedback} />
+                <Feedback feedbacks={this.state.feedbacks} />{" "}
               </React.Fragment>
             )}
           />
@@ -166,19 +184,13 @@ class App extends Component {
             path="/Event"
             render={props => (
               <React.Fragment>
-                <EventRead/>
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
-            path="/Taskform"
-            path="/Feedback"
-            render={props => (
-              <React.Fragment>
-                <AddFeedback addFeedback={this.addFeedback} />
-                <Feedback feedbacks={this.state.feedbacks} />{" "}
+                <EventRead />
+                <br />
+                <br />
+                <EventPost />
+                <br />
+                <br />
+                <EventPut />
               </React.Fragment>
             )}
           />
@@ -201,9 +213,5 @@ class App extends Component {
     );
   }
 }
-
-
-
-
 
 export default App;

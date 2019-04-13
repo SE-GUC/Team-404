@@ -1,4 +1,4 @@
-import React from './node_modules/react';
+import React from 'react';
 //import axios from './node_modules/axios';
 import axios from "./axiosInstance";
 

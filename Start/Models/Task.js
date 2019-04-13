@@ -9,7 +9,7 @@ const TaskSchema = new schema({
   levelofcommitment: { type: String, required: true, unique: false },
   partner: { type: String, required: true },
   monetaryCompensation: { type: Number, required: true },
-  skills: { type: String, enum: ["CS" , "Design" , "Word" , "Civil" , "Accounting"], required: true , lowercase: true },
+  skills: { type: String, enum: ["CS" , "Design" , "Word" , "Civil" , "Accounting"], required: true  },
   lifeCycleStatus: { type: String, enum: ["Awaiting Approval" , "Denied" , "Pending Acceptance" , "Accepted" , "Completed" , "In Progress" ], required: true },
   experienceNeeded: { type: String, required: true },
   consultancyRequested: { type: Boolean, required: true },
