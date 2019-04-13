@@ -43,9 +43,7 @@ class AddTask extends Component {
       skills: this.state.skills,
       consultancyRequested: this.state.consultancyRequested,
       lifeCycleStatus: "Awaiting Approval",
-
       experienceNeeded: this.state.experienceNeeded,
-
       consultant: this.state.consultant,
       applications: this.state.applications
     };
@@ -158,7 +156,7 @@ class AddTask extends Component {
             <input
               type="radio"
               name="consultancy"
-              value="No"
+              value={false}
               checked
               onChange={this.handleChangeConsultancy}
             />{" "}
@@ -166,7 +164,7 @@ class AddTask extends Component {
             <input
               type="radio"
               name="consultancy"
-              value="Yes"
+              value={true}
               checked
               onChange={this.handleChangeConsultancy}
             />{" "}

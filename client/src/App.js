@@ -16,9 +16,10 @@ import Axios from "axios";
 import User from "./components/User";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/Task/AddTask";
+import DeleteTask from "./components/DeleteTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
-
+import Event from "./components/page/Event";
 
 class App extends Component {
   state = {
@@ -108,7 +109,8 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
-                <Tasks/>
+                <Tasks />
+                <DeleteTask />
               </React.Fragment>
             )}
           />
@@ -137,19 +139,11 @@ class App extends Component {
             path="/Event"
             render={props => (
               <React.Fragment>
-                <EventRead />
-                <br />
-                <br />
-                <EventPost />
-                <br />
-                <br />
-                <EventPut />
+                <Event />
               </React.Fragment>
             )}
           />
-
         </div>
-
       </Router>
     );
   }
