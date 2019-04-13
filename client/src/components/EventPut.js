@@ -175,4 +175,4 @@ handleChangeEventName = event => {
     }
 }
 
-export default EventPut
+export default EventPut;
