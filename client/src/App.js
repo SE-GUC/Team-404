@@ -12,9 +12,11 @@ import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import EventRead from './EventRead';
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
+
 class App extends Component {
   state = {
     applications: [],
@@ -162,6 +164,17 @@ class App extends Component {
 
           <Route
             exact
+            path="/Event"
+            render={props => (
+              <React.Fragment>
+                <EventRead/>
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Taskform"
             path="/Feedback"
             render={props => (
               <React.Fragment>
