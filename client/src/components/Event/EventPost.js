@@ -15,7 +15,7 @@ class EventPost extends React.Component {
     topicsCovered: "",
     field: "",
     registrationPrice: 9,
-    approvalStatus: "",
+    
    
   };
 
@@ -33,7 +33,7 @@ class EventPost extends React.Component {
       topicsCovered: this.state.topicsCovered,
       field: this.state.field,
       registrationPrice: this.state.registrationPrice,
-      approvalStatus: this.state.approvalStatus,
+      
     
     };
     try {
@@ -87,9 +87,7 @@ class EventPost extends React.Component {
     this.setState({ registrationPrice: event.target.value });
   };
 
-  handleChangeApprovalStatus = event => {
-    this.setState({ approvalStatus: event.target.value });
-  };
+
 
 
 
@@ -190,14 +188,7 @@ class EventPost extends React.Component {
           />
         </label>
 
-        <label className="approvalStatus">
-          approvalStatus:
-          <input
-            type="text"
-            name="approvalStatus"
-            onChange={this.handleChangeApprovalStatus}
-          />
-        </label>
+  
 
       
         <button type="submit" onClick = {this.handleSubmit}> ADD </button>

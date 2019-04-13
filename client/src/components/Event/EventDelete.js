@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
-
 class EventDelete extends Component {
   state = {
     _id: ''

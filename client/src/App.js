@@ -19,7 +19,7 @@ import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
-
+import EventReadID from "./components/Event/EventReadID";
 class App extends Component {
   state = {
     applications: [],
@@ -217,7 +217,17 @@ class App extends Component {
              <EventDelete></EventDelete>
            </React.Fragment>
          )}
-       /> 
+       />
+
+       <Route
+         exact
+         path="/event/:id"
+         render={props => (
+           <React.Fragment>
+             <EventReadID></EventReadID>
+           </React.Fragment>
+         )}
+       />  
 
        </div>
        </Router>

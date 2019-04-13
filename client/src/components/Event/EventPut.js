@@ -82,7 +82,7 @@ handleChangeeventName = event => {
             
           };
 
-          axios.put('http://localhost:3001/api/events/id', {Event})
+          axios.put(`events/${this.props.match.params.id}`, {Event})
           .then(res => {
               console.log(res);
               console.log(res.data);
@@ -96,52 +96,52 @@ handleChangeeventName = event => {
 
           <label className="eventName">
             eventName:
-            <input type="text" name="eventName" onChange = {this.handleChangeeventName}/>
+            <input type="text" name="eventName" value={this.state.eventName} onChange = {this.handleChangeeventName}/>
           </label>
 
           <label className="Organizer">
             Organizer:
-            <input type="text" name="organizer" onChange = {this.handleChangeOrganizer} />
+            <input type="text" name="organizer" value={this.state.eventName} onChange = {this.handleChangeOrganizer} />
           </label>
 
           <label className="Location">
             Location:
-            <input type="text" name="location" onChange = {this.handleChangeLocation}/>
+            <input type="text" name="location" value={this.state.location} onChange = {this.handleChangeLocation}/>
           </label>
 
           <label className="Description">
             Description:
-            <input type="text" name="description" onChange = {this.handleChangeDescription} />
+            <input type="text" name="description" value={this.state.description} onChange = {this.handleChangeDescription} />
           </label>
 
           <label className="remainingPlaces">
             remainingPlaces:
-            <input type="text" name="remainingPlaces" onChange = {this.handleChangeremainingPlaces}/>
+            <input type="text" name="remainingPlaces" value={this.state.remainingPlaces} onChange = {this.handleChangeremainingPlaces}/>
           </label>
 
           <label className="Speakers">
             Speakers:
-            <input type="text" name="speakers" onChange = {this.handleChangeSpeakers}/>
+            <input type="text" name="speakers" value={this.state.speakers} onChange = {this.handleChangeSpeakers}/>
           </label>
 
           <label className="maximumPlaces">
             maximumPlaces:
-            <input type="text" name="maximumPlaces" onChange = {this.handleChangemaximumPlaces}/>
+            <input type="text" name="maximumPlaces" value={this.state.maximumPlcaes} onChange = {this.handleChangemaximumPlaces}/>
           </label>
 
           <label className="topicsCovered">
             topicsCovered:
-            <input type="text" name="topicsCovered" onChange = {this.handleChangetopicsCovered}/>
+            <input type="text" name="topicsCovered" value={this.state.topicsCovered} onChange = {this.handleChangetopicsCovered}/>
           </label>
 
           <label className="Field">
             Field:
-            <input type="text" name="field" onChange = {this.handleChangeField}/>
+            <input type="text" name="field" value={this.state.field} onChange = {this.handleChangeField}/>
           </label>
 
           <label className="registrationPrice">
             registrationPrice:
-            <input type="text" name="registrationPrice" onChange = {this.handleChangeregistrationPrice}/>
+            <input type="text" name="registrationPrice" value={this.state.registrationPrice} onChange = {this.handleChangeregistrationPrice}/>
           </label>
 
         
