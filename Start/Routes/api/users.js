@@ -10,6 +10,10 @@ router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
+router.get('/:_id', async (req,res) => {
+  const users = await User.getElementById()
+  res.json({data: users})
+})
 router.post('/', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)
