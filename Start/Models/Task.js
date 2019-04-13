@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose')
-const candidate = require("./Candidate")
+//const candidate = require("./Candidate")
 const schema = mongoose.Schema
 const ObjectId = schema.Types.ObjectId
 const TaskSchema = new schema({

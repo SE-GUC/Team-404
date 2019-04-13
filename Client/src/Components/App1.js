@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import PartnerHeader from './components/PartnerHeader';
+import PartnerHeader from './PartnerHeader';
 //import Search from './components/Search';
 //import Partner from './components/Partner';
 //import Table from './components/Table';
