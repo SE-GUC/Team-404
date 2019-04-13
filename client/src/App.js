@@ -8,13 +8,13 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
-import EventRead from "./EventRead";
+import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
-import EventPost from "./components/EventPost";
+import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 
 class App extends Component {
@@ -118,7 +118,7 @@ class App extends Component {
             path="/"
             render={props => (
               <React.Fragment>
-                <p style={textStyle}>Welcome To Lirten Hub</p>
+                <p>Welcome To Lirten Hub</p>
               </React.Fragment>
             )}
           />
@@ -159,12 +159,10 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
-                <AddTask/>
+                <AddTask />
               </React.Fragment>
             )}
           />
-
-    
 
           <Route
             exact
@@ -183,7 +181,11 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <EventRead />
+                <br />
+                <br />
                 <EventPost />
+                <br />
+                <br />
                 <EventPut />
               </React.Fragment>
             )}
