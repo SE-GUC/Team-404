@@ -7,6 +7,9 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import RegisterCandidate from "./components/RegisterCandidate";
+import RegisterPartner from "./components/RegisterPartner";
+import RegisterContributor from "./components/RegisterContributor";
 class App extends Component {
   state = {
     applications: [],
@@ -109,6 +112,33 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Partner />
+              </React.Fragment>
+            )}
+          />
+            <Route
+            exact
+            path="/RegisterCandidate"
+            render={props => (
+              <React.Fragment>
+                <RegisterCandidate />
+              </React.Fragment>
+            )}
+          />
+                <Route
+            exact
+            path="/RegisterPartner"
+            render={props => (
+              <React.Fragment>
+                <RegisterPartner/>
+              </React.Fragment>
+            )}
+          />
+                        <Route
+            exact
+            path="/RegisterContributor"
+            render={props => (
+              <React.Fragment>
+                <RegisterContributor />
               </React.Fragment>
             )}
           />

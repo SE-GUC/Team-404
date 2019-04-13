@@ -28,7 +28,15 @@ function Header() {
       <Link style={linkStyle} to="/Login">
         Login
       </Link>
-      |{" "}
+      |{" "}  <Link style={linkStyle} to="/RegisterCandidate">
+        RegisterCandidate
+      </Link>
+      | |{" "}  <Link style={linkStyle} to="/RegisterPartner">
+        RegisterPartner
+      </Link>
+      | |{" "}  <Link style={linkStyle} to="/RegisterContributor">
+        RegisterContributor
+      </Link>
     </header>
   );
 }

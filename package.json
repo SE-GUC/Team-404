@@ -4,18 +4,16 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-<<<<<<< HEAD:package.json
+
     "client-install": "npm install --prefix client",
     "start": "node server",
     "server": "nodemon server",
     "test": "jest",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
-=======
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest"
->>>>>>> 071593c94d81efe82185e8afa2b04dcbfaeeed3d:Server/package.json
+
+   
+
   },
   "keywords": [],
   "author": "",

@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import Application from "./Application";
-<<<<<<< HEAD
-=======
-import Axios from "axios";
->>>>>>> reactdevv
+
+
+
 export class ApplicationInfo extends Component {
   state = {
     applications: []
   };
 
   componentDidMount = () => {
-<<<<<<< HEAD
+
     Axios.get("http://localhost:3001/Routes/api/applications/").then(res => {
       this.console.log(res.data);
     });
-=======
+
     Axios.get("http://localhost:3001/Routes/api/applications/").then(res =>
       console.log(res.data)
     );
->>>>>>> reactdevv
+
   };
 
   render() {
