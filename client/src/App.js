@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import "./App.css";
+import EventPost from "./components/EventPost";
+import EventPut from "./components/EventPut";
+    
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
@@ -177,16 +183,26 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-        </div>
-      </Router>
+       
+         <Route
+         exact
+         path="/Event"
+         render={props => (
+           <React.Fragment>
+          <EventPost/>
+          <EventPut/>
+           </React.Fragment>
+         )}
+       />
+     
+       </div>
+       </Router>
     );
   }
 }
 
-const textStyle = {
-  textAlign: "left",
-  padding: "10px",
-  fontSize: "5mm"
-};
+
+
+
 
 export default App;
