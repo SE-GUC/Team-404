@@ -8,7 +8,7 @@ function Event() {
     
     <React.Fragment>
       <h1>Event</h1>
-      <Link to = "Event/create">
+      <Link to = "/Event/create">
        Create 
       </Link>
       

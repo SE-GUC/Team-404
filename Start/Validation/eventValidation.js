@@ -45,8 +45,7 @@ module.exports = {
         .required(),
       approvalStatus: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       applicants: Joi.array(),
       feedback: Joi.array()
     };

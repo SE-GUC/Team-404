@@ -3,6 +3,7 @@ import axios from "./axiosInstance";
 
 class EventPost extends React.Component {
   state = {
+    
     eventName: "",
     organizer: "",
     location: "",

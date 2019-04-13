@@ -82,7 +82,7 @@ handleChangeeventName = event => {
             
           };
 
-          axios.put(`events/${this.props.match.params.id}`, {Event})
+          axios.put("http://localhost:3001/Routes/api/events/:id", {Event})
           .then(res => {
               console.log(res);
               console.log(res.data);
@@ -101,7 +101,7 @@ handleChangeeventName = event => {
 
           <label className="Organizer">
             Organizer:
-            <input type="text" name="organizer" value={this.state.eventName} onChange = {this.handleChangeOrganizer} />
+            <input type="text" name="organizer" value={this.state.organizer} onChange = {this.handleChangeOrganizer} />
           </label>
 
           <label className="Location">
@@ -147,7 +147,7 @@ handleChangeeventName = event => {
         
 
           
-          <button type = "submit" onClick = {this.handleSubmit}> ADD </button>
+          <button type = "submit" onClick = {this.handleSubmit}> update </button>
             </form>
         )
     }
