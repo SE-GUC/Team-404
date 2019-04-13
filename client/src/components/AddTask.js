@@ -42,7 +42,7 @@ class addTask extends Component {
       monetaryCompensation: this.state.monetaryCompensation,
       skills: this.state.skills,
       lifeCycleStatus: this.state.lifeCycleStatus,
-      experiencNeeded: this.state.experiencNeeded,
+      experienceNeeded: this.state.experienceNeeded,
       consultancyRequested: this.state.consultancyRequested,
       consultant: this.state.consultant,
       applications: this.state.applications
@@ -70,7 +70,7 @@ class addTask extends Component {
   handleChangeLifecyclestatus = e =>
     this.setState({ lifeCycleStatus: e.target.value });
   handleChangeExperienceneeed = e =>
-    this.setState({ experiencNeeded: e.target.value });
+    this.setState({ experienceNeeded: e.target.value });
   handleChangeConsultancy = e =>
     this.setState({ consultancyRequested: e.target.value });
 
