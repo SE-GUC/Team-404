@@ -24,6 +24,9 @@ class EventReadID extends Component {
       this.props.history.push('/Event');
     })
   }
+
+
+
   render() {
     const { event } = this.state;
     console.log("Event Log Is: ", event);
@@ -64,7 +67,7 @@ class EventReadID extends Component {
             <span className="event candidate">{event.registrationPrice}</span>
             <br />
             <br />
-            <Link to="Event/update">UPDATE</Link>
+            <Link to="/Event/update">UPDATE</Link>
             <br />
             <br />
             <button className="btn btn-primay" onClick={this.onDelete}>Delete</button>

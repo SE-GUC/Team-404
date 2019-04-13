@@ -4,7 +4,7 @@ import axios from "axios";
 
 class EventPost extends React.Component {
   state = {
-    eventid: "",
+    
     eventName: "",
     organizer: "",
     location: "",
