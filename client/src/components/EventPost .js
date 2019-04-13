@@ -1,12 +1,9 @@
-import React from './node_modules/react';
+import React from "react";
 //import axios from "./node_modules/axios";
-import axios from 'axios';
-
+import axios from "axios";
 
 class EventPost extends React.Component {
-  
   state = {
-
     eventid: "",
     eventname: "",
     organizer: "",
@@ -23,6 +20,33 @@ class EventPost extends React.Component {
     feedbakck: []
   };
 
+  handleSubmit = async event => {
+    event.preventDefault();
+    const Event = {
+      eventname: this.state.eventname,
+      organizer: this.state.organizer,
+      location: this.state.location,
+      description: this.state.description,
+      remainingplaces: this.state.remainingplaces,
+      speakers: this.state.speakers,
+      maximumplaces: this.state.maximumplaces,
+      topicscovered: this.state.topicscovered,
+      field: this.state.field,
+      registrationprice: this.state.registrationprice,
+      approvalstaus: this.state.approvalstatus,
+      applicants: this.state.applicants,
+      feedback: this.state.feedback
+    };
+    try {
+      let response = await axios.post(
+        "http://localhost:3001/Routes/api/tasks/",
+        Event
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   handleChangeEventName = event => {
     this.setState({ eventname: event.target.value });
@@ -80,10 +104,7 @@ class EventPost extends React.Component {
     event.preventDefault();
   };
 
-
-  
-
-   /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
+  /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
       //console.log(res);
       console.log(res.data);
     });s
@@ -188,7 +209,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeApprovalStatus}
           />
         </label>
-        
+
         <label className="Applicants">
           Applicants:
           <input
@@ -208,23 +229,8 @@ class EventPost extends React.Component {
         </label>
         <button type="submit"> ADD </button>
       </form>
-    )
+    );
   }
 }
-const Event = {
-  eventname: this.state.eventname,
-  organizer: this.state.organizer,
-  location: this.state.location,
-  description: this.state.description,
-  remainingplaces: this.state.remainingplaces,
-  speakers: this.state.speakers,
-  maximumplaces: this.state.maximumplaces,
-  topicscovered: this.state.topicscovered,
-  field: this.state.field,
-  registrationprice: this.state.registrationprice,
-  approvalstaus: this.state.approvalstatus,
-  applicants: this.state.applicants,
-  feedback: this.state.feedback
-};
 
 export default EventPost;
