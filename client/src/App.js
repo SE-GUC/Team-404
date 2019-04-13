@@ -11,7 +11,7 @@ import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
-import AddTask from "./components/page/AddTask";
+import AddTask from "./components/AddTask";
 
 class App extends Component {
   state = {
@@ -151,10 +151,11 @@ class App extends Component {
 
           <Route
             exact
-            path="/Tasks"
+            path="/Taskform"
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
+                <AddTask/>
               </React.Fragment>
             )}
           />

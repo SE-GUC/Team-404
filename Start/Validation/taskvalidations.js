@@ -1,41 +1,49 @@
-const Joi = require('joi')
+const Joi = require("joi");
 
 module.exports = {
   createValidation: request => {
     const createSchema = {
-        Description:            Joi.string().required(),           
-        eta:                    Joi.number().required(),
-        levelofcommitment:      Joi.string().required(),     
-        partner:                Joi.string().required(),              
-        monetarycompensation:   Joi.number().required(),
-        skills:                 Joi.string().required(),                
-        lifecyclestatus:        Joi.string().required(),      
-        experienceneeded:       Joi.string().required(),      
-        consultancy:            Joi.string().required()       
-    }
+      description: Joi.string().required(),
+      eta: Joi.number().required(),
+      levelOfCommitment: Joi.string().required(),
+      partner: Joi.string().required(),
+      monetaryCompensation: Joi.number().required(),
+      skills: Joi.string().required(),
+      lifeCycleStatus: Joi.string()
+        .valid([
+          "Awaiting Approval",
+          "Denied",
+          "Pending Acceptance",
+          "Accepted",
+          "Completed",
+          "In Progress"
+        ])
+        .required(),
+      experienceNeeded: Joi.string().required(),
+      consultancyRequested: Joi.boolean().required(),
+      consultant: Joi.string(),
+      applications: Joi.array()
+    };
 
-    return Joi.validate(request, createSchema)
-
+    return Joi.validate(request, createSchema);
   }
-}
+};
 
-  module.exports = {
-    updateValidation: request => {
-      const updateSchema = {
-        Description: Joi.string(),
-        eta: Joi.number(),
-        levelofcommitment: Joi.string(),
-        partner: Joi.string(),
-        monetarycompensation: Joi.number(),
-        skills: Joi.string(),
-        lifecyclestatus: Joi.string(),
-        experienceneeded: Joi.string(),
-        consultancy: Joi.string()
-      }
-  
-      return Joi.validate(request, updateSchema)
-    }
+module.exports = {
+  updateValidation: request => {
+    const updateSchema = {
+      description: Joi.string(),
+      eta: Joi.number(),
+      levelOfCommitment: Joi.string(),
+      partner: Joi.string(),
+      monetaryCompensation: Joi.number(),
+      skills: Joi.string(),
+      lifeCycleStatus: Joi.string(),
+      experienceNeeded: Joi.string(),
+      consultancyRequested: Joi.boolean(),
+      consultant: Joi.string(),
+      applications: Joi.array()    };
+
+    return Joi.validate(request, updateSchema);
   }
-  
-  
-
+};
