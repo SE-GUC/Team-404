@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import  './Textbox';
 import Textbox from './Textbox';
 import './Textbox.css';
 class Login extends Component {    

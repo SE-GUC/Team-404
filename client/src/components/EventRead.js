@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "./axiosInstance";
-
 class EventRead extends Component {
     state = {
         events: [ ]

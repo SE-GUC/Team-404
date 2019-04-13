@@ -9,7 +9,6 @@ class Feedback extends Component {
     ));
   }
 }
-
 //PropTypes
 Feedback.propTypes = {
     feedbacks : PropTypes.array.isRequired

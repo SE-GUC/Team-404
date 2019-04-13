@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 // import Collapsible from "react-collapsible";
 
-class addTask extends Component {
+class AddTask extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -186,4 +186,4 @@ class addTask extends Component {
     );
   }
 }
-export default addTask;
+export default AddTask;

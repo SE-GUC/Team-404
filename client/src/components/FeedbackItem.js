@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Feedback from './Feedback';
 import PropTypes from 'prop-types';
 export class FeedbackItem extends Component {
   render() {
