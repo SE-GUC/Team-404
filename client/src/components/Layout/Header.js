@@ -20,7 +20,7 @@ function Header() {
         Events
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/Taskform">
+      <Link style={linkStyle} to="/Tasks">
         Tasks
       </Link>
       |{" "}

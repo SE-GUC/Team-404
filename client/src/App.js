@@ -6,47 +6,22 @@ import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Taskform from "./components/Taskform";
+import Taskform from "./components/Task/Taskform";
+import Tasks from "./components/page/Tasks";
 import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
-import AddTask from "./components/AddTask";
+import AddTask from "./components/page/AddTaskPage";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 
 class App extends Component {
   state = {
     applications: [],
-    taskform: [
-      /*  {
-        id: 1,
-        description: "Fix Cars",
-        eta: "1 month",
-        levelofcommitment: "High",
-        partner: "Toyota",
-        monetarycompensation: 3000,
-        skills: "xxx",
-        lifecyclestatus: "pending",
-        experienceneeded: "3 years",
-        consultancy: "Consultant"
-      },
-
-      {
-        id: 2,
-        description: "Fix Cars",
-        eta: "1 month",
-        levelofcommitment: "High",
-        partner: "Toyota",
-        monetarycompensation: 3000,
-        skills: "xxx",
-        lifecyclestatus: "pending",
-        experienceneeded: "3 years",
-        consultancy: "Consultant"
-      }*/
-    ],
+    taskform: [],
     partner: [
       {
         id: 1,
@@ -122,48 +97,19 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
+          <Route exact path="/Partner" component={Partner} />}
+          <Route exact path="/Application" component={ApplicationInfo} />
+          <Route exact path="/Login" component={Login} />
           <Route
             exact
-            path="/Partner"
-            render={props => (
-              <React.Fragment>
-                <Partner />
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
-            path="/Application"
-            render={props => (
-              <React.Fragment>
-                <ApplicationInfo />
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
-            path="/Login"
-            render={props => (
-              <React.Fragment>
-                <Login />
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
-            path="/Taskform"
+            path="/Tasks"
+            component={Tasks}
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
-                <AddTask />
               </React.Fragment>
             )}
           />
-
           <Route
             exact
             path="/Feedback"
@@ -174,7 +120,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
           <Route
             exact
             path="/Event"

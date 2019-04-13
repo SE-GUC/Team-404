@@ -1,15 +1,23 @@
 import React from "react";
-import AddTask from "./AddTask";
+import AddTaskPage from "./AddTaskPage";
+import { Link } from "react-router-dom";
+import TaskHeader from "../Layout/TaskHeader";
+import AddTask from "../Task/AddTask";
 
-function Taskform() {
+function Tasks() {
   return (
     <React.Fragment>
-      <header style={headerStyle}>
-        {" "}
-        <Link style={linkStyle} to="/AddTask">
-          <AddTask />{" "}
-        </Link>
-      </header>
+      
+      <Link style={linkStyle} to="/AddTaskPage">
+        <ul>
+          <br />
+          <br />
+          <br />
+          <li>Add Task</li>
+          
+        </ul>
+      </Link>
+      <AddTask/>
     </React.Fragment>
   );
 }
@@ -22,7 +30,7 @@ const headerStyle = {
 };
 
 const linkStyle = {
-  color: "#fff",
+  color: "#000",
   textDecoration: "none"
 };
-export default Taskform;
+export default Tasks;
