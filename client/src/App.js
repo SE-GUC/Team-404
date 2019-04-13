@@ -13,6 +13,7 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
@@ -183,49 +184,41 @@ class App extends Component {
          path="/Event"
          render={props => (
            <React.Fragment>
-
-          <EventPost/>
-          
+             <Event></Event>
            </React.Fragment>
          )}
        />
 
-<Route
+         <Route
          exact
-         path="/Event/EventPut"
+         path="/Event/create"
          render={props => (
            <React.Fragment>
-          
-          <EventPut/>
-          
+             <EventPost></EventPost>
            </React.Fragment>
          )}
-       />
+       />  
 
-<Route
+       <Route
          exact
-         path="/Event/EventRead"
+         path="/Event/update"
          render={props => (
            <React.Fragment>
-         
-          <EventRead/>
-        
+             <EventPut></EventPut>
            </React.Fragment>
          )}
        />
 
-<Route
+       <Route
          exact
-         path="/Event/EventDelete"
+         path="/Event/delete"
          render={props => (
            <React.Fragment>
-          
-          <EventDelete/>
-
+             <EventDelete></EventDelete>
            </React.Fragment>
          )}
-       />
-     
+       /> 
+
        </div>
        </Router>
     );
