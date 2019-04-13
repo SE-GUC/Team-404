@@ -5,16 +5,16 @@ import axios from "axios";
 class EventPost extends React.Component {
   state = {
     eventid: "",
-    eventname: "",
+    eventName: "",
     organizer: "",
     location: "",
     description: "",
-    remainingplaces: 5,
+    remainingPlaces: 5,
     speakers: "",
-    maximumplaces: 7,
-    topicscovered: "",
+    maximumPlaces: 7,
+    topicsCovered: "",
     field: "",
-    registrationprice: 9,
+    registrationPrice: 9,
     approvalstaus: "",
     applicants: [],
     feedbakck: []
@@ -23,17 +23,17 @@ class EventPost extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
     const Event = {
-      eventname: this.state.eventname,
+      eventName : this.state.eventName,
       organizer: this.state.organizer,
       location: this.state.location,
       description: this.state.description,
-      remainingplaces: this.state.remainingplaces,
+      remainingPlaces: this.state.remainingPlaces,
       speakers: this.state.speakers,
-      maximumplaces: this.state.maximumplaces,
-      topicscovered: this.state.topicscovered,
+      maximumPlaces: this.state.maximumPlaces,
+      topicsCovered: this.state.topicsCovered,
       field: this.state.field,
-      registrationprice: this.state.registrationprice,
-      approvalstaus: this.state.approvalstatus,
+      registrationPrice: this.state.registrationPrice,
+      approvalstaus: this.state.approvalStatus,
       applicants: this.state.applicants,
       feedback: this.state.feedback
     };
@@ -49,7 +49,7 @@ class EventPost extends React.Component {
   };
 
   handleChangeEventName = event => {
-    this.setState({ eventname: event.target.value });
+    this.setState({ eventName: event.target.value });
   };
 
   handleChangeOrganizer = event => {
@@ -65,7 +65,7 @@ class EventPost extends React.Component {
   };
 
   handleChangeRemainingPlaces = event => {
-    this.setState({ remainingplaces: event.target.value });
+    this.setState({ remainingPlaces: event.target.value });
   };
 
   handleChangeSpeakers = event => {
@@ -73,11 +73,11 @@ class EventPost extends React.Component {
   };
 
   handleChangeMaximumPlaces = event => {
-    this.setState({ maximumplaces: event.target.value });
+    this.setState({ maximumPlaces: event.target.value });
   };
 
   handleChangeTopicsCovered = event => {
-    this.setState({ topicscovered: event.target.value });
+    this.setState({ topicsCovered: event.target.value });
   };
 
   handleChangeField = event => {
@@ -85,11 +85,11 @@ class EventPost extends React.Component {
   };
 
   handleChangeRegistrationPrice = event => {
-    this.setState({ registrationprice: event.target.value });
+    this.setState({ registrationPrice: event.target.value });
   };
 
   handleChangeApprovalStatus = event => {
-    this.setState({ approvalstatus: event.target.value });
+    this.setState({ approvalStatus: event.target.value });
   };
 
   handleChangeApplicants = event => {
@@ -115,11 +115,11 @@ class EventPost extends React.Component {
       <form onSubmit={this.handelSubmit}>
         <label> Events : </label>
 
-        <label className="EventName">
-          EventName:
+        <label className="eventName">
+          eventName:
           <input
             type="text"
-            name="eventname"
+            name="eventName"
             onChange={this.handleChangeEventName}
           />
         </label>
@@ -151,11 +151,11 @@ class EventPost extends React.Component {
           />
         </label>
 
-        <label className="RemainingPlaces">
-          RemainingPlaces:
+        <label className="remainingPlaces">
+          remainingPlaces:
           <input
             type="text"
-            name="remainingplaces"
+            name="remainingPlaces"
             onChange={this.handleChangeRemainingPlaces}
           />
         </label>
@@ -169,20 +169,20 @@ class EventPost extends React.Component {
           />
         </label>
 
-        <label className="MaximumPlaces">
-          MaximumPlaces:
+        <label className="maximumPlaces">
+          maximumPlaces:
           <input
             type="text"
-            name="maximumplaces"
+            name="maximumPlaces"
             onChange={this.handleChangeMaximumPlaces}
           />
         </label>
 
-        <label className="TopicsCovered">
-          TopicsCovered:
+        <label className="topicsCovered">
+          topicsCovered:
           <input
             type="text"
-            name="topicscovered"
+            name="topicsCovered"
             onChange={this.handleChangeTopicsCovered}
           />
         </label>
@@ -192,20 +192,20 @@ class EventPost extends React.Component {
           <input type="text" name="field" onChange={this.handleChangeField} />
         </label>
 
-        <label className="RegistrationPrice">
-          RegistrationPrice:
+        <label className="registrationPrice">
+          registrationPrice:
           <input
             type="text"
-            name="registrationprice"
+            name="registrationPrice"
             onChange={this.handleChangeRegistrationPrice}
           />
         </label>
 
-        <label className="ApprovalStatus">
-          ApprovalStatus:
+        <label className="approvalStatus">
+          approvalStatus:
           <input
             type="text"
-            name="approvalstatus"
+            name="approvalStatus"
             onChange={this.handleChangeApprovalStatus}
           />
         </label>

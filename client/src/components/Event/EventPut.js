@@ -5,22 +5,22 @@ import axios from "./axiosInstance";
 class EventPut extends React.Component{
 state={
     eventid: '',
-      eventname: '',
+      eventName: '',
       organizer: '',
       location: '',
       description: '',
-      remainingplaces: 5,
+      remainingPlaces: 5,
       speakers: '',
-      maximumplaces: 7,
-      topicscovered: '',
+      maximumPlaces: 7,
+      topicsCovered: '',
       field: '',
-      registrationprice: 9,
+      registrationPrice: 9,
       approvalstaus: '',
       applicants: [],
       feedbakck: []
 }
-handleChangeEventName = event => {
-    this.setState({ eventname: event.target.value });
+handleChangeeventName = event => {
+    this.setState({ eventName: event.target.value });
   };
 
   handleChangeOrganizer = event => {
@@ -35,32 +35,32 @@ handleChangeEventName = event => {
     this.setState({ description: event.target.value });
   };
 
-  handleChangeRemainingPlaces = event => {
-    this.setState({ remainingplaces: event.target.value });
+  handleChangeremainingPlaces = event => {
+    this.setState({ remainingPlaces: event.target.value });
   };
 
   handleChangeSpeakers = event => {
     this.setState({ speakers: event.target.value });
   };
 
-  handleChangeMaximumPlaces = event => {
-    this.setState({ maximumplaces: event.target.value });
+  handleChangemaximumPlaces = event => {
+    this.setState({ maximumPlaces: event.target.value });
   };
 
-  handleChangeTopicsCovered = event => {
-    this.setState({ topicscovered: event.target.value });
+  handleChangetopicsCovered = event => {
+    this.setState({ topicsCovered: event.target.value });
   };
 
   handleChangeField = event => {
     this.setState({ field: event.target.value });
   };
 
-  handleChangeRegistrationPrice = event => {
-    this.setState({ registrationprice: event.target.value });
+  handleChangeregistrationPrice = event => {
+    this.setState({ registrationPrice: event.target.value });
   };
 
-  handleChangeApprovalStatus = event => {
-    this.setState({ approvalstatus: event.target.value });
+  handleChangeapprovalStatus = event => {
+    this.setState({ approvalStatus: event.target.value });
   };
 
   handleChangeApplicants = event => {
@@ -77,17 +77,17 @@ handleChangeEventName = event => {
         event.preventDefault();
 
         const Event = {
-            eventname: this.state.eventname,
+            eventName: this.state.eventName,
             organizer: this.state.organizer,
             location: this.state.location,
             description: this.state.description,
-            remainingplaces: this.state.remainingplaces,
+            remainingPlaces: this.state.remainingPlaces,
             speakers: this.state.speakers,
-            maximumplaces: this.state.maximumplaces,
-            topicscovered: this.state.topicscovered,
+            maximumPlaces: this.state.maximumPlaces,
+            topicsCovered: this.state.topicsCovered,
             field: this.state.field,
-            registrationprice: this.state.registrationprice,
-            approvalstaus: this.state.approvalstatus,
+            registrationPrice: this.state.registrationPrice,
+            approvalstaus: this.state.approvalStatus,
             applicants: this.state.applicants,
             feedback: this.state.feedback
 
@@ -105,9 +105,9 @@ handleChangeEventName = event => {
             <form onSubmit = {this.handelSubmit} >
                 <label> Events : </label>
 
-          <label className="EventName">
-            EventName:
-            <input type="text" name="eventname" onChange = {this.handleChangeEventName}/>
+          <label className="eventName">
+            eventName:
+            <input type="text" name="eventName" onChange = {this.handleChangeeventName}/>
           </label>
 
           <label className="Organizer">
@@ -125,9 +125,9 @@ handleChangeEventName = event => {
             <input type="text" name="description" onChange = {this.handleChangeDescription} />
           </label>
 
-          <label className="RemainingPlaces">
-            RemainingPlaces:
-            <input type="text" name="remainingplaces" onChange = {this.handleChangeRemainingPlaces}/>
+          <label className="remainingPlaces">
+            remainingPlaces:
+            <input type="text" name="remainingPlaces" onChange = {this.handleChangeremainingPlaces}/>
           </label>
 
           <label className="Speakers">
@@ -135,14 +135,14 @@ handleChangeEventName = event => {
             <input type="text" name="speakers" onChange = {this.handleChangeSpeakers}/>
           </label>
 
-          <label className="MaximumPlaces">
-            MaximumPlaces:
-            <input type="text" name="maximumplaces" onChange = {this.handleChangeMaximumPlaces}/>
+          <label className="maximumPlaces">
+            maximumPlaces:
+            <input type="text" name="maximumPlaces" onChange = {this.handleChangemaximumPlaces}/>
           </label>
 
-          <label className="TopicsCovered">
-            TopicsCovered:
-            <input type="text" name="topicscovered" onChange = {this.handleChangeTopicsCovered}/>
+          <label className="topicsCovered">
+            topicsCovered:
+            <input type="text" name="topicsCovered" onChange = {this.handleChangetopicsCovered}/>
           </label>
 
           <label className="Field">
@@ -150,14 +150,14 @@ handleChangeEventName = event => {
             <input type="text" name="field" onChange = {this.handleChangeField}/>
           </label>
 
-          <label className="RegistrationPrice">
-            RegistrationPrice:
-            <input type="text" name="registrationprice" onChange = {this.handleChangeRegistrationPrice}/>
+          <label className="registrationPrice">
+            registrationPrice:
+            <input type="text" name="registrationPrice" onChange = {this.handleChangeregistrationPrice}/>
           </label>
 
-          <label className="ApprovalStatus">
-            ApprovalStatus:
-            <input type="text" name="approvalstatus" onChange = {this.handleChangeApprovalStatus}/>
+          <label className="approvalStatus">
+            approvalStatus:
+            <input type="text" name="approvalStatus" onChange = {this.handleChangeapprovalStatus}/>
           </label>
 
           <label className="Applicants">

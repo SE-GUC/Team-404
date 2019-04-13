@@ -28,14 +28,14 @@ const Candidates = [{ age: '', skills: '', interests: '', pasteventstasks: '', r
 const Events = [{ organizer: '',
   location: '',
   description: '',
-  registrationprice: '',
-  remainingplaces: '',
+  registrationPrice: '',
+  remainingPlaces: '',
   speakers: '',
-  maximumplaces: '',
-  topicscovered: '',
+  maximumPlaces: '',
+  topicsCovered: '',
   feedbackid: '',
   field: '',
-  approvalstatus: '' }]
+  approvalStatus: '' }]
 
 const Tasks = [{ Description: '',
   eta: '',

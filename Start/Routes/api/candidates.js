@@ -105,7 +105,7 @@ const bookEvent = async (req,res) => {
      });
      console.log(newBooking);
      var findEvent = Event.findById(eid)
-     findEvent.remainingplaces -= 1
+     findEvent.remainingPlaces -= 1
      Event.updateOne({id: eid}, findEvent)
      }
 

@@ -180,7 +180,7 @@ class App extends Component {
        
          <Route
          exact
-         path="/Event/EventPost"
+         path="/Event"
          render={props => (
            <React.Fragment>
 

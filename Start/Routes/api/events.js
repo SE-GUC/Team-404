@@ -30,17 +30,17 @@ router.post("/", async (req, res) => {
         .status(400)
         .send({ error: isValidated.error.details[0].message });
     const event = await new Event({
-      eventname: req.body.eventname,
+      eventName: req.body.eventName,
       organizer: req.body.organizer,
       location: req.body.location,
       description: req.body.description,
-      remainingplaces: req.body.remainingplaces,
+      remainingPlaces: req.body.remainingPlaces,
       speakers: req.body.speakers,
-      maximumplaces: req.body.maximumplaces,
-      topicscovered: req.body.topicscovered,
+      maximumPlaces: req.body.maximumPlaces,
+      topicsCovered: req.body.topicsCovered,
       field: req.body.field,
-      registrationprice: req.body.registrationprice,
-      approvalstatus: req.body.approvalstatus,
+      registrationPrice: req.body.registrationPrice,
+      approvalStatus: req.body.approvalStatus,
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
