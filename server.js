@@ -26,8 +26,7 @@ app.use((request, response, next) => {
   Logger.log(`${request.method} => ${request.originalUrl}`)
   next()
 })
-
-
+const admins = require('./Start/Routes/api/admins')
 const applications = require('./Start/Routes/api/applications')
 
 const events = require('./Start/Routes/api/events')
@@ -36,13 +35,12 @@ const bookings = require('./Start/Routes/api/bookings')
 const feedbacks = require('./Start/Routes/api/feedbacks')
 const notifications = require('./Start/Routes/api/notifications')
 const tasks = require('./Start/Routes/api/tasks')
-
-
-
+const consultants = require('./Start/Routes/api/consultants')
 
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
+  <a href ="/Routes/api/admins/">Admins</a>
   <a href ="/Routes/api/applications/">Applications</a>
   <a href ="/Routes/api/events">Events</a>
   <a href ="/Routes/api/users">Users</a>
@@ -51,12 +49,13 @@ app.get('/', (req, res) => {
   <a href ="/Routes/api/feedbacks">Feedbacks</a>
   <a href ="/Routes/api/notifications">Notifications</a>
   <a href ="/Routes/api/tasks">Tasks</a>
-
+  <a href ="/Routes/api/consultants">Consultants</a> 
  `)
 })
 
  app.get('/test', (req,res) => res.send(`<h1>Deployed on Heroku</h1>`))
- //app.use('/Routes/api/login/', login)
+
+app.use('/Routes/api/admins/', admins)
 app.use('/Routes/api/applications/', applications)
 
 app.use('/Routes/api/events', events)
@@ -66,8 +65,7 @@ app.use('/Routes/api/bookings', bookings)
 app.use('/Routes/api/feedbacks', feedbacks)
 app.use('/Routes/api/notifications', notifications)
 app.use('/Routes/api/tasks', tasks)
-
-
+app.use('/Routes/api/consultants', consultants)
 
 app.use((req, res) => {
   res.status(404).send({ err: 'We can not find what you are looking for' })
