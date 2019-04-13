@@ -3,18 +3,9 @@ const Schema = mongoose.Schema
 
 // Create the schema
 const UserSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
+    name: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String,required: true},
     age: {
         type: Number,
         required: true
@@ -23,19 +14,30 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    phonenumber: {
+    phoneNumber: {
         type: Number,
         required: true
     },
-    usertype: {
+    userType: {
         type: String,
         required: true
     },
     location: {
         type: String,
         required: true
-    }
-
+    },
+    skills:{type:[String],required:false,unique:false},
+    interests:{type:[String],required:false,unique:false},
+    pastEventsAndTasks:{type:[String],required:false,unique:false},
+    reviewsRecieved:{type:[String],required:false,unique:false},
+    board: {type: [String],required: false},
+    pastEvents: {type: [String],required: false},
+    reports: { type: [String],required: false},
+    organisationName: { type: String, required: false, unique: false },
+    businessPartners: { type: [String], required: false, unique: false },
+    eventsOrganized: { type: [String], required: false, unique: false },
+    fieldOfWork: { type: String, required: false, unique: false },
+    projectHistory: { type: [String], required: false, unique: false },
  
 })
 

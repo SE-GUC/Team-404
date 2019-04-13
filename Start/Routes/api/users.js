@@ -1,15 +1,20 @@
-
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
-//const joi = require("Joi")
+const joi = require("Joi")
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 
+//get All
 router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
+
+
+
+
+//Create user
 router.post('/', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)
@@ -29,9 +34,21 @@ router.post('/', async (req,res) => {
             email: req.body.email,
             age: req.body.age,
             username: req.body.username,
-            phonenumber: req.body.phonenumber,
-            usertype:req.body.usertype,
-            location: req.body.location
+            phoneNumber: req.body.phoneNumber,
+            userType:req.body.userType,
+            location: req.body.location,
+            skills: req.body.skills,
+            interests: req.body.interests,
+            pastEventsAndTasks: req.body.pastEventsAndTasks,
+            reviewsRecieved: req.body.reviewsRecieved,
+            board: req.body.board,
+            pastEvents: req.body.pastEvents,
+            reports: req.body.reports,
+            organisationName: req.body.organisationName,
+            businessPartners: req.body.businessPartners,
+            eventsOrganized: req.body.eventsOrganized,
+            fieldOfWork:req.body.fieldOfWork,
+            projectHistory: req.body.projectHistory
         })
 
     .save()
@@ -45,7 +62,6 @@ router.post('/', async (req,res) => {
 
       
 })
-//Not working yet.
 router
   .route('/:id')
   .all(async (request, response, next) => {

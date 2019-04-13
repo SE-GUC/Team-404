@@ -28,30 +28,24 @@ app.use((request, response, next) => {
 })
 const admins = require('./Start/Routes/api/admins')
 const applications = require('./Start/Routes/api/applications')
-const partners = require('./Start/Routes/api/partners')
 const events = require('./Start/Routes/api/events')
 const users = require('./Start/Routes/api/users')
 const bookings = require('./Start/Routes/api/bookings')
-const candidates = require('./Start/Routes/api/candidates')
 const feedbacks = require('./Start/Routes/api/feedbacks')
 const notifications = require('./Start/Routes/api/notifications')
 const tasks = require('./Start/Routes/api/tasks')
-const consultants = require('./Start/Routes/api/consultants')
 
 // shows a message on the homepage indicated by '/' directory
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
   <a href ="/Routes/api/admins/">Admins</a>
   <a href ="/Routes/api/applications/">Applications</a>
-  <a href ="/Routes/api/Partners">Partners</a>
   <a href ="/Routes/api/events">Events</a>
   <a href ="/Routes/api/users">Users</a>
   <a href ="/Routes/api/bookings">Bookings</a>
-  <a href ="/Routes/api/candidates">Candidates</a>
   <a href ="/Routes/api/feedbacks">Feedbacks</a>
   <a href ="/Routes/api/notifications">Notifications</a>
   <a href ="/Routes/api/tasks">Tasks</a>
-  <a href ="/Routes/api/consultants">Consultants</a> 
  `)
 })
 
@@ -59,15 +53,12 @@ app.get('/', (req, res) => {
 
 app.use('/Routes/api/admins/', admins)
 app.use('/Routes/api/applications/', applications)
-app.use('/Routes/api/partners', partners)
 app.use('/Routes/api/events', events)
 app.use('/Routes/api/users', users)
 app.use('/Routes/api/bookings', bookings)
-app.use('/Routes/api/candidates', candidates)
 app.use('/Routes/api/feedbacks', feedbacks)
 app.use('/Routes/api/notifications', notifications)
 app.use('/Routes/api/tasks', tasks)
-app.use('/Routes/api/consultants', consultants)
 
 app.use((req, res) => {
   res.status(404).send({ err: 'We can not find what you are looking for' })
