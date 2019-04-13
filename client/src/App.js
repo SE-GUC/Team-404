@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import "./App.css";
-import EventPost from "./components/EventPost";
-import EventPut from "./components/EventPut";
-import EventRead from "./components/EventRead";
-import EventDelete from "./components/EventDelete";
+import EventPost from "./components/Event/EventPost";
+import EventPut from "./components/Event/EventPut";
+import EventRead from "./components/Event/EventRead";
+import EventDelete from "./components/Event/EventDelete";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
@@ -18,8 +18,6 @@ import Feedback from "./components/Feedback";
 import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
-import EventPost from "./components/EventPost ";
-import EventPut from "./components/EventPut";
 
 class App extends Component {
   state = {
@@ -179,31 +177,51 @@ class App extends Component {
             )}
           />
 
-          <Route
-            exact
-            path="/Event"
-            render={props => (
-              <React.Fragment>
-                <EventRead />
-                <br />
-                <br />
-                <EventPost />
-                <br />
-                <br />
-                <EventPut />
-              </React.Fragment>
-            )}
-          />
        
          <Route
          exact
-         path="/Event"
+         path="/Event/EventPost"
          render={props => (
            <React.Fragment>
+
           <EventPost/>
+          
+           </React.Fragment>
+         )}
+       />
+
+<Route
+         exact
+         path="/Event/EventPut"
+         render={props => (
+           <React.Fragment>
+          
           <EventPut/>
+          
+           </React.Fragment>
+         )}
+       />
+
+<Route
+         exact
+         path="/Event/EventRead"
+         render={props => (
+           <React.Fragment>
+         
           <EventRead/>
+        
+           </React.Fragment>
+         )}
+       />
+
+<Route
+         exact
+         path="/Event/EventDelete"
+         render={props => (
+           <React.Fragment>
+          
           <EventDelete/>
+
            </React.Fragment>
          )}
        />
