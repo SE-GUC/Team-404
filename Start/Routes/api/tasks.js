@@ -25,7 +25,6 @@ try {
     //const isValidated = validator.createValidation(req.body)
  // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
-    _id: mongoose.Types.ObjectId(),
         description: req.body.description,
         eta: req.body.eta,
         levelOfCommitment: req.body.levelOfCommitment,
@@ -66,15 +65,15 @@ try {
     }
   })
 
-  .put(async (request, response) => {
-    Task.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
-      if (!err) {
-        return response.json({ data: model })
-      } else {
-        return response.json({ error: `Error, couldn't update a Task given the following data` })
-      }
-    })
-  })
+  // .put(async (request, response) => {
+  //   Task.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
+  //     if (!err) {
+  //       return response.json({ data: model })
+  //     } else {
+  //       return response.json({ error: `Error, couldn't update a Task given the following data` })
+  //     }
+  //   })
+  // })
 
   .delete((request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
@@ -114,47 +113,48 @@ try {
 
   })
 
-  router.put('/UpdateProjectAttributes/:Tid', async (req, res) => {
+  router.put('/:Tid', async (req, res) => {
     var Pid = req.body.id
     var Tid = req.params.Tid
 
-let {Description,eta,levelofcommitment,partner,monetarycompensation,skills,lifecyclestatus,experienceneeded,consultancy
+let {description,eta,levelOfCommitment,partner,monetaryCompensation,skills,lifeCycleStatus,experienceNeeded,consultancyRequested,consultant,applications
 }=req.body
 
 let updateBody={}
-if(Description){
-  updateBody.Description=Description
+if(description){
+  updateBody.description=description
 }
 if(eta){
   updateBody.eta=eta
 }
-if(levelofcommitment){
-  updateBody.levelofcommitment=levelofcommitment
+if(levelOfCommitment){
+  updateBody.levelOfCommitment=levelOfCommitment
 }
 if(partner){
   updateBody.partner=partner
 }
-if(monetarycompensation){
-  updateBody.monetarycompensation=monetarycompensation
+if(monetaryCompensation){
+  updateBody.monetaryCompensation=monetaryCompensation
 }
 if(skills){
   updateBody.skills=skills
 }
-if(lifecyclestatus){
-  updateBody.lifecyclestatus=lifecyclestatus
+if(lifeCycleStatus){
+  updateBody.lifeCycleStatus=lifeCycleStatus
 }
-if(experienceneeded){
-  updateBody.experienceneeded=experienceneeded
+if(experienceNeeded){
+  updateBody.experienceNeeded=experienceNeeded
 }
-if(consultancy){
-  updateBody.consultancy=consultancy
+if(consultancyRequested){
+  updateBody.consultancyRequested=consultancyRequested
 }
-//     let partner = await Partner.findById(Pid)
-//     if(!partner){
-//       return res.status(400).send({
-//          message:"couldnt find a partner with the specififed id "
-//        })
-//      }
+if(consultant){
+  updateBody.consultant=consultant
+}
+if(applications){
+  updateBody.applications=applications
+}
+
     var tasks = await Task.findById(Tid)//.exec()
     if(!tasks){
       return  res.status(400).send({
