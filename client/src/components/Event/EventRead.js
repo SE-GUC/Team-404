@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axiosInstance";
-
+import { Link } from "react-router-dom";
 class EventRead extends Component {
     state = {
         events: [ ]
@@ -20,9 +20,14 @@ const { events } = this.state;
 const eventList = events.length ? (
     events.map(event => {
     return(
-        <div className= "event card" key={event.eventName}>
+        <div className= "event card" key={event._id}>
         <div className="card-content">
+        <Link to = {`event/${event._id}`}>
+        
+        {/* //the name as a link  */}
         <span className="event candidate">{event.eventName}</span>
+           
+        </Link>
         </div>
         </div>
     )
