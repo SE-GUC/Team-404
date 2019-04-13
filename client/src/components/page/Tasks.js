@@ -9,7 +9,6 @@ function Tasks() {
   return (
     <React.Fragment>
       <TaskHeader/>
-      <AddTask/>
     </React.Fragment>
   );
 }

@@ -20,6 +20,7 @@ import DeleteTask from "./components/DeleteTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event";
+import AddTaskPage from "./components/page/AddTaskPage";
 
 class App extends Component {
   state = {
@@ -143,6 +144,9 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+
+              <Route exact path = "/AddTaskPage" component = {AddTaskPage}/>
+
         </div>
       </Router>
     );

@@ -11,7 +11,7 @@ class AddTask extends Component {
       levelOfCommitment: "",
       partner: "",
       monetaryCompensation: "",
-      skills: "",
+      skills: [],
       lifeCycleStatus: "Awaiting Approval",
       experienceNeeded: "",
       consultancyRequested: false,
@@ -70,10 +70,10 @@ class AddTask extends Component {
   handleChangeExperienceneeed = e =>
     this.setState({ experienceNeeded: e.target.value });
   handleChangeConsultancy = e => {
-    this.setState({ consultancyRequested: e.target.value })
-    
-      if(this.state.consultancyRequested === true)
-      this.setState({lifeCycleStatus: "Awaiting Consultant"})
+    this.setState({ consultancyRequested: e.target.value });
+
+    if (this.state.consultancyRequested === true)
+      this.setState({ lifeCycleStatus: "Awaiting Consultant" });
   };
 
   render() {
@@ -132,11 +132,13 @@ class AddTask extends Component {
           <br />
           <label>
             Skills
-            <input
-              type="text"
-              name="skills"
-              onChange={this.handleChangeSkills}
-            />
+            <select multiple={true} skills={[]} onChange = {this.handleChangeSkillsF}>
+              <option value="CS">CS</option>
+              <option value="Design">Design</option>
+              <option value="Word">Word</option>
+              <option value="Civil">Civil</option>
+              <option value="Accounting">Accounting</option>
+            </select>
           </label>
 
           <br />
@@ -172,15 +174,7 @@ class AddTask extends Component {
           </label>
 
           <br />
-
-          <select multiple>
-            <option value="CS">CS</option>
-            <option value="Design">Design</option>
-            <option value="Word">Word</option>
-            <option value="Civil">Civil</option>
-            <option value="Accounting">Accounting</option>
-          </select>
-
+          
           <br />
           <button type="submit">Add</button>
         </form>
