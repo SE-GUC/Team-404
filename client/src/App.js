@@ -5,8 +5,9 @@ import Login from './components/Login';
 import Application from "./components/Application";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Axios from "./node_modules/axios";
-import tasks  from "./components/tasks"
+import Axios from "axios";
+import Tasks  from "./components/tasks";
+
 class App extends Component {
   state = {
     application: []
