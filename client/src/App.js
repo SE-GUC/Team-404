@@ -188,10 +188,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-<<<<<<< HEAD
-          <Tasks/>
-||||||| merged common ancestors
-=======
 
           <Route
             exact
@@ -203,7 +199,6 @@ class App extends Component {
             )}
           />
 
->>>>>>> react_dev
         </div>
 
       </Router>

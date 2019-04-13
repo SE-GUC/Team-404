@@ -19,11 +19,22 @@ router.get('/', async (req, res) => {
 })
 
 
+
+router.get('/:id', async (req,res) => {
+  try{
+    const id = req.params.id
+    const requestedTask =  await Task.findById(id)
+    res.json({data: requestedTask})
+  }catch(error){
+    console.log(error)
+  }
+})
+
 router.post('/', async (req, res) => {
 
 try {
-    //const isValidated = validator.createValidation(req.body)
- // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    const isValidated = validator.createValidation(req.body)
+  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
   const task = await new Task({
         description: req.body.description,
         eta: req.body.eta,
@@ -54,15 +65,6 @@ try {
       return response.json({ error: status.error.details[0].message })
     }
     next()
-  })
-
-  .get(async (request, response) => {
-    try {
-      const task = await Task.findById(request.params.id).exec()
-      return response.json({ data: Task })
-    } catch (err) {
-      return response.json({ error: `Error, couldn't find a task given the following id` })
-    }
   })
 
   // .put(async (request, response) => {
