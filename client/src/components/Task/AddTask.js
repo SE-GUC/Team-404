@@ -2,22 +2,25 @@ import React, { Component } from "./node_modules/react";
 import axios from "./node_modules/axios";
 // import Collapsible from "react-collapsible";
 
-class addTask extends Component {
+class AddTask extends Component {
+  state = {
+    title: "",
+    description: "",
+    eta: "",
+    levelOfCommitment: "",
+    partner: "",
+    monetaryCompensation: "",
+    skills: [],
+    lifeCycleStatus: "Awaiting Approval",
+    experienceNeeded: "",
+    consultancyRequested: true,
+    consultant: "",
+    applications: [],
+    tags: []
+  };
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      description: "",
-      eta: "",
-      levelOfCommitment: "",
-      partner: "",
-      monetaryCompensation: "",
-      skills: "",
-      lifeCycleStatus: "",
-      experiencNeeded: "",
-      consultancyRequested: false,
-      consultant: "",
-      applications: []
-    };
+    this.handleChangeSkills = this.handleChangeSkills.bind(this);
   }
 
   componentDidMount() {
@@ -35,17 +38,19 @@ class addTask extends Component {
     event.preventDefault();
 
     const task = {
+      title: this.state.title,
       description: this.state.description,
       eta: this.state.eta,
       levelOfCommitment: this.state.levelOfCommitment,
       partner: this.state.partner,
       monetaryCompensation: this.state.monetaryCompensation,
       skills: this.state.skills,
+      consultancyRequested: this.state.consultancyRequested,
       lifeCycleStatus: this.state.lifeCycleStatus,
       experienceNeeded: this.state.experienceNeeded,
-      consultancyRequested: this.state.consultancyRequested,
       consultant: this.state.consultant,
-      applications: this.state.applications
+      applications: this.state.applications,
+      tags: this.state.skills
     };
     console.log(task);
     try {
@@ -59,6 +64,20 @@ class addTask extends Component {
     }
   };
 
+  handleChangeSkills(e) {
+    var options = e.target.options;
+    console.log(options);
+    this.state.skills = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        console.log(options[i].selected);
+
+        this.state.skills.push(options[i].value);
+      }
+    }
+    console.log(this.state.skills);
+  }
+  handleChangeTitle = e => this.setState({ title: e.target.value });
   handleChangeDescription = e => this.setState({ description: e.target.value });
   handleChangeEta = e => this.setState({ eta: e.target.value });
   handleChangeLevelofcommitment = e =>
@@ -66,13 +85,18 @@ class addTask extends Component {
   handleChangePartner = e => this.setState({ partner: e.target.value });
   handleChangeMonetarycompensation = e =>
     this.setState({ monetaryCompensation: e.target.value });
-  handleChangeSkills = e => this.setState({ skills: e.target.value });
-  handleChangeLifecyclestatus = e =>
-    this.setState({ lifeCycleStatus: e.target.value });
   handleChangeExperienceneeed = e =>
     this.setState({ experienceNeeded: e.target.value });
-  handleChangeConsultancy = e =>
-    this.setState({ consultancyRequested: e.target.value });
+
+  handleChangeConsultancy = e => {
+    if (e.target.id == "yesRadio") {
+      this.setState({ consultancyRequested: true });
+      this.setState({ lifeCycleStatus: "Awaiting Consultant" });
+    } else {
+      this.setState({ consultancyRequested: false });
+      this.setState({ lifeCycleStatus: "Awaiting Approval" });
+    }
+  };
 
   render() {
     return (
@@ -82,6 +106,12 @@ class addTask extends Component {
         <br />
         <br />
         <form onSubmit={this.handleSubmit}>
+          <label>
+            Title
+            <input type="text" name="title" onChange={this.handleChangeTitle} />
+          </label>
+          <br />
+          <br />
           <label>
             Description
             <input
@@ -130,22 +160,19 @@ class addTask extends Component {
           <br />
           <label>
             Skills
-            <input
-              type="text"
-              name="skills"
+            <select
+              multiple={true}
+              skills={this.state.skills}
               onChange={this.handleChangeSkills}
-            />
+            >
+              <option value="CS">CS</option>
+              <option value="Design">Design</option>
+              <option value="Word">Word</option>
+              <option value="Civil">Civil</option>
+              <option value="Accounting">Accounting</option>
+            </select>
           </label>
-          <br />
-          <br />
-          <label>
-            Life Cycle Status
-            <input
-              type="text"
-              name="lifecyclestatus"
-              onChange={this.handleChangeLifecyclestatus}
-            />
-          </label>
+
           <br />
           <br />
           <label>
@@ -158,26 +185,29 @@ class addTask extends Component {
           </label>
           <br />
           <br />
+
           <label>
             Consultancy {"  "}
             <input
               type="radio"
               name="consultancy"
-              value="No"
-              checked
+              id="noRadio"
+              // value={false}
               onChange={this.handleChangeConsultancy}
             />{" "}
             No {"  "}
-           <input
-            type="radio"
-            name="consultancy"
-            value="Yes"
-            checked
-            onChange={this.handleChangeConsultancy}
-          />{" "}
-          Yes <br />
-
+            <input
+              type="radio"
+              name="consultancy"
+              id="yesRadio"
+              // value={true}
+              onChange={this.handleChangeConsultancy}
+            />{" "}
+            Yes <br />
           </label>
+
+          <br />
+
           <br />
           <button type="submit">Add</button>
         </form>
@@ -186,4 +216,4 @@ class addTask extends Component {
     );
   }
 }
-export default addTask;
+export default AddTask;

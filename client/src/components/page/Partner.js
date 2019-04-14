@@ -1,5 +1,4 @@
-import React from "./node_modules/react";
-import Header from "../Layout/Header";
+import React from "react";
 import PartnerTable from "../PartnerTable";
 function Partner() {
   return (

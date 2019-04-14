@@ -6,7 +6,8 @@ import "./components/Textbox.css";
 import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Taskform from "./components/Taskform";
+import Taskform from "./components/Task/Taskform";
+import Tasks from "./components/page/Tasks/Tasks";
 import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
 import uuid from "./node_modules/uuid";
@@ -14,45 +15,24 @@ import Feedback from "./components/Feedback";
 import Axios from "./node_modules/axios";
 import User from "./components/User";
 //import AddFeedback from "./components/AddFeedback";
-import AddTask from "./components/AddTask";
+import AddTask from "./components/Task/AddTask";
 import ReadTasks from "./components/ReadTasks";
-import DeleteTask from "./components/DeleteTask"
+import DeleteTask from "./components/Task/DeleteTask"
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event";
 import ReadTaskID from "./components/ReadTaskID";
 
+import AddFeedback from "./components/AddFeedback";
+import ConsultingTasks from './components/page/Tasks/ConsultingTasks';
+//import DeleteTasks from "./components/page/Tasks/DeleteTasks";
+import UpdateTask from "./components/Task/UpdateTask";
+//import UpdateTask from "./components/page/Tasks/UpdateTask"
 
 class App extends Component {
   state = {
     applications: [],
-    taskform: [
-      /*  {
-        id: 1,
-        description: "Fix Cars",
-        eta: "1 month",
-        levelofcommitment: "High",
-        partner: "Toyota",
-        monetarycompensation: 3000,
-        skills: "xxx",
-        lifecyclestatus: "pending",
-        experienceneeded: "3 years",
-        consultancy: "Consultant"
-      },
-
-      {
-        id: 2,
-        description: "Fix Cars",
-        eta: "1 month",
-        levelofcommitment: "High",
-        partner: "Toyota",
-        monetarycompensation: 3000,
-        skills: "xxx",
-        lifecyclestatus: "pending",
-        experienceneeded: "3 years",
-        consultancy: "Consultant"
-      }*/
-    ],
+    taskform: [],
     partner: [
       {
         id: 1,
@@ -107,13 +87,7 @@ class App extends Component {
     ]
   };
 
-  delApplication = id => {
-    this.setState({
-      application: [
-        ...this.state.application.filter(application => application.id !== id)
-      ]
-    });
-  };
+
   render() {
     return (
       <Router>
@@ -128,7 +102,9 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
+          <Route exact path="/Partner" component={Partner} />
+          <Route exact path="/Application" component={ApplicationInfo} />
+          <Route exact path="/Login" component={Login} />
           <Route
             exact
             path="/Partner"
@@ -223,8 +199,12 @@ class App extends Component {
             )}
           />
 
-        </div>
+              <Route exact path = "/AddTask" component = {AddTask}/>
+              <Route exact path = "/ConsultingTasks" component = {ConsultingTasks}/>
+              <Route exact path = "/DeleteTasks" component = {DeleteTasks}/>
+              <Route exact path = "/UpdateTask" component = {UpdateTask}/>
 
+        </div>
       </Router>
     );
   }

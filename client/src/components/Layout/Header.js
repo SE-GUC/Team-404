@@ -1,5 +1,5 @@
-import React from "./node_modules/react";
-import { Link } from "./node_modules/react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route , Link} from "react-router-dom";
 function Header() {
   return (
     <header style={headerStyle}>
@@ -20,7 +20,7 @@ function Header() {
         Events
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/Taskform">
+      <Link style={linkStyle} to="/Tasks">
         Tasks
       </Link>
       |{" "}
