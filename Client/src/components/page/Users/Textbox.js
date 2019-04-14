@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from "./axiosInstance";
+import axios from "../../axiosInstance";
 import { withRouter} from 'react-router-dom';
 import './Textbox.css';
 class Textbox extends Component {
@@ -30,7 +30,8 @@ class Textbox extends Component {
         } catch (error) {
           console.log(error);
         }
-      };
+  
+    };
   
 check2=(event)=>{
     this.setState({pass: event.target.value})

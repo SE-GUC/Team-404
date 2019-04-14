@@ -1,19 +1,19 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
-//const joi = require("Joi")
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const tokenKey = require('../../config/keys').secretOrKey
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 
-//get All
+
 router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
 
+//login user
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
 	} catch (e) {}
 });
 
-//Create user
+//register user
 router.post('/register', async (req,res) => {
   try{
     const isValidated = validator.createValidation(req.body)

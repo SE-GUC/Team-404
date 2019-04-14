@@ -112,15 +112,7 @@ class App extends Component {
       <Router>
         <div className="App" id="background2">
           <Header />
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <React.Fragment>
-                <p>Welcome To Lirten Hub</p>
-              </React.Fragment>
-            )}
-          />
+          
 
           <Route
             exact
@@ -151,7 +143,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-         
 
           <Route
             exact

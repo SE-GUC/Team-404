@@ -1,9 +1,9 @@
 import React from "react";
-import Login from "../Login"
+import Login from "../../Login"
 function Login() {
   return (
     <React.Fragment>
-      <h1>Login</h1>
+      <Login/>
     </React.Fragment>
   );
 }
