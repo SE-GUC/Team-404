@@ -16,6 +16,9 @@ import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import User from "./components/page/User/User";
 import UserList from "./components/User/UserList";
+import RegisterPartner from "./components/RegisterPartner";
+import RegisterCandidate from "./components/RegisterCandidate";
+
 
 class App extends Component {
   state = {
@@ -113,6 +116,24 @@ class App extends Component {
       <Router>
         <div className="App" id="background2">
           <Header />
+          <Route
+            exact
+            path="/RegisterPartner"
+            render={props => (
+              <React.Fragment>
+                <RegisterPartner />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/RegisterCandidate"
+            render={props => (
+              <React.Fragment>
+                <RegisterCandidate />
+              </React.Fragment>
+            )}
+          />
 
           <Route
             exact

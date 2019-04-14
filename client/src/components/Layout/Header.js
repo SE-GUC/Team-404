@@ -12,6 +12,14 @@ function Header() {
         Applications
       </Link>
       |{" "}
+      <Link style={linkStyle} to="/RegisterPartner">
+      RegisterPartner
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/RegisterCandidate">
+      RegisterCandidate
+      </Link>
+      |{" "}
       <Link style={linkStyle} to="/Event">
         Events
       </Link>
