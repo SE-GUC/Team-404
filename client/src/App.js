@@ -7,16 +7,17 @@ import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
-import Partner from "./components/page/Partner";
+//import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import Axios from "axios";
+//import Axios from "axios";
 import User from "./components/User";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
+import UserList from "./components/UserList";
 
 
 class App extends Component {
@@ -125,12 +126,15 @@ class App extends Component {
             )}
           />
 
-          <Route
+            <Route
             exact
-            path="/Partner"
+            path="/Users"
             render={props => (
               <React.Fragment>
-                <Partner />
+                <p>.</p>
+                <p>.</p>
+                <h1>Lirten Hub Users</h1>
+                <UserList/>
               </React.Fragment>
             )}
           />
