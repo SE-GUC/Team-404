@@ -3,22 +3,22 @@ import axios from "axios";
 // import Collapsible from "react-collapsible";
 
 class AddTask extends Component {
+  state = {
+    description: "",
+    eta: "",
+    levelOfCommitment: "",
+    partner: "",
+    monetaryCompensation: "",
+    skills: [],
+    lifeCycleStatus: "Awaiting Approval",
+    experienceNeeded: "",
+    consultancyRequested: true,
+    consultant: "",
+    applications: [],
+    tags: []
+  };
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      description: "",
-      eta: "",
-      levelOfCommitment: "",
-      partner: "",
-      monetaryCompensation: "",
-      skills: [],
-      lifeCycleStatus: "Awaiting Approval",
-      experienceNeeded: "",
-      consultancyRequested: false,
-      consultant: "",
-      applications: [],
-      tags: []
-    };
     this.handleChangeSkills = this.handleChangeSkills.bind(this);
   }
 
@@ -44,11 +44,11 @@ class AddTask extends Component {
       monetaryCompensation: this.state.monetaryCompensation,
       skills: this.state.skills,
       consultancyRequested: this.state.consultancyRequested,
-      lifeCycleStatus: "Awaiting Approval",
+      lifeCycleStatus: this.state.lifeCycleStatus,
       experienceNeeded: this.state.experienceNeeded,
       consultant: this.state.consultant,
       applications: this.state.applications,
-      tags : this.state.skills
+      tags: this.state.skills
     };
     console.log(task);
     try {
@@ -71,7 +71,6 @@ class AddTask extends Component {
         console.log(options[i].selected);
 
         this.state.skills.push(options[i].value);
-        
       }
     }
     console.log(this.state.skills);
@@ -84,14 +83,17 @@ class AddTask extends Component {
   handleChangePartner = e => this.setState({ partner: e.target.value });
   handleChangeMonetarycompensation = e =>
     this.setState({ monetaryCompensation: e.target.value });
-  //handleChangeSkills = e => this.setState({ skills: e.target.value });
   handleChangeExperienceneeed = e =>
     this.setState({ experienceNeeded: e.target.value });
-  handleChangeConsultancy = e => {
-    this.setState({ consultancyRequested: e.target.value });
 
-    if (this.state.consultancyRequested === true)
+  handleChangeConsultancy = e => {
+    if (e.target.id == "yesRadio") {
+      this.setState({ consultancyRequested: true });
       this.setState({ lifeCycleStatus: "Awaiting Consultant" });
+    } else {
+      this.setState({ consultancyRequested: false });
+      this.setState({ lifeCycleStatus: "Awaiting Approval" });
+    }
   };
 
   render() {
@@ -175,21 +177,22 @@ class AddTask extends Component {
           </label>
           <br />
           <br />
+
           <label>
             Consultancy {"  "}
             <input
               type="radio"
               name="consultancy"
-              value={false}
-              checked
+              id="noRadio"
+              // value={false}
               onChange={this.handleChangeConsultancy}
             />{" "}
             No {"  "}
             <input
               type="radio"
               name="consultancy"
-              value={true}
-              checked
+              id="yesRadio"
+              // value={true}
               onChange={this.handleChangeConsultancy}
             />{" "}
             Yes <br />

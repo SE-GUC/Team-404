@@ -1,9 +1,9 @@
 
 import React from "react";
-import AddTaskPage from "./AddTaskPage";
+import AddTaskPage from "./AddTask";
 import { Link } from "react-router-dom";
-import TaskHeader from "../Layout/TaskHeader";
-import AddTask from "../Task/AddTask";
+import TaskHeader from "../../Layout/TaskHeader";
+import AddTask from "../../Task/AddTask";
 
 function Tasks() {
   return (
@@ -27,16 +27,3 @@ const linkStyle = {
 export default Tasks;
 
 
-/*
-
-      <Link style={linkStyle} to="/AddTaskPage">
-        <ul>
-          <br />
-          <br />
-          <br />
-          <li>Add Task</li>
-          
-        </ul>
-      </Link>
-      <AddTask/>
-*/

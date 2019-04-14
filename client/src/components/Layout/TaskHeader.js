@@ -1,21 +1,27 @@
 import React from "react";
-import { BrowserRouter as Router, Route , Link} from "react-router-dom";
-import AddTaskPage from '../page/AddTaskPage'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 function TaskHeader() {
   return (
     <header style={headerStyle}>
-    <br/>
-    <br/>
-    <br/>
+      <br />
+      <br />
+      <br />
       <h1>Task Header</h1>
       <Link style={linkStyle} to="/Tasks">
         Tasks 
       </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/AddTaskPage">
-        Add Task Page
+      <Link style={linkStyle} to="/AddTask">
+        Add Task {" "}
       </Link>
-      <Route path="AddTaskPage" component={AddTaskPage} />
+      |{" "}
+      <Link style={linkStyle} to="/ConsultingTasks">
+        Consulting Tasks{" "}
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/DeleteTasks">
+        Delete Tasks{" "}
+      </Link>
     </header>
   );
 }

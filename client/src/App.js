@@ -7,20 +7,19 @@ import Login from "./components/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Task/Taskform";
-import Tasks from "./components/page/Tasks";
+import Tasks from "./components/page/Tasks/Tasks";
 import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import Axios from "axios";
 import User from "./components/User";
 import AddFeedback from "./components/AddFeedback";
-import AddTask from "./components/Task/AddTask";
-import DeleteTask from "./components/DeleteTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event";
-import AddTaskPage from "./components/page/AddTaskPage";
+import AddTask from "./components/page/Tasks/AddTask";
+import ConsultingTasks from './components/page/Tasks/ConsultingTasks'
+import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 
 class App extends Component {
   state = {
@@ -111,7 +110,6 @@ class App extends Component {
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
                 <Tasks />
-                <DeleteTask />
               </React.Fragment>
             )}
           />
@@ -145,7 +143,9 @@ class App extends Component {
             )}
           />
 
-              <Route exact path = "/AddTaskPage" component = {AddTaskPage}/>
+              <Route exact path = "/AddTask" component = {AddTask}/>
+              <Route exact path = "/ConsultingTasks" component = {ConsultingTasks}/>
+              <Route exact path = "/DeleteTasks" component = {DeleteTasks}/>
 
         </div>
       </Router>
