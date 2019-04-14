@@ -35,6 +35,10 @@ function Header() {
       <Link style={linkStyle} to="/Feedback">
         Feedback
       </Link>
+      |{" "}
+      <Link style={linkStyle} to="/User">
+        User
+      </Link>
       
     </header>
   );
