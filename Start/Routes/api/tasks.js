@@ -45,9 +45,9 @@ try {
         lifeCycleStatus: req.body.lifeCycleStatus,
         experienceNeeded: req.body.experienceNeeded,
         consultancyRequested: req.body.consultancyRequested,
+        consultant:req.body.consultant,
+        applications: req.body.applications
          }).save()
-
-         
          return res.json({ data: task })
 
   } catch (error) {

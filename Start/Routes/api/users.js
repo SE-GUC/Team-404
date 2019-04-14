@@ -5,6 +5,8 @@ const router = express.Router()
 //const joi = require("Joi")
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
+const sendNotif = require('../../utils/mailer')
+
 
 router.get('/', async (req,res) => {
   const users = await User.find()
@@ -36,10 +38,11 @@ router.post('/', async (req,res) => {
             phonenumber: req.body.phonenumber,
             usertype:req.body.usertype,
             location: req.body.location
-        })
+        }).save()
 
-    .save()
+    sendNotif(this.email,"Welcome as a " + this.usertype,"Registered to Lirtenhub")
     return res.json({ data: newUser })
+    
   }
   catch(error){
 

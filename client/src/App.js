@@ -157,6 +157,15 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+            <Route
+            exact
+            path="/DeleteTask"
+            render={props => (
+              <React.Fragment>
+                <DeleteTask />
+              </React.Fragment>
+            )}
+          />
 
           <Route
             exact
