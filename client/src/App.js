@@ -199,7 +199,7 @@ class App extends Component {
          )}
        />  
 
-       <Route
+       {/* <Route
          exact
          path="/Event/update"
          render={props => (
@@ -207,7 +207,7 @@ class App extends Component {
              <EventPut></EventPut>
            </React.Fragment>
          )}
-       />
+       /> */}
 
        <Route
          exact
@@ -225,6 +225,18 @@ class App extends Component {
          render={props => (
            <React.Fragment>
              <EventReadID></EventReadID>
+           </React.Fragment>
+         )}
+       />  
+
+        <Route
+         exact
+         path="/:id/update"
+         render={props => (
+           <React.Fragment>
+             <EventReadID></EventReadID>
+             <EventPut></EventPut>
+             
            </React.Fragment>
          )}
        />  

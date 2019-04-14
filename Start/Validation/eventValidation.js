@@ -28,7 +28,7 @@ module.exports = {
         .max(500)
         .required(),
       maximumPlaces: Joi.number()
-        .min(2)
+        .min(1)
         .max(500)
         .required(),
       topicsCovered: Joi.string()
@@ -40,7 +40,7 @@ module.exports = {
         .max(500)
         .required(),
       registrationPrice: Joi.number()
-        .min(2)
+        .min(1)
         .max(500)
         .required(),
       approvalStatus: Joi.string()
@@ -80,7 +80,7 @@ module.exports = {
         .max(500)
         .required(),
       maximumPlaces: Joi.string()
-        .min(2)
+        .min(1)
         .max(500)
         .required(),
       topicsCovered: Joi.string()
@@ -92,13 +92,12 @@ module.exports = {
         .max(500)
         .required(),
       registrationPrice: Joi.string()
-        .min(2)
+        .min(1)
         .max(500)
         .required(),
       approvalStatus: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       applicants: Joi.array(),
       feedback: Joi.array()
     };
