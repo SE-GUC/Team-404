@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-<<<<<<< HEAD:client/src/components/EventRead.js
 import axios from "axios";
-=======
-import axios from "./axiosInstance";
 import { Link } from "react-router-dom";
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventRead.js
 class EventRead extends Component {
     state = {
         events: [ ]

@@ -10,14 +10,13 @@ const sendNotif= require("../../utils/mailer")
 const joi = require("Joi");
 const users = require("../api/users")
 //const joi = require("Joi")
-
 const validator = require("../../Validation/taskValid");
 
-router.get('/', authenticateUser,async (req, res) => {
+router.get('/', async (req, res) => {
   const tasks = await Task.find()
   res.json({ data: tasks })
 })
-router.post('/', authenticateUser ,async (req, res) => {
+router.post('/' ,async (req, res) => {
 
   try {
       const isValidated = validator.createValidation(req.body)
@@ -49,7 +48,7 @@ router.post('/', authenticateUser ,async (req, res) => {
 });
 
   router
-  .route('/:id',authenticateUser)
+  .route('/:id')
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi

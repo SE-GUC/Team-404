@@ -1,11 +1,6 @@
-<<<<<<< HEAD:client/src/components/EventPost .js
 import React, { Component } from "react";
 import axios from "axios";
-=======
-import React from "react";
-import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
 
 class EventPost extends Component {
   state = {
@@ -102,27 +97,16 @@ class EventPost extends Component {
         <br />
         <br />
         <label> Events : </label>
-<<<<<<< HEAD:client/src/components/EventPost .js
         <br/>
         <label className="EventName">
           EventName:
-=======
-        <br />
-        <label className="eventName">
-          eventName:
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
           <input
             type="text"
             name="eventName"
             onChange={this.handleChangeEventName}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
-        </label><br/>
-
-=======
         </label>
         <br />
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
         <label className="Organizer">
           Organizer:
           <input
@@ -130,13 +114,8 @@ class EventPost extends Component {
             name="organizer"
             onChange={this.handleChangeOrganizer}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
         </label><br/>
 
-=======
-        </label>
-        <br />
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
         <label className="Location">
           Location:
           <input
@@ -144,13 +123,8 @@ class EventPost extends Component {
             name="location"
             onChange={this.handleChangeLocation}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
         </label><br/>
 
-=======
-        </label>
-        <br />
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
         <label className="Description">
           Description:
           <input
@@ -158,29 +132,17 @@ class EventPost extends Component {
             name="description"
             onChange={this.handleChangeDescription}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
         </label><br/>
 
         <label className="RemainingPlaces">
           RemainingPlaces:
-=======
-        </label>
-        <br />
-        <label className="remainingPlaces">
-          remainingPlaces:
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
           <input
             type="text"
             name="remainingPlaces"
             onChange={this.handleChangeRemainingPlaces}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
         </label><br/>
 
-=======
-        </label>
-        <br />
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
         <label className="Speakers">
           Speakers:
           <input
@@ -188,49 +150,24 @@ class EventPost extends Component {
             name="speakers"
             onChange={this.handleChangeSpeakers}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
-        </label><br/>
-
-        <label className="MaximumPlaces">
-          MaximumPlaces:
-=======
         </label>
         <br />
         <label className="maximumPlaces">
           maximumPlaces:
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
           <input
             type="text"
             name="maximumPlaces"
             onChange={this.handleChangeMaximumPlaces}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
-        </label><br/>
-
-        <label className="TopicsCovered">
-          TopicsCovered:
-=======
         </label>
         <br />
         <label className="topicsCovered">
           topicsCovered:
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
           <input
             type="text"
             name="topicsCovered"
             onChange={this.handleChangeTopicsCovered}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
-        </label><br/>
-
-        <label className="Field">
-          Field:
-          <input type="text" name="field" onChange={this.handleChangeField} />
-        </label><br/>
-
-        <label className="RegistrationPrice">
-          RegistrationPrice:
-=======
         </label>
         <br />
         <label className="Field">
@@ -240,20 +177,18 @@ class EventPost extends Component {
         <br />
         <label className="registrationPrice">
           registrationPrice:
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
           <input
             type="text"
             name="registrationPrice"
             onChange={this.handleChangeRegistrationPrice}
           />
-<<<<<<< HEAD:client/src/components/EventPost .js
         </label><br/>
 
         <label className="ApprovalStatus">
           ApprovalStatus:
           <input
             type="text"
-            name="approvalstatus"
+            name="approvalStatus"
             onChange={this.handleChangeApprovalStatus}
           />
         </label><br/>
@@ -276,15 +211,6 @@ class EventPost extends Component {
           />
         </label><br/>
         <button type="submit"> ADD </button>
-=======
-        </label>
-        <br />
-        <button type="submit" onClick={this.handleSubmit}>
-          {" "}
-          Create{" "}
-        </button>
-        <br />
->>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventPost.js
       </form>
     );
   }

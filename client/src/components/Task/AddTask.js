@@ -41,8 +41,8 @@ class AddTask extends Component {
       applications: this.state.applications,
       tags: this.state.skills
     };
-    if(consultancyRequested){
-      
+    if(this.state.consultancyRequested){
+
     }
     console.log(task);
     try {

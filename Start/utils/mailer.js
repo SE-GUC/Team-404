@@ -18,12 +18,6 @@ const msg = (to, message, subject) => {
 module.exports = msg;
 
 
-<<<<<<< HEAD
 //const sendNotif = require('../../utils/mailer')
 //sendNotif(to,message,subject)
 
-=======
-
-//const sendNotif = require('../../utils/mailer')
-//sendNotif(to,message,subject)
->>>>>>> e399a9680744be41308b76585d47da016836c14a
