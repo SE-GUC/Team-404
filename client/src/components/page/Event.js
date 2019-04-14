@@ -1,6 +1,6 @@
-import React from "react";
+import React from "./node_modules/react";
 import EventPost from "../EventPost "
-import { Link } from "react-router-dom";
+import { Link } from "./node_modules/react-router-dom";
 function Event() {
   return (
     <React.Fragment>

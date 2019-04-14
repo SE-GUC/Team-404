@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import axios from "./axiosInstance";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "./node_modules/react-router-dom";
 class DeleteTask extends Component {
   state = {
     _id: ''

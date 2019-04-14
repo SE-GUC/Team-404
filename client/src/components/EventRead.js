@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import axios from  "./axiosInstance";
 
 class EventRead extends Component {

@@ -1,6 +1,6 @@
-import React from "react";
+import React from "./node_modules/react";
 //import axios from "axios";
-import axios from "axios";
+import axios from "./node_modules/axios";
 
 class EventPost extends React.Component {
   state = {

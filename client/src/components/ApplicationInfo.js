@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 //import Application from "./Application";
-import Axios from "axios";
-import PropTypes from "prop-types";
+import Axios from "./node_modules/axios";
+import PropTypes from "./node_modules/prop-types";
 
 class ApplicationInfo extends Component {
   constructor(props) {

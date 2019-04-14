@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "./node_modules/react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
 import Login from "./components/Login";
@@ -9,9 +9,9 @@ import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
-import uuid from "uuid";
+import uuid from "./node_modules/uuid";
 import Feedback from "./components/Feedback";
-import Axios from "axios";
+import Axios from "./node_modules/axios";
 import User from "./components/User";
 //import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
@@ -19,7 +19,8 @@ import ReadTasks from "./components/ReadTasks";
 import DeleteTask from "./components/DeleteTask"
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
-import Event from "./components/page/Event"
+import Event from "./components/page/Event";
+import ReadTaskID from "./components/ReadTaskID";
 
 
 class App extends Component {
@@ -180,6 +181,17 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+           />
+
+<Route
+  exact
+  path="/Taskform/:id"
+  render={props => (
+    <React.Fragment>
+      <ReadTaskID> </ReadTaskID>
+    </React.Fragment>
+  )}
+/>  
 
           {/* <Route
             exact
