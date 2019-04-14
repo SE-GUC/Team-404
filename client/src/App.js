@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import "./components/Textbox.css";
-import Login from "./components/Login";
+import "./components/User/Textbox.css";
+import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Task/Taskform";
@@ -12,14 +12,23 @@ import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
+import Axios from "axios";
 import User from "./components/User";
-import AddFeedback from "./components/AddFeedback";
+//import AddFeedback from "./components/AddFeedback";
+import AddTask from "./components/Task/AddTask";
+import ReadTasks from "./components/ReadTasks";
+import DeleteTask from "./components/Task/DeleteTask"
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event";
 import AddTask from "./components/page/Tasks/AddTask";
 import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
 import DeleteTasks from "./components/page/Tasks/DeleteTasks";
+import ReadTaskID from "./components/ReadTaskID";
+
+import AddFeedback from "./components/AddFeedback";
+import ConsultingTasks from './components/page/Tasks/ConsultingTasks';
+//import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 import UpdateTask from "./components/Task/UpdateTask";
 //import UpdateTask from "./components/page/Tasks/UpdateTask"
 
@@ -98,15 +107,69 @@ class App extends Component {
 
           <Route
             exact
-            path="/Tasks"
+            path="/Partner"
             render={props => (
               <React.Fragment>
-                <Taskform taskform={this.state.taskform} />
-                <Tasks />
+                <Partner />
               </React.Fragment>
             )}
           />
+
           <Route
+            exact
+            path="/Application"
+            render={props => (
+              <React.Fragment>
+                <ApplicationInfo />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Login"
+            render={props => (
+              <React.Fragment>
+                <Login />
+              </React.Fragment>
+            )}
+          />
+            <Route
+            exact
+            path="/DeleteTask"
+            render={props => (
+              <React.Fragment>
+                <DeleteTask />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Taskform"
+            render={props => (
+              <React.Fragment>
+                <Taskform taskform={this.state.taskform} />
+                <AddTask />
+                <DeleteTask />
+                <ReadTasks />
+
+              </React.Fragment>
+            )}
+          />
+           />
+
+<Route
+  exact
+  path="/Taskform/:id"
+  render={props => (
+    <React.Fragment>
+      <ReadTaskID> </ReadTaskID>
+    </React.Fragment>
+  )}
+/>  
+
+          {/* <Route
             exact
             path="/Feedback"
             render={props => (
@@ -115,7 +178,7 @@ class App extends Component {
                 <Feedback feedbacks={this.state.feedbacks} />{" "}
               </React.Fragment>
             )}
-          />
+          /> */}
           <Route
             exact
             path="/User"
