@@ -8,8 +8,8 @@ function Header() {
         Home
       </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/Partner">
-        View Partners
+      <Link style={linkStyle} to="/Users">
+        View Users
       </Link>
       |{" "}
       <Link style={linkStyle} to="/Application">
