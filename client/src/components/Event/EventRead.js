@@ -25,7 +25,7 @@ const eventList = events.length ? (
         <Link to = {`event/${event._id}`}>
         
         {/* //the name as a link  */}
-        <span className="event candidate">{event.eventName}</span>
+        <span STYLE="text-decoration:underline; font-weight:bold">{event.eventName}</span>
            
         </Link>
         </div>

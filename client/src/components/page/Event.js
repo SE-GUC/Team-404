@@ -11,7 +11,7 @@ function Event() {
       <Link to = "Event/create">
       <br></br>
       <br></br>
-       Create a new event here ! 
+      <span STYLE="text-decoration:underline; font-weight:bold">Create </span> a new event here 
        <br></br>
       <br></br>
       </Link>
