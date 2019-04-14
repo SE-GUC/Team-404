@@ -1,17 +1,19 @@
 
 import React from "react";
-import AddTaskPage from "./AddTask";
-import { Link } from "react-router-dom";
 import TaskHeader from "../../Layout/TaskHeader";
-import AddTask from "../../Task/AddTask";
+import ReadTasks from "../../Task/ReadTask";
 
 function Tasks() {
   return (
     <React.Fragment>
       <TaskHeader/>
+      <ReadTasks/>
     </React.Fragment>
   );
 }
+
+
+
 const headerStyle = {
   //  background : '#333',
   color: "#fff",

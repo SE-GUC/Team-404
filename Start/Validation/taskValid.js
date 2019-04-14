@@ -3,6 +3,7 @@ const Joi = require("joi");
 module.exports = {
   createValidation: request => {
     const createSchema = {
+      title: Joi.string().required(),
       description: Joi.string().required(),
       eta: Joi.number().required(),
       levelOfCommitment: Joi.string().required(),
@@ -32,6 +33,7 @@ module.exports = {
 module.exports = {
   updateValidation: request => {
     const updateSchema = {
+      title: Joi.string(),
       description: Joi.string(),
       eta: Joi.number(),
       levelOfCommitment: Joi.string(),

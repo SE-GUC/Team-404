@@ -4,6 +4,7 @@ import axios from "axios";
 
 class AddTask extends Component {
   state = {
+    title: "",
     description: "",
     eta: "",
     levelOfCommitment: "",
@@ -37,6 +38,7 @@ class AddTask extends Component {
     event.preventDefault();
 
     const task = {
+      title: this.state.title,
       description: this.state.description,
       eta: this.state.eta,
       levelOfCommitment: this.state.levelOfCommitment,
@@ -75,7 +77,7 @@ class AddTask extends Component {
     }
     console.log(this.state.skills);
   }
-
+  handleChangeTitle = e => this.setState({ title: e.target.value });
   handleChangeDescription = e => this.setState({ description: e.target.value });
   handleChangeEta = e => this.setState({ eta: e.target.value });
   handleChangeLevelofcommitment = e =>
@@ -104,6 +106,12 @@ class AddTask extends Component {
         <br />
         <br />
         <form onSubmit={this.handleSubmit}>
+          <label>
+            Title
+            <input type="text" name="title" onChange={this.handleChangeTitle} />
+          </label>
+          <br />
+          <br />
           <label>
             Description
             <input

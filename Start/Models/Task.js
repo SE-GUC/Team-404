@@ -2,6 +2,7 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 const TaskSchema = new schema({
+  title: {type: String , required: true},
   description: { type: String, required: true },
   eta: { type: Number, required: true },
   levelOfCommitment: { type: String, required: true, unique: false },
