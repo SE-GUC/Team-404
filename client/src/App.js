@@ -20,6 +20,8 @@ import Event from "./components/page/Event";
 import AddTask from "./components/page/Tasks/AddTask";
 import ConsultingTasks from './components/page/Tasks/ConsultingTasks'
 import DeleteTasks from "./components/page/Tasks/DeleteTasks";
+import UpdateTask from "./components/Task/UpdateTask";
+//import UpdateTask from "./components/page/Tasks/UpdateTask"
 
 class App extends Component {
   state = {
@@ -79,13 +81,7 @@ class App extends Component {
     ]
   };
 
-  delApplication = id => {
-    this.setState({
-      application: [
-        ...this.state.application.filter(application => application.id !== id)
-      ]
-    });
-  };
+
   render() {
     return (
       <Router>
@@ -146,6 +142,7 @@ class App extends Component {
               <Route exact path = "/AddTask" component = {AddTask}/>
               <Route exact path = "/ConsultingTasks" component = {ConsultingTasks}/>
               <Route exact path = "/DeleteTasks" component = {DeleteTasks}/>
+              <Route exact path = "/UpdateTask" component = {UpdateTask}/>
 
         </div>
       </Router>

@@ -6,7 +6,7 @@ class ReadTasks extends Component {
     tasks: [],
     applications: []
   };
-  
+
   componentDidMount() {
     axios.get("http://localhost:3001/Routes/api/tasks/").then(res => {
       console.log(res);
