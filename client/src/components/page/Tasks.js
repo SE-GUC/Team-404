@@ -1,6 +1,7 @@
 import React from "react";
 import AddTask from "./AddTask";
 import { Link } from 'react-router-dom'
+import ReadTasks from "../ReadTasks";
 function Taskform() {
   return (
     <React.Fragment>
@@ -10,6 +11,8 @@ function Taskform() {
           <AddTask />{" "}
         </Link>
       </header>
+      {/* <label> Tasks List </label>
+      <ReadTasks></ReadTasks> */}
     </React.Fragment>
   );
 }
@@ -26,3 +29,4 @@ const linkStyle = {
   textDecoration: "none"
 };
 export default Taskform;
+

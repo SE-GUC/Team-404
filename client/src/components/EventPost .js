@@ -1,5 +1,5 @@
 import React from "react";
-//import axios from "./node_modules/axios";
+//import axios from "axios";
 import axios from "axios";
 
 class EventPost extends React.Component {

@@ -13,8 +13,9 @@ import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
 import User from "./components/User";
-import AddFeedback from "./components/AddFeedback";
+//import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
+import ReadTasks from "./components/ReadTasks";
 import DeleteTask from "./components/DeleteTask"
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
@@ -165,11 +166,13 @@ class App extends Component {
                 <Taskform taskform={this.state.taskform} />
                 <AddTask />
                 <DeleteTask />
+                <ReadTasks />
+
               </React.Fragment>
             )}
           />
 
-          <Route
+          {/* <Route
             exact
             path="/Feedback"
             render={props => (
@@ -178,7 +181,7 @@ class App extends Component {
                 <Feedback feedbacks={this.state.feedbacks} />{" "}
               </React.Fragment>
             )}
-          />
+          /> */}
           <Route
             exact
             path="/User"
