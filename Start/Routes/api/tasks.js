@@ -6,8 +6,9 @@ app.use(express.json());
 const router = express.Router();
 //const uuid = require('uuid')
 const Task = require("../../Models/Task");
-
+const sendNotif= require("../../utils/mailer")
 const joi = require("Joi");
+const users = require("../api/users")
 //const joi = require("Joi")
 
 const validator = require("../../Validation/taskValid");
@@ -34,7 +35,14 @@ router.post("/", async (req, res) => {
       experienceNeeded: req.body.experienceNeeded,
       consultancyRequested: req.body.consultancyRequested
     }).save();
-
+    
+    if(consultancyRequested){
+      users.array.forEach(user => {
+        if(user.userType=="Consultant"){
+            sendNotif(user.email,"Consultancy req", "LirtenHub")
+        }
+      });
+    }
     return res.json({ data: task });
   } catch (error) {
     console.log(error);

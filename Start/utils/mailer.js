@@ -13,6 +13,10 @@ const msg = (to, message, subject) => {
   };
   return sgMail.send(email);
 };
+
 module.exports = msg;
 
+
+//const sendNotif = require('../../utils/mailer')
+//sendNotif(to,message,subject)
 

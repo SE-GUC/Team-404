@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const app = express();
 const joi = require('joi')
+const sendNotif = require('../../utils/mailer')
+
 
 // We will be connecting using database
 const Event = require("../../Models/Event");
@@ -44,6 +46,8 @@ router.post("/", async (req, res) => {
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
+    fin
+    sendNotif()
     return res.json({ data: event });
   } catch (error) {
     // We will be handling the error later

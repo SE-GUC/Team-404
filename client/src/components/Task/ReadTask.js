@@ -16,7 +16,7 @@ class ReadTasks extends Component {
     });
   }
 
-  handleApply = e => this.setState({ applications: e.target.value });
+  handleApply = (e) => this.setState({ applications: e.target.value });
 
   render() {
     const { tasks } = this.state;
@@ -29,7 +29,7 @@ class ReadTasks extends Component {
                 {/* //the name as a link  */}
                 <span className="event candidate">{task.title}</span>
               </Link>
-              <button style={styleButton} onChange={this.handleApply}>
+              <button style={styleButton} onClick={this.handleApply}>
                 Apply
               </button>
             </div>

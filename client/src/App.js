@@ -18,7 +18,7 @@ import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event";
 import AddTask from "./components/page/Tasks/AddTask";
-import ConsultingTasks from './components/page/Tasks/ConsultingTasks'
+import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
 import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 import UpdateTask from "./components/Task/UpdateTask";
 //import UpdateTask from "./components/page/Tasks/UpdateTask"
@@ -81,7 +81,6 @@ class App extends Component {
     ]
   };
 
-
   render() {
     return (
       <Router>
@@ -96,9 +95,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route exact path="/Partner" component={Partner} />
-          <Route exact path="/Application" component={ApplicationInfo} />
-          <Route exact path="/Login" component={Login} />
+
           <Route
             exact
             path="/Tasks"
@@ -139,11 +136,13 @@ class App extends Component {
             )}
           />
 
-              <Route exact path = "/AddTask" component = {AddTask}/>
-              <Route exact path = "/ConsultingTasks" component = {ConsultingTasks}/>
-              <Route exact path = "/DeleteTasks" component = {DeleteTasks}/>
-              <Route exact path = "/UpdateTask" component = {UpdateTask}/>
-
+          <Route exact path="/AddTask" component={AddTask} />
+          <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
+          <Route exact path="/DeleteTasks" component={DeleteTasks} />
+          <Route exact path="/UpdateTask" component={UpdateTask} />
+          <Route exact path="/Partner" component={Partner} />
+          <Route exact path="/Application" component={ApplicationInfo} />
+          <Route exact path="/Login" component={Login} />
         </div>
       </Router>
     );
