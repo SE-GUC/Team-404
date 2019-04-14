@@ -7,7 +7,6 @@ const router = express.Router();
 //const uuid = require('uuid')
 const Task = require("../../Models/Task");
 const sendNotif= require("../../utils/mailer")
-const joi = require("Joi");
 const users = require("../api/users")
 //const joi = require("Joi")
 const validator = require("../../Validation/taskValid");
