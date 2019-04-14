@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import "./components/page/Users/Textbox.css";
-import Login from "./components/Login";
+import "./components/User/Textbox.css";
+import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
@@ -10,11 +10,12 @@ import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import Axios from "axios";
 import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/AddTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
+import User from "./components/page/User/User";
+import UserList from "./components/User/UserList";
 
 class App extends Component {
   state = {
@@ -112,7 +113,6 @@ class App extends Component {
       <Router>
         <div className="App" id="background2">
           <Header />
-          
 
           <Route
             exact
@@ -181,6 +181,13 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+
+          <Route exact path="/User" Component={User} render = {props => (
+            <React.Fragment>
+              <User/>
+            </React.Fragment>
+          )} />
+          <Route exact path="/UserList" Component={UserList} />
         </div>
       </Router>
     );

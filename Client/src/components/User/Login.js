@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Textbox from './page/Users/Textbox';
-import "./page/Users/Textbox.css";
+import Textbox from './Textbox';
+import "./Textbox.css";
 class Login extends Component {    
   render() {
     return (

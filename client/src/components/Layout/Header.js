@@ -8,10 +8,6 @@ function Header() {
         Home
       </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/Users">
-        View Users
-      </Link>
-      |{" "}
       <Link style={linkStyle} to="/Application">
         Applications
       </Link>
@@ -35,7 +31,6 @@ function Header() {
       <Link style={linkStyle} to="/User">
         User
       </Link>
-      
     </header>
   );
 }
@@ -49,7 +44,7 @@ const headerStyle = {
 };
 
 const linkStyle = {
-  color:"#fff",
+  color: "#fff",
   textDecoration: "none"
-}
+};
 export default Header;
