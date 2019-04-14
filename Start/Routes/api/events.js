@@ -68,12 +68,12 @@ router.post("/", async (req, res) => {
 router
   .route("/:id")
   .all(async (request, response, next) => {
-    // const status = joi.validate(request.params, {
-    //   id: joi
-    //     .string()
-    //     .length(24)
-    //     .required()
-    // });
+     const status = joi.validate(request.params, {
+       id: joi
+         .string()
+         .length(24)
+         .required()
+     });
     if (status.error) {
       return response.json({ error: status.error.details[0].message });
     }
