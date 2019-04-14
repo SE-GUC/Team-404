@@ -24,6 +24,10 @@ function Header() {
         Tasks
       </Link>
       |{" "}
+      <Link style={linkStyle} to="/DeleteTask">
+        DeleteTask
+      </Link>
+      |{" "}
       <Link style={linkStyle} to="/Login">
         Login
       </Link>
