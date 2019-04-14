@@ -15,15 +15,15 @@ RequestEvent: async (req,res) => {
     
     var newEvent = new Event({
       
-      eventname: req.body.eventname,
+      eventName: req.body.eventName,
       organizer: Pid,
       location: req.body.location,
-      remainingplaces:req.body.remainingplaces,
+      remainingPlaces:req.body.remainingPlaces,
       speakers:req.body.speakers,
-      maximumplaces:req.body.maximumplaces,
-      topicscovered:req.body.topicscovered,
+      maximumPlaces:req.body.maximumPlaces,
+      topicsCovered:req.body.topicsCovered,
       field:req.body.field,
-      registrationprice:req.body.registrationprices,
+      registrationPrice:req.body.registrationPrices,
       approvalstaus:'pending',
       applicants:req.body.applicants, 
       feedback:req.body.feedback
@@ -46,15 +46,15 @@ CreateEvent: async (req,res) => {
       
       var newEvent = new Event({
         
-        eventname: req.body.eventname,
+        eventName: req.body.eventName,
         organizer: Aid,
         location: req.body.location,
-        remainingplaces:req.body.remainingplaces,
+        remainingPlaces:req.body.remainingPlaces,
         speakers:req.body.speakers,
-        maximumplaces:req.body.maximumplaces,
-        topicscovered:req.body.topicscovered,
+        maximumPlaces:req.body.maximumPlaces,
+        topicsCovered:req.body.topicsCovered,
         field:req.body.field,
-        registrationprice:req.body.registrationprices,
+        registrationPrice:req.body.registrationPrices,
         approvalstaus:'confirmed',
         applicants:req.body.applicants, 
         feedback:req.body.feedback
@@ -69,7 +69,7 @@ CreateEvent: async (req,res) => {
 // Get the pending events 
 GetPendingEvents: async (req,res) => {
   try{
-    const pendingevents = await Event.find(Event.approvalstatus='pending');
+    const pendingevents = await Event.find(Event.approvalStatus='pending');
     res.json({ data: pendingevents });
 
   }
@@ -85,7 +85,7 @@ ConfirmRequest: async (req,res) => {
    try{
         var Eid = req.params.id
         var findEvent = await Event.findById(Eid)
-        findEvent.approvalstatus = 'confirmed'
+        findEvent.approvalStatus = 'confirmed'
         Event.updateOne({id,Eid},findEvent)
     
 

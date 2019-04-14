@@ -21,6 +21,16 @@ router.get("/", async (req, res) => {
   res.json({ data: events });
 });
 
+router.get('/:id',async (req,res)=>{
+  try {
+    const id = req.params.id
+    const requestedEvent = await Event.findById(id)
+    res.json({msg:'Event you asked for', data: requestedEvent})
+   }catch(error){
+    console.log(error)
+   }
+   })
+
 
 
 // Create a new newEvent
@@ -32,17 +42,17 @@ router.post("/", async (req, res) => {
         .status(400)
         .send({ error: isValidated.error.details[0].message });
     const event = await new Event({
-      eventname: req.body.eventname,
+      eventName: req.body.eventName,
       organizer: req.body.organizer,
       location: req.body.location,
       description: req.body.description,
-      remainingplaces: req.body.remainingplaces,
+      remainingPlaces: req.body.remainingPlaces,
       speakers: req.body.speakers,
-      maximumplaces: req.body.maximumplaces,
-      topicscovered: req.body.topicscovered,
+      maximumPlaces: req.body.maximumPlaces,
+      topicsCovered: req.body.topicsCovered,
       field: req.body.field,
-      registrationprice: req.body.registrationprice,
-      approvalstatus: req.body.approvalstatus,
+      registrationPrice: req.body.registrationPrice,
+      approvalStatus: req.body.approvalStatus,
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
@@ -59,12 +69,12 @@ router.post("/", async (req, res) => {
 router
   .route("/:id")
   .all(async (request, response, next) => {
-    const status = joi.validate(request.params, {
-      id: joi
-        .string()
-        .length(24)
-        .required()
-    });
+    // const status = joi.validate(request.params, {
+    //   id: joi
+    //     .string()
+    //     .length(24)
+    //     .required()
+    // });
     if (status.error) {
       return response.json({ error: status.error.details[0].message });
     }

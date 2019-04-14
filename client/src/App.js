@@ -2,6 +2,11 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+import EventPost from "./components/Event/EventPost";
+import EventPut from "./components/Event/EventPut";
+import EventRead from "./components/Event/EventRead";
+import EventDelete from "./components/Event/EventDelete";
+import "./App.css";
 import "./components/User/Textbox.css";
 import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
@@ -9,7 +14,7 @@ import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Task/Taskform";
 import Tasks from "./components/page/Tasks/Tasks";
 import Partner from "./components/page/Partner";
-import EventRead from "./components/EventRead";
+import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import Axios from "axios";
@@ -17,7 +22,7 @@ import User from "./components/User";
 //import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/Task/AddTask";
 import ReadTasks from "./components/ReadTasks";
-import DeleteTask from "./components/Task/DeleteTask"
+import DeleteTask from "./components/Task/DeleteTask";
 import EventPost from "./components/EventPost ";
 import EventPut from "./components/EventPut";
 import Event from "./components/page/Event";
@@ -27,11 +32,14 @@ import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 import ReadTaskID from "./components/ReadTaskID";
 
 import AddFeedback from "./components/AddFeedback";
-import ConsultingTasks from './components/page/Tasks/ConsultingTasks';
+import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
 //import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 import UpdateTask from "./components/Task/UpdateTask";
 //import UpdateTask from "./components/page/Tasks/UpdateTask"
 
+import AddFeedback from "./components/AddFeedback";
+import AddTask from "./components/AddTask";
+import EventReadID from "./components/Event/EventReadID";
 class App extends Component {
   state = {
     applications: [],
@@ -104,7 +112,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
           <Route
             exact
             path="/Partner"
@@ -114,7 +121,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
           <Route
             exact
             path="/Application"
@@ -124,7 +130,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
           <Route
             exact
             path="/Login"
@@ -134,7 +139,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-            <Route
+          <Route
             exact
             path="/DeleteTask"
             render={props => (
@@ -143,7 +148,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
           <Route
             exact
             path="/Taskform"
@@ -153,23 +157,19 @@ class App extends Component {
                 <AddTask />
                 <DeleteTask />
                 <ReadTasks />
-
               </React.Fragment>
             )}
           />
-           />
-
-<Route
-  exact
-  path="/Taskform/:id"
-  render={props => (
-    <React.Fragment>
-      <ReadTaskID> </ReadTaskID>
-    </React.Fragment>
-  )}
-/>  
-
-          {/* <Route
+          <Route
+            exact
+            path="/Taskform/:id"
+            render={props => (
+              <React.Fragment>
+                <ReadTaskID> </ReadTaskID>
+              </React.Fragment>
+            )}
+          />
+          <Route
             exact
             path="/Feedback"
             render={props => (
@@ -178,7 +178,7 @@ class App extends Component {
                 <Feedback feedbacks={this.state.feedbacks} />{" "}
               </React.Fragment>
             )}
-          /> */}
+          />
           <Route
             exact
             path="/User"
@@ -198,7 +198,44 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
+          <Route
+            exact
+            path="/Event/create"
+            render={props => (
+              <React.Fragment>
+                <EventPost />
+              </React.Fragment>
+            )}
+          />
+          /*{" "}
+          <Route
+            exact
+            path="/Event/update"
+            render={props => (
+              <React.Fragment>
+                <EventPut />
+              </React.Fragment>
+            )}
+          />{" "}
+          */
+          <Route
+            exact
+            path="/Event/delete"
+            render={props => (
+              <React.Fragment>
+                <EventDelete />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/event/:id"
+            render={props => (
+              <React.Fragment>
+                <EventReadID />
+              </React.Fragment>
+            )}
+          />
           <Route exact path="/AddTask" component={AddTask} />
           <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
           <Route exact path="/DeleteTasks" component={DeleteTasks} />

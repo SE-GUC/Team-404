@@ -1,24 +1,29 @@
 import React, { Component } from "react";
+<<<<<<< HEAD:client/src/components/EventDelete.js
 import axios from  "./axiosInstance";
 
+=======
+import axios from "./axiosInstance";
+import { withRouter } from "react-router-dom";
+>>>>>>> 0b8b5e77256b2e802d6b7214f7bcdb309c8b092d:client/src/components/Event/EventDelete.js
 class EventDelete extends Component {
   state = {
-    _id: ''
-  }
+    _id: ""
+  };
 
   handleChange = event => {
     this.setState({ id: event.target.value });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.delete(`http://localhost:3001/api/applications/${this.state._id}`)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-  }
+    axios.delete(`events/${this.props.match.params.id}`).then(res => {
+      this.props.history.push("/events");
+      console.log(res);
+      console.log(res.data);
+    });
+  };
 
   render() {
     return (
@@ -26,15 +31,15 @@ class EventDelete extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Person ID:
-            <br/>
+            <br />
             <input type="text" name="id" onChange={this.handleChange} />
           </label>
-          <br/>
+          <br />
           <button type="submit">Delete</button>
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default EventDelete
+export default withRouter(EventDelete);
