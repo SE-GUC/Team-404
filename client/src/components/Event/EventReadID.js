@@ -36,38 +36,48 @@ class EventReadID extends Component {
           <div className="card-content">
             <br />
             <br />
+            Name:
+            
+            <span className="event name">{event.eventName}</span>
             <br />
-            <span className="event candidate">{event.eventName}</span>
+            Organizer: {'  '}
+            
+            <span className="event organizer">{event.organizer}</span>
+            <br />
+            Location: {'  '}
+            
+            <span className="event location">{event.location}</span>
+            <br />
+            Description: {'  '}
+            
+            <span className="event description">{event.description}</span>
+            <br />
+            Remaining Places: {'  '}
+            
+            <span className="event remaining places">{event.remainingPlaces}</span>
+            <br />
+            Speakers: {'  '}
+            
+            <span className="event speakers">{event.speakers}</span>
+            <br />
+            Maximum Places: {'  '}
+            
+            <span className="event maximum places">{event.maximumPlaces}</span>
+            <br />
+            Topics Covered: {'  '}
+            
+            <span className="event's topics covered">{event.topicsCovered}</span>
+            <br />
+            Field: {'  '}
+            
+            <span className="event field">{event.field}</span>
+            <br />
+            Registration Price: {'  '}
+            
+            <span className="event registration price">{event.registrationPrice}</span>
             <br />
             <br />
-            <span className="event candidate">{event.organizer}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.location}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.description}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.remainingPlaces}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.speakers}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.maximumPlaces}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.topicsCovered}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.field}</span>
-            <br />
-            <br />
-            <span className="event candidate">{event.registrationPrice}</span>
-            <br />
-            <br />
-            <Link to="/Event/update">UPDATE</Link>
+            <Link to="/${event._id}/update">UPDATE</Link>
             <br />
             <br />
             <button className="btn btn-primay" onClick={this.onDelete}>Delete</button>

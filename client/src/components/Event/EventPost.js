@@ -1,6 +1,6 @@
 import React from "react";
-//import axios from "./node_modules/axios";
-import axios from "axios";
+import axios from "./axiosInstance";
+import { withRouter } from "react-router-dom";
 
 class EventPost extends React.Component {
   state = {
@@ -40,6 +40,7 @@ class EventPost extends React.Component {
     } catch (error) {
       console.log(error);
     }
+    this.props.history.push('/Event');
   };
 
   handleChangeEventName = event => {
@@ -193,4 +194,4 @@ class EventPost extends React.Component {
   }
 }
 
-export default EventPost;
+export default withRouter(EventPost);

@@ -75,7 +75,7 @@ class EventPut extends React.Component {
 
     try {
       let response = axios.post(
-        "http://localhost:3001/Routes/api/events/${event._id}",
+        "http://localhost:3000/Routes/api/events/${event._id}",
         Event
       ).then ( res => {
       console.log(response)}
