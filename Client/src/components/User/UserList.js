@@ -31,6 +31,7 @@ export default class UserList extends React.Component {
      <li  style ={textStyle} key ={index}>
      {User.name},
      <p></p>
+     User ID: {User._id}<p></p>
      User Type : {User.userType} <p></p>
      Email : {User.email}  <p></p>
      Age : {User.age} <p></p>
