@@ -1,6 +1,8 @@
-import React, { Component } from './node_modules/react'
+
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import Feedback from './Feedback';
-import PropTypes from './node_modules/prop-types';
+
 export class FeedbackItem extends Component {
   render() {
       const {id,title} = this.props.feedback;

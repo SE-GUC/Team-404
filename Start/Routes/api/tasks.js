@@ -1,28 +1,25 @@
 // routings for task
-const mongoose = require("mongoose");
-const express = require("express");
-const app = express();
-app.use(express.json());
-const router = express.Router();
-//const uuid = require('uuid')
-const Task = require("../../Models/Task");
+const mongoose = require('mongoose')
+const express = require('express')
+const app = express()
+app.use(express.json())
+const router = express.Router()
+const Task = require('../../Models/Task')
+const authenticateUser = require('../../middleware/authenticate')
 
-const joi = require("Joi");
-//const joi = require("Joi")
 
 const validator = require("../../Validation/taskValid");
 
-router.get("/", async (req, res) => {
-  const tasks = await Task.find();
-  res.json({ data: tasks });
-});
+router.get('/', authenticateUser,async (req, res) => {
+  const tasks = await Task.find()
+  res.json({ data: tasks })
+})
+router.post('/', authenticateUser ,async (req, res) => {
 
-router.post("/", async (req, res) => {
   try {
-    //const isValidated = validator.createValidation(req.body)
-    // if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+      const isValidated = validator.createValidation(req.body)
+    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const task = await new Task({
-      _id: mongoose.Types.ObjectId(),
       title: req.body.title,
       description: req.body.description,
       eta: req.body.eta,
@@ -34,15 +31,14 @@ router.post("/", async (req, res) => {
       experienceNeeded: req.body.experienceNeeded,
       consultancyRequested: req.body.consultancyRequested
     }).save();
-
     return res.json({ data: task });
   } catch (error) {
     console.log(error);
   }
 });
 
-router
-  .route("/:id")
+  router
+  .route('/:id',authenticateUser)
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi

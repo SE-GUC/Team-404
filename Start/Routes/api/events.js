@@ -83,7 +83,7 @@ router
   });
 
 // Delete newEvent
-router.delete("/:id", async (req, res) => {
+router.delete("/:id" ,async (req, res) => {
   try {
     const id = req.params.id;
     const deletedEvent = await Event.findByIdAndRemove(id);

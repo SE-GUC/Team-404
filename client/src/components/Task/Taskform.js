@@ -1,12 +1,11 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import Taskitem from "./Taskitem";
-import Axios from "./node_modules/axios";
-import PropTypes from "./node_modules/prop-types";
+import Axios from "axios";
+import PropTypes from "prop-types";
 class Taskform extends Component {
   state = {
     taskform: []
   };
-
   componentDidMount = () => {
     Axios.get("http://localhost:3001/Routes/api/tasks/")
       .then(res => {

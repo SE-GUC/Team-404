@@ -1,7 +1,7 @@
-import React, { Component } from "./node_modules/react";
-import axios from "./axiosInstance";
-import { withRouter } from "./node_modules/react-router-dom";
-import { Link } from "./node_modules/react-router-dom";
+import React, { Component } from "react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 class ReadTaskID extends Component {

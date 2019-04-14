@@ -1,5 +1,4 @@
-import React, { Component } from "./node_modules/react";
-
+import React, { Component } from "react";
 class Taskitem extends Component {
   render() {
     return (

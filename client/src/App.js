@@ -1,18 +1,18 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 
-import { BrowserRouter as Router, Route } from "./node_modules/react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import "./components/Textbox.css";
-import Login from "./components/Login";
+import "./components/User/Textbox.css";
+import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Task/Taskform";
 import Tasks from "./components/page/Tasks/Tasks";
 import Partner from "./components/page/Partner";
 import EventRead from "./components/EventRead";
-import uuid from "./node_modules/uuid";
+import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import Axios from "./node_modules/axios";
+import Axios from "axios";
 import User from "./components/User";
 //import AddFeedback from "./components/AddFeedback";
 import AddTask from "./components/Task/AddTask";
@@ -201,7 +201,7 @@ class App extends Component {
 
               <Route exact path = "/AddTask" component = {AddTask}/>
               <Route exact path = "/ConsultingTasks" component = {ConsultingTasks}/>
-              <Route exact path = "/DeleteTasks" component = {DeleteTasks}/>
+              <Route exact path = "/DeleteTasks" component = {DeleteTask}/>
               <Route exact path = "/UpdateTask" component = {UpdateTask}/>
 
         </div>

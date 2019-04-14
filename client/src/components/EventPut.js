@@ -1,6 +1,5 @@
-import React from './node_modules/react';
-//import axios from 'axios';
-import axios from  "./axiosInstance";
+import React from 'react';
+import axios from "./axiosInstance";
 
 class EventPut extends React.Component{
 state={

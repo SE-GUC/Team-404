@@ -1,6 +1,6 @@
-import React, { Component } from "./node_modules/react";
-import axios from  "./axiosInstance";
-import { Link } from "./node_modules/react-router-dom";
+import React, { Component } from "react";
+import axios from  "axios";
+import { Link } from "react-router-dom";
 class ReadTasks extends Component {
     state = {
         tasks: [ ]
