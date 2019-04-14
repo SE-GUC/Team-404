@@ -3,26 +3,23 @@ import axios from "./axiosInstance";
 
 class EventPost extends React.Component {
   state = {
-    
     eventName: "",
     organizer: "",
     location: "",
     description: "",
-    remainingPlaces: 5,
+    remainingPlaces: 0,
     speakers: "",
-    maximumPlaces: 7,
+    maximumPlaces: 0,
     topicsCovered: "",
     field: "",
-    registrationPrice: 9,
-    
-   
+    registrationPrice: 0
   };
 
   handleSubmit = async event => {
     event.preventDefault();
-    console.log(`The state is : ${this.state}` );
+    console.log(`The state is : ${this.state}`);
     const Event = {
-      eventName : this.state.eventName,
+      eventName: this.state.eventName,
       organizer: this.state.organizer,
       location: this.state.location,
       description: this.state.description,
@@ -31,9 +28,7 @@ class EventPost extends React.Component {
       maximumPlaces: this.state.maximumPlaces,
       topicsCovered: this.state.topicsCovered,
       field: this.state.field,
-      registrationPrice: this.state.registrationPrice,
-      
-    
+      registrationPrice: this.state.registrationPrice
     };
     try {
       let response = await axios.post(
@@ -86,10 +81,6 @@ class EventPost extends React.Component {
     this.setState({ registrationPrice: event.target.value });
   };
 
-
-
-
-
   /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
       //console.log(res);
       console.log(res.data);
@@ -99,8 +90,12 @@ class EventPost extends React.Component {
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
         <label> Events : </label>
-
+        <br></br>
         <label className="eventName">
           eventName:
           <input
@@ -109,7 +104,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeEventName}
           />
         </label>
-
+        <br></br>
         <label className="Organizer">
           Organizer:
           <input
@@ -118,7 +113,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeOrganizer}
           />
         </label>
-
+        <br></br>
         <label className="Location">
           Location:
           <input
@@ -127,7 +122,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeLocation}
           />
         </label>
-
+        <br></br>
         <label className="Description">
           Description:
           <input
@@ -136,7 +131,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeDescription}
           />
         </label>
-
+        <br></br>
         <label className="remainingPlaces">
           remainingPlaces:
           <input
@@ -145,7 +140,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeRemainingPlaces}
           />
         </label>
-
+        <br></br>
         <label className="Speakers">
           Speakers:
           <input
@@ -154,7 +149,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeSpeakers}
           />
         </label>
-
+        <br></br>
         <label className="maximumPlaces">
           maximumPlaces:
           <input
@@ -163,7 +158,7 @@ class EventPost extends React.Component {
             onChange={this.handleChangeMaximumPlaces}
           />
         </label>
-
+        <br></br>
         <label className="topicsCovered">
           topicsCovered:
           <input
@@ -172,12 +167,12 @@ class EventPost extends React.Component {
             onChange={this.handleChangeTopicsCovered}
           />
         </label>
-
+        <br></br>
         <label className="Field">
           Field:
           <input type="text" name="field" onChange={this.handleChangeField} />
         </label>
-
+        <br></br>
         <label className="registrationPrice">
           registrationPrice:
           <input
@@ -186,11 +181,12 @@ class EventPost extends React.Component {
             onChange={this.handleChangeRegistrationPrice}
           />
         </label>
-
-  
-
-      
-        <button type="submit" onClick = {this.handleSubmit}> ADD </button>
+        <br></br>
+        <button type="submit" onClick={this.handleSubmit}>
+          {" "}
+          Create {" "}
+        </button>
+        <br></br>
       </form>
     );
   }
