@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "./components/Textbox.css";
@@ -7,14 +8,28 @@ import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
 import Taskform from "./components/Taskform";
 import Partner from "./components/page/Partner";
+
 import RegisterCandidate from "./components/RegisterCandidate";
 import RegisterPartner from "./components/RegisterPartner";
 import RegisterContributor from "./components/RegisterContributor";
+
+import EventRead from "./components/EventRead";
+import uuid from "uuid";
+import Feedback from "./components/Feedback";
+import Axios from "axios";
+import User from "./components/User";
+import AddFeedback from "./components/AddFeedback";
+import AddTask from "./components/AddTask";
+import EventPost from "./components/EventPost ";
+import EventPut from "./components/EventPut";
+
+
+react_dev
 class App extends Component {
   state = {
     applications: [],
     taskform: [
-      {
+      /*  {
         id: 1,
         description: "Fix Cars",
         eta: "1 month",
@@ -38,7 +53,7 @@ class App extends Component {
         lifecyclestatus: "pending",
         experienceneeded: "3 years",
         consultancy: "Consultant"
-      }
+      }*/
     ],
     partner: [
       {
@@ -71,9 +86,28 @@ class App extends Component {
         projecthistory: "p-3ProjectHistory",
         feedbackform: "p-3FeedBackForm"
       }
+    ],
+    feedbacks: [
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      },
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      },
+      {
+        id: uuid.v4(),
+        event: "dummydata",
+        response: "dummydata",
+        name: "dummydata"
+      }
     ]
   };
-
 
   delApplication = id => {
     this.setState({
@@ -82,15 +116,6 @@ class App extends Component {
       ]
     });
   };
-
-  /* <div style={together}>
-            <Header />
-            <li>
-              <Link to="/Applications">View Applications</Link>
-            </li>
-            <Route path="/Applications" component={ApplicationInfo} />
-          </div>
-*/
   render() {
     return (
       <Router>
@@ -101,7 +126,7 @@ class App extends Component {
             path="/"
             render={props => (
               <React.Fragment>
-                <p style={textStyle}>Welcome To Lirten Hub</p>
+                <p>Welcome To Lirten Hub</p>
               </React.Fragment>
             )}
           />
@@ -169,19 +194,52 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <Taskform taskform={this.state.taskform} />
+                <AddTask />
               </React.Fragment>
             )}
           />
+
+          <Route
+            exact
+            path="/Feedback"
+            render={props => (
+              <React.Fragment>
+                <AddFeedback addFeedback={this.addFeedback} />
+                <Feedback feedbacks={this.state.feedbacks} />{" "}
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User"
+            render={props => (
+              <React.Fragment>
+                <User />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            exact
+            path="/Event"
+            render={props => (
+              <React.Fragment>
+                <EventRead />
+                <br />
+                <br />
+                <EventPost />
+                <br />
+                <br />
+                <EventPut />
+              </React.Fragment>
+            )}
+          />
+
         </div>
+
       </Router>
     );
   }
 }
-
-const textStyle = {
-  textAlign: "left",
-  padding: "10px",
-  fontSize: "5mm"
-};
 
 export default App;

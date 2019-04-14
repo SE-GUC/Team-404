@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
   const users = await User.find()
   res.json({ data: users })
 })
+<<<<<<< HEAD
 
 //get by user type
 router.route('/:userType').get(async (request, response) => {
@@ -47,6 +48,14 @@ router.post('/login', async (req, res) => {
 //Create user
 router.post('/register', async (req, res) => {
   try {
+=======
+router.get('/:_id', async (req,res) => {
+  const users = await User.getElementById()
+  res.json({data: users})
+})
+router.post('/', async (req,res) => {
+  try{
+>>>>>>> react_dev
     const isValidated = validator.createValidation(req.body)
     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const { email, age, name, password, username, phoneNumber, userType, location } = req.body;

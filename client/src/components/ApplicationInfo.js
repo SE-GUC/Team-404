@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import Axios from "axios";
 import Application from "./Application";
 
@@ -19,19 +20,54 @@ export class ApplicationInfo extends Component {
       console.log(res.data)
     );
 
+=======
+//import Application from "./Application";
+import Axios from "axios";
+import PropTypes from "prop-types";
+
+class ApplicationInfo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      applications: [
+        
+      ]
+    };
+  }
+
+  componentDidMount = () => {
+    Axios.get("http://localhost:3001/Routes/api/applications/")
+      .then(res => {
+        this.setState({ applications: res.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+>>>>>>> react_dev
   };
 
   render() {
-    //ApplicationInfo in the parameter is used in everything else in here , references
-    //the one written in the APP
-    return this.state.applications.map(applicationInfo => (
-      <Application
-        key={applicationInfo.id}
-        applicationInfo={applicationInfo}
-        delApplication={this.props.delApplication}
-      />
-    ));
+    return (
+      <div>
+        <ApplicationList applications={this.state.applications} />
+      </div>
+    );
   }
 }
+
+function ApplicationList({ applications }) {
+  return (
+    <ul>
+      {applications.map(application => (
+        <li key={application.id}>{application.name}</li>
+      ))}
+    </ul>
+  );
+}
+
+ApplicationInfo.propTypes = {
+  applications: PropTypes.array.isRequired
+};
 
 export default ApplicationInfo;

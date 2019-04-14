@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 function Header() {
   return (
     <header style={headerStyle}>
@@ -28,6 +27,7 @@ function Header() {
       <Link style={linkStyle} to="/Login">
         Login
       </Link>
+<<<<<<< HEAD
       |{" "}  <Link style={linkStyle} to="/RegisterCandidate">
         RegisterCandidate
       </Link>
@@ -37,19 +37,31 @@ function Header() {
       | |{" "}  <Link style={linkStyle} to="/RegisterContributor">
         RegisterContributor
       </Link>
+=======
+      |{" "}
+      <Link style={linkStyle} to="/Feedback">
+        Feedback
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/User">
+        User
+      </Link>
+      
+>>>>>>> react_dev
     </header>
   );
 }
 
 const headerStyle = {
+  //  background : '#333',
   color: "#fff",
-  textAlign: "left",
-  padding: "10px"
+  textAlign: " center",
+  padding: "5px",
+  borderRadius: "5px"
 };
 
 const linkStyle = {
-  color: "#fff",
+  color:"#fff",
   textDecoration: "none"
-};
-
+}
 export default Header;
