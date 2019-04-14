@@ -16,8 +16,10 @@ class AddTask extends Component {
       experienceNeeded: "",
       consultancyRequested: false,
       consultant: "",
-      applications: []
+      applications: [],
+      tags: []
     };
+    this.handleChangeSkills = this.handleChangeSkills.bind(this);
   }
 
   componentDidMount() {
@@ -45,7 +47,8 @@ class AddTask extends Component {
       lifeCycleStatus: "Awaiting Approval",
       experienceNeeded: this.state.experienceNeeded,
       consultant: this.state.consultant,
-      applications: this.state.applications
+      applications: this.state.applications,
+      tags : this.state.skills
     };
     console.log(task);
     try {
@@ -59,6 +62,21 @@ class AddTask extends Component {
     }
   };
 
+  handleChangeSkills(e) {
+    var options = e.target.options;
+    console.log(options);
+    this.state.skills = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        console.log(options[i].selected);
+
+        this.state.skills.push(options[i].value);
+        
+      }
+    }
+    console.log(this.state.skills);
+  }
+
   handleChangeDescription = e => this.setState({ description: e.target.value });
   handleChangeEta = e => this.setState({ eta: e.target.value });
   handleChangeLevelofcommitment = e =>
@@ -66,7 +84,7 @@ class AddTask extends Component {
   handleChangePartner = e => this.setState({ partner: e.target.value });
   handleChangeMonetarycompensation = e =>
     this.setState({ monetaryCompensation: e.target.value });
-  handleChangeSkills = e => this.setState({ skills: e.target.value });
+  //handleChangeSkills = e => this.setState({ skills: e.target.value });
   handleChangeExperienceneeed = e =>
     this.setState({ experienceNeeded: e.target.value });
   handleChangeConsultancy = e => {
@@ -132,7 +150,11 @@ class AddTask extends Component {
           <br />
           <label>
             Skills
-            <select multiple={true} skills={[]} onChange = {this.handleChangeSkillsF}>
+            <select
+              multiple={true}
+              skills={this.state.skills}
+              onChange={this.handleChangeSkills}
+            >
               <option value="CS">CS</option>
               <option value="Design">Design</option>
               <option value="Word">Word</option>
@@ -174,7 +196,7 @@ class AddTask extends Component {
           </label>
 
           <br />
-          
+
           <br />
           <button type="submit">Add</button>
         </form>

@@ -12,7 +12,8 @@ const TaskSchema = new schema({
   experienceNeeded: { type: String, required: true },
   consultancyRequested: { type: Boolean, required: true },
   consultant:{type: String , required: false},
-  applications: { type: [String], required: false }
+  applications: { type: [String], required: false },
+  tags:{type : [String]}
 })
 
 // TaskSchema.index({ Description: 1, eta: 1, levelofcommitment: 1 }, { unique: true })
