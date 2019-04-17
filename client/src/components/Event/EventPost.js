@@ -1,8 +1,8 @@
-import React from "react";
-import axios from "./axiosInstance";
+import React, { Component } from "react";
+import axios from "axios";
 import { withRouter } from "react-router-dom";
 
-class EventPost extends React.Component {
+class EventPost extends Component {
   state = {
     eventName: "",
     organizer: "",
@@ -97,9 +97,9 @@ class EventPost extends React.Component {
         <br />
         <br />
         <label> Events : </label>
-        <br />
-        <label className="eventName">
-          eventName:
+        <br/>
+        <label className="EventName">
+          EventName:
           <input
             type="text"
             name="eventName"
@@ -114,8 +114,8 @@ class EventPost extends React.Component {
             name="organizer"
             onChange={this.handleChangeOrganizer}
           />
-        </label>
-        <br />
+        </label><br/>
+
         <label className="Location">
           Location:
           <input
@@ -123,8 +123,8 @@ class EventPost extends React.Component {
             name="location"
             onChange={this.handleChangeLocation}
           />
-        </label>
-        <br />
+        </label><br/>
+
         <label className="Description">
           Description:
           <input
@@ -132,17 +132,17 @@ class EventPost extends React.Component {
             name="description"
             onChange={this.handleChangeDescription}
           />
-        </label>
-        <br />
-        <label className="remainingPlaces">
-          remainingPlaces:
+        </label><br/>
+
+        <label className="RemainingPlaces">
+          RemainingPlaces:
           <input
             type="text"
             name="remainingPlaces"
             onChange={this.handleChangeRemainingPlaces}
           />
-        </label>
-        <br />
+        </label><br/>
+
         <label className="Speakers">
           Speakers:
           <input
@@ -182,13 +182,35 @@ class EventPost extends React.Component {
             name="registrationPrice"
             onChange={this.handleChangeRegistrationPrice}
           />
-        </label>
-        <br />
-        <button type="submit" onClick={this.handleSubmit}>
-          {" "}
-          Create{" "}
-        </button>
-        <br />
+        </label><br/>
+
+        <label className="ApprovalStatus">
+          ApprovalStatus:
+          <input
+            type="text"
+            name="approvalStatus"
+            onChange={this.handleChangeApprovalStatus}
+          />
+        </label><br/>
+
+        <label className="Applicants">
+          Applicants:
+          <input
+            type="text"
+            name="appliccants"
+            onChange={this.handleChangeApplicants}
+          />
+        </label><br/>
+
+        <label className="Feedback">
+          Feedback:
+          <input
+            type="text"
+            name="feedback"
+            onChange={this.handleChangeFeedback}
+          />
+        </label><br/>
+        <button type="submit"> ADD </button>
       </form>
     );
   }

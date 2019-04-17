@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "./axiosInstance";
+import axios from "axios";
 import { withRouter } from "react-router-dom";
 class EventDelete extends Component {
   state = {

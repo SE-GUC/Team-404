@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const app = express();
-const joi = require('joi')
+const sendNotif = require('../../utils/mailer')
+
 
 // We will be connecting using database
 const Event = require("../../Models/Event");
-const validator = require("../../Validation/eventValidation");
+const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
 app.get("/", (req, res) => {
@@ -54,6 +55,8 @@ router.post("/", async (req, res) => {
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
+    fin
+    sendNotif()
     return res.json({ data: event });
   } catch (error) {
     // We will be handling the error later
@@ -93,7 +96,7 @@ router
   });
 
 // Delete newEvent
-router.delete("/:id", async (req, res) => {
+router.delete("/:id" ,async (req, res) => {
   try {
     const id = req.params.id;
     const deletedEvent = await Event.findByIdAndRemove(id);

@@ -1,6 +1,8 @@
+
 import React, { Component } from 'react'
-import Feedback from './Feedback';
 import PropTypes from 'prop-types';
+import Feedback from './Feedback';
+
 export class FeedbackItem extends Component {
   render() {
       const {id,title} = this.props.feedback;

@@ -7,19 +7,23 @@
     "client-install": "npm install --prefix client",
     "start": "node server",
     "server": "nodemon server",
-    "test": "jest",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "jest",
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION =false npm install --prefix client && npm run build --prefix client"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": { 
     "@material-ui/core": "^3.9.3",
+    "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
+    "diff": "^4.0.1",
     "express": "^4.16.4",
     "install": "^0.12.2",
     "jest": "^24.6.0",
@@ -28,7 +32,8 @@
     "moment": "^2.24.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.4.20",
-    "node": "^11.13.0",
+    "node": "^10.15.3",
+    "nodemailer": "^6.1.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",

@@ -1,6 +1,7 @@
 import React from "react";
-import EventRead from "../Event/EventRead";
+import EventPost from "../Event/EventPost"
 import { Link } from "react-router-dom";
+import EventRead from "../Event/EventRead";
 
 
 function Event() {
