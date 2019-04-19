@@ -16,10 +16,10 @@ app.get("/", (req, res) => {
 });
 
 // Get all events
-router.get("/", async (req, res) => {
-  const events = await Event.find();
-  res.json({ data: events });
-});
+// router.get("/", async (req, res) => {
+//   const events = await Event.find();
+//   res.json({ data: events });
+// });
 
 router.get("/:id", async (req, res) => {
   try {
@@ -50,16 +50,15 @@ router.post("/", async (req, res) => {
       topicsCovered: req.body.topicsCovered,
       field: req.body.field,
       registrationPrice: req.body.registrationPrice,
-      approvalStatus: req.body.approvalStatus,
+      approvalStatus: "pending",
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
-    try{
-    sendNotif()
-    }
-    catch{
-      console.log(err);
-    }
+    // try {
+    //   sendNotif();
+    // } catch {
+    //   console.log(err);
+    // }
     return res.json({ data: event });
   } catch (error) {
     // We will be handling the error later
@@ -216,16 +215,28 @@ cancelBooking = async (req, res) => {
   }
 };
 
-viewEvents = async () => {
+viewApprovedEvents = async (req,res) => {
   try {
-    var view = await Event.find({ approvalStatus: "confirmed" });
-    return view;
+    var view = await Event.find({ approvalStatus: "approved" });
+    console.log(view);
+    res.json({ data: view });
   } catch (err) {
     console.log(err);
   }
 };
 
-router.get("/", viewEvents);
+viewPendingEvents = async (req,res) => {
+  try {
+    var view = await Event.find({ approvalStatus: "pending" });
+    console.log(view);
+    res.json({ data: view });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+router.get("/", viewApprovedEvents);
+router.get("/pending", viewPendingEvents);
 
 router.post("/:eid/users/:cid", bookEvent);
 router.post("/:eid/events/:cid", cancelBooking);
