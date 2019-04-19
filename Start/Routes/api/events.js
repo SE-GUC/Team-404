@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const app = express();
 const sendNotif = require('../../utils/mailer')
-
+const joi = require("joi")
 
 // We will be connecting using database
 const Event = require("../../Models/Event");
@@ -55,8 +55,12 @@ router.post("/", async (req, res) => {
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
-    fin
+    try{
     sendNotif()
+    }
+    catch{
+      console.log(err);
+    }
     return res.json({ data: event });
   } catch (error) {
     // We will be handling the error later
@@ -100,7 +104,8 @@ router.delete("/:id" ,async (req, res) => {
   try {
     const id = req.params.id;
     const deletedEvent = await Event.findByIdAndRemove(id);
-    res.json({ message: "Event was deleted successfully" });
+    const x = "Event was deleted successfully"
+    return res.json( x );
   } catch (error) {
     console.log(error);
   }
