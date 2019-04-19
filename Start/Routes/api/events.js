@@ -54,9 +54,10 @@ router.post("/", async (req, res) => {
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
-    try {
-      sendNotif();
-    } catch {
+    try{
+    sendNotif()
+    }
+    catch{
       console.log(err);
     }
     return res.json({ data: event });
