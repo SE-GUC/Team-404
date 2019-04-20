@@ -113,7 +113,7 @@ const functions = {
     );
     return newEvent;
   },
-  confirmEvent: async _id => {
+  confirmRequest: async _id => {
     const event = await axios.put(
       "http://localhost:3001/Routes/api/events/5cba165d3c93f1163884afe4/confirmRequest",
       {

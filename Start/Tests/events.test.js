@@ -59,6 +59,6 @@ test("admin create event", async () => {
 });
 
 test("confirm an event", async () => {
-  const _event = await funcs.confirmRequest();
-  expect(_event.data.data.approvalStatus).toEqual("approved");
+    const message = await funcs.confirmRequest();
+    expect(message.data).toEqual("Event request has been approved!");
 });
