@@ -15,21 +15,12 @@ app.get("/", (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
-// Get all events
+// //Get all events
 // router.get("/", async (req, res) => {
 //   const events = await Event.find();
 //   res.json({ data: events });
 // });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const requestedEvent = await Event.findById(id);
-    res.json({ msg: "Event you asked for", data: requestedEvent });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 // Create a new newEvent
 router.post("/", async (req, res) => {
@@ -68,8 +59,7 @@ router.post("/", async (req, res) => {
 
 // Update event
 router
-  .route("/:id")
-  .all(async (request, response, next) => {
+  .put("/:id",async (request, response) => {
     const status = joi.validate(request.params, {
       id: joi
         .string()
@@ -79,10 +69,6 @@ router
     if (status.error) {
       return response.json({ error: status.error.details[0].message });
     }
-    next();
-  })
-
-  .put(async (request, response) => {
     Event.findByIdAndUpdate(
       request.params.id,
       request.body,
@@ -226,17 +212,31 @@ viewApprovedEvents = async (req,res) => {
 };
 
 viewPendingEvents = async (req,res) => {
+  console.log('be5')
   try {
     var view = await Event.find({ approvalStatus: "pending" });
     console.log(view);
     res.json({ data: view });
   } catch (err) {
+    console.log(view)
     console.log(err);
   }
 };
 
+
 router.get("/", viewApprovedEvents);
-router.get("/pending", viewPendingEvents);
+
+router.get('/pending', viewPendingEvents);
+
+router.get("/getE/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const requestedEvent = await Event.findById(id);
+    res.json({ msg: "Event you asked for", data: requestedEvent });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.post("/:eid/users/:cid", bookEvent);
 router.post("/:eid/events/:cid", cancelBooking);
