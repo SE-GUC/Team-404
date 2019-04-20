@@ -6,8 +6,13 @@ let event;
 //     expect(response.data.data.field).toEqual('programming');
 // });
 
-test('get all events', async () => {
-    const events = await funcs.getEvents();
+test('get all approved events', async () => {
+    const events = await funcs.getApprovedEvents();
+    expect(events).not.toBeNull();
+});
+
+test('get all pending events', async () => {
+    const events = await funcs.getPendingEvents();
     expect(events).not.toBeNull();
 });
 
@@ -27,3 +32,14 @@ test('delete specific event', async () => {
     expect(messagee.data).toEqual("Event was deleted successfully");
 });
 
+test('book an event', async () => {
+    const res = await funcs.createBooking();
+    console.log(res);
+    expect(res.data).toEqual("Event has been booked!");
+});
+
+test('cancel an event', async () => {
+    const res = await funcs.cancelBooking();
+    console.log(res);
+    expect(res.data).toEqual("Event booking has been canceled!");
+});
