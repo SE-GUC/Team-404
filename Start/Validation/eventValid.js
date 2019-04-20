@@ -9,8 +9,7 @@ module.exports = {
         .required(),
       organizer: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       location: Joi.string()
         .min(3)
         .max(500)

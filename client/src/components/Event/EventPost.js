@@ -184,32 +184,8 @@ class EventPost extends Component {
           />
         </label><br/>
 
-        <label className="ApprovalStatus">
-          ApprovalStatus:
-          <input
-            type="text"
-            name="approvalStatus"
-            onChange={this.handleChangeApprovalStatus}
-          />
-        </label><br/>
-
-        <label className="Applicants">
-          Applicants:
-          <input
-            type="text"
-            name="appliccants"
-            onChange={this.handleChangeApplicants}
-          />
-        </label><br/>
-
-        <label className="Feedback">
-          Feedback:
-          <input
-            type="text"
-            name="feedback"
-            onChange={this.handleChangeFeedback}
-          />
-        </label><br/>
+  
+        
         <button type="submit"> ADD </button>
       </form>
     );

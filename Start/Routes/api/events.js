@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
-// Get all events
+// Get all events - SHOULD WE REMOVE THIS?
 router.get("/", async (req, res) => {
   const events = await Event.find();
   res.json({ data: events });
@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
       topicsCovered: req.body.topicsCovered,
       field: req.body.field,
       registrationPrice: req.body.registrationPrice,
-      approvalStatus: req.body.approvalStatus,
+      approvalStatus: 'pending',
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
@@ -68,35 +68,29 @@ router.post("/", async (req, res) => {
 });
 
 // Update event
-router
-  .route("/:id")
-  .all(async (request, response, next) => {
-    const status = joi.validate(request.params, {
-      id: joi
-        .string()
-        .length(24)
-        .required()
-    });
-    if (status.error) {
-      return response.json({ error: status.error.details[0].message });
-    }
-    next();
-  })
-
-  .put(async (request, response) => {
-    Event.findByIdAndUpdate(
-      request.params.id,
-      request.body,
-      { new: true },
-      (err, model) => {
-        if (!err) {
-          return response.json({ data: model });
-        } else {
-          return response.json({ error: `Error, couldn't update event` });
-        }
-      }
-    );
+router.put("/:id",async (request, response) => {
+  const status = joi.validate(request.params, {
+    id: joi
+      .string()
+      .length(24)
+      .required()
   });
+  if (status.error) {
+    return response.json({ error: status.error.details[0].message });
+  }
+  Event.findByIdAndUpdate(
+    request.params.id,
+    request.body,
+    { new: true },
+    (err, model) => {
+      if (!err) {
+        return response.json({ data: model });
+      } else {
+        return response.json({ error: `Error, couldn't update event` });
+      }
+    }
+  );
+});
 
 // Delete newEvent
 router.delete("/:id", async (req, res) => {
@@ -216,18 +210,116 @@ cancelBooking = async (req, res) => {
   }
 };
 
+//Views only approved events 
 viewEvents = async () => {
   try {
-    var view = await Event.find({ approvalStatus: "confirmed" });
+    var view = await Event.find({ approvalStatus: "approved" });
     return view;
   } catch (err) {
     console.log(err);
   }
 };
 
-router.get("/", viewEvents);
+//Partner request event    
+requestEvent = async (req,res) => {
+  try {
+      
+    var pid = req.params.pid
+    var partner = await User.findById(pid).exec();
+    console.log('entry success ya partner')
+    
+    const newEvent =  await new Event({
+      
+      eventName: req.body.eventName,
+      description: req.body.description,
+      organizer: partner.name,
+      location: req.body.location,
+      remainingPlaces:req.body.remainingPlaces,
+      speakers:req.body.speakers,
+      maximumPlaces:req.body.maximumPlaces,
+      topicsCovered:req.body.topicsCovered,
+      field:req.body.field,
+      registrationPrice:req.body.registrationPrice,
+      approvalStatus:"pending",
+      applicants:req.body.applicants, 
+      feedback:req.body.feedback
+    }).save();
+    console.log(newEvent)
+    return res.json( "Event has been requested!");
+   
+  }
+  catch(error) {
+  console.log('Could not request event')
+  }
+  };
 
+//Admin create event    
+adminCreateEvent = async (req,res) => {
+  try {
+      
+    var aid = req.params.aid
+    var admin = await User.findById(aid).exec();
+    console.log('entry success ya admin')
+    
+    const newEvent =  await new Event({
+      
+      eventName: req.body.eventName,
+      description: req.body.description,
+      organizer: admin.name,
+      location: req.body.location,
+      remainingPlaces:req.body.remainingPlaces,
+      speakers:req.body.speakers,
+      maximumPlaces:req.body.maximumPlaces,
+      topicsCovered:req.body.topicsCovered,
+      field:req.body.field,
+      registrationPrice:req.body.registrationPrice,
+      approvalStatus:"approved",
+      applicants:req.body.applicants, 
+      feedback:req.body.feedback
+    }).save();
+    console.log(newEvent)
+    return res.json("Event has been created!");
+  }
+  catch(error) {
+  console.log('Could not create event')
+  }
+  };
+
+//Admin confirm requested event 
+confirmRequest = async (req, res) => {
+    try {
+      var eid = req.params.eid;
+      var event = await Event.findById(eid).exec();
+      Event.findByIdAndUpdate(
+        eid,
+        { $set : { approvalStatus: "approved" } },
+        (err, model) => {
+          if (!err) {
+            console.log({ data: model });
+          } else {
+            console.log({ error: `Error, couldn't confirm event ` });
+          }
+        }
+      );
+  
+      const message = "Event request has been approved!";
+      return res.json(message);
+    }
+     catch (err) {
+      console.log("couldn't confirm the event");
+    }
+  };
+  
+      
+
+
+router.get("/", viewEvents);
 router.post("/:eid/users/:cid", bookEvent);
 router.post("/:eid/events/:cid", cancelBooking);
+
+//calling of Hagar's functions
+router.post('/:pid/requestEvent', requestEvent);
+router.post('/:aid/adminCreateEvent', adminCreateEvent);
+router.put('/:eid/confirmRequest', confirmRequest);
 
 module.exports = router;
