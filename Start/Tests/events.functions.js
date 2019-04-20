@@ -28,16 +28,17 @@ const functions = {
     );
     return res;
   },
+
   createEvent: async () => {
     const newEvent = await axios.post(
       "http://localhost:3001/Routes/api/events/",
       {
         eventName: "Dell",
-        organizer: "Islam Sanad",
-        location: "Sunrise",
-        description: "Coding at sunrise under the beautiful sky",
+        organizer: "Clara Atef",
+        location: "Helioplis",
+        description: "Coding competition",
         remainingPlaces: 5,
-        speakers: "Hagar AbdelNabi",
+        speakers: "Hagar Abdel-Nabi",
         maximumPlaces: 7,
         topicsCovered: "java",
         field: "programming",
@@ -48,6 +49,59 @@ const functions = {
       }
     );
     return newEvent;
+  },
+
+  adminCreateEvent: async () => {
+    const newEvent = await axios.post(
+      "http://localhost:3001/Routes/api/events/5cb0f11c72d17e4c380fa774/adminCreateEvent",
+      {
+        eventName: "Admin Event",
+        organizer: "Clara Atef",
+        location: "Helioplis",
+        description: "Coding competition",
+        remainingPlaces: 5,
+        speakers: "Hagar Abdel-Nabi",
+        maximumPlaces: 7,
+        topicsCovered: "java",
+        field: "programming",
+        registrationPrice: 100,
+        approvalStatus: "approved",
+        applicants: [""],
+        feedback: [""]
+      }
+    );
+    return newEvent;
+  },
+
+  requestEvent: async () => {
+    const newEvent = await axios.post(
+      "http://localhost:3001/Routes/api/events/5cb0f3d0bc346433a4e1699f/requestEvent",
+      {
+        eventName: "Partner Event",
+        organizer: "Clara Atef",
+        location: "Helioplis",
+        description: "Coding competition",
+        remainingPlaces: 5,
+        speakers: "Hagar Abdel-Nabi",
+        maximumPlaces: 7,
+        topicsCovered: "java",
+        field: "programming",
+        registrationPrice: 100,
+        approvalStatus: "approved",
+        applicants: [""],
+        feedback: [""]
+      }
+    );
+    return newEvent;
+  },
+  confirmEvent: async _id => {
+    const event = await axios.put(
+      "http://localhost:3001/Routes/api/events/5cba165d3c93f1163884afe4/confirmRequest",
+      {
+        approvalStatus: "approved"
+      }
+    );
+    return event;
   }
 };
 

@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
+import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
-class EventPost extends Component {
+class EventPost extends React.Component {
   state = {
     eventName: "",
     organizer: "",
     location: "",
     description: "",
-    remainingPlaces: 0,
+    remainingPlaces: 5,
     speakers: "",
-    maximumPlaces: 0,
+    maximumPlaces: 7,
     topicsCovered: "",
     field: "",
-    registrationPrice: 0
+    registrationPrice: 9
   };
 
   handleSubmit = async event => {
     event.preventDefault();
-   // console.log(`The state is : ${this.state}`);
+    console.log(`The state is : ${this.state}`);
     const Event = {
       eventName: this.state.eventName,
       organizer: this.state.organizer,
@@ -36,11 +36,11 @@ class EventPost extends Component {
         "http://localhost:3001/Routes/api/events/",
         Event
       );
-      //console.log(response);
+      console.log(response);
+      this.props.history.push("/Event");
     } catch (error) {
       console.log(error);
     }
-    this.props.history.push('/Event');
   };
 
   handleChangeEventName = event => {
@@ -88,7 +88,6 @@ class EventPost extends Component {
       console.log(res.data);
     });s
   */
-
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
@@ -97,7 +96,7 @@ class EventPost extends Component {
         <br />
         <br />
         <label> Events : </label>
-        <br/>
+        <br />
         <label className="EventName">
           EventName:
           <input
@@ -114,7 +113,8 @@ class EventPost extends Component {
             name="organizer"
             onChange={this.handleChangeOrganizer}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Location">
           Location:
@@ -123,7 +123,8 @@ class EventPost extends Component {
             name="location"
             onChange={this.handleChangeLocation}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Description">
           Description:
@@ -132,7 +133,8 @@ class EventPost extends Component {
             name="description"
             onChange={this.handleChangeDescription}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="RemainingPlaces">
           RemainingPlaces:
@@ -141,7 +143,8 @@ class EventPost extends Component {
             name="remainingPlaces"
             onChange={this.handleChangeRemainingPlaces}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Speakers">
           Speakers:
@@ -182,11 +185,13 @@ class EventPost extends Component {
             name="registrationPrice"
             onChange={this.handleChangeRegistrationPrice}
           />
-        </label><br/>
+        </label>
+        <br />
 
-  
-        
-        <button type="submit"> ADD </button>
+        <button type="submit" onClick={this.handleSubmit}>
+          {" "}
+          ADD{" "}
+        </button>
       </form>
     );
   }

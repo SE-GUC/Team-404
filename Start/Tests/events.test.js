@@ -27,6 +27,9 @@ test("delete specific event", async () => {
   expect(messagee.data).toEqual("Event was deleted successfully");
 });
 
+
+//Hagar backend tests 
+
 test("partner request event", async () => {
   const message = await funcs.requestEvent();
   console.log(message);

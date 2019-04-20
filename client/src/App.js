@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import EventPost from "./components/Event/EventPost";
 import EventPut from "./components/Event/EventPut";
-import EventRead from "./components/Event/EventRead";
 import EventDelete from "./components/Event/EventDelete";
 import "./App.css";
 import "./components/User/Textbox.css";
@@ -208,7 +207,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/event/:id"
+            path="/Event/:id"
             render={props => (
               <React.Fragment>
                 <EventReadID />

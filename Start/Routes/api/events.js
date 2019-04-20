@@ -15,21 +15,12 @@ app.get("/", (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
-// Get all events - SHOULD WE REMOVE THIS?
-router.get("/", async (req, res) => {
-  const events = await Event.find();
-  res.json({ data: events });
-});
+// //Get all events
+// router.get("/", async (req, res) => {
+//   const events = await Event.find();
+//   res.json({ data: events });
+// });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const requestedEvent = await Event.findById(id);
-    res.json({ msg: "Event you asked for", data: requestedEvent });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 // Create a new newEvent
 router.post("/", async (req, res) => {
@@ -50,16 +41,15 @@ router.post("/", async (req, res) => {
       topicsCovered: req.body.topicsCovered,
       field: req.body.field,
       registrationPrice: req.body.registrationPrice,
-      approvalStatus: 'pending',
+      approvalStatus: "pending",
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
-    try{
-    sendNotif()
-    }
-    catch{
-      console.log(err);
-    }
+    // try {
+    //   sendNotif();
+    // } catch {
+    //   console.log(err);
+    // }
     return res.json({ data: event });
   } catch (error) {
     // We will be handling the error later
@@ -69,28 +59,29 @@ router.post("/", async (req, res) => {
 
 // Update event
 router.put("/:id",async (request, response) => {
-  const status = joi.validate(request.params, {
-    id: joi
-      .string()
-      .length(24)
-      .required()
-  });
-  if (status.error) {
-    return response.json({ error: status.error.details[0].message });
-  }
-  Event.findByIdAndUpdate(
-    request.params.id,
-    request.body,
-    { new: true },
-    (err, model) => {
-      if (!err) {
-        return response.json({ data: model });
-      } else {
-        return response.json({ error: `Error, couldn't update event` });
-      }
+    const status = joi.validate(request.params, {
+      id: joi
+        .string()
+        .length(24)
+        .required()
+    });
+    if (status.error) {
+      return response.json({ error: status.error.details[0].message });
     }
-  );
-});
+    Event.findByIdAndUpdate(
+      request.params.id,
+      request.body,
+      { new: true },
+      (err, model) => {
+        if (!err) {
+          return response.json({ data: model });
+        } else {
+          return response.json({ error: `Error, couldn't update event` });
+        }
+      }
+    );
+  });
+
 
 // Delete newEvent
 router.delete("/:id", async (req, res) => {
@@ -210,15 +201,29 @@ cancelBooking = async (req, res) => {
   }
 };
 
-//Views only approved events 
-viewEvents = async () => {
+// View approved events
+viewApprovedEvents = async (req,res) => {
   try {
     var view = await Event.find({ approvalStatus: "approved" });
-    return view;
+    console.log(view);
+    res.json({ data: view });
   } catch (err) {
     console.log(err);
   }
 };
+
+// View pending events
+viewPendingEvents = async (req, res) => {
+  try {
+    var view = await Event.find({ approvalStatus: "pending" });
+    console.log(view);
+    res.json({ data: view });
+  } catch (err) {
+    console.log(view);
+    console.log(err);
+  }
+};
+
 
 //Partner request event    
 requestEvent = async (req,res) => {
@@ -284,6 +289,32 @@ adminCreateEvent = async (req,res) => {
   console.log('Could not create event')
   }
   };
+viewPendingEvents = async (req,res) => {
+  console.log('be5')
+  try {
+    var view = await Event.find({ approvalStatus: "pending" });
+    console.log(view);
+    res.json({ data: view });
+  } catch (err) {
+    console.log(view)
+    console.log(err);
+  }
+};
+
+
+router.get("/", viewApprovedEvents);
+
+router.get('/pending', viewPendingEvents);
+
+router.get("/getE/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const requestedEvent = await Event.findById(id);
+    res.json({ msg: "Event you asked for", data: requestedEvent });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 //Admin confirm requested event 
 confirmRequest = async (req, res) => {
@@ -312,8 +343,9 @@ confirmRequest = async (req, res) => {
   
       
 
-
-router.get("/", viewEvents);
+//calling of Clara's functions
+router.get("/", viewApprovedEvents);
+router.get("/pending", viewPendingEvents);
 router.post("/:eid/users/:cid", bookEvent);
 router.post("/:eid/events/:cid", cancelBooking);
 
