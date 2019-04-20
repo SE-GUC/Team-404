@@ -8,7 +8,7 @@ const router = express.Router();
 const Task = require("../../Models/Task");
 const sendNotif= require("../../utils/mailer")
 const users = require("../api/users")
-//const joi = require("Joi")
+const joi = require("Joi")
 const validator = require("../../Validation/taskValid");
 
 router.get('/', async (req, res) => {
@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
 router.post('/' ,async (req, res) => {
 
   try {
-      const isValidated = validator.createValidation(req.body)
-    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+  //    const isValidated = validator.createValidation(req.body)
+  //  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const task = await new Task({
       title: req.body.title,
       description: req.body.description,
@@ -126,57 +126,6 @@ router.post('/' ,async (req, res) => {
               })
 
   })
-
-  router.put('/:Tid', async (req, res) => {
-    var Pid = req.body.id
-    var Tid = req.params.Tid
-
-let {description,eta,levelOfCommitment,partner,monetaryCompensation,skills,lifeCycleStatus,experienceNeeded,consultancyRequested,consultant,applications
-}=req.body
-
-let updateBody={}
-if(description){
-  updateBody.description=description
-}
-if(eta){
-  updateBody.eta=eta
-}
-if(levelOfCommitment){
-  updateBody.levelOfCommitment=levelOfCommitment
-}
-if(partner){
-  updateBody.partner=partner
-}
-if(monetaryCompensation){
-  updateBody.monetaryCompensation=monetaryCompensation
-}
-if(skills){
-  updateBody.skills=skills
-}
-if(lifeCycleStatus){
-  updateBody.lifeCycleStatus=lifeCycleStatus
-}
-if(experienceNeeded){
-  updateBody.experienceNeeded=experienceNeeded
-}
-if(consultancyRequested){
-  updateBody.consultancyRequested=consultancyRequested
-}
-if(consultant){
-  updateBody.consultant=consultant
-}
-if(applications){
-  updateBody.applications=applications
-}
-
-    var tasks = await Task.findById(Tid)//.exec()
-    if(!tasks){
-      return  res.status(400).send({
-          message:"couldnt find a task with the specififed id "
-        })
-      }
-    });
-  
 
 router.get("/viewTaskStatus/:tid", async (req, res) => {
   var Pid = req.body.pid;
