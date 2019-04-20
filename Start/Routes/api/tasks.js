@@ -4,23 +4,20 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const router = express.Router();
-//const uuid = require('uuid')
 const Task = require("../../Models/Task");
-const sendNotif= require("../../utils/mailer")
-const User = require("../../Models/User")
-const joi = require("Joi")
+const sendNotif = require("../../utils/mailer");
+const User = require("../../Models/User");
+const joi = require("Joi");
 const validator = require("../../Validation/taskValid");
 
-router.get('/', async (req, res) => {
-  const tasks = await Task.find()
-  res.json({ data: tasks })
-})
-router.post('/' ,async (req, res) => {
-
+router.get("/", async (req, res) => {
+  const tasks = await Task.find();
+  res.json({ data: tasks });
+});
+router.post("/", async (req, res) => {
   try {
-    
-  //    const isValidated = validator.createValidation(req.body)
-  //  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    //    const isValidated = validator.createValidation(req.body)
+    //  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const task = await new Task({
       title: req.body.title,
       description: req.body.description,
@@ -33,13 +30,12 @@ router.post('/' ,async (req, res) => {
       experienceNeeded: req.body.experienceNeeded,
       consultancyRequested: req.body.consultancyRequested
     }).save();
-    
-    
+
     const users = await User.find({});
-    if(task.consultancyRequested == true){
+    if (task.consultancyRequested == true) {
       users.forEach(user => {
-        if(user.userType=="Consultant"){  
-          sendNotif(user.email,"Consultancy req", "LirtenHub")
+        if (user.userType == "Consultant") {
+          sendNotif(user.email, "Consultancy req", "LirtenHub");
         }
       });
     }
@@ -49,8 +45,8 @@ router.post('/' ,async (req, res) => {
   }
 });
 
-  router
-  .route('/:id')
+router
+  .route("/:id")
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -97,43 +93,18 @@ router.post('/' ,async (req, res) => {
       if (!err) {
         return response.json({ data: null });
       } else {
-        return response.json({ error: `Error, couldn't delete a Task given the following data` })
+        return response.json({
+          error: `Error, couldn't delete a Task given the following data`
+        });
       }
-    })
-  })
-
-
-router.get('/viewTaskStatus/:tid', async (req, res) => {
-              var Pid = req.body.pid
-              var Tid = req.params.tid
-              var tasks = await Task.findById(Tid)
-              if(!tasks){
-              return  res.status(400).send({
-                  message:"couldnt find a task with the specififed id "
-                })
-              }
-              var query = {'_id':Tid,
-              'partner':Pid
-            };
-              let foundTask=await Task.findOne(query)
-              if(!foundTask){
-              return  res.status(400).send({
-                  message:"couldnt find a task with the specififed id and partner id "
-                })
-              }
-
-              return res.status(200).send({
-                message:"succuess",
-                lifecycle:foundTask.lifecyclestatus,
-                test:foundTask
-              })
-
-  })
+    });
+  });
 
 router.get("/viewTaskStatus/:tid", async (req, res) => {
-  var Pid = req.body.pid;
+  var Pid = req.body.partner;
   var Tid = req.params.tid;
   var tasks = await Task.findById(Tid);
+
   if (!tasks) {
     return res.status(400).send({
       message: "couldnt find a task with the specififed id "
@@ -146,11 +117,11 @@ router.get("/viewTaskStatus/:tid", async (req, res) => {
       message: "couldnt find a task with the specififed id and partner id "
     });
   }
-
+  console.log(foundTask.lifeCycleStatus);
   return res.status(200).send({
-    message: "succuess",
-    lifecycle: foundTask.lifecyclestatus,
-    test: foundTask
+    message: "success",
+    lifecycle: foundTask.lifeCycleStatus
+    //test: foundTask
   });
 });
 
