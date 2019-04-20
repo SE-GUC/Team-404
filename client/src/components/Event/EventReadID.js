@@ -9,7 +9,7 @@ class EventReadID extends Component {
     events: []
   };
   componentDidMount() {
-    axios.get(`events/${this.props.match.params.id}`).then(res => {
+    axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
       console.log("Response is: ", res);
       this.setState({ event: res.data.data });
       console.log("The state is", this.state);
@@ -77,7 +77,7 @@ class EventReadID extends Component {
             <span className="event registration price">{event.registrationPrice}</span>
             <br />
             <br />
-            <Link to="/${event._id}/update">UPDATE</Link>
+            <Link to="/${event._id}/update"><span STYLE="text-decoration:underline; font-weight:bold">UPDATE</span> </Link>
             <br />
             <br />
             <button className="btn btn-primay" onClick={this.onDelete}>Delete</button>
