@@ -22,7 +22,7 @@ const eventList = events.length ? (
     return(
         <div className= "event card" key={event._id}>
         <div className="card-content">
-        <Link to = {`Event/${event._id}`}>
+        <Link to = {`event/${event._id}`}>
         
         {/* //the name as a link  */}
         <span STYLE="text-decoration:underline; font-weight:bold">{event.eventName}</span>
