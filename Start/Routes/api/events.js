@@ -21,7 +21,6 @@ app.get("/", (req, res) => {
 //   res.json({ data: events });
 // });
 
-
 // Create a new newEvent
 router.post("/", async (req, res) => {
   try {
@@ -58,29 +57,29 @@ router.post("/", async (req, res) => {
 });
 
 // Update event
-router.put("/:id",async (request, response) => {
-    const status = joi.validate(request.params, {
-      id: joi
-        .string()
-        .length(24)
-        .required()
-    });
-    if (status.error) {
-      return response.json({ error: status.error.details[0].message });
-    }
-    Event.findByIdAndUpdate(
-      request.params.id,
-      request.body,
-      { new: true },
-      (err, model) => {
-        if (!err) {
-          return response.json({ data: model });
-        } else {
-          return response.json({ error: `Error, couldn't update event` });
-        }
-      }
-    );
+router.put("/:id", async (request, response) => {
+  const status = joi.validate(request.params, {
+    id: joi
+      .string()
+      .length(24)
+      .required()
   });
+  if (status.error) {
+    return response.json({ error: status.error.details[0].message });
+  }
+  Event.findByIdAndUpdate(
+    request.params.id,
+    request.body,
+    { new: true },
+    (err, model) => {
+      if (!err) {
+        return response.json({ data: model });
+      } else {
+        return response.json({ error: `Error, couldn't update event` });
+      }
+    }
+  );
+});
 
 // Delete newEvent
 router.delete("/:id", async (req, res) => {
@@ -200,7 +199,7 @@ cancelBooking = async (req, res) => {
   }
 };
 
-viewApprovedEvents = async (req,res) => {
+viewApprovedEvents = async (req, res) => {
   try {
     var view = await Event.find({ approvalStatus: "approved" });
     console.log(view);
@@ -210,22 +209,20 @@ viewApprovedEvents = async (req,res) => {
   }
 };
 
-viewPendingEvents = async (req,res) => {
-  console.log('be5')
+viewPendingEvents = async (req, res) => {
   try {
     var view = await Event.find({ approvalStatus: "pending" });
     console.log(view);
     res.json({ data: view });
   } catch (err) {
-    console.log(view)
+    console.log(view);
     console.log(err);
   }
 };
 
-
 router.get("/", viewApprovedEvents);
 
-router.get('/pending', viewPendingEvents);
+router.get("/pending", viewPendingEvents);
 
 router.get("/getE/:id", async (req, res) => {
   try {
