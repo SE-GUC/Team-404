@@ -21,3 +21,14 @@ module.exports = msg;
 //const sendNotif = require('../../utils/mailer')
 //sendNotif(to,message,subject)
 
+
+      //finding a specific user
+// const User = require("../../Models/User");
+// const users = await User.find({});
+//     if (task.consultancyRequested == true) {
+//       users.forEach(user => {
+//         if (user.userType == "Consultant") {
+//           sendNotif(user.email, "Consultancy req", "LirtenHub");
+//         }
+//       });
+//     }

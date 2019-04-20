@@ -105,6 +105,7 @@ bookEvent = async (req, res) => {
       { $push: { applicants: cid } },
       (err, model) => {
         if (!err) {
+                 
           console.log({ data: model });
         } else {
           console.log({ error: `Error, couldn't update applicants array` });
