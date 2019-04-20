@@ -1,17 +1,16 @@
 
-import React, { Component } from 'react';
-import FeedbackItem from './FeedbackItem';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import FeedbackItem from './FeedbackItem'
+import PropTypes from 'prop-types'
 class Feedback extends Component {
-  render() {
-    return this.props.feedbacks.map((feedback)=>(
-       <FeedbackItem key={feedback.id} feedback ={feedback} deleteFeedback={this.props.deleteFeedback}/>
-    ));
+  render () {
+    return this.props.feedbacks.map((feedback) => (
+      <FeedbackItem key={feedback.id} feedback={feedback} deleteFeedback={this.props.deleteFeedback} />
+    ))
   }
 }
-//PropTypes
+// PropTypes
 Feedback.propTypes = {
-    feedbacks : PropTypes.array.isRequired
+  feedbacks: PropTypes.array.isRequired
 }
-export default Feedback;
-
+export default Feedback

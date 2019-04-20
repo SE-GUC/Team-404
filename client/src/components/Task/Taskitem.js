@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 class Taskitem extends Component {
-  render() {
+  render () {
     return (
       <div>
         <p>
-          {this.props.taskform.id} . Description:{" "}
-          {this.props.taskform.description}{" "}
+          {this.props.taskform.id} . Description:{' '}
+          {this.props.taskform.description}{' '}
         </p>
         <p> Eta: {this.props.taskform.eta} </p>
         <p> Skills Required: {this.props.taskform.skills} </p>
@@ -19,8 +19,8 @@ class Taskitem extends Component {
         <p> . </p>
         <p> . </p>
       </div>
-    );
+    )
   }
 }
 
-export default Taskitem;
+export default Taskitem

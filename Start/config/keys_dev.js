@@ -4,5 +4,4 @@ module.exports = {
   secretOrKey: 'aoijasiodjasiodj'
 }
 
-
 // dotenv package

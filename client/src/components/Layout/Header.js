@@ -1,58 +1,58 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-function Header() {
+import React from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+function Header () {
   return (
     <header style={headerStyle}>
       <h1>Lirten Hub</h1>
-      <Link style={linkStyle} to="/">
+      <Link style={linkStyle} to='/'>
         Home
-      </Link>{" "}
-      |{" "}
-      <Link style={linkStyle} to="/Application">
+      </Link>{' '}
+      |{' '}
+      <Link style={linkStyle} to='/Application'>
         Applications
       </Link>
-      |{" "}
-      <Link style={linkStyle} to="/RegisterPartner">
+      |{' '}
+      <Link style={linkStyle} to='/RegisterPartner'>
         RegisterPartner
       </Link>
-      |{" "}
-      <Link style={linkStyle} to="/RegisterCandidate">
+      |{' '}
+      <Link style={linkStyle} to='/RegisterCandidate'>
         RegisterCandidate
       </Link>
-      |{" "}
-      <Link style={linkStyle} to="/Event">
+      |{' '}
+      <Link style={linkStyle} to='/Event'>
         Events
       </Link>
-      |{" "}
-      <Link style={linkStyle} to="/Tasks">
+      |{' '}
+      <Link style={linkStyle} to='/Tasks'>
         Tasks
       </Link>
-     |{" "}
-      <Link style={linkStyle} to="/Login">
+     |{' '}
+      <Link style={linkStyle} to='/Login'>
         Login
       </Link>
-      |{" "}
-      <Link style={linkStyle} to="/Feedback">
+      |{' '}
+      <Link style={linkStyle} to='/Feedback'>
         Feedback
       </Link>
-      |{" "}
-      <Link style={linkStyle} to="/User">
+      |{' '}
+      <Link style={linkStyle} to='/User'>
         User
       </Link>
     </header>
-  );
+  )
 }
 
 const headerStyle = {
   //  background : '#333',
-  color: "#fff",
-  textAlign: " center",
-  padding: "5px",
-  borderRadius: "5px"
-};
+  color: '#fff',
+  textAlign: ' center',
+  padding: '5px',
+  borderRadius: '5px'
+}
 
 const linkStyle = {
-  color: "#fff",
-  textDecoration: "none"
-};
-export default Header;
+  color: '#fff',
+  textDecoration: 'none'
+}
+export default Header
