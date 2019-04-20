@@ -44,7 +44,15 @@ router.post("/", async (req, res) => {
       applicants: req.body.applicants,
       feedback: req.body.feedback
     }).save();
-  
+
+    const User = require("../../Models/User");
+    const users = await User.find({});
+    users.forEach(user => {
+      if (user.userType == "Admin") {
+        sendNotif(user.email, "Approval req", "LirtenHub");
+      }
+    });
+
     return res.json({ data: event });
   } catch (error) {
     // We will be handling the error later
@@ -77,7 +85,6 @@ router.put("/:id", async (request, response) => {
   );
 });
 
-
 // Delete newEvent
 router.delete("/:id", async (req, res) => {
   try {
@@ -95,9 +102,7 @@ bookEvent = async (req, res) => {
   try {
     var cid = req.params.cid;
     var eid = req.params.eid;
-
     var candidate = await User.findById(cid).exec();
-
     var event = await Event.findById(eid).exec();
 
     Event.findByIdAndUpdate(
@@ -105,7 +110,6 @@ bookEvent = async (req, res) => {
       { $push: { applicants: cid } },
       (err, model) => {
         if (!err) {
-                 
           console.log({ data: model });
         } else {
           console.log({ error: `Error, couldn't update applicants array` });
@@ -136,6 +140,27 @@ bookEvent = async (req, res) => {
         }
       }
     );
+
+    //array of all users
+    const users = await User.find({});
+
+    // notif to candidate for booking
+    users.forEach(user => {
+      if (user.id == cid) {
+        sendNotif(user.email, "event" + event.eventName + "booked", eventName);
+      }
+    });
+
+    // notif to organizer that event was booked
+    users.forEach(user => {
+      if (user.id == event.organizer) {
+        sendNotif(
+          user.email,
+          user.name + "booked a place in " + event.eventName,
+          eventName
+        );
+      }
+    });
 
     const message = "Event has been booked!";
     return res.json(message);
@@ -189,6 +214,30 @@ cancelBooking = async (req, res) => {
         }
       }
     );
+    //array of all users
+    const users = await User.find({});
+
+    // notif to candidate for booking
+    users.forEach(user => {
+      if (user.id == cid) {
+        sendNotif(
+          user.email,
+          "event" + event.eventName + "cancelled",
+          eventName
+        );
+      }
+    });
+
+    // notif to organizer that event was booked
+    users.forEach(user => {
+      if (user.id == event.organizer) {
+        sendNotif(
+          user.email,
+          user.name + "cancelled a booking in " + event.eventName,
+          eventName
+        );
+      }
+    });
 
     const message = "Event booking has been canceled!";
     return res.json(message);
@@ -231,33 +280,40 @@ router.get("/getE/:id", async (req, res) => {
   }
 });
 
-
-//Admin confirm requested event 
+//Admin confirm requested event
 confirmRequest = async (req, res) => {
-    try {
-      var eid = req.params.eid;
-      var event = await Event.findById(eid).exec();
-      Event.findByIdAndUpdate(
-        eid,
-        { $set : { approvalStatus: "approved" } },
-        (err, model) => {
-          if (!err) {
-            console.log({ data: model });
-          } else {
-            console.log({ error: `Error, couldn't confirm event ` });
-          }
+  try {
+    var eid = req.params.eid;
+    var event = await Event.findById(eid).exec();
+    Event.findByIdAndUpdate(
+      eid,
+      { $set: { approvalStatus: "approved" } },
+      (err, model) => {
+        if (!err) {
+          console.log({ data: model });
+        } else {
+          console.log({ error: `Error, couldn't confirm event ` });
         }
-      );
-  
-      const message = "Event request has been approved!";
-      return res.json(message);
-    }
-     catch (err) {
-      console.log("couldn't confirm the event");
-    }
-  };
+      }
+    );
+    //array of all users
+    const users = await User.find({});
 
-  //Partner request event
+    // notif to organizer that event was approved
+    users.forEach(user => {
+      if (user.id == event.organizer) {
+        sendNotif(user.email, "admin authorised" + event.eventName, eventName);
+      }
+    });
+
+    const message = "Event request has been approved!";
+    return res.json(message);
+  } catch (err) {
+    console.log("couldn't confirm the event");
+  }
+};
+
+//Partner request event
 requestEvent = async (req, res) => {
   try {
     var pid = req.params.pid;
@@ -280,6 +336,16 @@ requestEvent = async (req, res) => {
       feedback: req.body.feedback
     }).save();
     console.log(newEvent);
+    //array of all users
+    const users = await User.find({});
+
+    // notif to candidate for booking
+    users.forEach(user => {
+      if (user.userType == "admin") {
+        sendNotif(user.email, "Approval requested for" + event.eventName + newEvent.eventName);
+      }
+    });
+
     return res.json("Event has been requested!");
   } catch (error) {
     console.log("Could not request event");
@@ -314,8 +380,6 @@ adminCreateEvent = async (req, res) => {
     console.log("Could not create event");
   }
 };
-  
-      
 
 //calling of Clara's functions
 router.get("/", viewApprovedEvents);
@@ -324,8 +388,8 @@ router.post("/:eid/users/:cid", bookEvent);
 router.post("/:eid/events/:cid", cancelBooking);
 
 //calling of Hagar's functions
-router.post('/:pid/requestEvent', requestEvent);
-router.post('/:aid/adminCreateEvent', adminCreateEvent);
-router.put('/:eid/confirmRequest', confirmRequest);
+router.post("/:pid/requestEvent", requestEvent);
+router.post("/:aid/adminCreateEvent", adminCreateEvent);
+router.put("/:eid/confirmRequest", confirmRequest);
 
 module.exports = router;
