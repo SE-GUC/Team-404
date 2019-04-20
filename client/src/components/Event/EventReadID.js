@@ -9,7 +9,7 @@ class EventReadID extends Component {
     events: []
   };
   componentDidMount() {
-    axios.get(`events/${this.props.match.params.id}`).then(res => {
+    axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
       console.log("Response is: ", res);
       this.setState({ event: res.data.data });
       console.log("The state is", this.state);

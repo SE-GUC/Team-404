@@ -207,7 +207,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/Event/:id"
+            path="/event/:id"
             render={props => (
               <React.Fragment>
                 <EventReadID />
