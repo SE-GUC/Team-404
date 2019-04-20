@@ -200,6 +200,7 @@ cancelBooking = async (req, res) => {
   }
 };
 
+//View approved events
 viewApprovedEvents = async (req, res) => {
   try {
     var view = await Event.find({ approvalStatus: "approved" });
@@ -210,6 +211,7 @@ viewApprovedEvents = async (req, res) => {
   }
 };
 
+//View pending events
 viewPendingEvents = async (req, res) => {
   try {
     var view = await Event.find({ approvalStatus: "pending" });
@@ -221,10 +223,7 @@ viewPendingEvents = async (req, res) => {
   }
 };
 
-router.get("/", viewApprovedEvents);
-
-router.get("/pending", viewPendingEvents);
-
+//get a specific event by ID
 router.get("/getE/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -234,6 +233,7 @@ router.get("/getE/:id", async (req, res) => {
     console.log(error);
   }
 });
+
 
 //Admin confirm requested event 
 confirmRequest = async (req, res) => {
@@ -259,6 +259,64 @@ confirmRequest = async (req, res) => {
       console.log("couldn't confirm the event");
     }
   };
+
+  //Partner request event
+requestEvent = async (req, res) => {
+  try {
+    var pid = req.params.pid;
+    var partner = await User.findById(pid).exec();
+    console.log("entry success ya partner");
+
+    const newEvent = await new Event({
+      eventName: req.body.eventName,
+      description: req.body.description,
+      organizer: partner.name,
+      location: req.body.location,
+      remainingPlaces: req.body.remainingPlaces,
+      speakers: req.body.speakers,
+      maximumPlaces: req.body.maximumPlaces,
+      topicsCovered: req.body.topicsCovered,
+      field: req.body.field,
+      registrationPrice: req.body.registrationPrice,
+      approvalStatus: "pending",
+      applicants: req.body.applicants,
+      feedback: req.body.feedback
+    }).save();
+    console.log(newEvent);
+    return res.json("Event has been requested!");
+  } catch (error) {
+    console.log("Could not request event");
+  }
+};
+
+//Admin create event
+adminCreateEvent = async (req, res) => {
+  try {
+    var aid = req.params.aid;
+    var admin = await User.findById(aid).exec();
+    console.log("entry success ya admin");
+
+    const newEvent = await new Event({
+      eventName: req.body.eventName,
+      description: req.body.description,
+      organizer: admin.name,
+      location: req.body.location,
+      remainingPlaces: req.body.remainingPlaces,
+      speakers: req.body.speakers,
+      maximumPlaces: req.body.maximumPlaces,
+      topicsCovered: req.body.topicsCovered,
+      field: req.body.field,
+      registrationPrice: req.body.registrationPrice,
+      approvalStatus: "approved",
+      applicants: req.body.applicants,
+      feedback: req.body.feedback
+    }).save();
+    console.log(newEvent);
+    return res.json("Event has been created!");
+  } catch (error) {
+    console.log("Could not create event");
+  }
+};
   
       
 
