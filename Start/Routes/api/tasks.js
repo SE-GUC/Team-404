@@ -7,7 +7,7 @@ const router = express.Router();
 //const uuid = require('uuid')
 const Task = require("../../Models/Task");
 const sendNotif= require("../../utils/mailer")
-const users = require("../api/users")
+const User = require("../../Models/User")
 const joi = require("Joi")
 const validator = require("../../Validation/taskValid");
 
@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
 router.post('/' ,async (req, res) => {
 
   try {
+    
   //    const isValidated = validator.createValidation(req.body)
   //  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
     const task = await new Task({
@@ -33,10 +34,12 @@ router.post('/' ,async (req, res) => {
       consultancyRequested: req.body.consultancyRequested
     }).save();
     
-    if(consultancyRequested){
-      users.array.forEach(user => {
-        if(user.userType=="Consultant"){
-            sendNotif(user.email,"Consultancy req", "LirtenHub")
+    
+    const users = await User.find({});
+    if(task.consultancyRequested == true){
+      users.forEach(user => {
+        if(user.userType=="Consultant"){  
+          sendNotif(user.email,"Consultancy req", "LirtenHub")
         }
       });
     }
@@ -64,7 +67,7 @@ router.post('/' ,async (req, res) => {
   .get(async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec();
-      return response.json({ data: Task });
+      return response.json({ data: task });
     } catch (err) {
       return response.json({
         error: `Error, couldn't find a task given the following id`
@@ -100,7 +103,7 @@ router.post('/' ,async (req, res) => {
   })
 
 
-  router.get('/viewTaskStatus/:tid', async (req, res) => {
+router.get('/viewTaskStatus/:tid', async (req, res) => {
               var Pid = req.body.pid
               var Tid = req.params.tid
               var tasks = await Task.findById(Tid)
