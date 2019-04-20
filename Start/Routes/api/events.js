@@ -81,6 +81,7 @@ router.put("/:id", async (request, response) => {
   );
 });
 
+
 // Delete newEvent
 router.delete("/:id", async (req, res) => {
   try {
@@ -234,7 +235,42 @@ router.get("/getE/:id", async (req, res) => {
   }
 });
 
+//Admin confirm requested event 
+confirmRequest = async (req, res) => {
+    try {
+      var eid = req.params.eid;
+      var event = await Event.findById(eid).exec();
+      Event.findByIdAndUpdate(
+        eid,
+        { $set : { approvalStatus: "approved" } },
+        (err, model) => {
+          if (!err) {
+            console.log({ data: model });
+          } else {
+            console.log({ error: `Error, couldn't confirm event ` });
+          }
+        }
+      );
+  
+      const message = "Event request has been approved!";
+      return res.json(message);
+    }
+     catch (err) {
+      console.log("couldn't confirm the event");
+    }
+  };
+  
+      
+
+//calling of Clara's functions
+router.get("/", viewApprovedEvents);
+router.get("/pending", viewPendingEvents);
 router.post("/:eid/users/:cid", bookEvent);
 router.post("/:eid/events/:cid", cancelBooking);
+
+//calling of Hagar's functions
+router.post('/:pid/requestEvent', requestEvent);
+router.post('/:aid/adminCreateEvent', adminCreateEvent);
+router.put('/:eid/confirmRequest', confirmRequest);
 
 module.exports = router;
