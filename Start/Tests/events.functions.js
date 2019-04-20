@@ -23,9 +23,9 @@ const functions = {
     createEvent: async () => {
         const newEvent = await axios.post('http://localhost:3001/Routes/api/events/', {
           eventName: "Dell",
-          organizer: "Islam Sanad",
-          location: "Sunrise",
-          description: "Coding at sunrise under the beautiful sky",
+          organizer: "Clara Atef",
+          location: "Helioplis",
+          description: "Coding competition",
           remainingPlaces: 5,
           speakers: "Hagar Abdel-Nabi",
           maximumPlaces: 7,
@@ -40,5 +40,5 @@ const functions = {
         return newEvent;
     }
   }
-  
+
 module.exports = functions;
