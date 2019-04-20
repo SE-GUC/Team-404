@@ -58,8 +58,7 @@ router.post("/", async (req, res) => {
 });
 
 // Update event
-router
-  .put("/:id",async (request, response) => {
+router.put("/:id",async (request, response) => {
     const status = joi.validate(request.params, {
       id: joi
         .string()
