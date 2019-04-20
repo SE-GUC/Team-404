@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const authenticateUser= require("../../middleware/authenticate");
 const app = express();
 const sendNotif = require('../../utils/mailer')
 
@@ -10,17 +11,17 @@ const Event = require("../../Models/Event");
 const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
-app.get("/", (req, res) => {
+app.get("/",authenticateUser, (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
 // Get all events
-router.get("/", async (req, res) => {
+router.get("/",authenticateUser, async (req, res) => {
   const events = await Event.find();
   res.json({ data: events });
 });
 
-router.get('/:id',async (req,res)=>{
+router.get('/:id',authenticateUser,async (req,res)=>{
   try {
     const id = req.params.id
     const requestedEvent = await Event.findById(id)
@@ -33,7 +34,7 @@ router.get('/:id',async (req,res)=>{
 
 
 // Create a new newEvent
-router.post("/", async (req, res) => {
+router.post("/",authenticateUser, async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
@@ -66,7 +67,7 @@ router.post("/", async (req, res) => {
 
 // Update event
 router
-  .route("/:id")
+  .route("/:id",authenticateUser)
   .all(async (request, response, next) => {
      const status = joi.validate(request.params, {
        id: joi
@@ -80,7 +81,7 @@ router
     next();
   })
 
-  .put(async (request, response) => {
+  .put(authenticateUser,async (request, response) => {
     Event.findByIdAndUpdate(
       request.params.id,
       request.body,
@@ -96,7 +97,7 @@ router
   });
 
 // Delete newEvent
-router.delete("/:id" ,async (req, res) => {
+router.delete("/:id" ,authenticateUser,async (req, res) => {
   try {
     const id = req.params.id;
     const deletedEvent = await Event.findByIdAndRemove(id);

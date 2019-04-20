@@ -38,13 +38,26 @@ const events = require("./Start/Routes/api/events");
 const users = require("./Start/Routes/api/users");
 const tasks = require("./Start/Routes/api/tasks");
 
-// shows a message on the homepage indicated by '/' directory
-app.get("/", (req, res) => {
+fakemiddle = (req,res,next) => {
+  console.log('in mw')
+  req.batata = 'hey'
+  next()
+}
+
+/*app.get('/', (req,res) => {
+  res.send(req.batata);
+})
+
+app.get('/mw', fakemiddle, (req,res) => {
+  res.send(req.batata);
+})*/
+//shows a message on the homepage indicated by '/' directory
+ app.get("/", (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
-  <a href ="/Routes/api/events">Events</a>
-  <a href ="/Routes/api/users">Users</a>
-  <a href ="/Routes/api/tasks">Tasks</a>
- `);
+//   <a href ="/Routes/api/events">Events</a>
+//   <a href ="/Routes/api/users">Users</a>
+//   <a href ="/Routes/api/tasks">Tasks</a>
+//  `);
 });
 
 app.use("/Routes/api/events", events);

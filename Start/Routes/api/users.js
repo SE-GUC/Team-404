@@ -2,7 +2,6 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const passport = require('passport')
 const tokenKey = require('../../config/keys').secretOrKey
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
@@ -24,6 +23,7 @@ router.post('/login', async (req, res) => {
             const payload = {
                 id: user.id,
                 name: user.name,
+                usertype: user.userType,
                 email: user.email
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
