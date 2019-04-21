@@ -185,17 +185,17 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          /*{" "}
+          {/* {" "}
           <Route
             exact
-            path="/Event/update"
+            path="Event/update"
             render={props => (
               <React.Fragment>
                 <EventPut />
               </React.Fragment>
             )}
-          />{" "}
-          */
+          />{" "} */}
+          
           <Route
             exact
             path="/Event/delete"
@@ -214,6 +214,17 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+          <Route
+         exact
+         path="/:id/update"
+         render={props => (
+           <React.Fragment>
+             {/* <EventReadID></EventReadID> */}
+             <EventPut></EventPut>
+             
+           </React.Fragment>
+         )}
+       />
           <Route exact path="/RegisterCandidate" component={RegisterCandidate} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/AddTask" component={AddTask} />

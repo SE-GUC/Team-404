@@ -1,6 +1,7 @@
 import React from "react";
 //import axios from './node_modules/axios';
 import axios from "./axiosInstance";
+import { withRouter } from "react-router-dom";
 
 class EventPut extends React.Component {
   state = {
@@ -16,6 +17,11 @@ class EventPut extends React.Component {
     field: "",
     registrationPrice: 9
   };
+  componentDidMount() {
+    axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
+      this.setState(res.data.data);
+    });
+  }
   handleChangeeventName = event => {
     this.setState({ eventName: event.target.value });
   };
@@ -74,8 +80,8 @@ class EventPut extends React.Component {
 
 
     try {
-      let response = axios.post(
-        "http://localhost:3000/Routes/api/events/${event._id}",
+      let response = axios.put(
+          `events/${this.props.match.params.id}`,
         Event
       ).then ( res => {
       console.log(response)}
@@ -205,4 +211,4 @@ class EventPut extends React.Component {
   }
 }
 
-export default EventPut;
+export default withRouter(EventPut);
