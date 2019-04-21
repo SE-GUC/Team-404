@@ -30,6 +30,8 @@ import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import UserList from "./components/UserList";
+import EventReadPending from "./components/Event/EventReadPending";
+
 class App extends Component {
   state = {
     applications: [],
@@ -221,6 +223,15 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <EventReadIDPending />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/event/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadPending />
               </React.Fragment>
             )}
           />

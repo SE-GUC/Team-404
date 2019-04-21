@@ -16,6 +16,24 @@ class EventReadIDPending extends Component {
     });
   }
 
+  onConfirm = () => {
+    axios.confirmRequest(`events/${this.props.match.params.id}/confirmRequest`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.props.history.push('/Event');
+    })
+  }
+
+  onReject = () => {
+    axios.delete(`events/${this.props.match.params.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.props.history.push('/Event');
+    })
+  }
+
 
 
   render() {
@@ -68,12 +86,12 @@ class EventReadIDPending extends Component {
             <span className="event registration price">{event.registrationPrice}</span>
             <br />
             <br />
+            <button className="btn btn-primay" onClick={this.onConfirm}>Confirm this event</button>
             <br />
             <br />
-            
+            <button className="btn btn-primay" onClick={this.onReject}>Reject this event</button>
             <br />
             <br />
-    
           </div>
         </div>
       ) : (

@@ -22,9 +22,8 @@ function Event() {
       
       <br></br>
       <br></br>
-      <span STYLE="text-decoration:underline; font-weight:bold">Pending Events </span> 
+      <Link to={`/event/pending`}><span STYLE="text-decoration:underline; font-weight:bold">Pending Events</span> </Link>
        <br></br>
-       <EventReadPending></EventReadPending>
       <br></br>
       
     </React.Fragment>

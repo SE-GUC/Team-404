@@ -21,10 +21,13 @@ const { events } = this.state;
 const eventList = events.length ? (
     events.map(event => {
     return(
+        
         <div className= "event card" key={event._id}>
         <div className="card-content">
-        <Link to = {`event/${event._id}/pending`}>
-        
+        <br />
+        <br />
+        <Link to = {`/event/${event._id}/pending`}>
+       
         {/* //the name as a link  */}
         <span STYLE="text-decoration:underline; font-weight:bold">{event.eventName}</span>
            

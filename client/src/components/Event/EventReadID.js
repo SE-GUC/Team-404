@@ -89,7 +89,7 @@ class EventReadID extends Component {
             <Link to={`/${event._id}/update`}><span STYLE="text-decoration:underline; font-weight:bold">UPDATE</span> </Link>
             <br />
             <br />
-            <button className="btn btn-primay" onClick={this.onDelete}>Delete</button>
+            <button className="btn btn-primay" onClick={this.onDelete}>Delete this</button>
             <br />
             <br />
             <button className="btn btn-primay" onClick={this.onBook}>Book this event</button>
