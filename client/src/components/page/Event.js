@@ -2,6 +2,7 @@ import React from "react";
 import EventPost from "../Event/EventPost"
 import { Link } from "react-router-dom";
 import EventRead from "../Event/EventRead";
+import EventReadPending from "../Event/EventReadPending";
 
 
 function Event() {
@@ -16,8 +17,16 @@ function Event() {
        <br></br>
       <br></br>
       </Link>
-      
       <EventRead></EventRead>
+
+      
+      <br></br>
+      <br></br>
+      <span STYLE="text-decoration:underline; font-weight:bold">Pending Events </span> 
+       <br></br>
+       <EventReadPending></EventReadPending>
+      <br></br>
+      
     </React.Fragment>
     
   );
