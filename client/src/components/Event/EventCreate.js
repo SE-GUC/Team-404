@@ -2,7 +2,7 @@ import React from "react";
 import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
-class EventPost extends React.Component {
+class EventCreate extends React.Component {
   state = {
     eventName: "",
     organizer: "",
@@ -32,8 +32,7 @@ class EventPost extends React.Component {
       registrationPrice: this.state.registrationPrice
     };
     try {
-      let response = await axios.post(
-        "http://localhost:3001/Routes/api/events/",
+      let response = await axios.post(`events/${this.props.match.params.id}/adminCreateEvent`,
         Event
       );
       console.log(response);
@@ -83,11 +82,7 @@ class EventPost extends React.Component {
     this.setState({ registrationPrice: event.target.value });
   };
 
-  /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
-      //console.log(res);
-      console.log(res.data);
-    });s
-  */
+  
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
@@ -95,7 +90,8 @@ class EventPost extends React.Component {
         <br />
         <br />
         <br />
-        <label> Events : </label>
+        <h1>Create an Event</h1>
+        <label> Events details : </label>
         <br />
         <label className="EventName">
           EventName:
@@ -190,11 +186,11 @@ class EventPost extends React.Component {
 
         <button type="submit" onClick={this.handleSubmit}>
           {" "}
-          ADD{" "}
+          CREATE{" "}
         </button>
       </form>
     );
   }
 }
 
-export default withRouter(EventPost);
+export default withRouter(EventCreate);
