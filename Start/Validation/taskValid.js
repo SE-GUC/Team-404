@@ -44,7 +44,8 @@ module.exports = {
       experienceNeeded: Joi.string(),
       consultancyRequested: Joi.boolean(),
       consultant: Joi.string(),
-      applications: Joi.array()    };
+      applications: Joi.array()
+    };
 
     return Joi.validate(request, updateSchema);
   }

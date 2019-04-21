@@ -1,5 +1,5 @@
 import React from "react";
-import PartnerTable from "../PartnerTable";
+import PartnerTable from "../User/PartnerTable";
 function Partner() {
   return (
     <React.Fragment>

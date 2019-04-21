@@ -10,13 +10,12 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION =false npm install --prefix client && npm run build --prefix client"
-
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION =false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": { 
+  "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import EventPost from "./components/Event/EventPost";
 import EventPut from "./components/Event/EventPut";
-import EventRead from "./components/Event/EventRead";
 import EventDelete from "./components/Event/EventDelete";
 import "./App.css";
 import "./components/User/Textbox.css";
@@ -16,20 +15,18 @@ import Partner from "./components/page/Partner";
 import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import User from "./components/User";
-import ReadTasks from "./components/ReadTasks";
+import ReadTasks from "./components/Task/ReadTask";
 import DeleteTask from "./components/Task/DeleteTask";
 import AddTask from "./components/page/Tasks/AddTask";
 import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
 import DeleteTasks from "./components/page/Tasks/DeleteTasks";
-import ReadTaskID from "./components/ReadTaskID";
-import UpdateTask from "./components/Task/UpdateTask";
+import UpdateTasks from "./components/page/Tasks/UpdateTasks";
 import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
-import RegisterCandidate from "./components/RegisterCandidate"
-import RegisterPartner from "./components/RegisterPartner"
+import RegisterCandidate from "./components/User/RegisterCandidate";
+import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/UserList"
+import UserList from "./components/User/UserList";
 class App extends Component {
   state = {
     applications: [],
@@ -215,16 +212,28 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route exact path="/RegisterCandidate" component={RegisterCandidate} />
+          <Route
+            exact
+            path="/RegisterCandidate"
+            component={RegisterCandidate}
+          />
+          <Route
+            exact
+            path="/UpdateTasks"
+            render={props => (
+              <React.Fragment>
+                <UpdateTasks />
+              </React.Fragment>
+            )}
+          />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/AddTask" component={AddTask} />
           <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
           <Route exact path="/DeleteTasks" component={DeleteTasks} />
-          <Route exact path="/UpdateTask" component={UpdateTask} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
-          <Route exact path = "/UserList" component = {UserList}/>
+          <Route exact path="/UserList" component={UserList} />
         </div>
       </Router>
     );
