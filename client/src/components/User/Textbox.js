@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 import { withRouter} from 'react-router-dom';
 import './Textbox.css';
+import { object } from 'prop-types';
 class Textbox extends Component {
     state ={ 
      email:"",
      pass:"",
-     redirect:false,
-      }
+     userinfo: ""
+        }
 
       loginVal = async event => {
         event.preventDefault();
@@ -17,14 +19,17 @@ class Textbox extends Component {
           password: this.state.pass,
     
         };
-        console.log(user);
+        //console.log(user);
         try {
           let response = await axios.post(
             "http://localhost:3001/Routes/api/users/login/",
             user
           );
-          axios.defaults.headers.common['Authorization'] = response.data.token;
-          this.props.history.push("/")
+          axios.defaults.headers.common['Authorization'] = response.data.token;  
+         var decoded = jwt_decode(response.data.token, {complete: true});
+         this.setState({userinfo: decoded})
+         this.props.history.push("/")
+          console.log(this.state.userinfo);
           console.log(response);
           
         } catch (error) {

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const authenticateUser= require("../../middleware/authenticate");
 const app = express();
 const sendNotif = require("../../utils/mailer");
 const joi = require("joi");
@@ -11,7 +12,7 @@ const Event = require("../../Models/Event");
 const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
-app.get("/", (req, res) => {
+app.get("/",authenticateUser, (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
@@ -22,7 +23,7 @@ app.get("/", (req, res) => {
 // });
 
 // Create a new newEvent
-router.post("/", async (req, res) => {
+router.post("/",authenticateUser, async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
