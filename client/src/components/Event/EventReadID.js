@@ -25,6 +25,15 @@ class EventReadID extends Component {
     })
   }
 
+  onBook = () => {
+    axios.post(`events/${this.props.match.params.id}/users/${this.props.match.params.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.props.history.push('/Event');
+    })
+  }
+
 
 
   render() {
@@ -83,6 +92,7 @@ class EventReadID extends Component {
             <button className="btn btn-primay" onClick={this.onDelete}>Delete</button>
             <br />
             <br />
+            <button className="btn btn-primay" onClick={this.onBook}>Book this event</button>
           </div>
         </div>
       ) : (
