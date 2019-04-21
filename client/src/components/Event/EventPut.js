@@ -94,11 +94,11 @@ class EventPut extends React.Component {
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
+        
+        <h1>Edit Event</h1>
         <br />
         <br />
-        <br />
-        <br />
-        <label> Events : </label>
+        <label> Events details : </label>
         <br />
         <br />
         <label className="eventName">
@@ -202,9 +202,9 @@ class EventPut extends React.Component {
         </label>
         <br />
 
-        <button type="submit" onClick={this.handleSubmit}>
-          {" "}
-          update{" "}
+        <button type="submit" className="text-center" onClick={this.handleSubmit}>
+          {" "}<br /> {" "} {" "}<br />
+          UPDATE{" "} <br />{" "} {" "}<br />
         </button>
       </form>
     );

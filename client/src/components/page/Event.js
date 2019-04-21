@@ -7,14 +7,14 @@ import EventReadPending from "../Event/EventReadPending";
 function Event() {
   return (
     <React.Fragment>
-      <h1>Event</h1>
+      <h1>Events</h1>
       <Link to="Event/request">
         <br />
         <br />
         <span STYLE="text-decoration:underline; font-weight:bold">
           Request{" "}
         </span>{" "}
-        a new event here
+        a new event 
         
       </Link>
       <Link to="Event/create">
@@ -23,21 +23,26 @@ function Event() {
         <span STYLE="text-decoration:underline; font-weight:bold">
           Create{" "}
         </span>{" "}
-        a new event here
+        a new event 
         <br />
         <br />
       </Link>
+      <Link to={`/event/pending`}>
+      
+        <span STYLE="text-decoration:underline; font-weight:bold">
+          Check{" "}
+        </span>{" "}
+        pending events
+        <br />
+        <br />
+      </Link>
+      
+      The Live Events
       <EventRead />
 
       <br />
       <br />
-      <Link to={`/event/pending`}>
-        <span STYLE="text-decoration:underline; font-weight:bold">
-          Check Pending Events
-        </span>{" "}
-      </Link>
-      <br />
-      <br />
+      
     </React.Fragment>
   );
 }

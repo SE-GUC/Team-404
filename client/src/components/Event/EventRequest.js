@@ -91,10 +91,6 @@ class EventRequest extends React.Component {
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
-        <br />
-        <br />
-        <br />
-        <br />
         <h1>Request an Event</h1>
         <label> Events details : </label>
         <br />

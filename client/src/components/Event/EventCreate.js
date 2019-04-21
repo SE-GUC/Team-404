@@ -32,7 +32,8 @@ class EventCreate extends React.Component {
       registrationPrice: this.state.registrationPrice
     };
     try {
-      let response = await axios.post(`events/${this.props.match.params.id}/adminCreateEvent`,
+      let response = await axios.post(
+        `events/${this.props.match.params.id}/adminCreateEvent`,
         Event
       );
       console.log(response);
@@ -82,14 +83,9 @@ class EventCreate extends React.Component {
     this.setState({ registrationPrice: event.target.value });
   };
 
-  
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
-        <br />
-        <br />
-        <br />
-        <br />
         <h1>Create an Event</h1>
         <label> Events details : </label>
         <br />
