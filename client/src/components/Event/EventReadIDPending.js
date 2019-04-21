@@ -17,7 +17,7 @@ class EventReadIDPending extends Component {
   }
 
   onConfirm = () => {
-    axios.confirmRequest(`events/${this.props.match.params.id}/confirmRequest`)
+    axios.put(`events/${this.props.match.params.id}/confirmRequest`)
     .then(res => {
       console.log(res);
       console.log(res.data);
