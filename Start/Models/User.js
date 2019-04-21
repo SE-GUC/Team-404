@@ -26,10 +26,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+
+  //Candidate
   skills: { type: [String], required: false, unique: false },
   interests: { type: [String], required: false, unique: false },
   pastEventsAndTasks: { type: [String], required: false, unique: false },
   reviewsRecieved: { type: [String], required: false, unique: false },
+  
+  //Partner
   board: { type: [String], required: false },
   pastEvents: { type: [String], required: false },
   reports: { type: [String], required: false },

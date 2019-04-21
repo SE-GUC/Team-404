@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
 const app = express()
 const sendNotif = require('../../utils/mailer')
 const joi = require('joi')

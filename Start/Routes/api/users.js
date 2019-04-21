@@ -55,10 +55,14 @@ router.post('/register', async (req, res) => {
       phoneNumber: req.body.phoneNumber,
       userType: req.body.userType,
       location: req.body.location,
+      
+      //candidate
       skills: req.body.skills,
       interests: req.body.interests,
       pastEventsAndTasks: req.body.pastEventsAndTasks,
       reviewsRecieved: req.body.reviewsRecieved,
+      
+      //Partner
       board: req.body.board,
       pastEvents: req.body.pastEvents,
       reports: req.body.reports,
