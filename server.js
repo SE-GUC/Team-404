@@ -38,11 +38,11 @@ const events = require("./Start/Routes/api/events");
 const users = require("./Start/Routes/api/users");
 const tasks = require("./Start/Routes/api/tasks");
 
-fakemiddle = (req,res,next) => {
+/*fakemiddle = (req,res,next) => {
   console.log('in mw')
   req.batata = 'hey'
   next()
-}
+}*/
 
 /*app.get('/', (req,res) => {
   res.send(req.batata);
