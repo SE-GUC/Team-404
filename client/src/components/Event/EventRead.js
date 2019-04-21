@@ -36,7 +36,7 @@ const eventList = events.length ? (
     )
 })
 ) : ( 
-<div className="center">Retrieving events...</div>
+<div className="center">are being retrieved...</div>
 )
 return(
     <div className="container">

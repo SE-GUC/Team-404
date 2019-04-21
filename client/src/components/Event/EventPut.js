@@ -20,6 +20,7 @@ class EventPut extends React.Component {
   componentDidMount() {
     axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
       this.setState(res.data.data);
+      
     });
   }
   handleChangeeventName = event => {
@@ -89,6 +90,7 @@ class EventPut extends React.Component {
     } catch (error) {
       console.log(error);
     }
+    //this.props.history.push('/Event');
   }
 
   render() {
