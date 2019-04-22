@@ -29,8 +29,9 @@ import RegisterCandidate from "./components/RegisterCandidate";
 import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/UserList"
-import Register from "./components/page/User/Register"
+import UserList from "./components/UserList";
+import updateUser from "./components/page/User/updateUser";
+import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
 
@@ -258,9 +259,20 @@ class App extends Component {
           />
           <Route
             exact
+            path="/updateUser"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <updateUser />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+          <Route exact path="/updateUser" component={updateUser} />
           <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Register" component={Register} />

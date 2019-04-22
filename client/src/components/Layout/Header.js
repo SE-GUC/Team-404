@@ -37,6 +37,11 @@ function Header() {
       <Link id=".App-link" to="/User">
         User
       </Link>
+      |{" "}
+      <Link id=".App-link" to="/updateUser">
+        Edit Account
+      </Link>
+      |{" "}
     </header>
   );
 }
