@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Textbox from './User/Textbox';
 import axios from 'axios';
 
 /*function checkUserType(userType){
@@ -16,7 +16,7 @@ export default class UserList extends React.Component {
     }
     componentDidMount(){
        
-        axios.get('http://localhost:3001/Routes/api/users')
+        axios.get('http://localhost:3001/Routes/api/users/')
         .then(res => {
             console.log(res)
             this.setState({

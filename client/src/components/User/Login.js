@@ -6,8 +6,6 @@ class Login extends Component {
   render() {
     return (
       <div id="background2">
-       <h1>Login page</h1>
-
        <Textbox/>
       </div>
     );
