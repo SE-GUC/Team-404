@@ -24,59 +24,61 @@ class TaskReadID extends Component {
     const eventJSX =
       task && task._id ? (
         <div className="event card" key={task._id}>
+         
           <div className="card-content">
             <br />
             <br />
             <br />
-            Name:
-            
+           
+            Title: {'  '}
             <span className="Task name">{task.title}</span>
             <br />
-            Title: {'  '}
-
+           
+            Description: {'  '}
             <span className="Task Description">{task.description}</span>
             <br />
-            Description: {'  '}
-
+           
+            eta: {'  '}
             <span className="Task eta">{task.eta}</span>
             <br />
-            eta: {'  '}
-            
-            <span className="Task levelOfCommitment">{task.levelOfComitment}</span>
-            <br />
+           
             level Of Comitment: {'  '}
+
+            <span className="Task levelOfCommitment">{task.levelOfCommitment}</span>
+            <br />
+            partner: {'  '}
 
             <span className="Task partner">{task.partner}</span>
             <br />
-            partner: {'  '}
-            
-            <span className="Task monetaryCompensation">{task.monetaryCompensation}</span>
-            <br />
+          
             Monetary Compensation: {'  '}
 
-            <span className="Task skills">{task.skills}</span>
+            <span className="Task monetaryCompensation">{task.monetaryCompensation}</span>
             <br />
             skills: {'  '}
 
-            <span className="Task LifeCycleStatus">{task.lifeCycleStatus}</span>
+            <span className="Task skills">{task.skills}</span>
             <br />
             Life Cycle Status: {'  '}
 
-            <span className="Task experienceNeeded">{task.experienceNeeded}</span>
+            <span className="Task LifeCycleStatus">{task.lifeCycleStatus}</span>
             <br />
             Experience Needed: {'  '}
-            
-            <span className="Task consultancyRequested">{task.consultancyRequested}</span>
+
+            <span className="Task experienceNeeded">{task.experienceNeeded}</span>
             <br />
             Consultancy Requested: {'  '}
-            
-            <span className="Task consultant">{task.consultant}</span>
+
+            <span className="Task consultancyRequested">{task.consultancyRequested}</span>
             <br />
             consultant: {'  '}
-            
-            <span className="Task applications">{task.applications}</span>
+
+            <span className="Task consultant">{task.consultant}</span>
             <br />
             Applications: {'  '}
+
+            <span className="Task applications">{task.applications}</span>
+            <br />
             
             <br />
             <br />
