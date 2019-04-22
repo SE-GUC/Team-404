@@ -224,12 +224,8 @@ class App extends Component {
           />
            <Route
             exact
-            path="/Task"
-            render={props => (
-              <React.Fragment>
-                <Task />
-              </React.Fragment>
-            )}
+            path="/Tasks"
+             component = {Task}
           />
            <Route
             exact
