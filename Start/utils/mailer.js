@@ -3,6 +3,7 @@ sgMail.setApiKey(
   "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"
 );
 
+
 const msg = (to, message, subject) => {
   const email = {
     to: to,
@@ -13,6 +14,10 @@ const msg = (to, message, subject) => {
   };
   return sgMail.send(email);
 };
+
 module.exports = msg;
 
+
+//const sendNotif = require('../../utils/mailer')
+//sendNotif(to,message,subject)
 

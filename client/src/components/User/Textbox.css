@@ -4,6 +4,7 @@ label {
  color: rgba(110, 3, 3, 0.822);
  font-weight: bold;
  margin-right: 1%;
+ margin-left: 30%;
 }
 h1 {
   background-color: rgba(10, 10, 10, 0.712);
@@ -39,6 +40,7 @@ footer {
   padding: 12px 20px;
   margin-top:15%;
   margin-right:1%;
+  margin-left:2%;
   box-sizing: border-box;
   font-size: 16px;
 }
@@ -50,6 +52,7 @@ footer {
   padding: 12px 20px;
   margin-top:2%;
   margin-right:2%;
+  margin-left:0.5%;
   box-sizing: border-box;
   font-size: 16px;
 }
@@ -60,6 +63,7 @@ footer {
   padding: 12px 20px;
   text-decoration: none;
   margin-left: 1%;
+  margin-left:43%;
   font-size: 16px;
   box-sizing: 8px;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route , Link} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 function Header() {
   return (
     <header style={headerStyle}>
@@ -8,12 +8,16 @@ function Header() {
         Home
       </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/Partner">
-        View Partners
-      </Link>
-      |{" "}
       <Link style={linkStyle} to="/Application">
         Applications
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/RegisterPartner">
+        RegisterPartner
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/RegisterCandidate">
+        RegisterCandidate
       </Link>
       |{" "}
       <Link style={linkStyle} to="/Event">
@@ -23,7 +27,7 @@ function Header() {
       <Link style={linkStyle} to="/Tasks">
         Tasks
       </Link>
-      |{" "}
+     |{" "}
       <Link style={linkStyle} to="/Login">
         Login
       </Link>
@@ -35,7 +39,6 @@ function Header() {
       <Link style={linkStyle} to="/User">
         User
       </Link>
-      
     </header>
   );
 }
@@ -49,7 +52,7 @@ const headerStyle = {
 };
 
 const linkStyle = {
-  color:"#fff",
+  color: "#fff",
   textDecoration: "none"
-}
+};
 export default Header;

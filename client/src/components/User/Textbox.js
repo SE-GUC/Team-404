@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
+import axios from "axios";
+import { withRouter} from 'react-router-dom';
 import './Textbox.css';
 class Textbox extends Component {
     state ={ 
      email:"",
      pass:"",
+     redirect:false,
       }
-  
-    loginVal=(event) =>{
-        if((this.state.pass!="")&& (this.state.email!="")){
-         alert('Logging you in ' + this.state.email);
-         event.preventDefault();
-         console.log(this.state.email+" "+this.state.pass);
-    }else{
-        alert('Enter missing fields');
-    }
+
+      loginVal = async event => {
+        event.preventDefault();
     
-}
+        const user = {
+          email: this.state.email,
+          password: this.state.pass,
+    
+        };
+        console.log(user);
+        try {
+          let response = await axios.post(
+            "http://localhost:3001/Routes/api/users/login/",
+            user
+          );
+          axios.defaults.headers.common['Authorization'] = response.data.token;
+          this.props.history.push("/")
+          console.log(response);
+          
+        } catch (error) {
+          console.log(error);
+        }
+  
+    };
+  
 check2=(event)=>{
     this.setState({pass: event.target.value})
 
@@ -45,10 +62,11 @@ check1=(event)=> {
         onChange={this.check2}
         />
 <br></br>
-<br></br>
+<br></br>  
            <input type="submit" name="submit" id='i3'
-           onClick={this.loginVal.bind(this)}
-            />
+           
+           onClick={this.loginVal.bind(this)}/>
+            
     
            </div> 
             
@@ -56,6 +74,5 @@ check1=(event)=> {
         
     }
 }
- 
-  
-export default Textbox;
+
+export default withRouter(Textbox);

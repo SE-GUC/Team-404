@@ -23,17 +23,6 @@ class AddTask extends Component {
     this.handleChangeSkills = this.handleChangeSkills.bind(this);
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:3001/Routes/api/tasks/")
-      .then(res => {
-        console.log(res);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
-
   handleSubmit = async event => {
     event.preventDefault();
 
@@ -52,6 +41,9 @@ class AddTask extends Component {
       applications: this.state.applications,
       tags: this.state.skills
     };
+    if(this.state.consultancyRequested){
+
+    }
     console.log(task);
     try {
       let response = await axios.post(

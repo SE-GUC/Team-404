@@ -82,7 +82,7 @@ class Consultant extends Component {
             />
         </label>
         <label className= "Password">
-            RemainingPlaces:
+            remainingPlaces:
             <input
             type="text"
             name="Password"

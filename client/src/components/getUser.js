@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "./axiosInstance";
+import axios from  "./axiosInstance";
 import User from "./page/User";
 
 class getUser extends Component {

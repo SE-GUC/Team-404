@@ -103,9 +103,9 @@ const Candidates = [
   { age: '22', skills: 'Drawing , Reading , Leading, hitman', interests: 'history', pasteventsandtasks: 'kill me,', reviewsrecieved: '' }]
 
 const Events = [
-  { ID: '5', name: 'photoshop for everyone', organizer: 'Islam Sanad', location: 'Basement', description: 'come learn PS', registrationprice: '125', remainingplaces: '0', speakers: 'Helen', maximumplaces: '2', topicscovered: 'photoshop', feedbackid: '', field: 'Design', approvalstatus: 'Accepted' },
-  { ID: '7', name: 'be a programmer', organizer: 'Hania Ghannam', location: 'Roof', description: 'funamenetals java', registrationprice: '100', remainingplaces: '5', speakers: 'Hania , mohammed', maximumplaces: '10', topicscovered: 'java', feedbackid: '', field: 'CS', approvalstatus: 'Rejected' },
-  { ID: '6', name: 'design fundementals', organizer: 'Clara Kamel', location: 'GUC', description: 'editing layers', registrationprice: '250', remainingplaces: '2', speakers: 'abdelsalam', maximumplaces: '5', topicscovered: 'photoshop', feedbackid: '', field: 'Art', approvalstatus: 'NA' }
+  { ID: '5', name: 'photoshop for everyone', organizer: 'Islam Sanad', location: 'Basement', description: 'come learn PS', registrationPrice: '125', remainingPlaces: '0', speakers: 'Helen', maximumPlaces: '2', topicsCovered: 'photoshop', feedbackid: '', field: 'Design', approvalStatus: 'Accepted' },
+  { ID: '7', name: 'be a programmer', organizer: 'Hania Ghannam', location: 'Roof', description: 'funamenetals java', registrationPrice: '100', remainingPlaces: '5', speakers: 'Hania , mohammed', maximumPlaces: '10', topicsCovered: 'java', feedbackid: '', field: 'CS', approvalStatus: 'Rejected' },
+  { ID: '6', name: 'design fundementals', organizer: 'Clara Kamel', location: 'GUC', description: 'editing layers', registrationPrice: '250', remainingPlaces: '2', speakers: 'abdelsalam', maximumPlaces: '5', topicsCovered: 'photoshop', feedbackid: '', field: 'Art', approvalStatus: 'NA' }
 ]
 
 const Tasks = [

@@ -1,55 +1,50 @@
 import React from "react";
-//import axios from "./node_modules/axios";
-import axios from "axios";
+import axios from "./axiosInstance";
+import { withRouter } from "react-router-dom";
 
-class EventPost extends React.Component {
+class EventCreate extends React.Component {
   state = {
-    eventid: "",
-    eventname: "",
+    eventName: "",
     organizer: "",
     location: "",
     description: "",
-    remainingplaces: 5,
+    remainingPlaces: 5,
     speakers: "",
-    maximumplaces: 7,
-    topicscovered: "",
+    maximumPlaces: 7,
+    topicsCovered: "",
     field: "",
-    registrationprice: 9,
-    approvalstaus: "",
-    applicants: [],
-    feedbakck: []
+    registrationPrice: 9
   };
 
   handleSubmit = async event => {
     event.preventDefault();
+    console.log(`The state is : ${this.state}`);
     const Event = {
-      eventname: this.state.eventname,
+      eventName: this.state.eventName,
       organizer: this.state.organizer,
       location: this.state.location,
       description: this.state.description,
-      remainingplaces: this.state.remainingplaces,
+      remainingPlaces: this.state.remainingPlaces,
       speakers: this.state.speakers,
-      maximumplaces: this.state.maximumplaces,
-      topicscovered: this.state.topicscovered,
+      maximumPlaces: this.state.maximumPlaces,
+      topicsCovered: this.state.topicsCovered,
       field: this.state.field,
-      registrationprice: this.state.registrationprice,
-      approvalstaus: this.state.approvalstatus,
-      applicants: this.state.applicants,
-      feedback: this.state.feedback
+      registrationPrice: this.state.registrationPrice
     };
     try {
       let response = await axios.post(
-        "http://localhost:3001/Routes/api/tasks/",
+        `events/${this.props.match.params.id}/adminCreateEvent`,
         Event
       );
       console.log(response);
+      this.props.history.push("/Event");
     } catch (error) {
       console.log(error);
     }
   };
 
   handleChangeEventName = event => {
-    this.setState({ eventname: event.target.value });
+    this.setState({ eventName: event.target.value });
   };
 
   handleChangeOrganizer = event => {
@@ -65,7 +60,7 @@ class EventPost extends React.Component {
   };
 
   handleChangeRemainingPlaces = event => {
-    this.setState({ remainingplaces: event.target.value });
+    this.setState({ remainingPlaces: event.target.value });
   };
 
   handleChangeSpeakers = event => {
@@ -73,11 +68,11 @@ class EventPost extends React.Component {
   };
 
   handleChangeMaximumPlaces = event => {
-    this.setState({ maximumplaces: event.target.value });
+    this.setState({ maximumPlaces: event.target.value });
   };
 
   handleChangeTopicsCovered = event => {
-    this.setState({ topicscovered: event.target.value });
+    this.setState({ topicsCovered: event.target.value });
   };
 
   handleChangeField = event => {
@@ -85,45 +80,24 @@ class EventPost extends React.Component {
   };
 
   handleChangeRegistrationPrice = event => {
-    this.setState({ registrationprice: event.target.value });
+    this.setState({ registrationPrice: event.target.value });
   };
-
-  handleChangeApprovalStatus = event => {
-    this.setState({ approvalstatus: event.target.value });
-  };
-
-  handleChangeApplicants = event => {
-    this.setState({ applicants: event.target.value });
-  };
-
-  handleChangeFeedback = event => {
-    this.setState({ feedback: event.target.value });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
-  /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
-      //console.log(res);
-      console.log(res.data);
-    });s
-  */
 
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
-        <label> Events : </label>
-        <br/>
+        <h1>Create an Event</h1>
+        <label> Events details : </label>
+        <br />
         <label className="EventName">
           EventName:
           <input
             type="text"
-            name="eventname"
+            name="eventName"
             onChange={this.handleChangeEventName}
           />
-        </label><br/>
-
+        </label>
+        <br />
         <label className="Organizer">
           Organizer:
           <input
@@ -131,7 +105,8 @@ class EventPost extends React.Component {
             name="organizer"
             onChange={this.handleChangeOrganizer}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Location">
           Location:
@@ -140,7 +115,8 @@ class EventPost extends React.Component {
             name="location"
             onChange={this.handleChangeLocation}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Description">
           Description:
@@ -149,16 +125,18 @@ class EventPost extends React.Component {
             name="description"
             onChange={this.handleChangeDescription}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="RemainingPlaces">
           RemainingPlaces:
           <input
             type="text"
-            name="remainingplaces"
+            name="remainingPlaces"
             onChange={this.handleChangeRemainingPlaces}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Speakers">
           Speakers:
@@ -167,70 +145,48 @@ class EventPost extends React.Component {
             name="speakers"
             onChange={this.handleChangeSpeakers}
           />
-        </label><br/>
-
-        <label className="MaximumPlaces">
-          MaximumPlaces:
+        </label>
+        <br />
+        <label className="maximumPlaces">
+          maximumPlaces:
           <input
             type="text"
-            name="maximumplaces"
+            name="maximumPlaces"
             onChange={this.handleChangeMaximumPlaces}
           />
-        </label><br/>
-
-        <label className="TopicsCovered">
-          TopicsCovered:
+        </label>
+        <br />
+        <label className="topicsCovered">
+          topicsCovered:
           <input
             type="text"
-            name="topicscovered"
+            name="topicsCovered"
             onChange={this.handleChangeTopicsCovered}
           />
-        </label><br/>
-
+        </label>
+        <br />
         <label className="Field">
           Field:
           <input type="text" name="field" onChange={this.handleChangeField} />
-        </label><br/>
-
-        <label className="RegistrationPrice">
-          RegistrationPrice:
+        </label>
+        <br />
+        <label className="registrationPrice">
+          registrationPrice:
           <input
             type="text"
-            name="registrationprice"
+            name="registrationPrice"
             onChange={this.handleChangeRegistrationPrice}
           />
-        </label><br/>
+        </label>
+        <br />
 
-        <label className="ApprovalStatus">
-          ApprovalStatus:
-          <input
-            type="text"
-            name="approvalstatus"
-            onChange={this.handleChangeApprovalStatus}
-          />
-        </label><br/>
-
-        <label className="Applicants">
-          Applicants:
-          <input
-            type="text"
-            name="appliccants"
-            onChange={this.handleChangeApplicants}
-          />
-        </label><br/>
-
-        <label className="Feedback">
-          Feedback:
-          <input
-            type="text"
-            name="feedback"
-            onChange={this.handleChangeFeedback}
-          />
-        </label><br/>
-        <button type="submit"> ADD </button>
+        <button type="submit" onClick={this.handleSubmit}>
+          {" "}
+          CREATE{" "}
+        </button>
       </form>
     );
   }
 }
 
-export default EventPost;
+export default withRouter(EventCreate);

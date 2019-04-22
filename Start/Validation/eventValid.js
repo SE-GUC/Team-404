@@ -3,14 +3,13 @@ const Joi = require("joi");
 module.exports = {
   createValidation: request => {
     const createSchema = {
-      eventname: Joi.string()
+      eventName: Joi.string()
         .min(3)
         .max(500)
         .required(),
       organizer: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       location: Joi.string()
         .min(3)
         .max(500)
@@ -19,7 +18,7 @@ module.exports = {
         .min(3)
         .max(500)
         .required(),
-      remainingplaces: Joi.number()
+      remainingPlaces: Joi.number()
         .min(1)
         .max(500)
         .required(),
@@ -27,11 +26,11 @@ module.exports = {
         .min(3)
         .max(500)
         .required(),
-      maximumplaces: Joi.number()
-        .min(2)
+      maximumPlaces: Joi.number()
+        .min(1)
         .max(500)
         .required(),
-      topicscovered: Joi.string()
+      topicsCovered: Joi.string()
         .min(3)
         .max(500)
         .required(),
@@ -39,14 +38,13 @@ module.exports = {
         .min(3)
         .max(500)
         .required(),
-      registrationprice: Joi.number()
-        .min(2)
+      registrationPrice: Joi.number()
+        .min(1)
         .max(500)
         .required(),
-      approvalstatus: Joi.string()
+      approvalStatus: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       applicants: Joi.array(),
       feedback: Joi.array()
     };
@@ -56,14 +54,13 @@ module.exports = {
 
   updateValidation: request => {
     const updateSchema = {
-      eventname: Joi.string()
+      eventName: Joi.string()
         .min(3)
         .max(500)
         .required(),
       organizer: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       location: Joi.string()
         .min(3)
         .max(500)
@@ -72,7 +69,7 @@ module.exports = {
         .min(3)
         .max(500)
         .required(),
-      remainingplaces: Joi.string()
+      remainingPlaces: Joi.string()
         .min(1)
         .max(500)
         .required(),
@@ -80,11 +77,11 @@ module.exports = {
         .min(3)
         .max(500)
         .required(),
-      maximumplaces: Joi.string()
-        .min(2)
+      maximumPlaces: Joi.string()
+        .min(1)
         .max(500)
         .required(),
-      topicscovered: Joi.string()
+      topicsCovered: Joi.string()
         .min(3)
         .max(500)
         .required(),
@@ -92,14 +89,13 @@ module.exports = {
         .min(3)
         .max(500)
         .required(),
-      registrationprice: Joi.string()
-        .min(2)
+      registrationPrice: Joi.string()
+        .min(1)
         .max(500)
         .required(),
-      approvalstatus: Joi.string()
+      approvalStatus: Joi.string()
         .min(3)
-        .max(500)
-        .required(),
+        .max(500),
       applicants: Joi.array(),
       feedback: Joi.array()
     };

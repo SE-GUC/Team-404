@@ -4,7 +4,6 @@ export class AddFeedback extends Component {
     state = {
         title: ''
     }
-
     onSubmit = (e) =>
     {
         e.preventDefault();

@@ -1,34 +1,42 @@
 import React, { Component } from "react";
-import axios from "./axiosInstance";
-
+import axios from "axios";
+import { Link } from "react-router-dom";
 class EventRead extends Component {
     state = {
         events: [ ]
     }
     componentDidMount(){
         
-        axios.get('http://localhost:3001/api/applications/')
+        axios.get('http://localhost:3001/Routes/api/events/')
         .then(res => {
-            console.log(res)
+            //console.log(res)
             this.setState({
                 events: res.data.data
             })
         })
     }
 render(){
+   
 const { events } = this.state;
 const eventList = events.length ? (
     events.map(event => {
     return(
+        
         <div className= "event card" key={event._id}>
         <div className="card-content">
-        <span className="event candidate">{event.candidate}</span>
+       
+        <Link to = {`event/${event._id}`}>
+        <br />
+        {/* //the name as a link  */}
+        <span STYLE="text-decoration:underline; font-weight:bold">{event.eventName}</span>
+           
+        </Link>
         </div>
         </div>
     )
 })
 ) : ( 
-<div className="center">No events yet</div>
+<div className="center">are being retrieved...</div>
 )
 return(
     <div className="container">

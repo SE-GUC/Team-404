@@ -6,7 +6,6 @@ class Taskform extends Component {
   state = {
     taskform: []
   };
-
   componentDidMount = () => {
     Axios.get("http://localhost:3001/Routes/api/tasks/")
       .then(res => {
