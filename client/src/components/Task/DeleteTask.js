@@ -12,8 +12,8 @@ class DeleteTask extends Component {
 
   handleSubmit = task => {
     task.preventDefault();
-
-    axios.delete(`tasks/${this.props.match.params.id}`)
+    const id = this.state._id
+    axios.delete("http://localhost:3000/Routes/api/tasks/id")
       .then(res => {
         this.props.history.push('/tasks');
         console.log(res);

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import EventPost from "./components/Event/EventPost";
+import EventRequest from "./components/Event/EventRequest";
+import EventCreate from "./components/Event/EventCreate";
 import EventPut from "./components/Event/EventPut";
 import EventDelete from "./components/Event/EventDelete";
 import "./components/User/Textbox.css";
@@ -22,10 +23,13 @@ import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 import UpdateTasks from "./components/page/Tasks/UpdateTasks";
 import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
-import RegisterCandidate from "./components/User/RegisterCandidate";
-import RegisterPartner from "./components/User/RegisterPartner";
+import RegisterCandidate from "./components/RegisterCandidate";
+import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/User/UserList";
+import EventReadIDPending from "./components/Event/EventReadIDPending";
+import UserList from "./components/UserList";
+import EventReadPending from "./components/Event/EventReadPending";
+
 class App extends Component {
   state = {
     applications: [],
@@ -175,17 +179,26 @@ class App extends Component {
           />
           <Route
             exact
+            path="/Event/request"
+            render={props => (
+              <React.Fragment>
+                <EventRequest />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
             path="/Event/create"
             render={props => (
               <React.Fragment>
-                <EventPost />
+                <EventCreate />
               </React.Fragment>
             )}
           />
           {" "}
           <Route
             exact
-            path="/Event/update"
+            path="Event/update"
             render={props => (
               <React.Fragment>
                 <EventPut />
@@ -204,7 +217,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/event/:id"
+            path="/event/:id/User/:uid"
             render={props => (
               <React.Fragment>
                 <EventReadID />
@@ -224,6 +237,37 @@ class App extends Component {
                 <UpdateTasks />
               </React.Fragment>
             )}
+          />
+            path="/event/:id/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadIDPending />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/event/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadPending />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/:id/update"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <EventPut />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/RegisterCandidate"
+            component={RegisterCandidate}
           />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/AddTask" component={AddTask} />

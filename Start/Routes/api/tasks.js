@@ -36,40 +36,40 @@ router.get("/getT/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
- /*  try {
+  /*  try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message }); */
-    const task = await new Task({
-      title: req.body.title,
-      description: req.body.description,
-      eta: req.body.eta,
-      levelOfCommitment: req.body.levelOfCommitment,
-      partner: req.body.partner,
-      monetaryCompensation: req.body.monetaryCompensation,
-      skills: req.body.skills,
-      lifeCycleStatus: "Denied",
-      experienceNeeded: req.body.experienceNeeded,
-      consultancyRequested: req.body.consultancyRequested
-    }).save();
+  const task = await new Task({
+    title: req.body.title,
+    description: req.body.description,
+    eta: req.body.eta,
+    levelOfCommitment: req.body.levelOfCommitment,
+    partner: req.body.partner,
+    monetaryCompensation: req.body.monetaryCompensation,
+    skills: req.body.skills,
+    lifeCycleStatus: "Denied",
+    experienceNeeded: req.body.experienceNeeded,
+    consultancyRequested: req.body.consultancyRequested
+  }).save();
 
-    if (consultancyRequested) {
-      users.array.forEach(user => {
-        if (user.userType == "Consultant") {
-          sendNotif(user.email, "Consultancy req", "LirtenHub");
-        }
-      });
-    }
-    return res.json({ data: task });
+  if (consultancyRequested) {
+    users.array.forEach(user => {
+      if (user.userType == "Consultant") {
+        sendNotif(user.email, "Consultancy req", "LirtenHub");
+      }
+    });
+  }
+  return res.json({ data: task });
   /* } catch (error) {
     console.log(error);
   } */
 });
 
 router
-  .route("/:id")
+  .route("/:id", authenticateUser)
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -83,7 +83,7 @@ router
     next();
   })
 
-  .get(async (request, response) => {
+  .get(authenticateUser, async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec();
       return response.json({ data: task });
@@ -94,7 +94,7 @@ router
     }
   })
 
-  .put(async (request, response) => {
+  .put(authenticateUser, async (request, response) => {
     Task.findByIdAndUpdate(
       request.params.id,
       request.body,
@@ -111,7 +111,7 @@ router
     );
   })
 
-  .delete((request, response) => {
+  .delete(authenticateUser, (request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
         const x = null;
@@ -200,103 +200,107 @@ router.get("/viewTaskStatus/:tid", async (req, res) => {
   });
 });
 
-router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
-  var Pid = req.body.id;
-  var Tid = req.params.Tid;
+router.put(
+  "/UpdateProjectAttributes/:Tid",
+  authenticateUser,
+  async (req, res) => {
+    var Pid = req.body.id;
+    var Tid = req.params.Tid;
 
-  let {
-    title,
-    description,
-    eta,
-    levelOfCommitment,
-    partner,
-    monetaryCompensation,
-    skills,
-    lifeCycleStatus,
-    experienceNeeded,
-    consultancyRequested,
-    consultant,
-    application,
-    tags
-  } = req.body;
+    let {
+      title,
+      description,
+      eta,
+      levelOfCommitment,
+      partner,
+      monetaryCompensation,
+      skills,
+      lifeCycleStatus,
+      experienceNeeded,
+      consultancyRequested,
+      consultant,
+      application,
+      tags
+    } = req.body;
 
-  let updateBody = {};
-  if (title) {
-    updateBody.title = title;
-  }
-  if (description) {
-    updateBody.description = description;
-  }
-  if (eta) {
-    updateBody.eta = eta;
-  }
-  if (levelOfCommitment) {
-    updateBody.levelOfCommitment = levelOfCommitment;
-  }
-  if (partner) {
-    updateBody.partner = partner;
-  }
-  if (monetaryCompensation) {
-    updateBody.monetaryCompensation = monetaryCompensation;
-  }
-  if (skills) {
-    updateBody.skills = skills;
-  }
-  if (lifeCycleStatus) {
-    updateBody.lifeCycleStatus = lifeCycleStatus;
-  }
-  if (experienceNeeded) {
-    updateBody.experienceNeeded = experienceNeeded;
-  }
-  if (consultancyRequested) {
-    updateBody.consultancyRequested = consultancyRequested;
-  }
-  if (consultant) {
-    updateBody.consultant = consultant;
-  }
-  if (application) {
-    updateBody.application = application;
-  }
-  if (tags) {
-    updateBody.tags = tags;
-  }
-  //     let partner = await Partner.findById(Pid)
-  //     if(!partner){
-  //       return res.status(400).send({
-  //          message:"couldnt find a partner with the specififed id "
-  //        })
-  //      }
-  var tasks = await Task.findById(Tid); //.exec()
-  if (!tasks) {
-    return res.status(400).send({
-      message: "couldnt find a task with the specififed id "
-    });
-  }
-  var query = { _id: Tid, partner: Pid };
-  const updated = await Task.findOneAndUpdate(
-    {
-      _id: Tid
-    },
-    {
-      $set: updateBody
-    },
-    {
-      new: true
+    let updateBody = {};
+    if (title) {
+      updateBody.title = title;
     }
-  );
+    if (description) {
+      updateBody.description = description;
+    }
+    if (eta) {
+      updateBody.eta = eta;
+    }
+    if (levelOfCommitment) {
+      updateBody.levelOfCommitment = levelOfCommitment;
+    }
+    if (partner) {
+      updateBody.partner = partner;
+    }
+    if (monetaryCompensation) {
+      updateBody.monetaryCompensation = monetaryCompensation;
+    }
+    if (skills) {
+      updateBody.skills = skills;
+    }
+    if (lifeCycleStatus) {
+      updateBody.lifeCycleStatus = lifeCycleStatus;
+    }
+    if (experienceNeeded) {
+      updateBody.experienceNeeded = experienceNeeded;
+    }
+    if (consultancyRequested) {
+      updateBody.consultancyRequested = consultancyRequested;
+    }
+    if (consultant) {
+      updateBody.consultant = consultant;
+    }
+    if (application) {
+      updateBody.application = application;
+    }
+    if (tags) {
+      updateBody.tags = tags;
+    }
+    //     let partner = await Partner.findById(Pid)
+    //     if(!partner){
+    //       return res.status(400).send({
+    //          message:"couldnt find a partner with the specififed id "
+    //        })
+    //      }
+    var tasks = await Task.findById(Tid); //.exec()
+    if (!tasks) {
+      return res.status(400).send({
+        message: "couldnt find a task with the specififed id "
+      });
+    }
+    var query = { _id: Tid, partner: Pid };
+    const updated = await Task.findOneAndUpdate(
+      {
+        _id: Tid
+      },
+      {
+        $set: updateBody
+      },
+      {
+        new: true
+      }
+    );
 
-  if (updated != null) {
-    return res.json({
-      success: true,
-      message: "Task updated",
-      updatedTask: updated
+    if (updated != null) {
+      return res.json({
+        success: true,
+        message: "Task updated",
+        updatedTask: updated
+      });
+    }
+
+    return res.status(400).json({
+      success: false,
+      message: "Task update failed"
     });
   }
-
-  return res.status(400).json({
-    success: false,
-    message: "Task update failed"
-  });
-});
+);
 
 module.exports = router;

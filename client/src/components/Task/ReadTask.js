@@ -47,8 +47,8 @@ class ReadTasks extends Component {
   };
 
 */
-  
- // handleApply = e => this.setState({ applications: e.target.value });
+
+  // handleApply = e => this.setState({ applications: e.target.value });
 
   render() {
     const { tasks } = this.state;

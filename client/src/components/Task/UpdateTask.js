@@ -98,7 +98,7 @@ class UpdateTask extends React.Component {
     try {
       let response = axios.post(
         "http://localhost:3000/Routes/api/tasks/${tasks._id}",
-        Event
+        Task
       ).then ( res => {
       console.log(response)}
       )

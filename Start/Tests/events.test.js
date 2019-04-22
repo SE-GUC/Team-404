@@ -1,35 +1,64 @@
-const Event = require('../../Models/Event')
-const events = require('./api/events');
-let newEvent;
+const funcs = require("./events.functions");
+let event;
 
+// test('post new event', async () => {
+//     const response = await funcs.createEvent();
+//     expect(response.data.data.field).toEqual('programming');
+// });
 
-test('create a new Event', async () => {
-    const newEvent = await events.post();
-    expect(newEvent.eventName).toBe('name');
-    newEvent = newEvent;
-})
-
-
- test('get all events', async () => {
-    const vnt = await events.get();
-    expect(Array.isArray(vnt)).toBe(true);
+test('get all approved events', async () => {
+    const events = await funcs.getApprovedEvents();
+    expect(events).not.toBeNull();
 });
 
-test('get a specific Event', async (id) => {
-    const id = newEvent.id
-    const _event = await events.get(id);
-    expect(_event.id).toBe(newEvent.id);
+test('get all pending events', async () => {
+    const events = await funcs.getPendingEvents();
+    expect(events).not.toBeNull();
 });
 
-
-test('update a specific Event', async (id) => {
-    const id = newEvent.id
-    const _event = await events.put(id);
-    expect(_event.eventName).toBe('updated name');
+test("get specific event", async () => {
+  const _event = await funcs.getSpecificEvent();
+  expect(_event.data.data.eventName).toBe("Arts and Craft");
 });
 
-test('delete a specific Event', async (id) => {
-    const id = newEvent.id
-    const message = await events.delete(id);
-    expect(message).toBe('Event was deleted successfully');
+test("update specific event", async () => {
+  const _event = await funcs.updateEvent();
+  expect(_event.data.data.eventName).toEqual("java");
+});
+
+test("delete specific event", async () => {
+  const messagee = await funcs.deleteEvent();
+  console.log(messagee);
+  expect(messagee.data).toEqual("Event was deleted successfully");
+});
+
+test('book an event', async () => {
+    const res = await funcs.createBooking();
+    console.log(res);
+    expect(res.data).toEqual("Event has been booked!");
+});
+
+test('cancel an event', async () => {
+    const res = await funcs.cancelBooking();
+    console.log(res);
+    expect(res.data).toEqual("Event booking has been canceled!");
+});
+
+//Hagar backend tests 
+
+test("partner request event", async () => {
+  const message = await funcs.requestEvent();
+  console.log(message);
+  expect(message.data).toEqual("Event has been requested!");
+});
+
+test("admin create event", async () => {
+  const message = await funcs.adminCreateEvent();
+  console.log(message);
+  expect(message.data).toEqual("Event has been created!");
+});
+
+test("confirm an event", async () => {
+    const message = await funcs.confirmRequest();
+    expect(message.data).toEqual("Event request has been approved!");
 });
