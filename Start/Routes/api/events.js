@@ -45,7 +45,6 @@ router.post('/', async (req, res) => {
       feedback: req.body.feedback
     }).save()
 
-    const User = require('../../Models/User')
     const users = await User.find({})
     users.forEach(user => {
       if (user.userType == 'Admin') {

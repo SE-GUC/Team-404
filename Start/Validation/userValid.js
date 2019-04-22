@@ -23,14 +23,14 @@ module.exports = {
       phoneNumber: Joi.number().min(1).max(99999999999999).required(),
       userType: Joi.string().min(3).max(500).required(),
       location: Joi.string().min(3).max(500).required(),
-      
-      //Candidate
+
+      // Candidate
       skills: Joi.string().min(3).max(20),
       interests: Joi.string().min(3).max(20),
       pasteventsAndTasks: Joi.string().min(3).max(20),
       reviewsRecieved: Joi.string().min(3).max(20),
-      
-      //Partner
+
+      // Partner
       organisationName: Joi.string(),
       businessPartners: Joi.string(),
       boardMembers: Joi.string(),
