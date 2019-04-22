@@ -36,34 +36,34 @@ router.get("/getT/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  /*  try {
+ /*  try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message }); */
-  const task = await new Task({
-    title: req.body.title,
-    description: req.body.description,
-    eta: req.body.eta,
-    levelOfCommitment: req.body.levelOfCommitment,
-    partner: req.body.partner,
-    monetaryCompensation: req.body.monetaryCompensation,
-    skills: req.body.skills,
-    lifeCycleStatus: "Denied",
-    experienceNeeded: req.body.experienceNeeded,
-    consultancyRequested: req.body.consultancyRequested
-  }).save();
+    const task = await new Task({
+      title: req.body.title,
+      description: req.body.description,
+      eta: req.body.eta,
+      levelOfCommitment: req.body.levelOfCommitment,
+      partner: req.body.partner,
+      monetaryCompensation: req.body.monetaryCompensation,
+      skills: req.body.skills,
+      lifeCycleStatus: "Denied",
+      experienceNeeded: req.body.experienceNeeded,
+      consultancyRequested: req.body.consultancyRequested
+    }).save();
 
-  if (consultancyRequested) {
-    users.array.forEach(user => {
-      if (user.userType == "Consultant") {
-        sendNotif(user.email, "Consultancy req", "LirtenHub");
-      }
-    });
-  }
-  return res.json({ data: task });
-  /* }  catch (error) {
+    if (consultancyRequested) {
+      users.array.forEach(user => {
+        if (user.userType == "Consultant") {
+          sendNotif(user.email, "Consultancy req", "LirtenHub");
+        }
+      });
+    }
+    return res.json({ data: task });
+  /* } catch (error) {
     console.log(error);
   } */
 });
