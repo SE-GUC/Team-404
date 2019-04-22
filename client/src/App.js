@@ -29,11 +29,15 @@ import RegisterCandidate from "./components/RegisterCandidate";
 import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/UserList";
+import UserList from "./components/UserList"
+import PartnerList from "./components/PartnerList";
+import ConsultantList from "./components/ConsultantList";
+import CandidateList from "./components/CandidateList";
 import updateUser from "./components/page/User/updateUser";
 import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
+import UserProfile from "./components/UserProfile";
 
 class App extends Component {
   state = {
@@ -169,7 +173,58 @@ class App extends Component {
             path="/User"
             render={props => (
               <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
                 <UserList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Partners"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <PartnerList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Candidates"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <CandidateList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Consultants"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <ConsultantList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/5cb1eee8b3197064e88727bf"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <UserProfile />
               </React.Fragment>
             )}
           />
@@ -272,6 +327,10 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+           <Route exact path="/PartnerList" component={PartnerList} />
+           <Route exact path="/CandidateList" component={CandidateList} />
+           <Route exact path="/ConsultantList" component={ConsultantList} />
+           
           <Route exact path="/updateUser" component={updateUser} />
           <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />

@@ -12,17 +12,34 @@ router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
+
+router.get('/consultants', async (req,res) => {
+  const users = await User.find({userType : "Consultant"})
+  res.json({data: users})
+})
+
+
+
+router.get('/partners', async (req,res) => {
+  const users = await User.find({userType : "partner"})
+  res.json({data: users})
+})
+
+router.get('/candidates', async (req,res) => {
+  const users = await User.find({userType : "Candidate"})
+  res.json({data: users})
+})
+
 router.get('/:id',async (req,res)=>{
   try {
     const id = req.params.id
     const requestedUser = await User.findById(id)
-    res.json({msg:'User you asked for', data: requestedUser})
+    res.json({ data: requestedUser})
    }catch(error){
     console.log(error)
    }
-   })
-
-//login user
+})  
+   //login user
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;
@@ -94,19 +111,6 @@ router.post('/register', async (req,res) => {
 
       
 })
-//Not working yet.
-router
-  .route('/:id')
-  .all(async (request, response, next) => {
-    const status = joi.validate(request.params, {
-      id: joi.string().length(24).required()
-    })
-    if (status.error) {
-      return response.json({ error: status.error.details[0].message })
-    }
-    next()
-  })
-
 
   router.put('/:id',async (request, response) => {
     User.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
@@ -131,7 +135,6 @@ router.delete('/:id', async (req,res) => {
       console.log(error)
   }  
 })
-
 
 module.exports = router
 
