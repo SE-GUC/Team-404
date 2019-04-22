@@ -6,7 +6,7 @@ const router = express.Router();
 const Task = require("../../Models/Task");
 const sendNotif = require("../../utils/mailer");
 const users = require("../api/users");
-//const joi = require("Joi")
+const joi = require("Joi");
 const validator = require("../../Validation/taskValid");
 
 router.get("/", async (req, res) => {
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 router.get("/consultancyRequested/:status", async (req, res) => {
   var status = req.params.status;
-  const tasks = await Task.find({consultancyRequested : status}).exec();
+  const tasks = await Task.find({ consultancyRequested: status }).exec();
   res.json({ data: tasks });
   if (!tasks) {
     return res.status(400).send({
@@ -25,37 +25,47 @@ router.get("/consultancyRequested/:status", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.get("/getT/:id" , async (req, res) => {
   try {
+    const id = req.params.id;
+    const requestedTask = await Task.findById(id);
+    res.json({ msg: "Task you asked for", data: requestedTask });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+router.post("/", async (req, res) => {
+  /*  try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
         .status(400)
-        .send({ error: isValidated.error.details[0].message });
-    const task = await new Task({
-      title: req.body.title,
-      description: req.body.description,
-      eta: req.body.eta,
-      levelOfCommitment: req.body.levelOfCommitment,
-      partner: req.body.partner,
-      monetaryCompensation: req.body.monetaryCompensation,
-      skills: req.body.skills,
-      lifeCycleStatus: "Denied",
-      experienceNeeded: req.body.experienceNeeded,
-      consultancyRequested: req.body.consultancyRequested
-    }).save();
+        .send({ error: isValidated.error.details[0].message }); */
+  const task = await new Task({
+    title: req.body.title,
+    description: req.body.description,
+    eta: req.body.eta,
+    levelOfCommitment: req.body.levelOfCommitment,
+    partner: req.body.partner,
+    monetaryCompensation: req.body.monetaryCompensation,
+    skills: req.body.skills,
+    lifeCycleStatus: "Denied",
+    experienceNeeded: req.body.experienceNeeded,
+    consultancyRequested: req.body.consultancyRequested
+  }).save();
 
-    if (consultancyRequested) {
-      users.array.forEach(user => {
-        if (user.userType == "Consultant") {
-          sendNotif(user.email, "Consultancy req", "LirtenHub");
-        }
-      });
-    }
-    return res.json({ data: task });
-  } catch (error) {
-    console.log(error);
+  if (consultancyRequested) {
+    users.array.forEach(user => {
+      if (user.userType == "Consultant") {
+        sendNotif(user.email, "Consultancy req", "LirtenHub");
+      }
+    });
   }
+  return res.json({ data: task });
+  /* }  catch (error) {
+    console.log(error);
+  } */
 });
 
 router

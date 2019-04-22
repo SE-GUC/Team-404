@@ -41,10 +41,8 @@ class AddTask extends Component {
       applications: this.state.applications,
       tags: this.state.skills
     };
-    if(this.state.consultancyRequested){
-
+    if (this.state.consultancyRequested) {
     }
-    console.log(task);
     try {
       let response = await axios.post(
         "http://localhost:3001/Routes/api/tasks/",
@@ -58,16 +56,12 @@ class AddTask extends Component {
 
   handleChangeSkills(e) {
     var options = e.target.options;
-    console.log(options);
     this.state.skills = [];
     for (var i = 0, l = options.length; i < l; i++) {
       if (options[i].selected) {
-        console.log(options[i].selected);
-
         this.state.skills.push(options[i].value);
       }
     }
-    console.log(this.state.skills);
   }
   handleChangeTitle = e => this.setState({ title: e.target.value });
   handleChangeDescription = e => this.setState({ description: e.target.value });

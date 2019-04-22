@@ -5,7 +5,6 @@ import "./App.css";
 import EventPost from "./components/Event/EventPost";
 import EventPut from "./components/Event/EventPut";
 import EventDelete from "./components/Event/EventDelete";
-import "./App.css";
 import "./components/User/Textbox.css";
 import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
@@ -183,7 +182,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          /*{" "}
+          {" "}
           <Route
             exact
             path="/Event/update"
@@ -193,7 +192,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />{" "}
-          */
+          
           <Route
             exact
             path="/Event/delete"

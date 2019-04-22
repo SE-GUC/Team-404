@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 
-
 class UpdateTask extends React.Component {
   state = {
     id: "",
+    title: "",
     description: "",
     eta: null,
     levelOfCommitment: "",
@@ -22,6 +22,17 @@ class UpdateTask extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    axios.get("http://localhost:3001/Routes/api/tasks").then(res => {
+      this.setState(res.data.data);
+    });
+  }
+
+  handleChangeId = task => {
+    this.setState({ title: task.target.value });
+  };
+
   handleChangeId = task => {
     this.setState({ id: task.target.value });
   };
@@ -70,11 +81,7 @@ class UpdateTask extends React.Component {
     this.setState({ applications: task.target.value });
   };
 
-  handleSubmit =() => {
-    //this.preventDefault();
-    // const params = new URLSearchParams(this.props.location.search);
-    // const foo = params.get('id'); // bar
-    // console.log(foo);
+  handleSubmit = () => {
     const Task = {
       id: this.state.id,
       description: this.state.description,
@@ -89,32 +96,34 @@ class UpdateTask extends React.Component {
       consultant: this.state.consultant,
       applications: this.state.applications
     };
-    console.log(Task)
-    sessionStorage.setItem("id", this.state.id);
-    let id = sessionStorage.getItem("id");
-  
-    axios.put(`http://localhost:3001/Routes/api/tasks/` + id, Task).then(res => {
-       console.log(res);
-       console.log(res.data);
-     });
-  };
+    console.log(Task);
+   // sessionStorage.setItem("id", this.state.id);
+    //let id = sessionStorage.getItem("id");
+
+    try {
+      let response = axios.put(
+          `tasks/${this.props.match.params.id}`,
+        Event
+      ).then ( res => {
+      console.log(response)}
+      )
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   render() {
     return (
       <form>
-           <br />
-           <br />
-           <br />
+        <br />
+        <br />
+        <br />
         <label className="Id">
           ID:
-          <input
-            type="text"
-            name="id"
-            onChange={this.handleChangeId}
-          />
+          <input type="text" name="id" onChange={this.handleChangeId} />
         </label>
         <br />
-
         <label className="Description">
           Description:
           <input
@@ -124,17 +133,16 @@ class UpdateTask extends React.Component {
           />
         </label>
         <br />
-
         <label className="Eta">
           Eta:
           <input
             type="text"
             name="eta"
+            value={this.state.eta}
             onChange={this.handleChangeEta}
           />
         </label>
         <br />
-
         <label className="LevelOfCommitment">
           LevelOfCommitment:
           <input
@@ -142,8 +150,8 @@ class UpdateTask extends React.Component {
             name="levelOfCommitment"
             onChange={this.handleChangeLevelOfCommitment}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="Partner">
           Partner:
           <input
@@ -151,8 +159,8 @@ class UpdateTask extends React.Component {
             name="partner"
             onChange={this.handleChangePartner}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="MonetaryCompensation">
           MonetaryCompensation:
           <input
@@ -160,17 +168,13 @@ class UpdateTask extends React.Component {
             name="monetaryCompensation"
             onChange={this.handleChangeMonetaryCompensation}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="Skills">
           skills:
-          <input
-            type="text"
-            name="skills"
-            onChange={this.handleChangeSkills}
-          />
-        </label> <br />
-
+          <input type="text" name="skills" onChange={this.handleChangeSkills} />
+        </label>{" "}
+        <br />
         <label className="LifeCycleStatus">
           LifeCycleStatus:
           <input
@@ -178,8 +182,8 @@ class UpdateTask extends React.Component {
             name="lifeCycleStatus"
             onChange={this.handleChangeLifeCycleStatus}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="ExperienceNeeded">
           ExperienceNeeded:
           <input
@@ -187,16 +191,17 @@ class UpdateTask extends React.Component {
             name="experienceNeeded"
             onChange={this.handleChangeExperienceNeeded}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="ConsultancyRequested">
           Con:
-          <input 
-          type="text" 
-          name="consultancyRequested" 
-          onChange={this.handleConsultancyRequested} />
-        </label> <br />
-
+          <input
+            type="text"
+            name="consultancyRequested"
+            onChange={this.handleConsultancyRequested}
+          />
+        </label>{" "}
+        <br />
         <label className="Consultant">
           Consultant:
           <input
@@ -204,8 +209,8 @@ class UpdateTask extends React.Component {
             name="consultant"
             onChange={this.handleChangeConsultant}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="Applications">
           Applications:
           <input
@@ -213,9 +218,12 @@ class UpdateTask extends React.Component {
             name="appications"
             onChange={this.handleChangeApplications}
           />
-        </label> <br />
-
-        <button type="button" onClick={this.handleSubmit}>  Change  </button>
+        </label>{" "}
+        <br />
+        <button type="button" onClick={this.handleSubmit}>
+          {" "}
+          Change{" "}
+        </button>
       </form>
     );
   }
