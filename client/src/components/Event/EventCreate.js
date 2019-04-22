@@ -32,6 +32,7 @@ class EventCreate extends React.Component {
       registrationPrice: this.state.registrationPrice
     };
     try {
+      console.log("inside the try")
       let response = await axios.post(
         `events/${this.props.match.params.id}/adminCreateEvent`,
         Event

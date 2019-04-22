@@ -191,7 +191,7 @@ class App extends Component {
           />
            <Route
             exact
-            path="/Event/create"
+            path="/Event/:id/create"
             render={props => (
               <React.Fragment>
                 <EventCreate />
