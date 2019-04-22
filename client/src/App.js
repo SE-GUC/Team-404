@@ -16,10 +16,12 @@ import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
 import RegisterCandidate from "./components/RegisterCandidate";
+import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
+import UserList from "./components/UserList"
+import Register from "./components/page/User/Register"
 import EventReadIDPending from "./components/Event/EventReadIDPending";
-import UserList from "./components/UserList";
 import EventReadPending from "./components/Event/EventReadPending";
 import TaskDelete from "./components/Task/TaskDelete";
 import TaskCreate from "./components/Task/TaskCreatete";
@@ -89,9 +91,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App" id="background2">
-          <Header />
-          <Route
+        <div className="App" id=".App-header" >
+          <Header/>
+          <Route 
             exact
             path="/"
             render={props => (
@@ -100,11 +102,11 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route
+          <Route 
             exact
             path="/Partner"
             render={props => (
-              <React.Fragment>
+              <React.Fragment >
                 <Partner />
               </React.Fragment>
             )}
@@ -272,8 +274,18 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+<<<<<<< HEAD
 
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
+=======
+          <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
+          <Route exact path="/RegisterPartner" component={RegisterPartner} />
+          <Route exact path="/Register" component={Register} />
+          <Route exact path="/AddTask" component={AddTask} />
+          <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
+          <Route exact path="/DeleteTasks" component={DeleteTasks} />
+          <Route exact path="/UpdateTask" component={UpdateTask} />
+>>>>>>> ed495cf4fdc22f141b59e62d959fabc94a1db169
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
