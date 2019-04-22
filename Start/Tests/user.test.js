@@ -7,6 +7,11 @@ test("update specific user", async () => {
     const _user = await funcs.updateUser();
     expect(_user.data.data.name).toEqual("x");
   });
+
+test('delete a specific User', async () => {
+  const _user = await funcs.deleteUser();
+  expect(_user.data).toEqual("User was deleted successfully");
+});
   module.exports = {
     testEnvironment: 'node'
   };

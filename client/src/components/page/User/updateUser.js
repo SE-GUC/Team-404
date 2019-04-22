@@ -1,17 +1,16 @@
 import React from "react";
 //import axios from './node_modules/axios';
-import axios from "axios";
+import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 import { number } from "prop-types";
-import '../../User/Textbox.css';
 
-class updateUser extends React.Component {
+class UserPut extends React.Component {
   state = {
     
     name: "",
     email: "",
-    password: "",
-    age: number,
+    password: number,
+    age: "",
     username: "",
     phoneNumber: number,
     userType: "",
@@ -31,7 +30,7 @@ class updateUser extends React.Component {
 
   };
   componentDidMount() {
-    axios.get(`http://localhost:3001/Routes/api/users/${JSON.parse(localStorage.getItem('id'))}`).then(res => {
+    axios.get(`users/${this.props.match.params.id}`).then(res => {
       this.setState(res.data.data);
       
     });
@@ -131,8 +130,8 @@ class updateUser extends React.Component {
 
     try {
       let response = axios.put(
-          ` http://localhost:3001/Routes/api/users/${JSON.parse(localStorage.getItem('id'))}`,
-        User
+          `users/${this.props.match.params.id}`,
+        Event
       ).then ( res => {
       console.log(response)}
       )
@@ -350,13 +349,13 @@ class updateUser extends React.Component {
         <br />
 
 
-        <button type="submit" className="text-center" id="i3" onClick={this.handleSubmit}>
-         
-          UPDATE
+        <button type="submit" className="text-center" onClick={this.handleSubmit}>
+          {" "}<br /> {" "} {" "}<br />
+          UPDATE{" "} <br />{" "} {" "}<br />
         </button>
       </form>
     );
   }
 }
 
-export default withRouter(updateUser);
+export default withRouter(UserPut);
