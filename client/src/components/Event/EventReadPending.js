@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-const User = require("../User/Textbox.js");
 
-class EventRead extends Component {
+class EventReadPending extends Component {
   state = {
     events: []
   };
   componentDidMount() {
-    axios.get("http://localhost:3001/Routes/api/events/").then(res => {
+    axios.get("http://localhost:3001/Routes/api/events/pending").then(res => {
       console.log(res);
       this.setState({
         events: res.data.data
@@ -22,8 +21,10 @@ class EventRead extends Component {
         return (
           <div className="event card" key={event._id}>
             <div className="card-content">
-              <Link to={`event/${event._id}/User/${JSON.parse(localStorage.getItem('id'))}`}>
+              <Link to={`/event/${event._id}/pending`}>
+
                 {/* //the name as a link  */}
+                <br /> 
                 <span STYLE="text-decoration:underline; font-weight:bold">
                   {event.eventName}
                 </span>
@@ -33,9 +34,9 @@ class EventRead extends Component {
         );
       })
     ) : (
-      <div className="center">are being retrieved...</div>
+      <div className="center">Retrievinng pending events</div>
     );
     return <div className="container">{eventList}</div>;
   }
 }
-export default EventRead;
+export default EventReadPending;

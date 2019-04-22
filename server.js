@@ -10,6 +10,13 @@ mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 // Connect to mongo
 mongoose
   .connect(
@@ -24,25 +31,38 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use((request, response, next) => {
-  Logger.log(`${request.method} => ${request.originalUrl}`)
+  Logger.log(`${request.method} => ${request.originalUrl}`);
+  next();
+});
+const events = require("./Start/Routes/api/events");
+const users = require("./Start/Routes/api/users");
+const tasks = require("./Start/Routes/api/tasks");
+
+/*fakemiddle = (req,res,next) => {
+  console.log('in mw')
+  req.batata = 'hey'
   next()
-})
-const events = require('./Start/Routes/api/events')
-const users = require('./Start/Routes/api/users')
-const tasks = require('./Start/Routes/api/tasks')
+}*/
 
-// shows a message on the homepage indicated by '/' directory
-app.get("/", (req, res) => {
+/*app.get('/', (req,res) => {
+  res.send(req.batata);
+})
+
+app.get('/mw', fakemiddle, (req,res) => {
+  res.send(req.batata);
+})*/
+//shows a message on the homepage indicated by '/' directory
+ app.get("/", (req, res) => {
   res.send(`<h1>Welcome Team404</h1>
-  <a href ="/Routes/api/events">Events</a>
-  <a href ="/Routes/api/users">Users</a>
-  <a href ="/Routes/api/tasks">Tasks</a>
- `)
-})
+//   <a href ="/Routes/api/events">Events</a>
+//   <a href ="/Routes/api/users">Users</a>
+//   <a href ="/Routes/api/tasks">Tasks</a>
+//  `);
+});
 
-app.use('/Routes/api/events', events)
-app.use('/Routes/api/users', users)
-app.use('/Routes/api/tasks', tasks)
+app.use("/Routes/api/events", events);
+app.use("/Routes/api/users", users);
+app.use("/Routes/api/tasks", tasks);
 
 app.use((req, res) => {
   res.status(404).send({ err: "We can not find what you are looking for" });

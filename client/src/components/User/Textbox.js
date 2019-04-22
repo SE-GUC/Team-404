@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 import { withRouter} from 'react-router-dom';
 import './Textbox.css';
+
 class Textbox extends Component {
     state ={ 
      email:"",
      pass:"",
-     redirect:false,
-      }
+     userinfo: "",
+     id: "",
+     usertype: ""
+        }
 
       loginVal = async event => {
         event.preventDefault();
@@ -17,17 +21,28 @@ class Textbox extends Component {
           password: this.state.pass,
     
         };
-        console.log(user);
+        //console.log(user);
         try {
           let response = await axios.post(
             "http://localhost:3001/Routes/api/users/login/",
             user
           );
-          axios.defaults.headers.common['Authorization'] = response.data.token;
-          this.props.history.push("/")
+          axios.defaults.headers.common['Authorization'] = response.data.token;  
+         var decoded = jwt_decode(response.data.token, {complete: true});
+         this.setState({userinfo: decoded})
+         this.setState({id: this.state.userinfo.id})
+         this.setState({usertype: this.state.userinfo.usertype})
+         
+         localStorage.setItem('id', JSON.stringify(this.state.id));
+         localStorage.setItem('usertype', JSON.stringify(this.state.usertype));
+         console.log(localStorage.getItem('userinfo'))
+         this.props.history.push("/")
+          console.log(this.state.userinfo);
+          console.log(this.state.id);
           console.log(response);
           
-        } catch (error) {
+        }
+         catch (error) {
           console.log(error);
         }
   
@@ -45,7 +60,6 @@ check1=(event)=> {
            <div>
                <label>
                Enter E.mail</label>
-
                <input id='i1'
                type="text"
                name="email"

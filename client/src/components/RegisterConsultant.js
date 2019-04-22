@@ -12,7 +12,7 @@ class User extends Component {
       age: "",
       username: "",
       phoneNumber: "",
-      userType: "Candidate",
+      userType: "Consultant",
       location: "",
       skills: "",
       interests: "",
@@ -51,20 +51,20 @@ class User extends Component {
   handleChangeLocation = user => {
     this.setState({ location: user.target.value });
   };
-  handleChangeSkills = user => {
-    this.setState({ skills: user.target.value });
+  handleChangeBoard = user => {
+    this.setState({ board: user.target.value });
   };
 
-  handleChangeIntrests = user => {
-    this.setState({ interests: user.target.value });
+  handleChangePastEvents = user => {
+    this.setState({ pastEvents: user.target.value });
   };
 
   // handleChangePastEventsAndTasks = user => {
   //   this.setState({ pastEventsAndTasks: user.target.value });
   // };
 
-  handleChangeReviewsRecived = user => {
-    this.setState({ reviewsRecieved: user.target.value });
+  handleChangeReports = user => {
+    this.setState({ reports: user.target.value });
   };
   handleSubmit = async event => {
     event.preventDefault();
@@ -78,10 +78,9 @@ class User extends Component {
       phoneNumber: this.state.phoneNumber,
       userType: this.state.userType,
       location: this.state.location,
-      skills: this.state.skills,
-      interests: this.state.interests,
-      pastEventsAndTasks: this.state.pastEventsAndTasks,
-      reviewsRecieved: this.state.reviewsRecieved
+      board: this.state.board,
+      pastEvents: this.state.pastEvents,
+      reports: this.state.reports
     };
     console.log(user);
     try {
@@ -94,7 +93,6 @@ class User extends Component {
   };
   render() {
     return (
-      
 
       <div className="user">
         <h1> users </h1>
@@ -163,42 +161,32 @@ class User extends Component {
             
           </label>
           <br />
-          <label className="Skills">
-            Skills:
+          <label className="board">
+            Board:
           <input
-              onChange={this.handleChangeSkills}
+              onChange={this.handleChangeBoard}
               type="text"
-              name="Skills"
+              name="Board"
             />
 
           </label>
           <br />
-          <label className="Intresets">
-            Interests:
+          <label className="pastEvents">
+            PastEvents:
           <input
-              onChange={this.handleChangeIntrests}
+              onChange={this.handleChangePastEvents}
               type="text"
-              name="Intresets"
+              name="PastEvents"
             />
 
           </label>
           <br />
-          <label className="PastEventsAndTasks">
-            PastEventsAndTasks:
+          <label className="reports">
+            Reports:
           <input
-              onChange={this.handleChangePastEventsAndTasks}
+              onChange={this.handleChangeReports}
               type="text"
-              name="PastEventsAndTasks"
-            />
-
-          </label>
-          <br />
-          <label className="ReviewesRecived">
-            ReviewesRecived:
-          <input
-              onChange={this.handleChangeReviewsRecived}
-              type="text"
-              name="ReviewesRecived"
+              name="Reports"
             />
 
           </label>

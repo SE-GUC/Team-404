@@ -7,16 +7,16 @@ const router = express.Router();
 //const uuid = require('uuid')
 const Task = require("../../Models/Task");
 const sendNotif= require("../../utils/mailer")
-const joi = require("Joi");
+const authenticateUser= require("../../middleware/authenticate");
 const users = require("../api/users")
 //const joi = require("Joi")
 const validator = require("../../Validation/taskValid");
 
-router.get('/', async (req, res) => {
+router.get('/',authenticateUser, async (req, res) => {
   const tasks = await Task.find()
   res.json({ data: tasks })
 })
-router.post('/' ,async (req, res) => {
+router.post('/' ,authenticateUser,async (req, res) => {
 
   try {
       const isValidated = validator.createValidation(req.body)
@@ -48,7 +48,7 @@ router.post('/' ,async (req, res) => {
 });
 
   router
-  .route('/:id')
+  .route('/:id',authenticateUser)
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -62,7 +62,7 @@ router.post('/' ,async (req, res) => {
     next();
   })
 
-  .get(async (request, response) => {
+  .get(authenticateUser,async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec();
       return response.json({ data: Task });
@@ -73,7 +73,7 @@ router.post('/' ,async (req, res) => {
     }
   })
 
-  .put(async (request, response) => {
+  .put(authenticateUser,async (request, response) => {
     Task.findByIdAndUpdate(
       request.params.id,
       request.body,
@@ -90,7 +90,7 @@ router.post('/' ,async (req, res) => {
     );
   })
 
-  .delete((request, response) => {
+  .delete(authenticateUser,(request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
         return response.json({ data: null });
@@ -101,7 +101,7 @@ router.post('/' ,async (req, res) => {
   })
 
 
-  router.get('/viewTaskStatus/:tid', async (req, res) => {
+  router.get('/viewTaskStatus/:tid', authenticateUser,async (req, res) => {
               var Pid = req.body.pid
               var Tid = req.params.tid
               var tasks = await Task.findById(Tid)
@@ -128,7 +128,7 @@ router.post('/' ,async (req, res) => {
 
   })
 
-  router.put('/:Tid', async (req, res) => {
+  router.put('/:Tid',authenticateUser, async (req, res) => {
     var Pid = req.body.id
     var Tid = req.params.Tid
 
@@ -179,7 +179,7 @@ if(applications){
     });
   
 
-router.get("/viewTaskStatus/:tid", async (req, res) => {
+router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
   var Pid = req.body.pid;
   var Tid = req.params.tid;
   var tasks = await Task.findById(Tid);
@@ -203,7 +203,7 @@ router.get("/viewTaskStatus/:tid", async (req, res) => {
   });
 });
 
-router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
+router.put("/UpdateProjectAttributes/:Tid",authenticateUser, async (req, res) => {
   var Pid = req.body.id;
   var Tid = req.params.Tid;
 
