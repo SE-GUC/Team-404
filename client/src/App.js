@@ -26,6 +26,7 @@ import UpdateTask from "./components/Task/UpdateTask";
 import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
 import RegisterCandidate from "./components/RegisterCandidate";
+import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
 import UserList from "./components/UserList"
@@ -220,7 +221,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/event/:id"
+            path="/event/:id/User/:uid"
             render={props => (
               <React.Fragment>
                 <EventReadID />
@@ -260,6 +261,7 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+          <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Register" component={Register} />
           <Route exact path="/AddTask" component={AddTask} />

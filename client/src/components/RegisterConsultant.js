@@ -12,7 +12,7 @@ class User extends Component {
       age: "",
       username: "",
       phoneNumber: "",
-      userType: "Candidate",
+      userType: "Consultant",
       location: "",
       skills: "",
       interests: "",
@@ -156,7 +156,7 @@ class User extends Component {
             
           </label>
           <label className="board">
-            board:
+            Board:
           <input
               onChange={this.handleChangeBoard}
               type="text"
@@ -165,7 +165,7 @@ class User extends Component {
 
           </label>
           <label className="pastEvents">
-            pastEvents:
+            PastEvents:
           <input
               onChange={this.handleChangePastEvents}
               type="text"
@@ -174,7 +174,7 @@ class User extends Component {
 
           </label>
           <label className="reports">
-            reports:
+            Reports:
           <input
               onChange={this.handleChangeReports}
               type="text"

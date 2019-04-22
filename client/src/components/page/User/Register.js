@@ -20,6 +20,7 @@ class Register extends Component {
       RegisterConsultant
       </Link>
       |{" "}
+      
       </header>
         <Router>
         <Route 
@@ -45,7 +46,7 @@ class Register extends Component {
         path="/RegisterConsultant"
         render={props => (
           <React.Fragment>
-            <RegisterConsultant />
+            <RegisterConsultant/>
           </React.Fragment>
         )}
       />
