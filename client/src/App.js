@@ -9,23 +9,21 @@ import "./components/User/Textbox.css";
 import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Taskform from "./components/Task/Taskform";
 import Partner from "./components/page/Partner";
 import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import ReadTasks from "./components/Task/ReadTask";
-import DeleteTask from "./components/Task/DeleteTask";
-import AddTask from "./components/page/Tasks/AddTask";
-import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
-import DeleteTasks from "./components/page/Tasks/DeleteTasks";
-import UpdateTasks from "./components/page/Tasks/UpdateTasks";
-import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
 import RegisterCandidate from "./components/User/RegisterCandidate";
 import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
 import UserList from "./components/User/UserList";
+import TaskDelete from "./components/Task/TaskDelete";
+import TaskPost from "./components/Task/TaskPost";
+import TaskPut from "./components/Task/TaskPut";
+import TaskRead from "./components/Task/TaskRead";
+import TaskReadID from "./components/Task/TaskReadID";
+
 class App extends Component {
   state = {
     applications: [],
@@ -139,9 +137,6 @@ class App extends Component {
             path="/Tasks"
             render={props => (
               <React.Fragment>
-                <TaskHeader />
-                <Taskform taskform={this.state.taskform} />
-                <ReadTasks />
               </React.Fragment>
             )}
           />
@@ -182,17 +177,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          {/* {" "}
-          <Route
-            exact
-            path="Event/update"
-            render={props => (
-              <React.Fragment>
-                <EventPut />
-              </React.Fragment>
-            )}
-          />{" "} */}
-          
           <Route
             exact
             path="/Event/delete"
