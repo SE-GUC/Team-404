@@ -12,6 +12,22 @@ router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
+
+router.get('/consultants', async (req,res) => {
+  const users = await User.find({userType : "Consultant"})
+  res.json({data: users})
+})
+
+router.get('/partners', async (req,res) => {
+  const users = await User.find({userType : "partner"})
+  res.json({data: users})
+})
+
+router.get('/candidates', async (req,res) => {
+  const users = await User.find({userType : "Candidate"})
+  res.json({data: users})
+})
+
 router.get('/:id',async (req,res)=>{
   try {
     const id = req.params.id
@@ -22,6 +38,16 @@ router.get('/:id',async (req,res)=>{
    }
    })
 
+//get partners
+viewPartners = async (req, res) => {
+  try {
+    var view = await User.find({ userType: "partner" });
+    console.log(view);
+    res.json({ data: view });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 //login user
 router.post('/login', async (req, res) => {
@@ -132,6 +158,6 @@ router.delete('/:id', async (req,res) => {
   }  
 })
 
-
+router.get("/", viewPartners);
 module.exports = router
 
