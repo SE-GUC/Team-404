@@ -19,8 +19,8 @@ import RegisterCandidate from "./components/User/RegisterCandidate";
 import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/User/UserList"
-import Register from "./components/page/User/Register"
+import UserList from "./components/User/UserList";
+import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
 import TaskDelete from "./components/Task/TaskDelete";
@@ -29,7 +29,7 @@ import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
 import Task from "./components/page/Task";
-
+import UpdateTask from "./components/Task/UpdateTask";
 class App extends Component {
   state = {
     applications: [],
@@ -91,9 +91,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App" id=".App-header" >
-          <Header/>
-          <Route 
+        <div className="App" id=".App-header">
+          <Header />
+          <Route
             exact
             path="/"
             render={props => (
@@ -102,11 +102,11 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route 
+          <Route
             exact
             path="/Partner"
             render={props => (
-              <React.Fragment >
+              <React.Fragment>
                 <Partner />
               </React.Fragment>
             )}
@@ -166,7 +166,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
+          <Route
             exact
             path="/Event/create"
             render={props => (
@@ -185,7 +185,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />{" "} */}
-
           <Route
             exact
             path="/Event/delete"
@@ -206,13 +205,30 @@ class App extends Component {
           />
           <Route
             exact
-            path="/event/:id/pending"
+            path="/UpdateTask"
             render={props => (
               <React.Fragment>
-                <EventReadIDPending />
+                <UpdateTask />
               </React.Fragment>
             )}
           />
+
+          <Route
+            exact
+            path="/TaskCreate"
+            render={props => (
+              <React.Fragment>
+                <TaskCreate />
+              </React.Fragment>
+            )}
+          />
+
+          {props => (
+            <React.Fragment>
+              <EventReadIDPending />
+            </React.Fragment>
+          )}
+
           <Route
             exact
             path="/event/pending"
@@ -222,12 +238,8 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
-            exact
-            path="/Tasks"
-             component = {Task}
-          />
-           <Route
+          <Route exact path="/Tasks" component={Task} />
+          <Route
             exact
             path="/Task/create"
             render={props => (
@@ -236,7 +248,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
+          <Route
             exact
             path="/Task/:id"
             render={props => (
@@ -245,7 +257,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
+          <Route
             exact
             path="/Task/update"
             render={props => (
@@ -254,7 +266,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           
           <Route
             exact
             path="/:id/update"
@@ -270,7 +281,6 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
-
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />

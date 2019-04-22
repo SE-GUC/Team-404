@@ -28,7 +28,7 @@ router.get("/consultancyRequested/:status", async (req, res) => {
 
 
 router.post("/", async (req, res) => {
- /*  try {
+  /*  try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
       return res
@@ -76,7 +76,7 @@ router.post("/", async (req, res) => {
     next()
   })
 
-  .get(authenticateUser,async (request, response) => {
+  .get(/* authenticateUser ,*/ async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec()
       return response.json({ data: task })
@@ -87,7 +87,7 @@ router.post("/", async (req, res) => {
     }
   })
 
-  .put(authenticateUser,async (request, response) => {
+  .put(authenticateUser, async (request, response) => {
     Task.findByIdAndUpdate(
       request.params.id,
       request.body,
@@ -104,7 +104,7 @@ router.post("/", async (req, res) => {
     )
   })
 
-  .delete(authenticateUser,(request, response) => {
+  .delete(authenticateUser, (request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
         return response.json({ data: null })
@@ -220,9 +220,12 @@ router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
   })
 })
 
-router.put("/UpdateProjectAttributes/:Tid",authenticateUser, async (req, res) => {
-  var Pid = req.body.id;
-  var Tid = req.params.Tid;
+router.put(
+  "/UpdateProjectAttributes/:Tid",
+  authenticateUser,
+  async (req, res) => {
+    var Pid = req.body.id;
+    var Tid = req.params.Tid;
 
   let {
     title,
