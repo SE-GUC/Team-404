@@ -317,8 +317,8 @@ adminCreateEvent = async (req, res) => {
 };
 
 //calling of Clara's functions
-router.get("/", viewApprovedEvents);
-router.get("/pending", viewPendingEvents);
+router.get("/", authenticateUser, viewApprovedEvents);
+router.get("/pending", authenticateUser, viewPendingEvents);
 router.post("/:eid/users/:cid", authenticateUser, bookEvent);
 router.post("/:eid/events/:cid", authenticateUser, cancelBooking);
 
