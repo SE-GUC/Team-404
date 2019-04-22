@@ -59,7 +59,7 @@ router
   .get(async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec();
-      return response.json({ data: Task });
+      return response.json({ data: task });
     } catch (err) {
       return response.json({
         error: `Error, couldn't find a task given the following id`
@@ -87,7 +87,8 @@ router
   .delete((request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
-        return response.json({ data: null });
+        const x = null
+        return response.json(x);
       } else {
         return response.json({
           error: `Error, couldn't delete a Task given the following data`
@@ -96,73 +97,145 @@ router
     });
   });
 
-router.get("/viewTaskStatus/:tid", async (req, res) => {
-  var Pid = req.body.pid;
-  var Tid = req.params.tid;
-  var tasks = await Task.findById(Tid);
-  if (!tasks) {
-    return res.status(400).send({
-      message: "couldnt find a task with the specififed id "
-    });
-  }
-  var query = { _id: Tid, partner: Pid };
-  let foundTask = await Task.findOne(query);
-  if (!foundTask) {
-    return res.status(400).send({
-      message: "couldnt find a task with the specififed id and partner id "
-    });
-  }
+//router.get("/viewTaskStatus/:tid", async (req, res) => {
+  //var Pid = "dummydata4";
+  //var Tid = req.params.tid;
+  //var tasks = await Task.findById(Tid);
+  //if (!tasks) {
+    //return res.status(400).send({
+      //message: "couldnt find a task with the specififed id "
+    //});
+  //}
 
-  return res.status(200).send({
-    message: "succuess",
-    lifecycle: foundTask.lifecyclestatus,
-    test: foundTask
+ // router.get("/viewTaskStatus/:tid", async (req, res) => {
+   // var Pid = req.body.partner;
+   // var Tid = req.params.tid;
+    //var tasks = await Task.findById(Tid);
+  
+ //   if (!tasks) {
+   //   return res.status(400).send({
+     //   message: "couldnt find a task with the specififed id "
+     // });
+   // }
+    // var query = { _id: Tid, partner: Pid };
+    // let foundTask = await Task.findOne(query);
+   // if (!foundTask) {
+     // return res.status(400).send({
+       // message: "couldnt find a task with the specififed id and partner id "
+     // });
+    //}
+   // console.log(foundTask.lifeCycleStatus)
+    //return res.status(200).send({
+     // message: "success",
+     // lifecycle: foundTask.lifeCycleStatus,
+      //test: foundTask
+   // });
+ // });
+  
+
+  //var query = { _id: Tid, partner: Pid };
+  //let foundTask = await Task.findOne(query);
+  //console.log(query)
+  //console.log(foundTask)
+  //if (!foundTask) {
+    //return res.status(400).send({
+      //message: "couldnt find a task with the specififed id and partner id "
+    //});
+  //}
+
+ // return res.status(200).send({
+   // message: "succuess",
+   // lifecycle: foundTask.lifecyclestatus,
+   // test: foundTask
+  //});
+
+
+
+  router.get("/viewTaskStatus/:tid", async (req, res) => {
+    var Pid = req.body.partner;
+    var Tid = req.params.tid;
+    var tasks = await Task.findById(Tid);
+  
+    if (!tasks) {
+      return res.status(400).send({
+        message: "couldnt find a task with the specififed id "
+      });
+    }
+    var query = { _id: Tid, partner: Pid };
+    let foundTask = await Task.findOne(query);
+    if (!foundTask) {
+      return res.status(400).send({
+        message: "couldnt find a task with the specififed id and partner id "
+      });
+    }
+    console.log(foundTask.lifeCycleStatus)
+    return res.status(200).send({
+      message: "success",
+      lifecycle: foundTask.lifeCycleStatus,
+      //test: foundTask
+    });
   });
-});
-
+  
 router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
   var Pid = req.body.id;
   var Tid = req.params.Tid;
 
   let {
-    Description,
+    title,
+    description,
     eta,
-    levelofcommitment,
+    levelOfCommitment,
     partner,
-    monetarycompensation,
+    monetaryCompensation,
     skills,
-    lifecyclestatus,
-    experienceneeded,
-    consultancy
+    lifeCycleStatus,
+    experienceNeeded,
+    consultancyRequested,
+    consultant,
+    application,
+    tags
+
   } = req.body;
 
   let updateBody = {};
-  if (Description) {
-    updateBody.Description = Description;
+  if (title) {
+    updateBody.title = title;
+  }
+  if (description) {
+    updateBody.description = description;
   }
   if (eta) {
     updateBody.eta = eta;
   }
-  if (levelofcommitment) {
-    updateBody.levelofcommitment = levelofcommitment;
+  if (levelOfCommitment) {
+    updateBody.levelOfCommitment = levelOfCommitment;
   }
   if (partner) {
     updateBody.partner = partner;
   }
-  if (monetarycompensation) {
-    updateBody.monetarycompensation = monetarycompensation;
+  if (monetaryCompensation) {
+    updateBody.monetaryCompensation = monetaryCompensation;
   }
   if (skills) {
     updateBody.skills = skills;
   }
-  if (lifecyclestatus) {
-    updateBody.lifecyclestatus = lifecyclestatus;
+  if (lifeCycleStatus) {
+    updateBody.lifeCycleStatus = lifeCycleStatus;
   }
-  if (experienceneeded) {
-    updateBody.experienceneeded = experienceneeded;
+  if (experienceNeeded) {
+    updateBody.experienceNeeded = experienceNeeded;
   }
-  if (consultancy) {
-    updateBody.consultancy = consultancy;
+  if (consultancyRequested) {
+    updateBody.consultancyRequested = consultancyRequested;
+  }
+  if (consultant) {
+    updateBody.consultant = consultant;
+  }
+  if (application) {
+    updateBody.application = application;
+  }
+  if (tags) {
+    updateBody.tags = tags;
   }
   //     let partner = await Partner.findById(Pid)
   //     if(!partner){
