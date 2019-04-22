@@ -37,8 +37,21 @@ function Header() {
       </Link>
       |{" "}
       <Link style={linkStyle} to="/User">
-        User
+        View User
       </Link>
+      |{" "}
+      <Link style={linkStyle} to="/User/Partners">
+          View Partners
+       </Link>
+       |{" "}
+       <Link style={linkStyle} to="/User/Candidates">
+          View Candidates
+        </Link>
+        |{" "}
+            <Link style={linkStyle} to="/User/Consultants">
+           View Consultants
+            </Link>
+            |{" "}
     </header>
   );
 }
