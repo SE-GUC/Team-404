@@ -10,13 +10,12 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION =false npm install --prefix client && npm run build --prefix client"
-
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION =false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": { 
+  "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",
@@ -26,9 +25,9 @@
     "diff": "^4.0.1",
     "express": "^4.16.4",
     "install": "^0.12.2",
-    "jest": "^24.6.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
+    "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.4.20",
@@ -45,6 +44,7 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
+    "jest": "^24.7.1",
     "jest-cli": "^24.5.0",
     "nodemon": "^1.18.10",
     "standard": "^12.0.1"

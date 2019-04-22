@@ -2,16 +2,25 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const passport = require('passport')
 const tokenKey = require('../../config/keys').secretOrKey
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 const sendNotif = require('../../utils/mailer')
+const joi= require('joi')
 
 router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
+router.get('/:id',async (req,res)=>{
+  try {
+    const id = req.params.id
+    const requestedUser = await User.findById(id)
+    res.json({msg:'User you asked for', data: requestedUser})
+   }catch(error){
+    console.log(error)
+   }
+   })
 
 router.get('/consultants', async (req,res) => {
   const users = await User.find({userType : "Consultant"})
@@ -28,27 +37,6 @@ router.get('/candidates', async (req,res) => {
   res.json({data: users})
 })
 
-router.get('/:id',async (req,res)=>{
-  try {
-    const id = req.params.id
-    const requestedUser = await User.findById(id)
-    res.json({msg:'User you asked for', data: requestedUser})
-   }catch(error){
-    console.log(error)
-   }
-   })
-
-//get partners
-viewPartners = async (req, res) => {
-  try {
-    var view = await User.find({ userType: "partner" });
-    console.log(view);
-    res.json({ data: view });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 //login user
 router.post('/login', async (req, res) => {
 	try {
@@ -60,6 +48,7 @@ router.post('/login', async (req, res) => {
             const payload = {
                 id: user.id,
                 name: user.name,
+                usertype: user.userType,
                 email: user.email
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
@@ -120,21 +109,8 @@ router.post('/register', async (req,res) => {
 
       
 })
-//Not working yet.
-router
-  .route('/:id')
-  .all(async (request, response, next) => {
-    const status = joi.validate(request.params, {
-      id: joi.string().length(24).required()
-    })
-    if (status.error) {
-      return response.json({ error: status.error.details[0].message })
-    }
-    next()
-  })
 
-
-  .put(async (request, response) => {
+  router.put('/:id',async (request, response) => {
     User.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
       if (!err) {
         return response.json({ data: model })
@@ -158,6 +134,5 @@ router.delete('/:id', async (req,res) => {
   }  
 })
 
-router.get("/", viewPartners);
 module.exports = router
 

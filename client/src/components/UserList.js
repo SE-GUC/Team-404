@@ -1,17 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from '@material-ui/core';
+
 
 const textStyle = {
     textAlign: "left",
     padding: "10px",
     fontSize: "3.75mm"
 }
-
-const linkStyle = {
-    color: "#fff",
-    textDecoration: "none"
-  };
 
 
 
@@ -22,7 +17,7 @@ export default class UserList extends React.Component {
     }
     componentDidMount(){
        
-        axios.get('http://localhost:3001/Routes/api/users')
+        axios.get('http://localhost:3001/Routes/api/users/')
         .then(res => {
             console.log(res)
             this.setState({
