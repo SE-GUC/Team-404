@@ -30,6 +30,15 @@ import RegisterCandidate from "./components/RegisterCandidate"
 import RegisterPartner from "./components/RegisterPartner"
 import EventReadID from "./components/Event/EventReadID";
 import UserList from "./components/UserList"
+import PartnerList from "./components/PartnerList";
+import ConsultantList from "./components/ConsultantList";
+import CandidateList from "./components/CandidateList";
+import { Link } from '@material-ui/core';
+const linkStyle = {
+  color: "#fff",
+  textDecoration: "none"
+};
+
 class App extends Component {
   state = {
     applications: [],
@@ -164,7 +173,46 @@ class App extends Component {
             path="/User"
             render={props => (
               <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
                 <UserList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Partners"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <PartnerList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Candidates"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <CandidateList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Consultants"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <ConsultantList />
               </React.Fragment>
             )}
           />
