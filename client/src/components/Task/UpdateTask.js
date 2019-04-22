@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 
-
 class UpdateTask extends React.Component {
   state = {
-    id: "",
+    //id: "",
+    title: "",
     description: "",
     eta: null,
     levelOfCommitment: "",
@@ -22,9 +22,13 @@ class UpdateTask extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChangeId = task => {
-    this.setState({ id: task.target.value });
-  };
+ // handleChangeId = task => {
+   // this.setState({ id: task.target.value });
+ // };
+
+ handleChangeTitle = task => {
+  this.setState({ title: task.target.value });
+};
 
   handleChangeDescription = task => {
     this.setState({ description: task.target.value });
@@ -70,13 +74,14 @@ class UpdateTask extends React.Component {
     this.setState({ applications: task.target.value });
   };
 
-  handleSubmit =() => {
-    //this.preventDefault();
+  handleSubmit = task => {
+    task.preventDefault();
     // const params = new URLSearchParams(this.props.location.search);
     // const foo = params.get('id'); // bar
     // console.log(foo);
     const Task = {
-      id: this.state.id,
+      //id: this.state.id,
+      title: this.state.title,
       description: this.state.description,
       eta: this.state.eta,
       levelOfCommitment: this.state.levelOfCommitment,
@@ -89,15 +94,27 @@ class UpdateTask extends React.Component {
       consultant: this.state.consultant,
       applications: this.state.applications
     };
-    console.log(Task)
-    sessionStorage.setItem("id", this.state.id);
-    let id = sessionStorage.getItem("id");
+
+    try {
+      let response = axios.post(
+        "http://localhost:3000/Routes/api/tasks/${tasks._id}",
+        Event
+      ).then ( res => {
+      console.log(response)}
+      )
+    } catch (error) {
+      console.log(error);
+    }
+  }
+   // console.log(Task)
+    //sessionStorage.setItem("id", this.state.id);
+    //let id = sessionStorage.getItem("id");
   
-    axios.put(`http://localhost:3001/Routes/api/tasks/` + id, Task).then(res => {
-       console.log(res);
-       console.log(res.data);
-     });
-  };
+    //axios.put(`http://localhost:3001/Routes/api/tasks/` + id, Task).then(res => {
+      // console.log(res);
+      // console.log(res.data);
+    // });
+  //};
 
   render() {
     return (
@@ -105,16 +122,15 @@ class UpdateTask extends React.Component {
            <br />
            <br />
            <br />
-        <label className="Id">
-          ID:
+        <label className="Title">
+          Title:
           <input
             type="text"
-            name="id"
-            onChange={this.handleChangeId}
+            name="Title"
+            onChange={this.handleChangeTitle}
           />
         </label>
         <br />
-
         <label className="Description">
           Description:
           <input
@@ -124,17 +140,16 @@ class UpdateTask extends React.Component {
           />
         </label>
         <br />
-
         <label className="Eta">
           Eta:
           <input
             type="text"
             name="eta"
+            value={this.state.eta}
             onChange={this.handleChangeEta}
           />
         </label>
         <br />
-
         <label className="LevelOfCommitment">
           LevelOfCommitment:
           <input
@@ -142,8 +157,8 @@ class UpdateTask extends React.Component {
             name="levelOfCommitment"
             onChange={this.handleChangeLevelOfCommitment}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="Partner">
           Partner:
           <input
@@ -151,8 +166,8 @@ class UpdateTask extends React.Component {
             name="partner"
             onChange={this.handleChangePartner}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="MonetaryCompensation">
           MonetaryCompensation:
           <input
@@ -160,17 +175,13 @@ class UpdateTask extends React.Component {
             name="monetaryCompensation"
             onChange={this.handleChangeMonetaryCompensation}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="Skills">
           skills:
-          <input
-            type="text"
-            name="skills"
-            onChange={this.handleChangeSkills}
-          />
-        </label> <br />
-
+          <input type="text" name="skills" onChange={this.handleChangeSkills} />
+        </label>{" "}
+        <br />
         <label className="LifeCycleStatus">
           LifeCycleStatus:
           <input
@@ -178,8 +189,8 @@ class UpdateTask extends React.Component {
             name="lifeCycleStatus"
             onChange={this.handleChangeLifeCycleStatus}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="ExperienceNeeded">
           ExperienceNeeded:
           <input
@@ -187,16 +198,17 @@ class UpdateTask extends React.Component {
             name="experienceNeeded"
             onChange={this.handleChangeExperienceNeeded}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="ConsultancyRequested">
           Con:
-          <input 
-          type="text" 
-          name="consultancyRequested" 
-          onChange={this.handleConsultancyRequested} />
-        </label> <br />
-
+          <input
+            type="text"
+            name="consultancyRequested"
+            onChange={this.handleConsultancyRequested}
+          />
+        </label>{" "}
+        <br />
         <label className="Consultant">
           Consultant:
           <input
@@ -204,8 +216,8 @@ class UpdateTask extends React.Component {
             name="consultant"
             onChange={this.handleChangeConsultant}
           />
-        </label> <br />
-
+        </label>{" "}
+        <br />
         <label className="Applications">
           Applications:
           <input
@@ -213,9 +225,12 @@ class UpdateTask extends React.Component {
             name="appications"
             onChange={this.handleChangeApplications}
           />
-        </label> <br />
-
-        <button type="button" onClick={this.handleSubmit}>  Change  </button>
+        </label>{" "}
+        <br />
+        <button type="button" onClick={this.handleSubmit}>
+          {" "}
+          Change{" "}
+        </button>
       </form>
     );
   }

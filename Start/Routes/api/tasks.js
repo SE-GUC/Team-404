@@ -1,23 +1,47 @@
 // routings for task
-const mongoose = require('mongoose')
-const express = require('express')
-const app = express()
-app.use(express.json())
-const router = express.Router()
-const Task = require('../../Models/Task')
-const sendNotif = require('../../utils/mailer')
-const User = require('../../Models/User')
-const joi = require('Joi')
-const validator = require('../../Validation/taskValid')
+const express = require("express");
+const app = express();
+app.use(express.json());
+const router = express.Router();
+const Task = require("../../Models/Task");
+const sendNotif = require("../../utils/mailer");
+const users = require("../api/users");
+const joi = require("Joi");
+const validator = require("../../Validation/taskValid");
 
-router.get('/', async (req, res) => {
-  const tasks = await Task.find()
-  res.json({ data: tasks })
-})
-router.post('/', async (req, res) => {
+router.get("/", async (req, res) => {
+  const tasks = await Task.find();
+  res.json({ data: tasks });
+});
+
+router.get("/consultancyRequested/:status", async (req, res) => {
+  var status = req.params.status;
+  const tasks = await Task.find({ consultancyRequested: status }).exec();
+  res.json({ data: tasks });
+  if (!tasks) {
+    return res.status(400).send({
+      message: "couldnt find a task with the specififed status "
+    });
+  }
+});
+
+router.get("/getT/:id", async (req, res) => {
   try {
-    //    const isValidated = validator.createValidation(req.body)
-    //  if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+    const id = req.params.id;
+    const requestedTask = await Task.findById(id);
+    res.json({ msg: "Task you asked for", data: requestedTask });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/", async (req, res) => {
+ /*  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message }); */
     const task = await new Task({
       title: req.body.title,
       description: req.body.description,
@@ -39,14 +63,14 @@ router.post('/', async (req, res) => {
         }
       })
     }
-    return res.json({ data: task })
-  } catch (error) {
-    console.log(error)
-  }
-})
+    return res.json({ data: task });
+  /* } catch (error) {
+    console.log(error);
+  } */
+});
 
 router
-  .route('/:id')
+  .route("/:id")
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -130,11 +154,12 @@ router.put('/UpdateProjectAttributes/:Tid', async (req, res) => {
   var Tid = req.params.Tid
 
   let {
-    Description,
+    title,
+    description,
     eta,
-    levelofcommitment,
+    levelOfCommitment,
     partner,
-    monetarycompensation,
+    monetaryCompensation,
     skills,
     lifecyclestatus,
     experienceneeded,
@@ -148,26 +173,35 @@ router.put('/UpdateProjectAttributes/:Tid', async (req, res) => {
   if (eta) {
     updateBody.eta = eta
   }
-  if (levelofcommitment) {
-    updateBody.levelofcommitment = levelofcommitment
+  if (levelOfCommitment) {
+    updateBody.levelOfCommitment = levelOfCommitment;
   }
   if (partner) {
     updateBody.partner = partner
   }
-  if (monetarycompensation) {
-    updateBody.monetarycompensation = monetarycompensation
+  if (monetaryCompensation) {
+    updateBody.monetaryCompensation = monetaryCompensation;
   }
   if (skills) {
     updateBody.skills = skills
   }
-  if (lifecyclestatus) {
-    updateBody.lifecyclestatus = lifecyclestatus
+  if (lifeCycleStatus) {
+    updateBody.lifeCycleStatus = lifeCycleStatus;
   }
-  if (experienceneeded) {
-    updateBody.experienceneeded = experienceneeded
+  if (experienceNeeded) {
+    updateBody.experienceNeeded = experienceNeeded;
   }
-  if (consultancy) {
-    updateBody.consultancy = consultancy
+  if (consultancyRequested) {
+    updateBody.consultancyRequested = consultancyRequested;
+  }
+  if (consultant) {
+    updateBody.consultant = consultant;
+  }
+  if (application) {
+    updateBody.application = application;
+  }
+  if (tags) {
+    updateBody.tags = tags;
   }
   //     let partner = await Partner.findById(Pid)
   //     if(!partner){

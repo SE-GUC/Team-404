@@ -2,7 +2,7 @@ import React from "react";
 import UpdateTask from "../../Task/UpdateTask";
 import TaskHeader from "../../Layout/TaskHeader";
 
-function UpdateTask() {
+function UpdateTasks() {
   return (
     <React.Fragment>
       <TaskHeader />
@@ -11,4 +11,4 @@ function UpdateTask() {
   );
 }
 
-export default UpdateTask;
+export default UpdateTasks;

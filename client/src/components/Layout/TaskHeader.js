@@ -22,9 +22,9 @@ function TaskHeader () {
       <Link style={linkStyle} to='/DeleteTasks'>
         Delete Tasks{' '}
       </Link>
-      |{' '}
-      <Link style={linkStyle} to='/UpdateTask'>
-        Update Task{' '}
+      |{" "}
+      <Link style={linkStyle} to="/UpdateTasks">
+        Update Tasks{" "}
       </Link>
     </header>
   )
