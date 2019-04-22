@@ -23,11 +23,11 @@ import DeleteTasks from "./components/page/Tasks/DeleteTasks";
 import UpdateTasks from "./components/page/Tasks/UpdateTasks";
 import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
-import RegisterCandidate from "./components/RegisterCandidate";
-import RegisterPartner from "./components/RegisterPartner";
+import RegisterCandidate from "./components/User/RegisterCandidate";
+import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
-import UserList from "./components/UserList";
+import UserList from "./components/User/UserList";
 import EventReadPending from "./components/Event/EventReadPending";
 
 class App extends Component {
@@ -92,6 +92,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App" id="background2">
+        
           <Header />
           <Route
             exact
@@ -186,7 +187,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
+          <Route
             exact
             path="/Event/create"
             render={props => (
@@ -194,8 +195,7 @@ class App extends Component {
                 <EventCreate />
               </React.Fragment>
             )}
-          />
-          {" "}
+          />{" "}
           <Route
             exact
             path="Event/update"
@@ -205,7 +205,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />{" "}
-          
           <Route
             exact
             path="/Event/delete"
@@ -238,12 +237,12 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-            path="/event/:id/pending"
-            render={props => (
-              <React.Fragment>
-                <EventReadIDPending />
-              </React.Fragment>
-            )}
+          path="/event/:id/pending" render=
+          {props => (
+            <React.Fragment>
+              <EventReadIDPending />
+            </React.Fragment>
+          )}
           />
           <Route
             exact

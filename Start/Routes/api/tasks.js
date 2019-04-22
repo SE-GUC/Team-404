@@ -8,6 +8,7 @@ const sendNotif = require("../../utils/mailer");
 const users = require("../api/users");
 const joi = require("Joi");
 const validator = require("../../Validation/taskValid");
+const authenticateUser = require("../../middleware/authenticate")
 
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
@@ -25,15 +26,7 @@ router.get("/consultancyRequested/:status", async (req, res) => {
   }
 });
 
-router.get("/getT/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const requestedTask = await Task.findById(id);
-    res.json({ msg: "Task you asked for", data: requestedTask });
-  } catch (error) {
-    console.log(error);
-  }
-});
+
 
 router.post("/", async (req, res) => {
   /*  try {
@@ -83,7 +76,7 @@ router
     next();
   })
 
-  .get(authenticateUser, async (request, response) => {
+  .get(/* authenticateUser ,*/ async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec();
       return response.json({ data: task });

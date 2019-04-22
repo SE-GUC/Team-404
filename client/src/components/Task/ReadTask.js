@@ -15,7 +15,6 @@ class ReadTasks extends Component {
 
   componentDidMount() {
     axios.get("http://localhost:3001/Routes/api/tasks/").then(res => {
-      console.log(res);
       this.setState({
         tasks: res.data.data
       });
