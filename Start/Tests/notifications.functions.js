@@ -3,38 +3,70 @@ axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded'
 
 const functions = {
-  getApprovedEvents: async () => {
-    const events = await axios.get('http://localhost:3001/Routes/api/events/')
-    return events
-  },
 
-  getSpecificEvent: async () => {
-    const event = await axios.get(
-      'http://localhost:3001/Routes/api/events//getE/5cb233a3cef46afa8f9bd0f5'
-    )
-    return event
-  },
-  getPendingEvents: async () => {
-    const events = await axios.get(
-      'http://localhost:3001/Routes/api/events/pending'
-    )
-    return events
-  },
-  updateEvent: async _id => {
-    const event = await axios.put(
-      'http://localhost:3001/Routes/api/events/5cb23616cef46afa8f9bd107',
+  // User registration testing
+  createPartner: async () => {
+    const notifPartner = await axios.post(
+      'http://localhost:3001/Routes/api/users/',
       {
-        eventName: 'java'
+        name: 'notifPartner',
+        password: '123456789',
+        email: 'ismail.aboulela@gmail.com',
+        age: 21,
+        username: 'notifPartner',
+        phoneNumber: 123456789,
+        userType: 'Partner',
+        location: 'GUC',
+        board: [''],
+        pastEvents: [''],
+        reports: [''],
+        organisationName: 'notifTesting',
+        businessPartners: [''],
+        eventsOrganized: [''],
+        fieldOfWork: 'asdf',
+        projectHistory: ['']
       }
     )
-    return event
+    return notifPartner
   },
-  deleteEvent: async _id => {
-    const res = await axios.delete(
-      'http://localhost:3001/Routes/api/events/5cb85dd38dc4c45764b0b8bf'
+  createAdmin: async () => {
+    const notifAdmin = axios.post(
+      'http://localhost:3001/Routes/api/users/',
+      {
+        name: 'notifAdmin',
+        password: '123456789',
+        email: 'ismail.aboulela@gmail.com',
+        age: 21,
+        username: 'notifAdmin',
+        phoneNumber: 123456789,
+        userType: 'Admin',
+        location: 'GUC'
+      }
     )
-    return res
+    return notifAdmin
   },
+  createCandidate: async () => {
+    const notifCandidate = axios.post(
+      'http://localhost:3001/Routes/api/users/',
+      {
+        name: 'notifCandidate',
+        password: '123456789',
+        email: 'ismail.aboulela@gmail.com',
+        age: 21,
+        username: 'notifCandidate',
+        phoneNumber: 123456789,
+        userType: 'Candidate',
+        location: 'GUC',
+        skills: [''],
+        interests: [''],
+        pastEventsAndTasks: [''],
+        reviewsRecieved: ['']
+      }
+    )
+    return notifCandidate
+  },
+
+  // Event functionality notification testing
   createEvent: async () => {
     const newEvent = await axios.post(
       'http://localhost:3001/Routes/api/events/',
@@ -62,13 +94,6 @@ const functions = {
     )
     return res
   },
-  cancelBooking: async () => {
-    const res = await axios.post(
-      'http://localhost:3001/Routes/api/events/5cb91060941f42146867a0ca/events/5cb0f11c72d17e4c380fa774'
-    )
-    return res
-  },
-
   adminCreateEvent: async () => {
     const newEvent = await axios.post(
       'http://localhost:3001/Routes/api/events/5cb0f11c72d17e4c380fa774/adminCreateEvent',
@@ -90,7 +115,6 @@ const functions = {
     )
     return newEvent
   },
-
   requestEvent: async () => {
     const newEvent = await axios.post(
       'http://localhost:3001/Routes/api/events/5cb0f3d0bc346433a4e1699f/requestEvent',
@@ -121,6 +145,7 @@ const functions = {
     )
     return event
   }
-}
 
-module.exports = functions
+  // Task functionality notification testing
+
+}

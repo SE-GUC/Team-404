@@ -3,8 +3,6 @@ import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import { withRouter} from 'react-router-dom';
 import './Textbox.css';
-import { object } from 'prop-types';
-import EventRead from "../Event/EventRead";
 
 class Textbox extends Component {
     state ={ 
@@ -62,7 +60,6 @@ check1=(event)=> {
            <div>
                <label>
                Enter E.mail</label>
-
                <input id='i1'
                type="text"
                name="email"

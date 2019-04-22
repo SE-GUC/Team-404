@@ -5,7 +5,7 @@ function Partner() {
     <React.Fragment>
       <PartnerTable />
     </React.Fragment>
-  );
+  )
 }
 
-export default Partner;
+export default Partner

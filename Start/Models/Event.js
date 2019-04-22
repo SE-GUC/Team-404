@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const EventSchema = new Schema({
   eventName: { type: String, required: true },
@@ -15,6 +15,6 @@ const EventSchema = new Schema({
   approvalStatus: { type: String, required: false },
   applicants: { type: Array, required: false },
   feedback: { type: Array, required: false }
-});
+})
 
-module.exports = Event = mongoose.model("events", EventSchema);
+module.exports = Event = mongoose.model('events', EventSchema)

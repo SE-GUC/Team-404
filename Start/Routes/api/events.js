@@ -1,20 +1,18 @@
-const express = require("express");
-const router = express.Router();
-const mongoose = require("mongoose");
-const authenticateUser = require("../../middleware/authenticate");
-const app = express();
-const sendNotif = require("../../utils/mailer");
-const joi = require("joi");
-const User = require("../../Models/User");
-
+const express = require('express')
+const router = express.Router()
+const app = express()
+const sendNotif = require('../../utils/mailer')
+const joi = require('joi')
+const User = require('../../Models/User')
+const authenticateUser = require('../../middleware/authenticate')
 // We will be connecting using database
-const Event = require("../../Models/Event");
-const validator = require("../../Validation/eventValid");
+const Event = require('../../Models/Event')
+const validator = require('../../Validation/eventValid')
 
 // Default route (entry point)
-app.get("/", authenticateUser, (req, res) => {
-  res.send(`<h1>Welcome</h1>`);
-});
+app.get('/', (req, res) => {
+  res.send(`<h1>Welcome</h1>`)
+})
 
 // //Get all events
 // router.get("/", async (req, res) => {
@@ -23,13 +21,14 @@ app.get("/", authenticateUser, (req, res) => {
 // });
 
 // Create a new newEvent
-router.post("/", authenticateUser, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const isValidated = validator.createValidation(req.body);
-    if (isValidated.error)
+    const isValidated = validator.createValidation(req.body)
+    if (isValidated.error) {
       return res
         .status(400)
-        .send({ error: isValidated.error.details[0].message });
+        .send({ error: isValidated.error.details[0].message })
+    }
     const event = await new Event({
       eventName: req.body.eventName,
       organizer: req.body.organizer,
@@ -41,32 +40,35 @@ router.post("/", authenticateUser, async (req, res) => {
       topicsCovered: req.body.topicsCovered,
       field: req.body.field,
       registrationPrice: req.body.registrationPrice,
-      approvalStatus: "pending",
+      approvalStatus: 'pending',
       applicants: req.body.applicants,
       feedback: req.body.feedback
-    }).save();
-    // try {
-    //   sendNotif();
-    // } catch {
-    //   console.log(err);
-    // }
-    return res.json({ data: event });
+    }).save()
+
+    const users = await User.find({})
+    users.forEach(user => {
+      if (user.userType == 'Admin') {
+        sendNotif(user.email, 'Approval req', 'LirtenHub')
+      }
+    })
+
+    return res.json({ data: event })
   } catch (error) {
     // We will be handling the error later
-    console.log(error);
+    console.log(error)
   }
-});
+})
 
 // Update event
-router.put("/:id", authenticateUser, async (request, response) => {
+router.put('/:id', async (request, response) => {
   const status = joi.validate(request.params, {
     id: joi
       .string()
       .length(24)
       .required()
-  });
+  })
   if (status.error) {
-    return response.json({ error: status.error.details[0].message });
+    return response.json({ error: status.error.details[0].message })
   }
   Event.findByIdAndUpdate(
     request.params.id,
@@ -74,163 +76,206 @@ router.put("/:id", authenticateUser, async (request, response) => {
     { new: true },
     (err, model) => {
       if (!err) {
-        return response.json({ data: model });
+        return response.json({ data: model })
       } else {
-        return response.json({ error: `Error, couldn't update event` });
+        return response.json({ error: `Error, couldn't update event` })
       }
     }
-  );
-});
+  )
+})
 
 // Delete newEvent
-router.delete("/:id", authenticateUser, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const deletedEvent = await Event.findByIdAndRemove(id);
-    const x = "Event was deleted successfully";
-    return res.json(x);
+    const id = req.params.id
+    const deletedEvent = await Event.findByIdAndRemove(id)
+    const x = 'Event was deleted successfully'
+    return res.json(x)
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-});
+})
 
-//Booking an Event
+// Booking an Event
 bookEvent = async (req, res) => {
   try {
-    var cid = req.params.cid;
-    var eid = req.params.eid;
-
-    var candidate = await User.findById(cid).exec();
-
-    var event = await Event.findById(eid).exec();
+    var cid = req.params.cid
+    var eid = req.params.eid
+    var candidate = await User.findById(cid).exec()
+    var event = await Event.findById(eid).exec()
 
     Event.findByIdAndUpdate(
       eid,
       { $push: { applicants: cid } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model });
+          console.log({ data: model })
         } else {
-          console.log({ error: `Error, couldn't update applicants array` });
+          console.log({ error: `Error, couldn't update applicants array` })
         }
       }
-    );
+    )
 
     User.findByIdAndUpdate(
       cid,
       { $push: { pastEvents: event.eventName } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model });
+          console.log({ data: model })
         } else {
-          console.log({ error: `Error, couldn't update pastEvents array` });
+          console.log({ error: `Error, couldn't update pastEvents array` })
         }
       }
-    );
+    )
 
     Event.findByIdAndUpdate(
       eid,
       { $inc: { remainingPlaces: -1 } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model });
+          console.log({ data: model })
         } else {
-          console.log({ error: `Error, couldn't update remainingPlaces ` });
+          console.log({ error: `Error, couldn't update remainingPlaces ` })
         }
       }
-    );
+    )
 
-    const message = "Event has been booked!";
-    return res.json(message);
+    // array of all users
+    const users = await User.find({})
+
+    // notif to candidate for booking
+    users.forEach(user => {
+      if (user.id == cid) {
+        sendNotif(user.email, 'event' + event.eventName + 'booked', eventName)
+      }
+    })
+
+    // notif to organizer that event was booked
+    users.forEach(user => {
+      if (user.id == event.organizer) {
+        sendNotif(
+          user.email,
+          user.name + 'booked a place in ' + event.eventName,
+          eventName
+        )
+      }
+    })
+
+    const message = 'Event has been booked!'
+    return res.json(message)
   } catch (err) {
-    console.log("couldn't book the event");
+    console.log("couldn't book the event")
   }
-};
+}
 
-//Canceling a Booking
+// Canceling a Booking
 cancelBooking = async (req, res) => {
   try {
-    var cid = req.params.cid;
-    var eid = req.params.eid;
+    var cid = req.params.cid
+    var eid = req.params.eid
 
-    var candidate = await User.findById(cid).exec();
+    var candidate = await User.findById(cid).exec()
 
-    var event = await Event.findById(eid).exec();
+    var event = await Event.findById(eid).exec()
 
     Event.findByIdAndUpdate(
       eid,
       { $pull: { applicants: cid } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model });
+          console.log({ data: model })
         } else {
-          console.log({ error: `Error, couldn't update applicants array` });
+          console.log({ error: `Error, couldn't update applicants array` })
         }
       }
-    );
+    )
 
     User.findByIdAndUpdate(
       cid,
       { $pull: { pastEvents: event.eventName } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model });
+          console.log({ data: model })
         } else {
-          console.log({ error: `Error, couldn't update past events array` });
+          console.log({ error: `Error, couldn't update past events array` })
         }
       }
-    );
+    )
 
     Event.findByIdAndUpdate(
       eid,
       { $inc: { remainingPlaces: 1 } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model });
+          console.log({ data: model })
         } else {
-          console.log({ error: `Error, couldn't update Remaining Places ` });
+          console.log({ error: `Error, couldn't update Remaining Places ` })
         }
       }
-    );
+    )
+    // array of all users
+    const users = await User.find({})
 
-    const message = "Event booking has been canceled!";
-    return res.json(message);
+    // notif to candidate for booking
+    users.forEach(user => {
+      if (user.id == cid) {
+        sendNotif(
+          user.email,
+          'event' + event.eventName + 'cancelled',
+          eventName
+        )
+      }
+    })
+
+    // notif to organizer that event was booked
+    users.forEach(user => {
+      if (user.id == event.organizer) {
+        sendNotif(
+          user.email,
+          user.name + 'cancelled a booking in ' + event.eventName,
+          eventName
+        )
+      }
+    })
+
+    const message = 'Event booking has been canceled!'
+    return res.json(message)
   } catch (err) {
-    console.log("couldn't cancel the booking");
+    console.log("couldn't cancel the booking")
   }
-};
+}
 
-//View approved events
+// View approved events
 viewApprovedEvents = async (req, res) => {
   try {
-    var view = await Event.find({ approvalStatus: "approved" });
-    console.log(view);
-    res.json({ data: view });
+    var view = await Event.find({ approvalStatus: 'approved' })
+    console.log(view)
+    res.json({ data: view })
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
-};
+}
 
-//View pending events
+// View pending events
 viewPendingEvents = async (req, res) => {
   try {
-    var view = await Event.find({ approvalStatus: "pending" });
-    console.log(view);
-    res.json({ data: view });
+    var view = await Event.find({ approvalStatus: 'pending' })
+    console.log(view)
+    res.json({ data: view })
   } catch (err) {
-    console.log(view);
-    console.log(err);
+    console.log(view)
+    console.log(err)
   }
-};
+}
 
-//get a specific event by ID
-router.get("/getE/:id", async (req, res) => {
+// get a specific event by ID
+router.get('/getE/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    const requestedEvent = await Event.findById(id);
-    res.json({ msg: "Event you asked for", data: requestedEvent });
+    const id = req.params.id
+    const requestedEvent = await Event.findById(id)
+    res.json({ msg: 'Event you asked for', data: requestedEvent })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 });
 
@@ -261,9 +306,9 @@ confirmRequest = async (req, res) => {
 //Partner request event
 requestEvent = async (req, res) => {
   try {
-    var pid = req.params.pid;
-    var partner = await User.findById(pid).exec();
-    console.log("entry success ya partner");
+    var pid = req.params.pid
+    var partner = await User.findById(pid).exec()
+    console.log('entry success ya partner')
 
     const newEvent = await new Event({
       eventName: req.body.eventName,
@@ -276,23 +321,33 @@ requestEvent = async (req, res) => {
       topicsCovered: req.body.topicsCovered,
       field: req.body.field,
       registrationPrice: req.body.registrationPrice,
-      approvalStatus: "pending",
+      approvalStatus: 'pending',
       applicants: req.body.applicants,
       feedback: req.body.feedback
-    }).save();
-    console.log(newEvent);
-    return res.json("Event has been requested!");
-  } catch (error) {
-    console.log("Could not request event");
-  }
-};
+    }).save()
+    console.log(newEvent)
+    // array of all users
+    const users = await User.find({})
 
-//Admin create event
+    // notif to candidate for booking
+    users.forEach(user => {
+      if (user.userType == 'admin') {
+        sendNotif(user.email, 'Approval requested for' + event.eventName + newEvent.eventName)
+      }
+    })
+
+    return res.json('Event has been requested!')
+  } catch (error) {
+    console.log('Could not request event')
+  }
+}
+
+// Admin create event
 adminCreateEvent = async (req, res) => {
   try {
-    var aid = req.params.aid;
-    var admin = await User.findById(aid).exec();
-    console.log("entry success ya admin");
+    var aid = req.params.aid
+    var admin = await User.findById(aid).exec()
+    console.log('entry success ya admin')
 
     const newEvent = await new Event({
       eventName: req.body.eventName,
@@ -305,14 +360,14 @@ adminCreateEvent = async (req, res) => {
       topicsCovered: req.body.topicsCovered,
       field: req.body.field,
       registrationPrice: req.body.registrationPrice,
-      approvalStatus: "approved",
+      approvalStatus: 'approved',
       applicants: req.body.applicants,
       feedback: req.body.feedback
-    }).save();
-    console.log(newEvent);
-    return res.json("Event has been created!");
+    }).save()
+    console.log(newEvent)
+    return res.json('Event has been created!')
   } catch (error) {
-    console.log("Could not create event");
+    console.log('Could not create event')
   }
 };
 

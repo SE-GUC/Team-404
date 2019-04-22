@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require('joi')
 
 module.exports = {
   createValidation: request => {
@@ -12,23 +12,23 @@ module.exports = {
       skills: Joi.string().required(),
       lifeCycleStatus: Joi.string()
         .valid([
-          "Awaiting Approval",
-          "Denied",
-          "Pending Acceptance",
-          "Accepted",
-          "Completed",
-          "In Progress"
+          'Awaiting Approval',
+          'Denied',
+          'Pending Acceptance',
+          'Accepted',
+          'Completed',
+          'In Progress'
         ])
         .required(),
       experienceNeeded: Joi.string().required(),
       consultancyRequested: Joi.boolean().required(),
       consultant: Joi.string(),
       applications: Joi.array()
-    };
+    }
 
-    return Joi.validate(request, createSchema);
+    return Joi.validate(request, createSchema)
   }
-};
+}
 
 module.exports = {
   updateValidation: request => {
@@ -47,6 +47,6 @@ module.exports = {
       applications: Joi.array()
     };
 
-    return Joi.validate(request, updateSchema);
+    return Joi.validate(request, updateSchema)
   }
-};
+}
