@@ -2,7 +2,6 @@ import React from "react";
 import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
-<<<<<<< HEAD
 class EventPut extends React.Component {
   state = {
     eventName: "",
@@ -23,27 +22,6 @@ class EventPut extends React.Component {
   }
   handleChangeeventName = event => {
     this.setState({ eventName: event.target.value });
-=======
-class EventPut extends React.Component{
-state={
-    eventid: '',
-      eventname: '',
-      organizer: '',
-      location: '',
-      description: '',
-      remainingplaces: 5,
-      speakers: '',
-      maximumplaces: 7,
-      topicscovered: '',
-      field: '',
-      registrationprice: 9,
-      approvalstaus: '',
-      applicants: [],
-      feedback: []
-}
-handleChangeEventName = event => {
-    this.setState({ eventname: event.target.value });
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
   };
 
   handleChangeOrganizer = event => {
@@ -113,7 +91,6 @@ handleChangeEventName = event => {
       feedback: this.state.feedback
     };
 
-<<<<<<< HEAD
     axios.put("http://localhost:3001/api/events/id", { Event }).then(res => {
       console.log(res);
       console.log(res.data);
@@ -256,81 +233,3 @@ handleChangeEventName = event => {
 }
 
 export default withRouter(EventPut);
-=======
-    render() {
-        return(
-            <form onSubmit = {this.handelSubmit} >
-                <label> Events : </label>
-
-          <label className="EventName">
-            EventName:
-            <input type="text" name="eventname" onChange = {this.handleChangeEventName}/>
-          </label><b/>
-
-          <label className="Organizer">
-            Organizer:
-            <input type="text" name="organizer" onChange = {this.handleChangeOrganizer} />
-          </label><b/>
-
-          <label className="Location">
-            Location:
-            <input type="text" name="location" onChange = {this.handleChangeLocation}/>
-          </label>
-
-          <label className="Description">
-            Description:
-            <input type="text" name="description" onChange = {this.handleChangeDescription} />
-          </label>
-
-          <label className="RemainingPlaces">
-            RemainingPlaces:
-            <input type="text" name="remainingplaces" onChange = {this.handleChangeRemainingPlaces}/>
-          </label>
-
-          <label className="Speakers">
-            Speakers:
-            <input type="text" name="speakers" onChange = {this.handleChangeSpeakers}/>
-          </label>
-
-          <label className="MaximumPlaces">
-            MaximumPlaces:
-            <input type="text" name="maximumplaces" onChange = {this.handleChangeMaximumPlaces}/>
-          </label>
-
-          <label className="TopicsCovered">
-            TopicsCovered:
-            <input type="text" name="topicscovered" onChange = {this.handleChangeTopicsCovered}/>
-          </label>
-
-          <label className="Field">
-            Field:
-            <input type="text" name="field" onChange = {this.handleChangeField}/>
-          </label>
-
-          <label className="RegistrationPrice">
-            RegistrationPrice:
-            <input type="text" name="registrationprice" onChange = {this.handleChangeRegistrationPrice}/>
-          </label>
-
-          <label className="ApprovalStatus">
-            ApprovalStatus:
-            <input type="text" name="approvalstatus" onChange = {this.handleChangeApprovalStatus}/>
-          </label>
-
-          <label className="Applicants">
-            Applicants:
-            <input type="text" name="appliccants" onChange = {this.handleChangeApplicants}/>
-          </label>
-
-          <label className="Feedback">
-            Feedback:
-            <input type="text" name="feedback" onChange = {this.handleChangeFeedback}/>
-          </label>
-          <button type = "submit"> ADD </button>
-            </form>
-        )
-    }
-}
-
-export default EventPut;
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce

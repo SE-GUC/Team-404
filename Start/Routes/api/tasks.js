@@ -8,11 +8,7 @@ const sendNotif = require("../../utils/mailer");
 const users = require("../api/users");
 const joi = require("Joi");
 const validator = require("../../Validation/taskValid");
-<<<<<<< HEAD
-const authenticateUser = require("../../middleware/authenticate")
-=======
 const authenticateUser = require('../../middleware/authenticate');
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
@@ -30,10 +26,6 @@ router.get("/consultancyRequested/:status", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 
 router.post("/", async (req, res) => {
   /*  try {
@@ -42,29 +34,6 @@ router.post("/", async (req, res) => {
       return res
         .status(400)
         .send({ error: isValidated.error.details[0].message }); */
-<<<<<<< HEAD
-  const task = await new Task({
-    title: req.body.title,
-    description: req.body.description,
-    eta: req.body.eta,
-    levelOfCommitment: req.body.levelOfCommitment,
-    partner: req.body.partner,
-    monetaryCompensation: req.body.monetaryCompensation,
-    skills: req.body.skills,
-    lifeCycleStatus: "Denied",
-    experienceNeeded: req.body.experienceNeeded,
-    consultancyRequested: req.body.consultancyRequested
-  }).save();
-
-  if (consultancyRequested) {
-    users.array.forEach(user => {
-      if (user.userType == "Consultant") {
-        sendNotif(user.email, "Consultancy req", "LirtenHub");
-      }
-    });
-  }
-  return res.json({ data: task });
-=======
     const task = await new Task({
       title: req.body.title,
       description: req.body.description,
@@ -87,19 +56,13 @@ router.post("/", async (req, res) => {
       })
     }
     return res.json({ data: task });
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
   /* } catch (error) {
     console.log(error);
   } */
 });
 
-<<<<<<< HEAD
-router
-  .route("/:id", authenticateUser)
-=======
   router
   .route('/:id',authenticateUser)
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -150,10 +113,6 @@ router
           error: `Error, couldn't delete a Task given the following data`
         })
       }
-<<<<<<< HEAD
-    });
-  });
-=======
     })
   })
 
@@ -183,20 +142,12 @@ router
                 lifecycle:foundTask.lifecyclestatus,
                 test:foundTask
               })
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 
   })
 
-<<<<<<< HEAD
-// router.get("/viewTaskStatus/:tid", async (req, res) => {
-// var Pid = req.body.partner;
-// var Tid = req.params.tid;
-//var tasks = await Task.findById(Tid);
-=======
   router.put('/:Tid',authenticateUser, async (req, res) => {
     var Pid = req.body.id
     var Tid = req.params.Tid
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 
 let {description,eta,levelOfCommitment,partner,monetaryCompensation,skills,lifeCycleStatus,experienceNeeded,consultancyRequested,consultant,applications
 }=req.body
@@ -245,13 +196,8 @@ if(applications){
     });
   
 
-<<<<<<< HEAD
-router.get("/viewTaskStatus/:tid", async (req, res) => {
-  var Pid = req.body.partner;
-=======
 router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
   var Pid = req.body.pid;
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
   var Tid = req.params.tid;
   var tasks = await Task.findById(Tid);
   if (!tasks) {
@@ -281,103 +227,6 @@ router.put(
     var Pid = req.body.id;
     var Tid = req.params.Tid;
 
-<<<<<<< HEAD
-    let {
-      title,
-      description,
-      eta,
-      levelOfCommitment,
-      partner,
-      monetaryCompensation,
-      skills,
-      lifeCycleStatus,
-      experienceNeeded,
-      consultancyRequested,
-      consultant,
-      application,
-      tags
-    } = req.body;
-
-    let updateBody = {};
-    if (title) {
-      updateBody.title = title;
-    }
-    if (description) {
-      updateBody.description = description;
-    }
-    if (eta) {
-      updateBody.eta = eta;
-    }
-    if (levelOfCommitment) {
-      updateBody.levelOfCommitment = levelOfCommitment;
-    }
-    if (partner) {
-      updateBody.partner = partner;
-    }
-    if (monetaryCompensation) {
-      updateBody.monetaryCompensation = monetaryCompensation;
-    }
-    if (skills) {
-      updateBody.skills = skills;
-    }
-    if (lifeCycleStatus) {
-      updateBody.lifeCycleStatus = lifeCycleStatus;
-    }
-    if (experienceNeeded) {
-      updateBody.experienceNeeded = experienceNeeded;
-    }
-    if (consultancyRequested) {
-      updateBody.consultancyRequested = consultancyRequested;
-    }
-    if (consultant) {
-      updateBody.consultant = consultant;
-    }
-    if (application) {
-      updateBody.application = application;
-    }
-    if (tags) {
-      updateBody.tags = tags;
-    }
-    //     let partner = await Partner.findById(Pid)
-    //     if(!partner){
-    //       return res.status(400).send({
-    //          message:"couldnt find a partner with the specififed id "
-    //        })
-    //      }
-    var tasks = await Task.findById(Tid); //.exec()
-    if (!tasks) {
-      return res.status(400).send({
-        message: "couldnt find a task with the specififed id "
-      });
-    }
-    var query = { _id: Tid, partner: Pid };
-    const updated = await Task.findOneAndUpdate(
-      {
-        _id: Tid
-      },
-      {
-        $set: updateBody
-      },
-      {
-        new: true
-      }
-    );
-
-    if (updated != null) {
-      return res.json({
-        success: true,
-        message: "Task updated",
-        updatedTask: updated
-      });
-    }
-
-    return res.status(400).json({
-      success: false,
-      message: "Task update failed"
-    });
-  }
-);
-=======
   let {
     title,
     description,
@@ -466,6 +315,5 @@ router.put(
     message: 'Task update failed'
   })
 })
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 
 module.exports = router

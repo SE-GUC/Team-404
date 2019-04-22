@@ -16,18 +16,11 @@ import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
 import RegisterCandidate from "./components/User/RegisterCandidate";
-<<<<<<< HEAD
-import RegisterPartner from "./components/User/RegisterPartner";
-import EventReadID from "./components/Event/EventReadID";
-import EventReadIDPending from "./components/Event/EventReadIDPending";
-import UserList from "./components/User/UserList";
-import EventReadPending from "./components/Event/EventReadPending";
-=======
 import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/User/UserList"
-import Register from "./components/page/User/Register"
+import UserList from "./components/User/UserList";
+import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
 import TaskDelete from "./components/Task/TaskDelete";
@@ -36,8 +29,7 @@ import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
 import Task from "./components/page/Task";
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
-
+import UpdateTask from "./components/Task/UpdateTask";
 class App extends Component {
   state = {
     applications: [],
@@ -99,16 +91,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-<<<<<<< HEAD
-        <div className="App" id="background2">
-        
+        <div className="App" id=".App-header">
           <Header />
           <Route
-=======
-        <div className="App" id=".App-header" >
-          <Header/>
-          <Route 
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
             exact
             path="/"
             render={props => (
@@ -117,11 +102,11 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route 
+          <Route
             exact
             path="/Partner"
             render={props => (
-              <React.Fragment >
+              <React.Fragment>
                 <Partner />
               </React.Fragment>
             )}
@@ -189,12 +174,8 @@ class App extends Component {
                 <EventCreate />
               </React.Fragment>
             )}
-<<<<<<< HEAD
-          />{" "}
-=======
           />
           {/* {" "}
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
           <Route
             exact
             path="Event/update"
@@ -203,12 +184,7 @@ class App extends Component {
                 <EventPut />
               </React.Fragment>
             )}
-<<<<<<< HEAD
-          />{" "}
-=======
           />{" "} */}
-
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
           <Route
             exact
             path="/Event/delete"
@@ -229,29 +205,30 @@ class App extends Component {
           />
           <Route
             exact
-<<<<<<< HEAD
-            path="/RegisterCandidate"
-            component={RegisterCandidate}
-          />
-          <Route
-            exact
-            path="/UpdateTasks"
-=======
-            path="/event/:id/pending"
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
+            path="/UpdateTask"
             render={props => (
               <React.Fragment>
-                <UpdateTasks />
+                <UpdateTask />
               </React.Fragment>
             )}
           />
-          path="/event/:id/pending" render=
+
+          <Route
+            exact
+            path="/TaskCreate"
+            render={props => (
+              <React.Fragment>
+                <TaskCreate />
+              </React.Fragment>
+            )}
+          />
+
           {props => (
             <React.Fragment>
               <EventReadIDPending />
             </React.Fragment>
           )}
-          />
+
           <Route
             exact
             path="/event/pending"
@@ -261,12 +238,8 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
-            exact
-            path="/Tasks"
-             component = {Task}
-          />
-           <Route
+          <Route exact path="/Tasks" component={Task} />
+          <Route
             exact
             path="/Task/create"
             render={props => (
@@ -275,7 +248,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           <Route
+          <Route
             exact
             path="/Task/:id"
             render={props => (
@@ -284,9 +257,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-<<<<<<< HEAD
-=======
-           <Route
+          <Route
             exact
             path="/Task/update"
             render={props => (
@@ -295,7 +266,6 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           
           <Route
             exact
             path="/:id/update"
@@ -311,8 +281,6 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
-
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
