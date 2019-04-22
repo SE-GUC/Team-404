@@ -69,8 +69,13 @@ router.post("/", async (req, res) => {
   } */
 });
 
+<<<<<<< HEAD
 router
   .route("/:id")
+=======
+  router
+  .route('/:id',authenticateUser)
+>>>>>>> c66f732e2b8e3399315f9de483bbb5c0182ad136
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -84,7 +89,7 @@ router
     next()
   })
 
-  .get(async (request, response) => {
+  .get(authenticateUser,async (request, response) => {
     try {
       const task = await Task.findById(request.params.id).exec()
       return response.json({ data: task })
@@ -95,7 +100,7 @@ router
     }
   })
 
-  .put(async (request, response) => {
+  .put(authenticateUser,async (request, response) => {
     Task.findByIdAndUpdate(
       request.params.id,
       request.body,
@@ -112,7 +117,7 @@ router
     )
   })
 
-  .delete((request, response) => {
+  .delete(authenticateUser,(request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
         return response.json({ data: null })
@@ -129,6 +134,91 @@ router.get('/viewTaskStatus/:tid', async (req, res) => {
   var Tid = req.params.tid
   var tasks = await Task.findById(Tid)
 
+<<<<<<< HEAD
+=======
+  router.get('/viewTaskStatus/:tid', authenticateUser,async (req, res) => {
+              var Pid = req.body.pid
+              var Tid = req.params.tid
+              var tasks = await Task.findById(Tid)
+              if(!tasks){
+              return  res.status(400).send({
+                  message:"couldnt find a task with the specififed id "
+                })
+              }
+              var query = {'_id':Tid,
+              'partner':Pid
+            };
+              let foundTask=await Task.findOne(query)
+              if(!foundTask){
+              return  res.status(400).send({
+                  message:"couldnt find a task with the specififed id and partner id "
+                })
+              }
+
+              return res.status(200).send({
+                message:"succuess",
+                lifecycle:foundTask.lifecyclestatus,
+                test:foundTask
+              })
+
+  })
+
+  router.put('/:Tid',authenticateUser, async (req, res) => {
+    var Pid = req.body.id
+    var Tid = req.params.Tid
+
+let {description,eta,levelOfCommitment,partner,monetaryCompensation,skills,lifeCycleStatus,experienceNeeded,consultancyRequested,consultant,applications
+}=req.body
+
+let updateBody={}
+if(description){
+  updateBody.description=description
+}
+if(eta){
+  updateBody.eta=eta
+}
+if(levelOfCommitment){
+  updateBody.levelOfCommitment=levelOfCommitment
+}
+if(partner){
+  updateBody.partner=partner
+}
+if(monetaryCompensation){
+  updateBody.monetaryCompensation=monetaryCompensation
+}
+if(skills){
+  updateBody.skills=skills
+}
+if(lifeCycleStatus){
+  updateBody.lifeCycleStatus=lifeCycleStatus
+}
+if(experienceNeeded){
+  updateBody.experienceNeeded=experienceNeeded
+}
+if(consultancyRequested){
+  updateBody.consultancyRequested=consultancyRequested
+}
+if(consultant){
+  updateBody.consultant=consultant
+}
+if(applications){
+  updateBody.applications=applications
+}
+
+    var tasks = await Task.findById(Tid)//.exec()
+    if(!tasks){
+      return  res.status(400).send({
+          message:"couldnt find a task with the specififed id "
+        })
+      }
+    });
+  
+
+router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
+  var Pid = req.body.pid;
+  var Tid = req.params.tid;
+  var tasks = await Task.findById(Tid);
+>>>>>>> c66f732e2b8e3399315f9de483bbb5c0182ad136
   if (!tasks) {
     return res.status(400).send({
       message: 'couldnt find a task with the specififed id '
@@ -149,9 +239,15 @@ router.get('/viewTaskStatus/:tid', async (req, res) => {
   })
 })
 
+<<<<<<< HEAD
 router.put('/UpdateProjectAttributes/:Tid', async (req, res) => {
   var Pid = req.body.id
   var Tid = req.params.Tid
+=======
+router.put("/UpdateProjectAttributes/:Tid",authenticateUser, async (req, res) => {
+  var Pid = req.body.id;
+  var Tid = req.params.Tid;
+>>>>>>> c66f732e2b8e3399315f9de483bbb5c0182ad136
 
   let {
     title,

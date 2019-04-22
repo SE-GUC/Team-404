@@ -277,42 +277,33 @@ router.get('/getE/:id', async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-})
+});
 
-// Admin confirm requested event
+//Admin confirm requested event
 confirmRequest = async (req, res) => {
   try {
-    var eid = req.params.eid
-    var event = await Event.findById(eid).exec()
+    var eid = req.params.eid;
+    var event = await Event.findById(eid).exec();
     Event.findByIdAndUpdate(
       eid,
-      { $set: { approvalStatus: 'approved' } },
+      { $set: { approvalStatus: "approved" } },
       (err, model) => {
         if (!err) {
-          console.log({ data: model })
+          console.log({ data: model });
         } else {
-          console.log({ error: `Error, couldn't confirm event ` })
+          console.log({ error: `Error, couldn't confirm event ` });
         }
       }
-    )
-    // array of all users
-    const users = await User.find({})
+    );
 
-    // notif to organizer that event was approved
-    users.forEach(user => {
-      if (user.id == event.organizer) {
-        sendNotif(user.email, 'admin authorised' + event.eventName, eventName)
-      }
-    })
-
-    const message = 'Event request has been approved!'
-    return res.json(message)
+    const message = "Event request has been approved!";
+    return res.json(message);
   } catch (err) {
-    console.log("couldn't confirm the event")
+    console.log("couldn't confirm the event");
   }
-}
+};
 
-// Partner request event
+//Partner request event
 requestEvent = async (req, res) => {
   try {
     var pid = req.params.pid
@@ -378,17 +369,17 @@ adminCreateEvent = async (req, res) => {
   } catch (error) {
     console.log('Could not create event')
   }
-}
+};
 
-// calling of Clara's functions
-router.get('/', viewApprovedEvents)
-router.get('/pending', viewPendingEvents)
-router.post('/:eid/users/:cid', bookEvent)
-router.post('/:eid/events/:cid', cancelBooking)
+//calling of Clara's functions
+router.get("/", authenticateUser, viewApprovedEvents);
+router.get("/pending", authenticateUser, viewPendingEvents);
+router.post("/:eid/users/:cid", authenticateUser, bookEvent);
+router.post("/:eid/events/:cid", authenticateUser, cancelBooking);
 
-// calling of Hagar's functions
-router.post('/:pid/requestEvent', requestEvent)
-router.post('/:aid/adminCreateEvent', adminCreateEvent)
-router.put('/:eid/confirmRequest', confirmRequest)
+//calling of Hagar's functions
+router.post("/:pid/requestEvent", authenticateUser, requestEvent);
+router.post("/:aid/adminCreateEvent", authenticateUser, adminCreateEvent);
+router.put("/:eid/confirmRequest", authenticateUser, confirmRequest);
 
-module.exports = router
+module.exports = router;

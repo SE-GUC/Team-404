@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import EventPost from "./components/Event/EventPost";
+import EventRequest from "./components/Event/EventRequest";
+import EventCreate from "./components/Event/EventCreate";
 import EventPut from "./components/Event/EventPut";
 import EventDelete from "./components/Event/EventDelete";
 import "./components/User/Textbox.css";
@@ -14,15 +15,18 @@ import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
-import RegisterCandidate from "./components/User/RegisterCandidate";
-import RegisterPartner from "./components/User/RegisterPartner";
+import RegisterCandidate from "./components/RegisterCandidate";
+import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/User/UserList";
+import EventReadIDPending from "./components/Event/EventReadIDPending";
+import UserList from "./components/UserList";
+import EventReadPending from "./components/Event/EventReadPending";
 import TaskDelete from "./components/Task/TaskDelete";
-import TaskPost from "./components/Task/TaskPost";
+import TaskCreate from "./components/Task/TaskCreatete";
 import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
+import Task from "./components/page/Task";
 
 class App extends Component {
   state = {
@@ -125,23 +129,6 @@ class App extends Component {
           />
           <Route
             exact
-            path="/DeleteTask"
-            render={props => (
-              <React.Fragment>
-                <DeleteTask />
-              </React.Fragment>
-            )}
-          />
-          <Route
-            exact
-            path="/Tasks"
-            render={props => (
-              <React.Fragment>
-              </React.Fragment>
-            )}
-          />
-          <Route
-            exact
             path="/Feedback"
             render={props => (
               <React.Fragment>
@@ -170,13 +157,33 @@ class App extends Component {
           />
           <Route
             exact
-            path="/Event/create"
+            path="/Event/request"
             render={props => (
               <React.Fragment>
-                <EventPost />
+                <EventRequest />
               </React.Fragment>
             )}
           />
+           <Route
+            exact
+            path="/Event/create"
+            render={props => (
+              <React.Fragment>
+                <EventCreate />
+              </React.Fragment>
+            )}
+          />
+          {/* {" "}
+          <Route
+            exact
+            path="Event/update"
+            render={props => (
+              <React.Fragment>
+                <EventPut />
+              </React.Fragment>
+            )}
+          />{" "} */}
+
           <Route
             exact
             path="/Event/delete"
@@ -188,7 +195,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/event/:id"
+            path="/event/:id/User/:uid"
             render={props => (
               <React.Fragment>
                 <EventReadID />
@@ -196,34 +203,77 @@ class App extends Component {
             )}
           />
           <Route
-         exact
-         path="/:id/update"
-         render={props => (
-           <React.Fragment>
-             {/* <EventReadID></EventReadID> */}
-             <EventPut></EventPut>
-             
-           </React.Fragment>
-         )}
-       />
-          <Route exact path="/RegisterCandidate" component={RegisterCandidate} />
+            exact
+            path="/event/:id/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadIDPending />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/event/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadPending />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/Task"
+            render={props => (
+              <React.Fragment>
+                <Task />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/Task/create"
+            render={props => (
+              <React.Fragment>
+                <TaskCreate />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/Task/:id"
+            render={props => (
+              <React.Fragment>
+                <TaskReadID />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/Task/update"
+            render={props => (
+              <React.Fragment>
+                <TaskPut />
+              </React.Fragment>
+            )}
+          />
+           
+          <Route
+            exact
+            path="/:id/update"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <EventPut />
+              </React.Fragment>
+            )}
+          />
+          <Route
             exact
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
-          <Route
-            exact
-            path="/UpdateTasks"
-            render={props => (
-              <React.Fragment>
-                <UpdateTasks />
-              </React.Fragment>
-            )}
-          />
+
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
-          <Route exact path="/AddTask" component={AddTask} />
-          <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
-          <Route exact path="/DeleteTasks" component={DeleteTasks} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
