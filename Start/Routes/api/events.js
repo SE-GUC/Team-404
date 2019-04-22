@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const authenticateUser= require("../../middleware/authenticate");
 const app = express();
 const sendNotif = require("../../utils/mailer");
 const joi = require("joi");
@@ -11,7 +12,7 @@ const Event = require("../../Models/Event");
 const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
-app.get("/", (req, res) => {
+app.get("/",authenticateUser, (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
@@ -22,7 +23,7 @@ app.get("/", (req, res) => {
 // });
 
 // Create a new newEvent
-router.post("/", async (req, res) => {
+router.post("/",authenticateUser, async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
@@ -83,7 +84,7 @@ router.put("/:id", async (request, response) => {
 
 
 // Delete newEvent
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateUser, async (req, res) => {
   try {
     const id = req.params.id;
     const deletedEvent = await Event.findByIdAndRemove(id);
@@ -224,7 +225,7 @@ viewPendingEvents = async (req, res) => {
 };
 
 //get a specific event by ID
-router.get("/getE/:id", async (req, res) => {
+router.get("/getE/:id", authenticateUser, async (req, res) => {
   try {
     const id = req.params.id;
     const requestedEvent = await Event.findById(id);
@@ -321,14 +322,14 @@ adminCreateEvent = async (req, res) => {
       
 
 //calling of Clara's functions
-router.get("/", viewApprovedEvents);
-router.get("/pending", viewPendingEvents);
-router.post("/:eid/users/:cid", bookEvent);
-router.post("/:eid/events/:cid", cancelBooking);
+router.get("/", authenticateUser, viewApprovedEvents);
+router.get("/pending", authenticateUser, viewPendingEvents);
+router.post("/:eid/users/:cid", authenticateUser, bookEvent);
+router.post("/:eid/events/:cid",authenticateUser, cancelBooking);
 
 //calling of Hagar's functions
-router.post('/:pid/requestEvent', requestEvent);
-router.post('/:aid/adminCreateEvent', adminCreateEvent);
-router.put('/:eid/confirmRequest', confirmRequest);
+router.post('/:pid/requestEvent', authenticateUser, requestEvent);
+router.post('/:aid/adminCreateEvent',authenticateUser, adminCreateEvent);
+router.put('/:eid/confirmRequest',authenticateUser, confirmRequest);
 
 module.exports = router;

@@ -14,8 +14,7 @@ function Event() {
         <span STYLE="text-decoration:underline; font-weight:bold">
           Request{" "}
         </span>{" "}
-        a new event 
-        
+        a new event
       </Link>
       <Link to="Event/create">
         <br />
@@ -23,26 +22,20 @@ function Event() {
         <span STYLE="text-decoration:underline; font-weight:bold">
           Create{" "}
         </span>{" "}
-        a new event 
+        a new event
         <br />
         <br />
       </Link>
       <Link to={`/event/pending`}>
-      
-        <span STYLE="text-decoration:underline; font-weight:bold">
-          Check{" "}
-        </span>{" "}
+        <span STYLE="text-decoration:underline; font-weight:bold">Check </span>{" "}
         pending events
         <br />
         <br />
       </Link>
-      
       The Live Events
-      <EventRead />
-
+      <EventRead></EventRead>
       <br />
       <br />
-      
     </React.Fragment>
   );
 }
