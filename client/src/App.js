@@ -31,7 +31,6 @@ import EventReadID from "./components/Event/EventReadID";
 import UserList from "./components/UserList"
 import Register from "./components/page/User/Register"
 import EventReadIDPending from "./components/Event/EventReadIDPending";
-import UserList from "./components/UserList";
 import EventReadPending from "./components/Event/EventReadPending";
 
 class App extends Component {
