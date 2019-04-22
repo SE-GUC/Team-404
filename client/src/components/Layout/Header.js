@@ -1,6 +1,7 @@
 import React from "react";
 import "../../App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 function Header() {
   return (
     <header>
@@ -35,9 +36,22 @@ function Header() {
       </Link>
       |{" "}
       <Link id=".App-link" to="/User">
-        User
+        View User
       </Link>
       |{" "}
+      <Link id=".App-link" to="/User/Partners">
+          View Partners
+       </Link>
+       |{" "}
+       <Link id=".App-link" to="/User/Candidates">
+          View Candidates
+        </Link>
+        |{" "}
+            <Link id=".App-link" to="/User/Consultants">
+           View Consultants
+            </Link>
+            |{" "}
+    
       <Link id=".App-link" to="/updateUser">
         Edit Account
       </Link>

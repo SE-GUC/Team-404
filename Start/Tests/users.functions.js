@@ -12,6 +12,7 @@ updateUser: async _id => {
     );
     return user;
   },
+
   getUsers: async () => {
     const users = await axios.get("http://localhost:3001/Routes/api/users/")
     return users
@@ -62,8 +63,18 @@ updateUser: async _id => {
       });
     return newUser;
   },
- 
- 
 
+  getPartners: async () => {
+    const partners = await axios.get("http://localhost:3001/Routes/api/users/partners")
+    return partners
+  },
+  getConsultants: async () => {
+    const consultants = await axios.get("http://localhost:3001/Routes/api/users/consultants")
+    return consultants
+  },
+  getCandidates: async () => {
+    const candidates = await axios.get("http://localhost:3001/Routes/api/users/candidates")
+    return candidates
+  },      
 };
-  module.exports = functions;
+module.exports = functions;
