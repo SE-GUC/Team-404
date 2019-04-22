@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import RegisterCandidate from '../../RegisterCandidate';
-import RegisterPartner from '../../RegisterPartner';
+import RegisterCandidate from '../../User/RegisterCandidate';
+import RegisterPartner from '../../User/RegisterPartner';
 import RegisterConsultant from '../../RegisterConsultant';
 class Register extends Component {  
     render() {

@@ -15,16 +15,16 @@ import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import AddFeedback from "./components/AddFeedback";
-import RegisterCandidate from "./components/RegisterCandidate";
+import RegisterCandidate from "./components/User/RegisterCandidate";
 import RegisterConsultant from "./components/RegisterConsultant";
-import RegisterPartner from "./components/RegisterPartner";
+import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/UserList"
+import UserList from "./components/User/UserList"
 import Register from "./components/page/User/Register"
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
 import TaskDelete from "./components/Task/TaskDelete";
-import TaskCreate from "./components/Task/TaskCreatete";
+import TaskCreate from "./components/Task/TaskCreate";
 import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
@@ -274,18 +274,8 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
-<<<<<<< HEAD
 
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
-=======
-          <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
-          <Route exact path="/RegisterPartner" component={RegisterPartner} />
-          <Route exact path="/Register" component={Register} />
-          <Route exact path="/AddTask" component={AddTask} />
-          <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
-          <Route exact path="/DeleteTasks" component={DeleteTasks} />
-          <Route exact path="/UpdateTask" component={UpdateTask} />
->>>>>>> ed495cf4fdc22f141b59e62d959fabc94a1db169
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />

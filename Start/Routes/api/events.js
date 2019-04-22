@@ -4,7 +4,7 @@ const app = express()
 const sendNotif = require('../../utils/mailer')
 const joi = require('joi')
 const User = require('../../Models/User')
-
+const authenticateUser = require('../../middleware/authenticate')
 // We will be connecting using database
 const Event = require('../../Models/Event')
 const validator = require('../../Validation/eventValid')

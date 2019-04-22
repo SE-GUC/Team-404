@@ -8,6 +8,7 @@ const sendNotif = require("../../utils/mailer");
 const users = require("../api/users");
 const joi = require("Joi");
 const validator = require("../../Validation/taskValid");
+const authenticateUser = require('../../middleware/authenticate');
 
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
@@ -25,15 +26,6 @@ router.get("/consultancyRequested/:status", async (req, res) => {
   }
 });
 
-router.get("/getT/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const requestedTask = await Task.findById(id);
-    res.json({ msg: "Task you asked for", data: requestedTask });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 router.post("/", async (req, res) => {
  /*  try {
@@ -69,13 +61,8 @@ router.post("/", async (req, res) => {
   } */
 });
 
-<<<<<<< HEAD
-router
-  .route("/:id")
-=======
   router
   .route('/:id',authenticateUser)
->>>>>>> c66f732e2b8e3399315f9de483bbb5c0182ad136
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
@@ -129,13 +116,8 @@ router
     })
   })
 
-router.get('/viewTaskStatus/:tid', async (req, res) => {
-  var Pid = req.body.partner
-  var Tid = req.params.tid
-  var tasks = await Task.findById(Tid)
 
-<<<<<<< HEAD
-=======
+
   router.get('/viewTaskStatus/:tid', authenticateUser,async (req, res) => {
               var Pid = req.body.pid
               var Tid = req.params.tid
@@ -218,7 +200,6 @@ router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
   var Pid = req.body.pid;
   var Tid = req.params.tid;
   var tasks = await Task.findById(Tid);
->>>>>>> c66f732e2b8e3399315f9de483bbb5c0182ad136
   if (!tasks) {
     return res.status(400).send({
       message: 'couldnt find a task with the specififed id '
@@ -239,15 +220,9 @@ router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
   })
 })
 
-<<<<<<< HEAD
-router.put('/UpdateProjectAttributes/:Tid', async (req, res) => {
-  var Pid = req.body.id
-  var Tid = req.params.Tid
-=======
 router.put("/UpdateProjectAttributes/:Tid",authenticateUser, async (req, res) => {
   var Pid = req.body.id;
   var Tid = req.params.Tid;
->>>>>>> c66f732e2b8e3399315f9de483bbb5c0182ad136
 
   let {
     title,
