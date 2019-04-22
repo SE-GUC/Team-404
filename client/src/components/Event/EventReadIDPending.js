@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
-class EventReadID extends Component {
+class EventReadIDPending extends Component {
   state = {
     events: []
   };
@@ -16,8 +16,8 @@ class EventReadID extends Component {
     });
   }
 
-  onDelete = () => {
-    axios.delete(`events/${this.props.match.params.id}`)
+  onConfirm = () => {
+    axios.put(`events/${this.props.match.params.id}/confirmRequest`)
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -25,8 +25,8 @@ class EventReadID extends Component {
     })
   }
 
-  onBook = () => {
-    axios.post(`events/${this.props.match.params.id}/users/${this.props.match.params.id}`)
+  onReject = () => {
+    axios.delete(`events/${this.props.match.params.id}`)
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -43,7 +43,6 @@ class EventReadID extends Component {
       event && event._id ? (
         <div className="event card" key={event._id}>
           <div className="card-content">
-            <br />
             <br />
             <br />
             Name:
@@ -87,13 +86,12 @@ class EventReadID extends Component {
             <span className="event registration price">{event.registrationPrice}</span>
             <br />
             <br />
-            <Link to={`/${event._id}/update`}><span STYLE="text-decoration:underline; font-weight:bold">UPDATE</span> </Link>
+            <button className="btn btn-primay" onClick={this.onConfirm}>Confirm this event</button>
             <br />
             <br />
-            <button className="btn btn-primay" onClick={this.onDelete}>Delete this event</button>
+            <button className="btn btn-primay" onClick={this.onReject}>Reject this event</button>
             <br />
             <br />
-            <button className="btn btn-primay" onClick={this.onBook}>Book this event</button>
           </div>
         </div>
       ) : (
@@ -102,4 +100,4 @@ class EventReadID extends Component {
     return eventJSX;
   }
 }
-export default withRouter(EventReadID);
+export default withRouter(EventReadIDPending);

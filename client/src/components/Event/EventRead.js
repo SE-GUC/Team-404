@@ -9,23 +9,26 @@ class EventRead extends Component {
         
         axios.get('http://localhost:3001/Routes/api/events/')
         .then(res => {
-            console.log(res)
+            //console.log(res)
             this.setState({
                 events: res.data.data
             })
         })
     }
 render(){
+   
 const { events } = this.state;
 const eventList = events.length ? (
     events.map(event => {
     return(
+        
         <div className= "event card" key={event._id}>
         <div className="card-content">
+       
         <Link to = {`event/${event._id}`}>
-        
+        <br />
         {/* //the name as a link  */}
-        <span className="event candidate">{event.eventName}</span>
+        <span STYLE="text-decoration:underline; font-weight:bold">{event.eventName}</span>
            
         </Link>
         </div>
@@ -33,7 +36,7 @@ const eventList = events.length ? (
     )
 })
 ) : ( 
-<div className="center">No events yet</div>
+<div className="center">are being retrieved...</div>
 )
 return(
     <div className="container">
