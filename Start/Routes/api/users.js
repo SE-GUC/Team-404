@@ -124,7 +124,10 @@ router.delete('/:id', async (req,res) => {
   try {
    const id = req.params.id
    const deletedUser = await User.findByIdAndRemove(id)
-   res.json({msg:'User was deleted successfully', data: deletedUser})
+   const x="User was deleted successfully"
+   //res.json({msg:'User was deleted successfully', data: deletedUser})
+  // return res.json(x)
+  return res.json(x)
   }
   catch(error) {
       // We will be handling the error later

@@ -107,6 +107,7 @@ class User extends Component {
               name="name"
             />
           </label>
+          <br />
           <label className="email">
             email:
           <input
@@ -115,6 +116,7 @@ class User extends Component {
               name="email"
             />
           </label>
+          <br />
           <label className="password ">
             password:
           <input
@@ -123,6 +125,7 @@ class User extends Component {
               name="password"
             />
           </label>
+          <br />
           <label className="age">
             age:
           <input
@@ -131,6 +134,7 @@ class User extends Component {
               name="age"
             />
           </label>
+          <br />
           <label className="username">
             username:
           <input
@@ -139,6 +143,7 @@ class User extends Component {
               name="username"
             />
           </label>
+          <br />
           <label className="phoneNumber">
             phoneNumber:
           <input
@@ -147,7 +152,7 @@ class User extends Component {
               name="phoneNumber"
             />
           </label>
-        
+          <br />
           <label className="location">
             location:
           <input
@@ -157,6 +162,7 @@ class User extends Component {
             />
             
           </label>
+          <br />
           <label className="Skills">
             Skills:
           <input
@@ -166,6 +172,7 @@ class User extends Component {
             />
 
           </label>
+          <br />
           <label className="Intresets">
             Interests:
           <input
@@ -175,6 +182,7 @@ class User extends Component {
             />
 
           </label>
+          <br />
           <label className="PastEventsAndTasks">
             PastEventsAndTasks:
           <input
@@ -184,6 +192,7 @@ class User extends Component {
             />
 
           </label>
+          <br />
           <label className="ReviewesRecived">
             ReviewesRecived:
           <input
@@ -193,8 +202,10 @@ class User extends Component {
             />
 
           </label>
+          <br />
           <button type="submit" onClick={this.handleSubmit}> Create user </button>
         </form>
+        <br />
 
 
       </div>
