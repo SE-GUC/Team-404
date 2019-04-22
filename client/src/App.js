@@ -29,7 +29,7 @@ import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
 import Task from "./components/page/Task";
-import UpdateTask from "./components/Task/UpdateTask";
+
 class App extends Component {
   state = {
     applications: [],
@@ -203,16 +203,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route
-            exact
-            path="/UpdateTask"
-            render={props => (
-              <React.Fragment>
-                <UpdateTask />
-              </React.Fragment>
-            )}
-          />
-
+          
           <Route
             exact
             path="/TaskCreate"
