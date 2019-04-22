@@ -20,6 +20,10 @@ function Header() {
         RegisterCandidate
       </Link>
       |{" "}
+      <Link style={linkStyle} to="/RegisterConsultant">
+        RegisterConsultant
+      </Link>
+      |{" "}
       <Link style={linkStyle} to="/Event">
         Events
       </Link>

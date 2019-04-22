@@ -28,6 +28,7 @@ import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
 import RegisterCandidate from "./components/RegisterCandidate"
 import RegisterPartner from "./components/RegisterPartner"
+import RegisterConsultant from "./components/RegisterConsultant"
 import EventReadID from "./components/Event/EventReadID";
 import UserList from "./components/UserList"
 class App extends Component {
@@ -216,6 +217,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/RegisterCandidate" component={RegisterCandidate} />
+          <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/AddTask" component={AddTask} />
           <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
