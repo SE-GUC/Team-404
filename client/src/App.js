@@ -37,6 +37,7 @@ import updateUser from "./components/page/User/updateUser";
 import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
+import UserProfile from "./components/UserProfile";
 
 class App extends Component {
   state = {
@@ -212,6 +213,18 @@ class App extends Component {
                 <br></br>
                 <br></br>
                 <ConsultantList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/5cb1eee8b3197064e88727bf"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <UserProfile />
               </React.Fragment>
             )}
           />
