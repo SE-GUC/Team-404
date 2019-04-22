@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
+
 class EventReadID extends Component {
   state = {
     events: []
@@ -26,10 +27,11 @@ class EventReadID extends Component {
   }
 
   onBook = () => {
-    axios.post(`events/${this.props.match.params.id}/users/${this.props.match.params.id}`)
+    axios.post(`events/${this.props.match.params.id}/users/${this.props.match.params.uid}`)
     .then(res => {
       console.log(res);
       console.log(res.data);
+      
       this.props.history.push('/Event');
     })
   }

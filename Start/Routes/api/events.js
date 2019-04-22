@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const authenticateUser= require("../../middleware/authenticate");
+const authenticateUser = require("../../middleware/authenticate");
 const app = express();
 const sendNotif = require("../../utils/mailer");
 const joi = require("joi");
@@ -12,7 +12,7 @@ const Event = require("../../Models/Event");
 const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
-app.get("/",authenticateUser, (req, res) => {
+app.get("/", authenticateUser, (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
@@ -23,7 +23,7 @@ app.get("/",authenticateUser, (req, res) => {
 // });
 
 // Create a new newEvent
-router.post("/",authenticateUser, async (req, res) => {
+router.post("/", authenticateUser, async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
@@ -58,7 +58,7 @@ router.post("/",authenticateUser, async (req, res) => {
 });
 
 // Update event
-router.put("/:id", async (request, response) => {
+router.put("/:id", authenticateUser, async (request, response) => {
   const status = joi.validate(request.params, {
     id: joi
       .string()
@@ -81,7 +81,6 @@ router.put("/:id", async (request, response) => {
     }
   );
 });
-
 
 // Delete newEvent
 router.delete("/:id", authenticateUser, async (req, res) => {
@@ -225,7 +224,7 @@ viewPendingEvents = async (req, res) => {
 };
 
 //get a specific event by ID
-router.get("/getE/:id", authenticateUser, async (req, res) => {
+router.get("/getE/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const requestedEvent = await Event.findById(id);
@@ -235,33 +234,31 @@ router.get("/getE/:id", authenticateUser, async (req, res) => {
   }
 });
 
-
-//Admin confirm requested event 
+//Admin confirm requested event
 confirmRequest = async (req, res) => {
-    try {
-      var eid = req.params.eid;
-      var event = await Event.findById(eid).exec();
-      Event.findByIdAndUpdate(
-        eid,
-        { $set : { approvalStatus: "approved" } },
-        (err, model) => {
-          if (!err) {
-            console.log({ data: model });
-          } else {
-            console.log({ error: `Error, couldn't confirm event ` });
-          }
+  try {
+    var eid = req.params.eid;
+    var event = await Event.findById(eid).exec();
+    Event.findByIdAndUpdate(
+      eid,
+      { $set: { approvalStatus: "approved" } },
+      (err, model) => {
+        if (!err) {
+          console.log({ data: model });
+        } else {
+          console.log({ error: `Error, couldn't confirm event ` });
         }
-      );
-  
-      const message = "Event request has been approved!";
-      return res.json(message);
-    }
-     catch (err) {
-      console.log("couldn't confirm the event");
-    }
-  };
+      }
+    );
 
-  //Partner request event
+    const message = "Event request has been approved!";
+    return res.json(message);
+  } catch (err) {
+    console.log("couldn't confirm the event");
+  }
+};
+
+//Partner request event
 requestEvent = async (req, res) => {
   try {
     var pid = req.params.pid;
@@ -318,18 +315,16 @@ adminCreateEvent = async (req, res) => {
     console.log("Could not create event");
   }
 };
-  
-      
 
 //calling of Clara's functions
 router.get("/", authenticateUser, viewApprovedEvents);
 router.get("/pending", authenticateUser, viewPendingEvents);
 router.post("/:eid/users/:cid", authenticateUser, bookEvent);
-router.post("/:eid/events/:cid",authenticateUser, cancelBooking);
+router.post("/:eid/events/:cid", authenticateUser, cancelBooking);
 
 //calling of Hagar's functions
-router.post('/:pid/requestEvent', authenticateUser, requestEvent);
-router.post('/:aid/adminCreateEvent',authenticateUser, adminCreateEvent);
-router.put('/:eid/confirmRequest',authenticateUser, confirmRequest);
+router.post("/:pid/requestEvent", authenticateUser, requestEvent);
+router.post("/:aid/adminCreateEvent", authenticateUser, adminCreateEvent);
+router.put("/:eid/confirmRequest", authenticateUser, confirmRequest);
 
 module.exports = router;
