@@ -33,7 +33,7 @@ class EventRead extends Component {
         );
       })
     ) : (
-      <div className="center">No events yet</div>
+      <div className="center">are being retrieved...</div>
     );
     return <div className="container">{eventList}</div>;
   }

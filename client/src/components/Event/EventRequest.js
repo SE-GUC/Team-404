@@ -1,11 +1,9 @@
 import React from "react";
-//import axios from './node_modules/axios';
 import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
-class EventPut extends React.Component {
+class EventRequest extends React.Component {
   state = {
-    
     eventName: "",
     organizer: "",
     location: "",
@@ -17,13 +15,35 @@ class EventPut extends React.Component {
     field: "",
     registrationPrice: 9
   };
-  componentDidMount() {
-    axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
-      this.setState(res.data.data);
-      
-    });
-  }
-  handleChangeeventName = event => {
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    console.log(`The state is : ${this.state}`);
+    const Event = {
+      eventName: this.state.eventName,
+      organizer: this.state.organizer,
+      location: this.state.location,
+      description: this.state.description,
+      remainingPlaces: this.state.remainingPlaces,
+      speakers: this.state.speakers,
+      maximumPlaces: this.state.maximumPlaces,
+      topicsCovered: this.state.topicsCovered,
+      field: this.state.field,
+      registrationPrice: this.state.registrationPrice
+    };
+    try {
+      let response = await axios.post(
+        "http://localhost:3001/Routes/api/events/",
+        Event
+      );
+      console.log(response);
+      this.props.history.push("/Event");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  handleChangeEventName = event => {
     this.setState({ eventName: event.target.value });
   };
 
@@ -39,7 +59,7 @@ class EventPut extends React.Component {
     this.setState({ description: event.target.value });
   };
 
-  handleChangeremainingPlaces = event => {
+  handleChangeRemainingPlaces = event => {
     this.setState({ remainingPlaces: event.target.value });
   };
 
@@ -47,11 +67,11 @@ class EventPut extends React.Component {
     this.setState({ speakers: event.target.value });
   };
 
-  handleChangemaximumPlaces = event => {
+  handleChangeMaximumPlaces = event => {
     this.setState({ maximumPlaces: event.target.value });
   };
 
-  handleChangetopicsCovered = event => {
+  handleChangeTopicsCovered = event => {
     this.setState({ topicsCovered: event.target.value });
   };
 
@@ -59,57 +79,27 @@ class EventPut extends React.Component {
     this.setState({ field: event.target.value });
   };
 
-  handleChangeregistrationPrice = event => {
+  handleChangeRegistrationPrice = event => {
     this.setState({ registrationPrice: event.target.value });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const Event = {
-      eventName: this.state.eventName,
-      organizer: this.state.organizer,
-      location: this.state.location,
-      description: this.state.description,
-      remainingPlaces: this.state.remainingPlaces,
-      speakers: this.state.speakers,
-      maximumPlaces: this.state.maximumPlaces,
-      topicsCovered: this.state.topicsCovered,
-      field: this.state.field,
-      registrationPrice: this.state.registrationPrice
-    };
-
-
-    try {
-      let response = axios.put(
-          `events/${this.props.match.params.id}`,
-        Event
-      ).then ( res => {
-      console.log(response)}
-      )
-    } catch (error) {
-      console.log(error);
-    }
-    //this.props.history.push('/Event');
-  }
-
+  /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
+      //console.log(res);
+      console.log(res.data);
+    });s
+  */
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
-        
-        <h1>Edit Event</h1>
-        <br />
-        <br />
+        <h1>Request an Event</h1>
         <label> Events details : </label>
         <br />
-        <br />
-        <label className="eventName">
-          eventName:
+        <label className="EventName">
+          EventName:
           <input
             type="text"
             name="eventName"
-            value={this.state.eventName}
-            onChange={this.handleChangeeventName}
+            onChange={this.handleChangeEventName}
           />
         </label>
         <br />
@@ -118,47 +108,46 @@ class EventPut extends React.Component {
           <input
             type="text"
             name="organizer"
-            value={this.state.organizer}
             onChange={this.handleChangeOrganizer}
           />
         </label>
         <br />
+
         <label className="Location">
           Location:
           <input
             type="text"
             name="location"
-            value={this.state.location}
             onChange={this.handleChangeLocation}
           />
         </label>
         <br />
+
         <label className="Description">
           Description:
           <input
             type="text"
             name="description"
-            value={this.state.description}
             onChange={this.handleChangeDescription}
           />
         </label>
         <br />
-        <label className="remainingPlaces">
-          remainingPlaces:
+
+        <label className="RemainingPlaces">
+          RemainingPlaces:
           <input
             type="text"
             name="remainingPlaces"
-            value={this.state.remainingPlaces}
-            onChange={this.handleChangeremainingPlaces}
+            onChange={this.handleChangeRemainingPlaces}
           />
         </label>
         <br />
+
         <label className="Speakers">
           Speakers:
           <input
             type="text"
             name="speakers"
-            value={this.state.speakers}
             onChange={this.handleChangeSpeakers}
           />
         </label>
@@ -168,8 +157,7 @@ class EventPut extends React.Component {
           <input
             type="text"
             name="maximumPlaces"
-            value={this.state.maximumPlcaes}
-            onChange={this.handleChangemaximumPlaces}
+            onChange={this.handleChangeMaximumPlaces}
           />
         </label>
         <br />
@@ -178,19 +166,13 @@ class EventPut extends React.Component {
           <input
             type="text"
             name="topicsCovered"
-            value={this.state.topicsCovered}
-            onChange={this.handleChangetopicsCovered}
+            onChange={this.handleChangeTopicsCovered}
           />
         </label>
         <br />
         <label className="Field">
           Field:
-          <input
-            type="text"
-            name="field"
-            value={this.state.field}
-            onChange={this.handleChangeField}
-          />
+          <input type="text" name="field" onChange={this.handleChangeField} />
         </label>
         <br />
         <label className="registrationPrice">
@@ -198,19 +180,18 @@ class EventPut extends React.Component {
           <input
             type="text"
             name="registrationPrice"
-            value={this.state.registrationPrice}
-            onChange={this.handleChangeregistrationPrice}
+            onChange={this.handleChangeRegistrationPrice}
           />
         </label>
         <br />
 
-        <button type="submit" className="text-center" onClick={this.handleSubmit}>
-          {" "}<br /> {" "} {" "}<br />
-          UPDATE{" "} <br />{" "} {" "}<br />
+        <button type="submit" onClick={this.handleSubmit}>
+          {" "}
+          REQUEST{" "}
         </button>
       </form>
     );
   }
 }
 
-export default withRouter(EventPut);
+export default withRouter(EventRequest);

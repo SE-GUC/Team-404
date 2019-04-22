@@ -47,6 +47,7 @@ class EventReadID extends Component {
           <div className="card-content">
             <br />
             <br />
+            <br />
             Name:
             
             <span className="event name">{event.eventName}</span>
@@ -91,7 +92,7 @@ class EventReadID extends Component {
             <Link to={`/${event._id}/update`}><span STYLE="text-decoration:underline; font-weight:bold">UPDATE</span> </Link>
             <br />
             <br />
-            <button className="btn btn-primay" onClick={this.onDelete}>Delete</button>
+            <button className="btn btn-primay" onClick={this.onDelete}>Delete this event</button>
             <br />
             <br />
             <button className="btn btn-primay" onClick={this.onBook}>Book this event</button>

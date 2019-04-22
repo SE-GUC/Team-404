@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import EventPost from "./components/Event/EventPost";
+import EventRequest from "./components/Event/EventRequest";
+import EventCreate from "./components/Event/EventCreate";
 import EventPut from "./components/Event/EventPut";
 import EventDelete from "./components/Event/EventDelete";
 import "./App.css";
@@ -30,6 +31,8 @@ import RegisterPartner from "./components/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import UserList from "./components/UserList";
+import EventReadPending from "./components/Event/EventReadPending";
+
 class App extends Component {
   state = {
     applications: [],
@@ -179,10 +182,19 @@ class App extends Component {
           />
           <Route
             exact
+            path="/Event/request"
+            render={props => (
+              <React.Fragment>
+                <EventRequest />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
             path="/Event/create"
             render={props => (
               <React.Fragment>
-                <EventPost />
+                <EventCreate />
               </React.Fragment>
             )}
           />
@@ -221,6 +233,15 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <EventReadIDPending />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/event/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadPending />
               </React.Fragment>
             )}
           />
