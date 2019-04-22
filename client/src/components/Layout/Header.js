@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 function Header() {
   return (
     <header style={headerStyle}>
@@ -9,39 +8,51 @@ function Header() {
         Home
       </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/Partner">
-        View Partners
-      </Link>
-      |{" "}
       <Link style={linkStyle} to="/Application">
         Applications
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/RegisterPartner">
+        RegisterPartner
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/RegisterCandidate">
+        RegisterCandidate
       </Link>
       |{" "}
       <Link style={linkStyle} to="/Event">
         Events
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/Taskform">
+      <Link style={linkStyle} to="/Tasks">
         Tasks
       </Link>
-      |{" "}
+     |{" "}
       <Link style={linkStyle} to="/Login">
         Login
       </Link>
       |{" "}
+      <Link style={linkStyle} to="/Feedback">
+        Feedback
+      </Link>
+      |{" "}
+      <Link style={linkStyle} to="/User">
+        User
+      </Link>
     </header>
   );
 }
 
 const headerStyle = {
+  //  background : '#333',
   color: "#fff",
-  textAlign: "left",
-  padding: "10px"
+  textAlign: " center",
+  padding: "5px",
+  borderRadius: "5px"
 };
 
 const linkStyle = {
   color: "#fff",
   textDecoration: "none"
 };
-
 export default Header;

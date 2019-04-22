@@ -5,7 +5,7 @@ let newEvent;
 
 test('create a new Event', async () => {
     const newEvent = await events.post();
-    expect(newEvent.eventname).toBe('name');
+    expect(newEvent.eventName).toBe('name');
     newEvent = newEvent;
 })
 
@@ -25,7 +25,7 @@ test('get a specific Event', async (id) => {
 test('update a specific Event', async (id) => {
     const id = newEvent.id
     const _event = await events.put(id);
-    expect(_event.eventname).toBe('updated name');
+    expect(_event.eventName).toBe('updated name');
 });
 
 test('delete a specific Event', async (id) => {
