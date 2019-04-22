@@ -6,39 +6,30 @@ import EventRequest from "./components/Event/EventRequest";
 import EventCreate from "./components/Event/EventCreate";
 import EventPut from "./components/Event/EventPut";
 import EventDelete from "./components/Event/EventDelete";
-import "./App.css";
 import "./components/User/Textbox.css";
 import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-//import Taskform from "./components/Task/Taskform";
 import Partner from "./components/page/Partner";
 import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
-import User from "./components/User";
-//import ReadTask from "./components//Task/ReadTask";
-//import DeleteTask from "./components/Task/DeleteTask";
-//import AddTask from "./components/page/Tasks/AddTask";
-//import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
-//import DeleteTasks from "./components/page/Tasks/DeleteTasks";
-//import ReadTaskID from "./components/ReadTaskID";
-//import UpdateTask from "./components/Task/UpdateTask";
-//import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
-import RegisterCandidate from "./components/RegisterCandidate";
-import RegisterPartner from "./components/RegisterPartner";
+import RegisterCandidate from "./components/User/RegisterCandidate";
+import RegisterConsultant from "./components/RegisterConsultant";
+import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
+import UserList from "./components/User/UserList"
+import Register from "./components/page/User/Register"
 import EventReadIDPending from "./components/Event/EventReadIDPending";
-import UserList from "./components/UserList";
 import EventReadPending from "./components/Event/EventReadPending";
-//import Tasks from "./components/page/Tasks";
-import TaskCreate from "./components/Task/TaskCreate";
 import TaskDelete from "./components/Task/TaskDelete";
+import TaskCreate from "./components/Task/TaskCreate";
 import TaskPut from "./components/Task/TaskPut";
-import TaskRead from "./component/Task/TaskRead";
+import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
-import Task from "./components/Task";
+import Task from "./components/page/Task";
+
 class App extends Component {
   state = {
     applications: [],
@@ -100,9 +91,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App" id="background2">
-          <Header />
-          <Route
+        <div className="App" id=".App-header" >
+          <Header/>
+          <Route 
             exact
             path="/"
             render={props => (
@@ -111,11 +102,11 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route
+          <Route 
             exact
             path="/Partner"
             render={props => (
-              <React.Fragment>
+              <React.Fragment >
                 <Partner />
               </React.Fragment>
             )}
@@ -139,36 +130,6 @@ class App extends Component {
             )}
           />
           {/* <Route
-            exact
-            path="/DeleteTask"
-            render={props => (
-              <React.Fragment>
-                <DeleteTask />
-              </React.Fragment>
-            )}
-          />
-          <Route
-            exact
-            path="/Tasks"
-            render={props => (
-              <React.Fragment>
-                <TaskHeader />
-                {/* <Taskform taskform={this.state.taskform} /> */}
-                {/* <ReadTask /> */}
-              {/* </React.Fragment> */}
-            {/* )}
-          />
-          <Route
-            exact
-            path="Tasks/:id"
-            render={props => (
-              <React.Fragment>
-                <Tasks/>
-              </React.Fragment> */}
-
-            )}
-          /> */}
-          <Route
             exact
             path="/Feedback"
             render={props => (
@@ -236,7 +197,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/event/:id"
+            path="/event/:id/User/:uid"
             render={props => (
               <React.Fragment>
                 <EventReadID />
@@ -263,31 +224,18 @@ class App extends Component {
           />
            <Route
             exact
-            path="/Task"
-            render={props => (
-              <React.Fragment>
-                <Task/>
-              </React.Fragment>
-            )}
+            path="/Tasks"
+             component = {Task}
           />
            <Route
             exact
             path="/Task/create"
             render={props => (
               <React.Fragment>
-                <TaskCreate/>
+                <TaskCreate />
               </React.Fragment>
             )}
           />
-           {/* <Route
-            exact
-            path="/Task/delete"
-            render={props => (
-              <React.Fragment>
-                <TaskDelete />
-              </React.Fragment>
-            )}
-          /> */}
            <Route
             exact
             path="/Task/:id"
@@ -306,24 +254,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-           {/* <Route
-            exact
-            path="/Task/read"
-            render={props => (
-              <React.Fragment>
-                <TaskRead />
-              </React.Fragment>
-            )}
-          />
-           <Route
-            exact
-            path="/TaskReadID"
-            render={props => (
-              <React.Fragment>
-                <TaskReadID />
-              </React.Fragment>
-            )}
-          /> */}
+           
           <Route
             exact
             path="/:id/update"
@@ -339,6 +270,7 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />

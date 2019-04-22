@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+const User = require("../User/Textbox.js");
+
 class EventRead extends Component {
   state = {
     events: []
   };
   componentDidMount() {
     axios.get("http://localhost:3001/Routes/api/events/").then(res => {
-      //console.log(res)
+      console.log(res);
       this.setState({
         events: res.data.data
       });
@@ -20,8 +22,7 @@ class EventRead extends Component {
         return (
           <div className="event card" key={event._id}>
             <div className="card-content">
-              <Link to={`event/${event._id}`}>
-                <br />
+              <Link to={`event/${event._id}/User/${JSON.parse(localStorage.getItem('id'))}`}>
                 {/* //the name as a link  */}
                 <span STYLE="text-decoration:underline; font-weight:bold">
                   {event.eventName}

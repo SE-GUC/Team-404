@@ -1,53 +1,27 @@
 import React from "react";
-//import EventRequest from "../Event/EventRequest";
 import { Link } from "react-router-dom";
 import TaskRead from "../Task/TaskRead";
-//import EventReadPending from "../Event/EventReadPending";
 
-function Event() {
+function Task() {
   return (
     <React.Fragment>
-      {/* <h1>Tasks</h1>
-      <Link to="Event/request">
-        <br />
-        <br />
-        <span STYLE="text-decoration:underline; font-weight:bold">
-          Request{" "}
-        </span>{" "}
-        a new event  */}
-        
-      {/* </Link> */}
+      <h1>Tasks</h1>
       <Link to="Task/create">
         <br />
         <br />
-        <span STYLE="text-decoration:underline; font-weight:bold">
-          Create{" "}
-        </span>{" "}
-        a new task 
-        <br />
-        <br />
-      </Link>
-      {/* <Link to={`/event/pending`}>
-      
-        <span STYLE="text-decoration:underline; font-weight:bold">
-          Check{" "}
-        </span>{" "}
-        pending events
-        <br />
-        <br />
+        <span STYLE={"text-decoration:underline; font-weight:bold"}>
+          {" "}
+        </span>{" "} 
       </Link>
       
-      The Live Events
-      <EventRead />
+        Tasks
+      <TaskRead />
 
       <br />
-      <br /> */}
-      Tasks
-      <TaskRead/>
-
-
+      <br />
+      
     </React.Fragment>
   );
 }
 
-export default Task;
+export default Task

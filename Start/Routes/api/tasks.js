@@ -1,25 +1,49 @@
 // routings for task
-const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 app.use(express.json());
 const router = express.Router();
-//const uuid = require('uuid')
 const Task = require("../../Models/Task");
+<<<<<<< HEAD
 const sendNotif= require("../../utils/mailer")
 const users = require("../api/users")
 const joi = require("Joi")
+||||||| merged common ancestors
+const sendNotif= require("../../utils/mailer")
+const users = require("../api/users")
+//const joi = require("Joi")
+=======
+const sendNotif = require("../../utils/mailer");
+const users = require("../api/users");
+const joi = require("Joi");
+>>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 const validator = require("../../Validation/taskValid");
+const authenticateUser = require('../../middleware/authenticate');
 
-router.get('/', async (req, res) => {
-  const tasks = await Task.find()
-  res.json({ data: tasks })
-})
-router.post('/' ,async (req, res) => {
+router.get("/", async (req, res) => {
+  const tasks = await Task.find();
+  res.json({ data: tasks });
+});
 
-  try {
-      const isValidated = validator.createValidation(req.body)
-    if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+router.get("/consultancyRequested/:status", async (req, res) => {
+  var status = req.params.status;
+  const tasks = await Task.find({ consultancyRequested: status }).exec();
+  res.json({ data: tasks });
+  if (!tasks) {
+    return res.status(400).send({
+      message: "couldnt find a task with the specififed status "
+    });
+  }
+});
+
+
+router.post("/", async (req, res) => {
+ /*  try {
+    const isValidated = validator.createValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message }); */
     const task = await new Task({
       title: req.body.title,
       description: req.body.description,
@@ -28,80 +52,83 @@ router.post('/' ,async (req, res) => {
       partner: req.body.partner,
       monetaryCompensation: req.body.monetaryCompensation,
       skills: req.body.skills,
-      lifeCycleStatus: "Denied",
+      lifeCycleStatus: 'Denied',
       experienceNeeded: req.body.experienceNeeded,
       consultancyRequested: req.body.consultancyRequested
-    }).save();
-    
-    if(consultancyRequested){
-      users.array.forEach(user => {
-        if(user.userType=="Consultant"){
-            sendNotif(user.email,"Consultancy req", "LirtenHub")
+    }).save()
+
+    const users = await User.find({})
+    if (task.consultancyRequested == true) {
+      users.forEach(user => {
+        if (user.userType == 'Consultant') {
+          sendNotif(user.email, 'Consultancy req', 'LirtenHub')
         }
-      });
+      })
     }
     return res.json({ data: task });
-  } catch (error) {
+  /* } catch (error) {
     console.log(error);
-  }
+  } */
 });
 
   router
-  .route('/:id')
+  .route('/:id',authenticateUser)
   .all(async (request, response, next) => {
     const status = joi.validate(request.params, {
       id: joi
         .string()
         .length(24)
         .required()
-    });
+    })
     if (status.error) {
-      return response.json({ error: status.error.details[0].message });
+      return response.json({ error: status.error.details[0].message })
     }
-    next();
+    next()
   })
 
-  .get(async (request, response) => {
+  .get(authenticateUser,async (request, response) => {
     try {
-      const task = await Task.findById(request.params.id).exec();
-      return response.json({ data: task });
+      const task = await Task.findById(request.params.id).exec()
+      return response.json({ data: task })
     } catch (err) {
       return response.json({
         error: `Error, couldn't find a task given the following id`
-      });
+      })
     }
   })
 
-  .put(async (request, response) => {
+  .put(authenticateUser,async (request, response) => {
     Task.findByIdAndUpdate(
       request.params.id,
       request.body,
       { new: true },
       (err, model) => {
         if (!err) {
-          return response.json({ data: model });
+          return response.json({ data: model })
         } else {
           return response.json({
             error: `Error, couldn't update a Task given the following data`
-          });
+          })
         }
       }
-    );
+    )
   })
 
-  .delete((request, response) => {
+  .delete(authenticateUser,(request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
-        const x = null
-        return response.json(x);
+        return response.json({ data: null })
       } else {
-        return response.json({ error: `Error, couldn't delete a Task given the following data` })
+        return response.json({
+          error: `Error, couldn't delete a Task given the following data`
+        })
       }
     })
   })
 
 
-  router.get('/viewTaskStatus/:tid', async (req, res) => {
+
+  router.get('/viewTaskStatus/:tid', authenticateUser,async (req, res) => {
               var Pid = req.body.pid
               var Tid = req.params.tid
               var tasks = await Task.findById(Tid)
@@ -128,7 +155,7 @@ router.post('/' ,async (req, res) => {
 
   })
 
-  router.put('/:Tid', async (req, res) => {
+  router.put('/:Tid',authenticateUser, async (req, res) => {
     var Pid = req.body.id
     var Tid = req.params.Tid
 
@@ -179,86 +206,31 @@ if(applications){
     });
   
 
-//router.get("/viewTaskStatus/:tid", async (req, res) => {
-  //var Pid = "dummydata4";
-  //var Tid = req.params.tid;
-  //var tasks = await Task.findById(Tid);
-  //if (!tasks) {
-    //return res.status(400).send({
-      //message: "couldnt find a task with the specififed id "
-    //});
-  //}
+router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
+  var Pid = req.body.pid;
+  var Tid = req.params.tid;
+  var tasks = await Task.findById(Tid);
+  if (!tasks) {
+    return res.status(400).send({
+      message: 'couldnt find a task with the specififed id '
+    })
+  }
+  var query = { _id: Tid, partner: Pid }
+  let foundTask = await Task.findOne(query)
+  if (!foundTask) {
+    return res.status(400).send({
+      message: 'couldnt find a task with the specififed id and partner id '
+    })
+  }
+  console.log(foundTask.lifeCycleStatus)
+  return res.status(200).send({
+    message: 'success',
+    lifecycle: foundTask.lifeCycleStatus
+    // test: foundTask
+  })
+})
 
- // router.get("/viewTaskStatus/:tid", async (req, res) => {
-   // var Pid = req.body.partner;
-   // var Tid = req.params.tid;
-    //var tasks = await Task.findById(Tid);
-  
- //   if (!tasks) {
-   //   return res.status(400).send({
-     //   message: "couldnt find a task with the specififed id "
-     // });
-   // }
-    // var query = { _id: Tid, partner: Pid };
-    // let foundTask = await Task.findOne(query);
-   // if (!foundTask) {
-     // return res.status(400).send({
-       // message: "couldnt find a task with the specififed id and partner id "
-     // });
-    //}
-   // console.log(foundTask.lifeCycleStatus)
-    //return res.status(200).send({
-     // message: "success",
-     // lifecycle: foundTask.lifeCycleStatus,
-      //test: foundTask
-   // });
- // });
-  
-
-  //var query = { _id: Tid, partner: Pid };
-  //let foundTask = await Task.findOne(query);
-  //console.log(query)
-  //console.log(foundTask)
-  //if (!foundTask) {
-    //return res.status(400).send({
-      //message: "couldnt find a task with the specififed id and partner id "
-    //});
-  //}
-
- // return res.status(200).send({
-   // message: "succuess",
-   // lifecycle: foundTask.lifecyclestatus,
-   // test: foundTask
-  //});
-
-
-
-  router.get("/viewTaskStatus/:tid", async (req, res) => {
-    var Pid = req.body.partner;
-    var Tid = req.params.tid;
-    var tasks = await Task.findById(Tid);
-  
-    if (!tasks) {
-      return res.status(400).send({
-        message: "couldnt find a task with the specififed id "
-      });
-    }
-    var query = { _id: Tid, partner: Pid };
-    let foundTask = await Task.findOne(query);
-    if (!foundTask) {
-      return res.status(400).send({
-        message: "couldnt find a task with the specififed id and partner id "
-      });
-    }
-    console.log(foundTask.lifeCycleStatus)
-    return res.status(200).send({
-      message: "success",
-      lifecycle: foundTask.lifeCycleStatus,
-      //test: foundTask
-    });
-  });
-  
-router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
+router.put("/UpdateProjectAttributes/:Tid",authenticateUser, async (req, res) => {
   var Pid = req.body.id;
   var Tid = req.params.Tid;
 
@@ -270,36 +242,29 @@ router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
     partner,
     monetaryCompensation,
     skills,
-    lifeCycleStatus,
-    experienceNeeded,
-    consultancyRequested,
-    consultant,
-    application,
-    tags
+    lifecyclestatus,
+    experienceneeded,
+    consultancy
+  } = req.body
 
-  } = req.body;
-
-  let updateBody = {};
-  if (title) {
-    updateBody.title = title;
-  }
-  if (description) {
-    updateBody.description = description;
+  let updateBody = {}
+  if (Description) {
+    updateBody.Description = Description
   }
   if (eta) {
-    updateBody.eta = eta;
+    updateBody.eta = eta
   }
   if (levelOfCommitment) {
     updateBody.levelOfCommitment = levelOfCommitment;
   }
   if (partner) {
-    updateBody.partner = partner;
+    updateBody.partner = partner
   }
   if (monetaryCompensation) {
     updateBody.monetaryCompensation = monetaryCompensation;
   }
   if (skills) {
-    updateBody.skills = skills;
+    updateBody.skills = skills
   }
   if (lifeCycleStatus) {
     updateBody.lifeCycleStatus = lifeCycleStatus;
@@ -325,13 +290,13 @@ router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
   //          message:"couldnt find a partner with the specififed id "
   //        })
   //      }
-  var tasks = await Task.findById(Tid); //.exec()
+  var tasks = await Task.findById(Tid) // .exec()
   if (!tasks) {
     return res.status(400).send({
-      message: "couldnt find a task with the specififed id "
-    });
+      message: 'couldnt find a task with the specififed id '
+    })
   }
-  var query = { _id: Tid, partner: Pid };
+  var query = { _id: Tid, partner: Pid }
   const updated = await Task.findOneAndUpdate(
     {
       _id: Tid
@@ -342,19 +307,20 @@ router.put("/UpdateProjectAttributes/:Tid", async (req, res) => {
     {
       new: true
     }
-  );
+  )
 
   if (updated != null) {
     return res.json({
       success: true,
-      message: "Task updated",
+      message: 'Task updated',
       updatedTask: updated
-    });
+    })
   }
 
   return res.status(400).json({
     success: false,
-    message: "Task update failed"
-  });
-});
-module.exports = router;
+    message: 'Task update failed'
+  })
+})
+
+module.exports = router
