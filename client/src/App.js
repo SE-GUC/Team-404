@@ -30,6 +30,7 @@ import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
 import Task from "./components/page/Task";
 import UpdateTask from "./components/Task/UpdateTask";
+import ConsultantApply from "./components/Task/ConsultantApply";
 class App extends Component {
   state = {
     applications: [],
@@ -248,6 +249,17 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+
+          <Route
+            exact
+            path="/Task/consapply"
+            render={props => (
+              <React.Fragment>
+                <ConsultantApply />
+              </React.Fragment>
+            )}
+          />
+
           <Route
             exact
             path="/Task/:id"
@@ -281,6 +293,8 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+
+          <Route exact path="/ConsultantApply" component={ConsultantApply} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />

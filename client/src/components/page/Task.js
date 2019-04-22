@@ -17,7 +17,14 @@ function Task() {
         <br />
         <br />
       </Link>
-      
+      <Link to="ConsultantApply">
+        <span STYLE="text-decoration:underline; font-weight:bold">
+          Consultants{" "}
+        </span>{" "}
+        apply to a task 
+        <br />
+        <br />
+      </Link>
         Tasks
       <TaskRead />
 
