@@ -1,21 +1,24 @@
 import React from "react";
+import "../../App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 function Header() {
   return (
-    <header style={headerStyle}>
-      <h1>Lirten Hub</h1>
-      <Link style={linkStyle} to="/">
+    <header>
+      <h1 id="body">Lirten Hub</h1>
+      <Link id=".App-link" to="/">
         Home
       </Link>{" "}
       |{" "}
-      <Link style={linkStyle} to="/Application">
+      <Link id=".App-link" to="/Application">
         Applications
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/RegisterPartner">
-        RegisterPartner
+      
+      <Link id=".App-link" to="/Register">
+        Register
       </Link>
       |{" "}
+<<<<<<< HEAD
       <Link style={linkStyle} to="/RegisterCandidate">
         RegisterCandidate
       </Link>
@@ -25,38 +28,29 @@ function Header() {
       </Link>
       |{" "}
       <Link style={linkStyle} to="/Event">
+=======
+      <Link id=".App-link" to="/Event">
+>>>>>>> ed495cf4fdc22f141b59e62d959fabc94a1db169
         Events
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/Tasks">
+      <Link id=".App-link" to="/Tasks">
         Tasks
       </Link>
      |{" "}
-      <Link style={linkStyle} to="/Login">
+      <Link id=".App-link" to="/Login">
         Login
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/Feedback">
+      <Link id=".App-link" to="/Feedback">
         Feedback
       </Link>
       |{" "}
-      <Link style={linkStyle} to="/User">
+      <Link id=".App-link" to="/User">
         User
       </Link>
     </header>
   );
 }
 
-const headerStyle = {
-  //  background : '#333',
-  color: "#fff",
-  textAlign: " center",
-  padding: "5px",
-  borderRadius: "5px"
-};
-
-const linkStyle = {
-  color: "#fff",
-  textDecoration: "none"
-};
 export default Header;

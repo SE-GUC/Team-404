@@ -25,9 +25,15 @@
     "diff": "^4.0.1",
     "express": "^4.16.4",
     "install": "^0.12.2",
+<<<<<<< HEAD
     "jest": "^24.7.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
+=======
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.0",
+    "jwt-decode": "^2.2.0",
+>>>>>>> ed495cf4fdc22f141b59e62d959fabc94a1db169
     "moment": "^2.24.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.5.2",
@@ -44,8 +50,14 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "jest-cli": "^24.7.1",
     "nodemon": "^1.18.11",
+=======
+    "jest": "^24.7.1",
+    "jest-cli": "^24.5.0",
+    "nodemon": "^1.18.10",
+>>>>>>> ed495cf4fdc22f141b59e62d959fabc94a1db169
     "standard": "^12.0.1"
   }
 }
