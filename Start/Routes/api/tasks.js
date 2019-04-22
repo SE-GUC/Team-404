@@ -8,7 +8,7 @@ const router = express.Router();
 const Task = require("../../Models/Task");
 const sendNotif= require("../../utils/mailer")
 const users = require("../api/users")
-//const joi = require("Joi")
+const joi = require("Joi")
 const validator = require("../../Validation/taskValid");
 
 router.get('/', async (req, res) => {

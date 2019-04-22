@@ -11,20 +11,20 @@ import "./components/User/Textbox.css";
 import Login from "./components/User/Login";
 import Header from "./components/Layout/Header";
 import ApplicationInfo from "./components/ApplicationInfo";
-import Taskform from "./components/Task/Taskform";
+//import Taskform from "./components/Task/Taskform";
 import Partner from "./components/page/Partner";
 import Event from "./components/page/Event";
 import uuid from "uuid";
 import Feedback from "./components/Feedback";
 import User from "./components/User";
-import ReadTasks from "./components/ReadTasks";
-import DeleteTask from "./components/Task/DeleteTask";
-import AddTask from "./components/page/Tasks/AddTask";
-import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
-import DeleteTasks from "./components/page/Tasks/DeleteTasks";
-import ReadTaskID from "./components/ReadTaskID";
-import UpdateTask from "./components/Task/UpdateTask";
-import TaskHeader from "./components/Layout/TaskHeader";
+//import ReadTask from "./components//Task/ReadTask";
+//import DeleteTask from "./components/Task/DeleteTask";
+//import AddTask from "./components/page/Tasks/AddTask";
+//import ConsultingTasks from "./components/page/Tasks/ConsultingTasks";
+//import DeleteTasks from "./components/page/Tasks/DeleteTasks";
+//import ReadTaskID from "./components/ReadTaskID";
+//import UpdateTask from "./components/Task/UpdateTask";
+//import TaskHeader from "./components/Layout/TaskHeader";
 import AddFeedback from "./components/AddFeedback";
 import RegisterCandidate from "./components/RegisterCandidate";
 import RegisterPartner from "./components/RegisterPartner";
@@ -32,7 +32,13 @@ import EventReadID from "./components/Event/EventReadID";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import UserList from "./components/UserList";
 import EventReadPending from "./components/Event/EventReadPending";
-
+//import Tasks from "./components/page/Tasks";
+import TaskCreate from "./components/Task/TaskCreate";
+import TaskDelete from "./components/Task/TaskDelete";
+import TaskPut from "./components/Task/TaskPut";
+import TaskRead from "./component/Task/TaskRead";
+import TaskReadID from "./components/Task/TaskReadID";
+import Task from "./components/Task";
 class App extends Component {
   state = {
     applications: [],
@@ -132,7 +138,7 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/DeleteTask"
             render={props => (
@@ -147,11 +153,21 @@ class App extends Component {
             render={props => (
               <React.Fragment>
                 <TaskHeader />
-                <Taskform taskform={this.state.taskform} />
-                <ReadTasks />
-              </React.Fragment>
-            )}
+                {/* <Taskform taskform={this.state.taskform} /> */}
+                {/* <ReadTask /> */}
+              {/* </React.Fragment> */}
+            {/* )}
           />
+          <Route
+            exact
+            path="Tasks/:id"
+            render={props => (
+              <React.Fragment>
+                <Tasks/>
+              </React.Fragment> */}
+
+            )}
+          /> */}
           <Route
             exact
             path="/Feedback"
@@ -245,6 +261,69 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+           <Route
+            exact
+            path="/Task"
+            render={props => (
+              <React.Fragment>
+                <Task/>
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/Task/create"
+            render={props => (
+              <React.Fragment>
+                <TaskCreate/>
+              </React.Fragment>
+            )}
+          />
+           {/* <Route
+            exact
+            path="/Task/delete"
+            render={props => (
+              <React.Fragment>
+                <TaskDelete />
+              </React.Fragment>
+            )}
+          /> */}
+           <Route
+            exact
+            path="/Task/:id"
+            render={props => (
+              <React.Fragment>
+                <TaskReadID />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/Task/update"
+            render={props => (
+              <React.Fragment>
+                <TaskPut />
+              </React.Fragment>
+            )}
+          />
+           {/* <Route
+            exact
+            path="/Task/read"
+            render={props => (
+              <React.Fragment>
+                <TaskRead />
+              </React.Fragment>
+            )}
+          />
+           <Route
+            exact
+            path="/TaskReadID"
+            render={props => (
+              <React.Fragment>
+                <TaskReadID />
+              </React.Fragment>
+            )}
+          /> */}
           <Route
             exact
             path="/:id/update"
@@ -261,10 +340,6 @@ class App extends Component {
             component={RegisterCandidate}
           />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
-          <Route exact path="/AddTask" component={AddTask} />
-          <Route exact path="/ConsultingTasks" component={ConsultingTasks} />
-          <Route exact path="/DeleteTasks" component={DeleteTasks} />
-          <Route exact path="/UpdateTask" component={UpdateTask} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
