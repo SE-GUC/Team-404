@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
+import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
-class EventPost extends Component {
+class EventCreate extends React.Component {
   state = {
     eventName: "",
     organizer: "",
     location: "",
     description: "",
-    remainingPlaces: 0,
+    remainingPlaces: 5,
     speakers: "",
-    maximumPlaces: 0,
+    maximumPlaces: 7,
     topicsCovered: "",
     field: "",
-    registrationPrice: 0
+    registrationPrice: 9
   };
 
   handleSubmit = async event => {
     event.preventDefault();
-   // console.log(`The state is : ${this.state}`);
+    console.log(`The state is : ${this.state}`);
     const Event = {
       eventName: this.state.eventName,
       organizer: this.state.organizer,
@@ -32,15 +32,16 @@ class EventPost extends Component {
       registrationPrice: this.state.registrationPrice
     };
     try {
+      console.log("inside the try")
       let response = await axios.post(
-        "http://localhost:3001/Routes/api/events/",
+        `events/${this.props.match.params.id}/adminCreateEvent`,
         Event
       );
-      //console.log(response);
+      console.log(response);
+      this.props.history.push("/Event");
     } catch (error) {
       console.log(error);
     }
-    this.props.history.push('/Event');
   };
 
   handleChangeEventName = event => {
@@ -83,21 +84,12 @@ class EventPost extends Component {
     this.setState({ registrationPrice: event.target.value });
   };
 
-  /* axios.post("http://localhost:3001/api/events/", { Event }).then(res => {
-      //console.log(res);
-      console.log(res.data);
-    });s
-  */
-
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
+        <h1>Create an Event</h1>
+        <label> Events details : </label>
         <br />
-        <br />
-        <br />
-        <br />
-        <label> Events : </label>
-        <br/>
         <label className="EventName">
           EventName:
           <input
@@ -114,7 +106,8 @@ class EventPost extends Component {
             name="organizer"
             onChange={this.handleChangeOrganizer}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Location">
           Location:
@@ -123,7 +116,8 @@ class EventPost extends Component {
             name="location"
             onChange={this.handleChangeLocation}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Description">
           Description:
@@ -132,7 +126,8 @@ class EventPost extends Component {
             name="description"
             onChange={this.handleChangeDescription}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="RemainingPlaces">
           RemainingPlaces:
@@ -141,7 +136,8 @@ class EventPost extends Component {
             name="remainingPlaces"
             onChange={this.handleChangeRemainingPlaces}
           />
-        </label><br/>
+        </label>
+        <br />
 
         <label className="Speakers">
           Speakers:
@@ -182,38 +178,16 @@ class EventPost extends Component {
             name="registrationPrice"
             onChange={this.handleChangeRegistrationPrice}
           />
-        </label><br/>
+        </label>
+        <br />
 
-        <label className="ApprovalStatus">
-          ApprovalStatus:
-          <input
-            type="text"
-            name="approvalStatus"
-            onChange={this.handleChangeApprovalStatus}
-          />
-        </label><br/>
-
-        <label className="Applicants">
-          Applicants:
-          <input
-            type="text"
-            name="appliccants"
-            onChange={this.handleChangeApplicants}
-          />
-        </label><br/>
-
-        <label className="Feedback">
-          Feedback:
-          <input
-            type="text"
-            name="feedback"
-            onChange={this.handleChangeFeedback}
-          />
-        </label><br/>
-        <button type="submit"> ADD </button>
+        <button type="submit" onClick={this.handleSubmit}>
+          {" "}
+          CREATE{" "}
+        </button>
       </form>
     );
   }
 }
 
-export default withRouter(EventPost);
+export default withRouter(EventCreate);
