@@ -220,6 +220,46 @@ router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
   })
 })
 
+
+router.put("/ConsultantApply/:id" , async(req,res) => {
+  var Cid = req.params.id
+  let {
+    consultant = req.body
+  }
+  let updateBody = {};
+ if( consultant)
+ updateBody.consultant = cons
+  var tasks = await Task.findById(Tid) // .exec()
+  if (!tasks) {
+    return res.status(400).send({
+      message: 'couldnt find a task with the specififed id '
+    })
+  }
+  const updated = await Task.findOneAndUpdate(
+    {
+      _id: Cid
+    },
+    {
+      $set: updateBody
+    },
+    {
+      new: true
+    }
+  )
+  if (updated != null) {
+    return res.json({
+      success: true,
+      message: 'Task updated',
+      updatedTask: updated
+    })
+  }
+
+  return res.status(400).json({
+    success: false,
+    message: 'Task update failed'
+  })
+})
+
 router.put(
   "/UpdateProjectAttributes/:Tid",
   authenticateUser,

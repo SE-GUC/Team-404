@@ -18,6 +18,10 @@ export class ConsultingTask extends Component {
       });
   }
 
+handleApply(e) {
+    
+}
+
   render() {
     const { tasks } = this.state;
     const taskList = tasks.length ? (
