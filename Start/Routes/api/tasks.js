@@ -4,22 +4,11 @@ const app = express();
 app.use(express.json());
 const router = express.Router();
 const Task = require("../../Models/Task");
-<<<<<<< HEAD
-const sendNotif= require("../../utils/mailer")
-const users = require("../api/users")
-const joi = require("Joi")
-||||||| merged common ancestors
-const sendNotif= require("../../utils/mailer")
-const users = require("../api/users")
-//const joi = require("Joi")
-=======
 const sendNotif = require("../../utils/mailer");
 const users = require("../api/users");
 const joi = require("Joi");
->>>>>>> 0e9e4d16eccf9ddc0141a5367c2d8353384fbbce
 const validator = require("../../Validation/taskValid");
 const authenticateUser = require('../../middleware/authenticate');
-
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
   res.json({ data: tasks });
@@ -77,7 +66,6 @@ router.post("/", async (req, res) => {
     const status = joi.validate(request.params, {
       id: joi
         .string()
-        .length(24)
         .required()
     })
     if (status.error) {

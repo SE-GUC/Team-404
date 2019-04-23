@@ -22,7 +22,7 @@ class TaskRead extends Component {
         return (
           <div className="event card" key={task.title}>
             <div className="card-content">
-              <Link to= {`task/${task._id}`}>
+              <Link to= {`Task/${task._id}`}>
               {task.title}
               </Link>
             </div>

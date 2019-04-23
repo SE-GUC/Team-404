@@ -16,77 +16,87 @@ class TaskReadID extends Component {
       console.log("The state is", this.state);
     });
   }
+  onDelete = () => {
+    axios.delete(`tasks/${this.props.match.params.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.props.history.push('/Event');
+    })
+  }
 
 
   render() {
     const { task } = this.state;
     console.log("Task Log Is: ", task);
-    const eventJSX =
+    const taskJSX =
       task && task._id ? (
         <div className="event card" key={task._id}>
           <div className="card-content">
             <br />
             <br />
             <br />
-            Name:
-            
-            <span className="Task name">{task.title}</span>
-            <br />
             Title: {'  '}
 
-            <span className="Task Description">{task.description}</span>
+            <span className="Task name">{task.title}</span>
             <br />
             Description: {'  '}
 
-            <span className="Task eta">{task.eta}</span>
+            <span className="Task Description">{task.description}</span>
             <br />
             eta: {'  '}
-            
-            <span className="Task levelOfCommitment">{task.levelOfComitment}</span>
+
+            <span className="Task eta">{task.eta}</span>
             <br />
             level Of Comitment: {'  '}
 
-            <span className="Task partner">{task.partner}</span>
+            <span className="Task levelOfCommitment">{task.levelOfCommitment}</span>
             <br />
             partner: {'  '}
-            
-            <span className="Task monetaryCompensation">{task.monetaryCompensation}</span>
+
+            <span className="Task partner">{task.partner}</span>
             <br />
             Monetary Compensation: {'  '}
 
-            <span className="Task skills">{task.skills}</span>
+            <span className="Task monetaryCompensation">{task.monetaryCompensation}</span>
             <br />
             skills: {'  '}
 
-            <span className="Task LifeCycleStatus">{task.lifeCycleStatus}</span>
+            <span className="Task skills">{task.skills}</span>
             <br />
             Life Cycle Status: {'  '}
 
-            <span className="Task experienceNeeded">{task.experienceNeeded}</span>
+            <span className="Task LifeCycleStatus">{task.lifeCycleStatus}</span>
             <br />
             Experience Needed: {'  '}
-            
-            <span className="Task consultancyRequested">{task.consultancyRequested}</span>
+
+            <span className="Task experienceNeeded">{task.experienceNeeded}</span>
             <br />
             Consultancy Requested: {'  '}
-            
-            <span className="Task consultant">{task.consultant}</span>
+
+            <span className="Task consultancyRequested">{task.consultancyRequested}</span>
             <br />
             consultant: {'  '}
-            
-            <span className="Task applications">{task.applications}</span>
+
+            <span className="Task consultant">{task.consultant}</span>
             <br />
             Applications: {'  '}
+
+            <span className="Task applications">{task.applications}</span>
+            <br />
             
             <br />
             <br />
-            
+            <Link to={`${task._id}/update`}><span STYLE="text-decoration:underline; font-weight:bold">UPDATE</span> </Link>
+            <br />
+
+
           </div>
         </div>
       ) : (
         <div>Task is loading</div>
       );
-    return eventJSX;
+    return taskJSX;
   }
 }
 export default withRouter(TaskReadID);
