@@ -39,6 +39,10 @@ function Header() {
         View User
       </Link>
       |{" "}
+      <Link id=".App-link" to="/DeleteAccount">
+      Delete Account
+      </Link>
+      |{" "}
       <Link id=".App-link" to="/User/Partners">
           View Partners
        </Link>

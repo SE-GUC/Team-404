@@ -14,16 +14,16 @@ function Event() {
         <span STYLE="text-decoration:underline; font-weight:bold">
           Request{" "}
         </span>{" "}
-        a new event 
+        a new event as a partner
         
       </Link>
-      <Link to="Event/create">
+      <Link to={`/Event/${JSON.parse(localStorage.getItem('id'))}/create`}>
         <br />
         <br />
         <span STYLE="text-decoration:underline; font-weight:bold">
           Create{" "}
         </span>{" "}
-        a new event 
+        a new event as an admin
         <br />
         <br />
       </Link>

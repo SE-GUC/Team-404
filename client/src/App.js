@@ -20,6 +20,7 @@ import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
 import UserList from "./components/User/UserList";
+import Register from "./components/page/User/Register";
 import TaskDelete from "./components/Task/TaskDelete";
 import TaskCreate from "./components/Task/TaskCreate";
 import TaskPut from "./components/Task/TaskPut";
@@ -31,9 +32,11 @@ import PartnerList from "./components/PartnerList";
 import ConsultantList from "./components/ConsultantList";
 import CandidateList from "./components/CandidateList";
 import updateUser from "./components/page/User/updateUser";
-import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
+import DeleteAccount from "./components/page/User/DeleteAccount";
+
+
 
 class App extends Component {
   state = {
@@ -212,7 +215,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/Event/create"
+            path="/Event/:id/create"
             render={props => (
               <React.Fragment>
                 <EventCreate />
@@ -309,6 +312,16 @@ class App extends Component {
           />
           <Route
             exact
+            path="/DeleteAccount"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <DeleteAccount />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
             path="/updateUser"
             render={props => (
               <React.Fragment>
@@ -338,6 +351,7 @@ class App extends Component {
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/UserList" component={UserList} />
+          <Route exact path="/DeleteAccount" component={DeleteAccount} />
         </div>
       </Router>
     );

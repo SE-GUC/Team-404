@@ -5,8 +5,8 @@ function User() {
   return (
     <React.Fragment>
       <UserList />
-    </React.Fragment>
-  )
+    </React.Fragment> 
+    );
 }
 
 export default User
