@@ -74,11 +74,8 @@ class UpdateTask extends React.Component {
 
   handleSubmit = task => {
     task.preventDefault();
-    // const params = new URLSearchParams(this.props.location.search);
-    // const foo = params.get('id'); // bar
-    // console.log(foo);
+    
     const Task = {
-      //id: this.state.id,
       title: this.state.title,
       description: this.state.description,
       eta: this.state.eta,

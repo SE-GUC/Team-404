@@ -4,23 +4,51 @@ import { Link } from "react-router-dom";
 
 export class ConsultingTask extends Component {
   state = {
-    tasks: []
+    tasks: [],
+    consultant: "",
+    lifeCycleStatus: "Awaiting Approval",
+    consultancyRequested: false
   };
+  constructor(props) {
+    super(props);
+    this.handleApply = this.handleApply.bind(this);
+  }
+
+  //${JSON.parse(localStorage.getItem('id'))
 
   componentDidMount() {
     axios
+      .get(
+        `http://localhost:3001/Routes/api/users/${JSON.parse(
+          localStorage.getItem("id")
+        )}`
+      )
+      .then(res => {
+        this.state.consultant.setState(res.data.data);
+        console.log(this.state.consultant);
+      });
+
+    axios
       .get("http://localhost:3001/Routes/api/tasks/consultancyRequested/true")
       .then(res => {
-        console.log(res);
         this.setState({
           tasks: res.data.data
         });
       });
   }
 
-handleApply(e) {
-    
-}
+  handleApply(e) {
+    const Task = {
+      consultant: this.state.consultant,
+      lifeCycleStatus: this.state.lifeCycleStatus,
+      consultancyRequested: false
+    };
+    axios.put("http://localhost:3001/Routes/api/tasks/id", Task).then(res => {
+      console.log(Task);
+      console.log(res);
+      console.log(res.data);
+    });
+  }
 
   render() {
     const { tasks } = this.state;
@@ -29,10 +57,7 @@ handleApply(e) {
         return (
           <div className="task card" key={task.title}>
             <div className="task-content">
-              <Link to={`task/${task.title}`}>
-                {/* //the name as a link  */}
-                <span className="task">{task.title}</span>
-              </Link>
+              <Link to={`Task/${task._id}`}>{task.title}</Link>
               <div className="right">
                 <button style={styleButton} onClick={this.handleApply}>
                   Apply
