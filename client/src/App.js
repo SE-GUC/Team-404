@@ -19,16 +19,23 @@ import RegisterCandidate from "./components/User/RegisterCandidate";
 import RegisterConsultant from "./components/RegisterConsultant";
 import RegisterPartner from "./components/User/RegisterPartner";
 import EventReadID from "./components/Event/EventReadID";
-import UserList from "./components/User/UserList";
 import Register from "./components/page/User/Register";
-import EventReadIDPending from "./components/Event/EventReadIDPending";
-import EventReadPending from "./components/Event/EventReadPending";
 import TaskDelete from "./components/Task/TaskDelete";
 import TaskCreate from "./components/Task/TaskCreate";
 import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
 import Task from "./components/page/Task";
+import UserList from "./components/UserList"
+import PartnerList from "./components/PartnerList";
+import ConsultantList from "./components/ConsultantList";
+import CandidateList from "./components/CandidateList";
+import updateUser from "./components/page/User/updateUser";
+import EventReadIDPending from "./components/Event/EventReadIDPending";
+import EventReadPending from "./components/Event/EventReadPending";
+import DeleteAccount from "./components/page/User/DeleteAccount";
+
+
 
 class App extends Component {
   state = {
@@ -144,7 +151,46 @@ class App extends Component {
             path="/User"
             render={props => (
               <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
                 <UserList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Partners"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <PartnerList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Candidates"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <CandidateList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/User/Consultants"
+            render={props => (
+              <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <ConsultantList />
               </React.Fragment>
             )}
           />
@@ -168,7 +214,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/Event/create"
+            path="/Event/:id/create"
             render={props => (
               <React.Fragment>
                 <EventCreate />
@@ -268,14 +314,41 @@ class App extends Component {
           />
           <Route
             exact
+            path="/DeleteAccount"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <DeleteAccount />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
+            path="/updateUser"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <updateUser />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+           <Route exact path="/PartnerList" component={PartnerList} />
+           <Route exact path="/CandidateList" component={CandidateList} />
+           <Route exact path="/ConsultantList" component={ConsultantList} />
+           
+          <Route exact path="/updateUser" component={updateUser} />
+          <Route exact path="/RegisterConsultant" component={RegisterConsultant} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Partner" component={Partner} />
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/UserList" component={UserList} />
+          <Route exact path="/DeleteAccount" component={DeleteAccount} />
         </div>
       </Router>
     );

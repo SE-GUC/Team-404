@@ -71,7 +71,7 @@ const functions = {
 
   adminCreateEvent: async () => {
     const newEvent = await axios.post(
-      'http://localhost:3001/Routes/api/events/5cb0f11c72d17e4c380fa774/adminCreateEvent',
+      "http://localhost:3001/Routes/api/events/5cb1eee8b3197064e88727bf/adminCreateEvent",
       {
         eventName: 'Admin Event',
         organizer: 'Clara Atef',
@@ -93,7 +93,7 @@ const functions = {
 
   requestEvent: async () => {
     const newEvent = await axios.post(
-      'http://localhost:3001/Routes/api/events/5cb0f3d0bc346433a4e1699f/requestEvent',
+      "http://localhost:3001/Routes/api/events/5cb1eee8b3197064e88727bf/requestEvent",
       {
         eventName: 'Partner Event',
         organizer: 'Clara Atef',

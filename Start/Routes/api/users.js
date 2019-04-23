@@ -7,22 +7,40 @@ const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 const sendNotif = require('../../utils/mailer')
 const joi= require('joi')
+const authenticateUser= require("../../middleware/authenticate");
 
 router.get('/', async (req, res) => {
   const users = await User.find()
   res.json({ data: users })
 })
-router.get('/:id',async (req,res)=>{
+
+router.get('/consultants',authenticateUser, async (req,res) => {
+  const users = await User.find({userType : "Consultant"})
+  res.json({data: users})
+})
+
+
+
+router.get('/partners',authenticateUser, async (req,res) => {
+  const users = await User.find({userType : "partner"})
+  res.json({data: users})
+})
+
+router.get('/candidates',authenticateUser, async (req,res) => {
+  const users = await User.find({userType : "Candidate"})
+  res.json({data: users})
+})
+
+router.get('/:id',authenticateUser,async (req,res)=>{
   try {
     const id = req.params.id
     const requestedUser = await User.findById(id)
-    res.json({msg:'User you asked for', data: requestedUser})
+    res.json({ data: requestedUser})
    }catch(error){
     console.log(error)
    }
-   })
-
-// login user
+})  
+   //login user
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
@@ -88,19 +106,6 @@ router.post('/register', async (req, res) => {
     console.log(error)
   }
 })
-// Not working yet.
-router
-  .route('/:id')
-  .all(async (request, response, next) => {
-    const status = joi.validate(request.params, {
-      id: joi.string().length(24).required()
-    })
-    if (status.error) {
-      return response.json({ error: status.error.details[0].message })
-    }
-    next()
-  })
-
 
   router.put('/:id',async (request, response) => {
     User.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
@@ -115,12 +120,14 @@ router
 // Done with delete.
 router.delete('/:id', async (req, res) => {
   try {
-    const id = req.params.id
-    const deletedUser = await User.findByIdAndRemove(id)
-    res.json({ msg: 'User was deleted successfully', data: deletedUser })
-  } catch (error) {
-    // We will be handling the error later
-    console.log(error)
+   const id = req.params.id
+   const deletedUser = await User.findByIdAndRemove(id)
+   const x="User was deleted successfully"
+   //res.json({msg:'User was deleted successfully', data: deletedUser})
+  // return res.json(x)
+  return res.json(x)
+  }catch(error){
+  console.log(error)
   }
 })
 
