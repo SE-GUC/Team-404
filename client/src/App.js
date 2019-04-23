@@ -40,6 +40,7 @@ import EventReadPending from "./components/Event/EventReadPending";
 import DeleteAccount from "./components/page/User/DeleteAccount";
 
 
+
 class App extends Component {
   state = {
     applications: [],
@@ -237,7 +238,7 @@ class App extends Component {
           />
            <Route
             exact
-            path="/Event/create"
+            path="/Event/:id/create"
             render={props => (
               <React.Fragment>
                 <EventCreate />
