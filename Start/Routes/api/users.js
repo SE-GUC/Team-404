@@ -9,7 +9,7 @@ const sendNotif = require('../../utils/mailer')
 const joi= require('joi')
 const authenticateUser= require("../../middleware/authenticate");
 
-router.get('/',authenticateUser, async (req,res) => {
+router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
@@ -113,7 +113,7 @@ router.post('/register', async (req,res) => {
       
 })
 
-  router.put('/:id',authenticateUser,async (request, response) => {
+  router.put('/:id',async (request, response) => {
     User.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
       if (!err) {
         return response.json({ data: model })
@@ -125,7 +125,7 @@ router.post('/register', async (req,res) => {
 
 
 //Done with delete.
-router.delete('/:id',authenticateUser, async (req,res) => {
+router.delete('/:id', async (req,res) => {
   try {
    const id = req.params.id
    const deletedUser = await User.findByIdAndRemove(id)
