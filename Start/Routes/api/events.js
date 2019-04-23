@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const app = express()
-const sendNotif = require('../../utils/mailer')
+// const sendNotif = require('../../utils/mailer')
 const joi = require('joi')
 const User = require('../../Models/User')
 const authenticateUser = require('../../middleware/authenticate')
@@ -45,12 +45,12 @@ router.post("/", async (req, res) => {
       feedback: req.body.feedback
     }).save()
 
-    const users = await User.find({})
-    users.forEach(user => {
-      if (user.userType == 'Admin') {
-        sendNotif(user.email, 'Approval req', 'LirtenHub')
-      }
-    })
+    // const users = await User.find({})
+    // users.forEach(user => {
+    //   if (user.userType == 'Admin') {
+    //     sendNotif(user.email, 'Approval req', 'LirtenHub')
+    //   }
+    // })
 
     return res.json({ data: event })
   } catch (error) {
@@ -114,7 +114,7 @@ bookEvent = async (req, res) => {
           console.log({ error: `Error, couldn't update applicants array` })
         }
       }
-    )
+    );
 
     User.findByIdAndUpdate(
       cid,
@@ -126,7 +126,7 @@ bookEvent = async (req, res) => {
           console.log({ error: `Error, couldn't update pastEvents array` })
         }
       }
-    )
+    );
 
     Event.findByIdAndUpdate(
       eid,
@@ -138,28 +138,28 @@ bookEvent = async (req, res) => {
           console.log({ error: `Error, couldn't update remainingPlaces ` })
         }
       }
-    )
+    );
 
-    // array of all users
-    const users = await User.find({})
+    // // array of all users
+    // const users = await User.find({})
 
-    // notif to candidate for booking
-    users.forEach(user => {
-      if (user.id == cid) {
-        sendNotif(user.email, 'event' + event.eventName + 'booked', eventName)
-      }
-    })
+    // // notif to candidate for booking
+    // users.forEach(user => {
+    //   if (user.id == cid) {
+    //     sendNotif(user.email, 'event' + event.eventName + 'booked', eventName)
+    //   }
+    // })
 
-    // notif to organizer that event was booked
-    users.forEach(user => {
-      if (user.id == event.organizer) {
-        sendNotif(
-          user.email,
-          user.name + 'booked a place in ' + event.eventName,
-          eventName
-        )
-      }
-    })
+    // // notif to organizer that event was booked
+    // users.forEach(user => {
+    //   if (user.id == event.organizer) {
+    //     sendNotif(
+    //       user.email,
+    //       user.name + 'booked a place in ' + event.eventName,
+    //       eventName
+    //     )
+    //   }
+    // })
 
     const message = 'Event has been booked!'
     return res.json(message)
@@ -188,7 +188,7 @@ cancelBooking = async (req, res) => {
           console.log({ error: `Error, couldn't update applicants array` })
         }
       }
-    )
+    );
 
     User.findByIdAndUpdate(
       cid,
@@ -200,7 +200,7 @@ cancelBooking = async (req, res) => {
           console.log({ error: `Error, couldn't update past events array` })
         }
       }
-    )
+    );
 
     Event.findByIdAndUpdate(
       eid,
@@ -212,31 +212,31 @@ cancelBooking = async (req, res) => {
           console.log({ error: `Error, couldn't update Remaining Places ` })
         }
       }
-    )
-    // array of all users
-    const users = await User.find({})
+    );
+    // // array of all users
+    // const users = await User.find({})
 
-    // notif to candidate for booking
-    users.forEach(user => {
-      if (user.id == cid) {
-        sendNotif(
-          user.email,
-          'event' + event.eventName + 'cancelled',
-          eventName
-        )
-      }
-    })
+    // // notif to candidate for booking
+    // users.forEach(user => {
+    //   if (user.id == cid) {
+    //     sendNotif(
+    //       user.email,
+    //       'event' + event.eventName + 'cancelled',
+    //       eventName
+    //     )
+    //   }
+    // })
 
-    // notif to organizer that event was booked
-    users.forEach(user => {
-      if (user.id == event.organizer) {
-        sendNotif(
-          user.email,
-          user.name + 'cancelled a booking in ' + event.eventName,
-          eventName
-        )
-      }
-    })
+    // // notif to organizer that event was booked
+    // users.forEach(user => {
+    //   if (user.id == event.organizer) {
+    //     sendNotif(
+    //       user.email,
+    //       user.name + 'cancelled a booking in ' + event.eventName,
+    //       eventName
+    //     )
+    //   }
+    // })
 
     const message = 'Event booking has been canceled!'
     return res.json(message)
@@ -326,15 +326,15 @@ requestEvent = async (req, res) => {
       feedback: req.body.feedback
     }).save()
     console.log(newEvent)
-    // array of all users
-    const users = await User.find({})
+    // // array of all users
+    // const users = await User.find({})
 
-    // notif to candidate for booking
-    users.forEach(user => {
-      if (user.userType == 'admin') {
-        sendNotif(user.email, 'Approval requested for' + event.eventName + newEvent.eventName)
-      }
-    })
+    // // notif to candidate for booking
+    // users.forEach(user => {
+    //   if (user.userType == 'admin') {
+    //     sendNotif(user.email, 'Approval requested for' + event.eventName + newEvent.eventName)
+    //   }
+    // })
 
     return res.json('Event has been requested!')
   } catch (error) {

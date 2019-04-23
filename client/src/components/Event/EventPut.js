@@ -37,7 +37,7 @@ class EventPut extends React.Component {
   };
 
   handleChangeRemainingPlaces = event => {
-    this.setState({ remainingplaces: event.target.value });
+    this.setState({ remainingPlaces: event.target.value });
   };
 
   handleChangeSpeakers = event => {
@@ -45,11 +45,11 @@ class EventPut extends React.Component {
   };
 
   handleChangeMaximumPlaces = event => {
-    this.setState({ maximumplaces: event.target.value });
+    this.setState({ maximumPlaces: event.target.value });
   };
 
   handleChangeTopicsCovered = event => {
-    this.setState({ topicscovered: event.target.value });
+    this.setState({ topicsCovered: event.target.value });
   };
 
   handleChangeField = event => {
@@ -57,11 +57,11 @@ class EventPut extends React.Component {
   };
 
   handleChangeRegistrationPrice = event => {
-    this.setState({ registrationprice: event.target.value });
+    this.setState({ registrationpPice: event.target.value });
   };
 
   handleChangeApprovalStatus = event => {
-    this.setState({ approvalstatus: event.target.value });
+    this.setState({ approvalStatus: event.target.value });
   };
 
   handleChangeApplicants = event => {
@@ -76,17 +76,17 @@ class EventPut extends React.Component {
     event.preventDefault();
 
     const Event = {
-      eventname: this.state.eventname,
+      eventName: this.state.eventName,
       organizer: this.state.organizer,
       location: this.state.location,
       description: this.state.description,
-      remainingplaces: this.state.remainingplaces,
+      remainingPlaces: this.state.remainingPlaces,
       speakers: this.state.speakers,
-      maximumplaces: this.state.maximumplaces,
-      topicscovered: this.state.topicscovered,
+      maximumPlaces: this.state.maximumPlaces,
+      topicsCovered: this.state.topicsCovered,
       field: this.state.field,
-      registrationprice: this.state.registrationprice,
-      approvalstaus: this.state.approvalstatus,
+      registrationPrice: this.state.registrationPrice,
+      approvalStaus: this.state.approvalStatus,
       applicants: this.state.applicants,
       feedback: this.state.feedback
     };
@@ -163,7 +163,7 @@ class EventPut extends React.Component {
             type="text"
             name="remainingPlaces"
             value={this.state.remainingPlaces}
-            onChange={this.handleChangeremainingPlaces}
+            onChange={this.handleChangeRemainingPlaces}
           />
         </label>
         <br />
@@ -183,7 +183,7 @@ class EventPut extends React.Component {
             type="text"
             name="maximumPlaces"
             value={this.state.maximumPlcaes}
-            onChange={this.handleChangemaximumPlaces}
+            onChange={this.handleChangeMaximumPlaces}
           />
         </label>
         <br />
@@ -213,7 +213,7 @@ class EventPut extends React.Component {
             type="text"
             name="registrationPrice"
             value={this.state.registrationPrice}
-            onChange={this.handleChangeregistrationPrice}
+            onChange={this.handleChangeRegistrationPrice}
           />
         </label>
         <br />

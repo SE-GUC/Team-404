@@ -28,21 +28,15 @@ function Event() {
         <br />
       </Link>
       <Link to={`/event/pending`}>
-      
-        <span STYLE="text-decoration:underline; font-weight:bold">
-          Check{" "}
-        </span>{" "}
+        <span STYLE="text-decoration:underline; font-weight:bold">Check </span>{" "}
         pending events
         <br />
         <br />
       </Link>
-      
       The Live Events
-      <EventRead />
-
+      <EventRead></EventRead>
       <br />
       <br />
-      
     </React.Fragment>
   );
 }

@@ -258,11 +258,15 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          {props => (
-            <React.Fragment>
-              <EventReadIDPending />
-            </React.Fragment>
-          )}
+          <Route
+            exact
+            path="/event/:id/pending"
+            render={props => (
+              <React.Fragment>
+                <EventReadIDPending />
+              </React.Fragment>
+            )}
+          />
           <Route
             exact
             path="/event/pending"
