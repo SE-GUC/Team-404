@@ -104,7 +104,7 @@ router.post("/", async (req, res) => {
     )
   })
 
-  .delete(authenticateUser, (request, response) => {
+  .delete((request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
         return response.json({ data: null })

@@ -16,12 +16,20 @@ class TaskReadID extends Component {
       console.log("The state is", this.state);
     });
   }
-
+  onDelete = () => {
+    axios.delete(`tasks/${this.props.match.params.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.props.history.push('/Task');
+      
+    })
+  }
 
   render() {
     const { task } = this.state;
     console.log("Task Log Is: ", task);
-    const eventJSX =
+    const taskJSX =
       task && task._id ? (
         <div className="event card" key={task._id}>
          
@@ -82,13 +90,17 @@ class TaskReadID extends Component {
             
             <br />
             <br />
+            <br />
+            <button className="btn btn-primay" onClick={this.onDelete}>Delete this Task</button>
+            <br />
+
             
           </div>
         </div>
       ) : (
         <div>Task is loading</div>
       );
-    return eventJSX;
+    return taskJSX;
   }
 }
 export default withRouter(TaskReadID);
