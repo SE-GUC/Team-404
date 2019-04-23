@@ -1,11 +1,9 @@
 import React from "react";
-//import axios from './node_modules/axios';
 import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
 class EventPut extends React.Component {
   state = {
-    
     eventName: "",
     organizer: "",
     location: "",
@@ -20,7 +18,6 @@ class EventPut extends React.Component {
   componentDidMount() {
     axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
       this.setState(res.data.data);
-      
     });
   }
   handleChangeeventName = event => {
@@ -39,64 +36,81 @@ class EventPut extends React.Component {
     this.setState({ description: event.target.value });
   };
 
-  handleChangeremainingPlaces = event => {
-    this.setState({ remainingPlaces: event.target.value });
+  handleChangeRemainingPlaces = event => {
+    this.setState({ remainingplaces: event.target.value });
   };
 
   handleChangeSpeakers = event => {
     this.setState({ speakers: event.target.value });
   };
 
-  handleChangemaximumPlaces = event => {
-    this.setState({ maximumPlaces: event.target.value });
+  handleChangeMaximumPlaces = event => {
+    this.setState({ maximumplaces: event.target.value });
   };
 
-  handleChangetopicsCovered = event => {
-    this.setState({ topicsCovered: event.target.value });
+  handleChangeTopicsCovered = event => {
+    this.setState({ topicscovered: event.target.value });
   };
 
   handleChangeField = event => {
     this.setState({ field: event.target.value });
   };
 
-  handleChangeregistrationPrice = event => {
-    this.setState({ registrationPrice: event.target.value });
+  handleChangeRegistrationPrice = event => {
+    this.setState({ registrationprice: event.target.value });
+  };
+
+  handleChangeApprovalStatus = event => {
+    this.setState({ approvalstatus: event.target.value });
+  };
+
+  handleChangeApplicants = event => {
+    this.setState({ applicants: event.target.value });
+  };
+
+  handleChangeFeedback = event => {
+    this.setState({ feedback: event.target.value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
 
     const Event = {
-      eventName: this.state.eventName,
+      eventname: this.state.eventname,
       organizer: this.state.organizer,
       location: this.state.location,
       description: this.state.description,
-      remainingPlaces: this.state.remainingPlaces,
+      remainingplaces: this.state.remainingplaces,
       speakers: this.state.speakers,
-      maximumPlaces: this.state.maximumPlaces,
-      topicsCovered: this.state.topicsCovered,
+      maximumplaces: this.state.maximumplaces,
+      topicscovered: this.state.topicscovered,
       field: this.state.field,
-      registrationPrice: this.state.registrationPrice
+      registrationprice: this.state.registrationprice,
+      approvalstaus: this.state.approvalstatus,
+      applicants: this.state.applicants,
+      feedback: this.state.feedback
     };
 
+    axios.put("http://localhost:3001/api/events/id", { Event }).then(res => {
+      console.log(res);
+      console.log(res.data);
+    });
 
     try {
-      let response = axios.put(
-          `events/${this.props.match.params.id}`,
-        Event
-      ).then ( res => {
-      console.log(response)}
-      )
+      let response = axios
+        .put(`events/${this.props.match.params.id}`, Event)
+        .then(res => {
+          console.log(response);
+        });
     } catch (error) {
       console.log(error);
     }
     //this.props.history.push('/Event');
-  }
+  };
 
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
-        
         <h1>Edit Event</h1>
         <br />
         <br />
@@ -204,9 +218,14 @@ class EventPut extends React.Component {
         </label>
         <br />
 
-        <button type="submit" className="text-center" onClick={this.handleSubmit}>
-          {" "}<br /> {" "} {" "}<br />
-          UPDATE{" "} <br />{" "} {" "}<br />
+        <button
+          type="submit"
+          className="text-center"
+          onClick={this.handleSubmit}
+        >
+          {" "}
+          <br /> <br />
+          UPDATE <br /> <br />
         </button>
       </form>
     );

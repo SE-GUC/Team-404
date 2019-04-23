@@ -8,7 +8,7 @@ class Login extends Component {
       <div id="background2">
        <Textbox/>
       </div>
-    );
+    )
   }
 }
-export default Login;
+export default Login
