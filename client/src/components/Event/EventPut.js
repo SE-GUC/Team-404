@@ -1,11 +1,9 @@
 import React from "react";
-//import axios from './node_modules/axios';
 import axios from "./axiosInstance";
 import { withRouter } from "react-router-dom";
 
 class EventPut extends React.Component {
   state = {
-    
     eventName: "",
     organizer: "",
     location: "",
@@ -20,7 +18,6 @@ class EventPut extends React.Component {
   componentDidMount() {
     axios.get(`events/getE/${this.props.match.params.id}`).then(res => {
       this.setState(res.data.data);
-      
     });
   }
   handleChangeeventName = event => {
@@ -39,7 +36,7 @@ class EventPut extends React.Component {
     this.setState({ description: event.target.value });
   };
 
-  handleChangeremainingPlaces = event => {
+  handleChangeRemainingPlaces = event => {
     this.setState({ remainingPlaces: event.target.value });
   };
 
@@ -47,11 +44,11 @@ class EventPut extends React.Component {
     this.setState({ speakers: event.target.value });
   };
 
-  handleChangemaximumPlaces = event => {
+  handleChangeMaximumPlaces = event => {
     this.setState({ maximumPlaces: event.target.value });
   };
 
-  handleChangetopicsCovered = event => {
+  handleChangeTopicsCovered = event => {
     this.setState({ topicsCovered: event.target.value });
   };
 
@@ -59,8 +56,20 @@ class EventPut extends React.Component {
     this.setState({ field: event.target.value });
   };
 
-  handleChangeregistrationPrice = event => {
-    this.setState({ registrationPrice: event.target.value });
+  handleChangeRegistrationPrice = event => {
+    this.setState({ registrationpPice: event.target.value });
+  };
+
+  handleChangeApprovalStatus = event => {
+    this.setState({ approvalStatus: event.target.value });
+  };
+
+  handleChangeApplicants = event => {
+    this.setState({ applicants: event.target.value });
+  };
+
+  handleChangeFeedback = event => {
+    this.setState({ feedback: event.target.value });
   };
 
   handleSubmit = event => {
@@ -76,27 +85,32 @@ class EventPut extends React.Component {
       maximumPlaces: this.state.maximumPlaces,
       topicsCovered: this.state.topicsCovered,
       field: this.state.field,
-      registrationPrice: this.state.registrationPrice
+      registrationPrice: this.state.registrationPrice,
+      approvalStaus: this.state.approvalStatus,
+      applicants: this.state.applicants,
+      feedback: this.state.feedback
     };
 
+    axios.put("http://localhost:3001/api/events/id", { Event }).then(res => {
+      console.log(res);
+      console.log(res.data);
+    });
 
     try {
-      let response = axios.put(
-          `events/${this.props.match.params.id}`,
-        Event
-      ).then ( res => {
-      console.log(response)}
-      )
+      let response = axios
+        .put(`events/${this.props.match.params.id}`, Event)
+        .then(res => {
+          console.log(response);
+        });
     } catch (error) {
       console.log(error);
     }
     //this.props.history.push('/Event');
-  }
+  };
 
   render() {
     return (
       <form onSubmit={this.handelSubmit}>
-        
         <h1>Edit Event</h1>
         <br />
         <br />
@@ -149,7 +163,7 @@ class EventPut extends React.Component {
             type="text"
             name="remainingPlaces"
             value={this.state.remainingPlaces}
-            onChange={this.handleChangeremainingPlaces}
+            onChange={this.handleChangeRemainingPlaces}
           />
         </label>
         <br />
@@ -169,7 +183,7 @@ class EventPut extends React.Component {
             type="text"
             name="maximumPlaces"
             value={this.state.maximumPlcaes}
-            onChange={this.handleChangemaximumPlaces}
+            onChange={this.handleChangeMaximumPlaces}
           />
         </label>
         <br />
@@ -199,14 +213,19 @@ class EventPut extends React.Component {
             type="text"
             name="registrationPrice"
             value={this.state.registrationPrice}
-            onChange={this.handleChangeregistrationPrice}
+            onChange={this.handleChangeRegistrationPrice}
           />
         </label>
         <br />
 
-        <button type="submit" className="text-center" onClick={this.handleSubmit}>
-          {" "}<br /> {" "} {" "}<br />
-          UPDATE{" "} <br />{" "} {" "}<br />
+        <button
+          type="submit"
+          className="text-center"
+          onClick={this.handleSubmit}
+        >
+          {" "}
+          <br /> <br />
+          UPDATE <br /> <br />
         </button>
       </form>
     );
