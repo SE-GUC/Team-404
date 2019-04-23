@@ -37,16 +37,18 @@ class TaskReadID extends Component {
             <br />
             <br />
             <br />
-           
             Title: {'  '}
+
             <span className="Task name">{task.title}</span>
             <br />
            
             Description: {'  '}
+
             <span className="Task Description">{task.description}</span>
             <br />
            
             eta: {'  '}
+
             <span className="Task eta">{task.eta}</span>
             <br />
            
@@ -90,6 +92,10 @@ class TaskReadID extends Component {
             
             <br />
             <br />
+            <Link to={`${task._id}/update`}><span STYLE="text-decoration:underline; font-weight:bold">UPDATE</span> </Link>
+            <br />
+
+
             <br />
             <button className="btn btn-primay" onClick={this.onDelete}>Delete this Task</button>
             <br />

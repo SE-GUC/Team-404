@@ -174,8 +174,7 @@ class App extends Component {
                 <EventCreate />
               </React.Fragment>
             )}
-          />
-          {/* {" "}
+          /> {" "}
           <Route
             exact
             path="Event/update"
@@ -184,7 +183,7 @@ class App extends Component {
                 <EventPut />
               </React.Fragment>
             )}
-          />{" "} */}
+          />{" "}
           <Route
             exact
             path="/Event/delete"
@@ -230,7 +229,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/Tasks" component={Task} />
-          <Route
+          {/* <Route
             exact
             path="/Task/create"
             render={props => (
@@ -238,7 +237,7 @@ class App extends Component {
                 <TaskCreate />
               </React.Fragment>
             )}
-          />
+          /> */}
           <Route
             exact
             path="/Task/:id"
@@ -250,7 +249,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/Task/update"
+            path="/Task/:id/update"
             render={props => (
               <React.Fragment>
                 <TaskPut />
