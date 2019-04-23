@@ -219,7 +219,7 @@ router.get("/viewTaskStatus/:tid",authenticateUser, async (req, res) => {
 })
 
 
-router.put("/ConsultantApply/:id" , async(req,res) => {
+/* router.put("/ConsultantApply/:id" , async(req,res) => {
   var Cid = req.params.id
   let {
     consultant = req.body
@@ -257,7 +257,7 @@ router.put("/ConsultantApply/:id" , async(req,res) => {
     message: 'Task update failed'
   })
 })
-
+ */
 router.put(
   "/UpdateProjectAttributes/:Tid",
   authenticateUser,
