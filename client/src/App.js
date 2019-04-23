@@ -37,6 +37,8 @@ import updateUser from "./components/page/User/updateUser";
 import Register from "./components/page/User/Register";
 import EventReadIDPending from "./components/Event/EventReadIDPending";
 import EventReadPending from "./components/Event/EventReadPending";
+import DeleteAccount from "./components/page/User/DeleteAccount";
+
 
 
 class App extends Component {
@@ -302,6 +304,16 @@ class App extends Component {
           />
           <Route
             exact
+            path="/DeleteAccount"
+            render={props => (
+              <React.Fragment>
+                {/* <EventReadID></EventReadID> */}
+                <DeleteAccount />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact
             path="/updateUser"
             render={props => (
               <React.Fragment>
@@ -331,6 +343,7 @@ class App extends Component {
           <Route exact path="/Application" component={ApplicationInfo} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/UserList" component={UserList} />
+          <Route exact path="/DeleteAccount" component={DeleteAccount} />
         </div>
       </Router>
     );
