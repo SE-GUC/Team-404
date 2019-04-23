@@ -12,7 +12,7 @@ const Event = require("../../Models/Event");
 const validator = require("../../Validation/eventValid");
 
 // Default route (entry point)
-app.get("/", authenticateUser, (req, res) => {
+app.get("/",  (req, res) => {
   res.send(`<h1>Welcome</h1>`);
 });
 
@@ -23,7 +23,7 @@ app.get("/", authenticateUser, (req, res) => {
 // });
 
 // Create a new newEvent
-router.post("/", authenticateUser, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const isValidated = validator.createValidation(req.body);
     if (isValidated.error)
@@ -58,7 +58,7 @@ router.post("/", authenticateUser, async (req, res) => {
 });
 
 // Update event
-router.put("/:id", authenticateUser, async (request, response) => {
+router.put("/:id",  async (request, response) => {
   const status = joi.validate(request.params, {
     id: joi
       .string()
@@ -83,7 +83,7 @@ router.put("/:id", authenticateUser, async (request, response) => {
 });
 
 // Delete newEvent
-router.delete("/:id", authenticateUser, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const deletedEvent = await Event.findByIdAndRemove(id);
@@ -317,14 +317,14 @@ adminCreateEvent = async (req, res) => {
 };
 
 //calling of Clara's functions
-router.get("/", authenticateUser, viewApprovedEvents);
-router.get("/pending", authenticateUser, viewPendingEvents);
-router.post("/:eid/users/:cid", authenticateUser, bookEvent);
-router.post("/:eid/events/:cid", authenticateUser, cancelBooking);
+router.get("/", viewApprovedEvents);
+router.get("/pending",  viewPendingEvents);
+router.post("/:eid/users/:cid",  bookEvent);
+router.post("/:eid/events/:cid",  cancelBooking);
 
 //calling of Hagar's functions
-router.post("/:pid/requestEvent", authenticateUser, requestEvent);
-router.post("/:aid/adminCreateEvent", authenticateUser, adminCreateEvent);
-router.put("/:eid/confirmRequest", authenticateUser, confirmRequest);
+router.post("/:pid/requestEvent",  requestEvent);
+router.post("/:aid/adminCreateEvent",  adminCreateEvent);
+router.put("/:eid/confirmRequest",  confirmRequest);
 
 module.exports = router;
