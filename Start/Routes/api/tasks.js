@@ -9,7 +9,6 @@ const users = require("../api/users");
 const joi = require("Joi");
 const validator = require("../../Validation/taskValid");
 const authenticateUser = require('../../middleware/authenticate');
-
 router.get("/", async (req, res) => {
   const tasks = await Task.find();
   res.json({ data: tasks });
@@ -67,7 +66,6 @@ router.post("/", async (req, res) => {
     const status = joi.validate(request.params, {
       id: joi
         .string()
-        .length(24)
         .required()
     })
     if (status.error) {
@@ -104,7 +102,7 @@ router.post("/", async (req, res) => {
     )
   })
 
-  .delete(/* authenticateUser, */ (request, response) => {
+  .delete((request, response) => {
     Task.findByIdAndDelete(request.params.id, (err, model) => {
       if (!err) {
         return response.json({ data: null })

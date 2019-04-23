@@ -22,7 +22,7 @@ const functions = {
         //},
         getSpecificTask: async () => {
             const tasks = await axios.get(
-                `http://localhost:3001/Routes/api/tasks/5cb32dc16ab431265865aaea`
+                `http://localhost:3001/Routes/api/tasks/5cbdd01fc0ce1c46048a18bf`
             );
             return tasks;
           },
@@ -32,7 +32,7 @@ const functions = {
           return tasks;
       },
       updateTask: async (id) => {
-          const tasks = await axios.put(`http://localhost:3001/Routes/api/tasks/5cb32dc16ab431265865aaea`, {
+          const tasks = await axios.put(`http://localhost:3001/Routes/api/tasks/5cbdd0b21340db2718e6bf7a`, {
               description: 'ghg'
           });
           return tasks;
@@ -42,7 +42,7 @@ const functions = {
           return res;
       },
       viewTaskStatus:  async (id) => {
-        const res = await axios.get(`http://localhost:3001/Routes/api/tasks/5cb32dc16ab431265865aaea`);
+        const res = await axios.get(`http://localhost:3001/Routes/api/tasks/viewTaskStatus/5cbdd0b21340db2718e6bf7a`);
         return res.lifeCycleStatus;
     },
 

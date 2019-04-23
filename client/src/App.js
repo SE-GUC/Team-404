@@ -29,7 +29,6 @@ import TaskPut from "./components/Task/TaskPut";
 import TaskRead from "./components/Task/TaskRead";
 import TaskReadID from "./components/Task/TaskReadID";
 import Task from "./components/page/Task";
-import UpdateTask from "./components/Task/UpdateTask";
 import ConsultantApply from "./components/Task/ConsultantApply";
 class App extends Component {
   state = {
@@ -175,8 +174,7 @@ class App extends Component {
                 <EventCreate />
               </React.Fragment>
             )}
-          />
-          {/* {" "}
+          />{" "}
           <Route
             exact
             path="Event/update"
@@ -185,7 +183,7 @@ class App extends Component {
                 <EventPut />
               </React.Fragment>
             )}
-          />{" "} */}
+          />{" "}
           <Route
             exact
             path="/Event/delete"
@@ -206,16 +204,6 @@ class App extends Component {
           />
           <Route
             exact
-            path="/UpdateTask"
-            render={props => (
-              <React.Fragment>
-                <UpdateTask />
-              </React.Fragment>
-            )}
-          />
-
-          <Route
-            exact
             path="/TaskCreate"
             render={props => (
               <React.Fragment>
@@ -223,13 +211,11 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-
           {props => (
             <React.Fragment>
               <EventReadIDPending />
             </React.Fragment>
           )}
-
           <Route
             exact
             path="/event/pending"
@@ -240,7 +226,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/Tasks" component={Task} />
-          <Route
+          {/* <Route
             exact
             path="/Task/create"
             render={props => (
@@ -260,6 +246,7 @@ class App extends Component {
             )}
           />
 
+          */}
           <Route
             exact
             path="/Task/:id"
@@ -271,7 +258,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/Task/update"
+            path="/Task/:id/update"
             render={props => (
               <React.Fragment>
                 <TaskPut />
@@ -293,7 +280,6 @@ class App extends Component {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
-
           <Route exact path="/ConsultantApply" component={ConsultantApply} />
           <Route exact path="/RegisterPartner" component={RegisterPartner} />
           <Route exact path="/Partner" component={Partner} />
