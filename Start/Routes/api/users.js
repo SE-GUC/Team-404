@@ -2,19 +2,45 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const passport = require('passport')
 const tokenKey = require('../../config/keys').secretOrKey
 const User = require('../../Models/User')
 const validator = require('../../Validation/userValid')
 const sendNotif = require('../../utils/mailer')
-const joi = require('joi')
+const joi= require('joi')
+const authenticateUser= require("../../middleware/authenticate");
 
 router.get('/', async (req,res) => {
   const users = await User.find()
   res.json({data: users})
 })
 
-//login user
+router.get('/consultants',authenticateUser, async (req,res) => {
+  const users = await User.find({userType : "Consultant"})
+  res.json({data: users})
+})
+
+
+
+router.get('/partners',authenticateUser, async (req,res) => {
+  const users = await User.find({userType : "partner"})
+  res.json({data: users})
+})
+
+router.get('/candidates',authenticateUser, async (req,res) => {
+  const users = await User.find({userType : "Candidate"})
+  res.json({data: users})
+})
+
+router.get('/:id',authenticateUser,async (req,res)=>{
+  try {
+    const id = req.params.id
+    const requestedUser = await User.findById(id)
+    res.json({ data: requestedUser})
+   }catch(error){
+    console.log(error)
+   }
+})  
+   //login user
 router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;
@@ -25,6 +51,7 @@ router.post('/login', async (req, res) => {
             const payload = {
                 id: user.id,
                 name: user.name,
+                usertype: user.userType,
                 email: user.email
             }
             const token = jwt.sign(payload, tokenKey, { expiresIn: '1h' })
@@ -85,21 +112,8 @@ router.post('/register', async (req,res) => {
 
       
 })
-//Not working yet.
-router
-  .route('/:id')
-  .all(async (request, response, next) => {
-    const status = joi.validate(request.params, {
-      id: joi.string().length(24).required()
-    })
-    if (status.error) {
-      return response.json({ error: status.error.details[0].message })
-    }
-    next()
-  })
 
-
-  .put(async (request, response) => {
+  router.put('/:id',async (request, response) => {
     User.findByIdAndUpdate(request.params.id, request.body, { new: true }, (err, model) => {
       if (!err) {
         return response.json({ data: model })
@@ -125,7 +139,6 @@ router.delete('/:id', async (req,res) => {
       console.log(error)
   }  
 })
-
 
 module.exports = router
 

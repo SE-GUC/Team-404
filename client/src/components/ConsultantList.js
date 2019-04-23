@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 const textStyle = {
     textAlign: "left",
     padding: "10px",
@@ -10,30 +9,28 @@ const textStyle = {
 
 
 
-export default class UserList extends React.Component {
+export default class ConsultantList extends React.Component {
     state = {
-        users: [ ],
+        consultants: [ ],
 
     }
     componentDidMount(){
        
-        axios.get('http://localhost:3001/Routes/api/users/')
+        axios.get('http://localhost:3001/Routes/api/users/consultants')
         .then(res => {
             console.log(res)
             this.setState({
-                users: res.data.data
+                consultants: res.data.data
             })
         })
 
     }
 
     
-  render() { 
-    const userList = this.state.users.map((User, index) =>
+  render() {
+    const consultantList = this.state.consultants.map((User, index) =>
         <li  style ={textStyle} key ={index}>
             {User.name}
-            <p></p> 
-            User Type : {User.userType}
             <p></p> 
             Email : {User.email}  
             <p></p>
@@ -42,10 +39,14 @@ export default class UserList extends React.Component {
             Phone Number : {User.phoneNumber}
             <p></p>
             Location : {User.location}
+            <p></p>
+            Reports : {User.reports}
+            <p></p>
+            Board : {User.board}
         </li>
     )    
-    return(
-         userList
+    return( 
+         consultantList
          )  
     }
 
