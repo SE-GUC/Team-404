@@ -21,10 +21,10 @@ class TaskReadID extends Component {
     .then(res => {
       console.log(res);
       console.log(res.data);
-      this.props.history.push('/Event');
+      this.props.history.push('/Task');
+      
     })
   }
-
 
   render() {
     const { task } = this.state;
@@ -32,6 +32,7 @@ class TaskReadID extends Component {
     const taskJSX =
       task && task._id ? (
         <div className="event card" key={task._id}>
+         
           <div className="card-content">
             <br />
             <br />
@@ -40,14 +41,17 @@ class TaskReadID extends Component {
 
             <span className="Task name">{task.title}</span>
             <br />
+           
             Description: {'  '}
 
             <span className="Task Description">{task.description}</span>
             <br />
+           
             eta: {'  '}
 
             <span className="Task eta">{task.eta}</span>
             <br />
+           
             level Of Comitment: {'  '}
 
             <span className="Task levelOfCommitment">{task.levelOfCommitment}</span>
@@ -56,6 +60,7 @@ class TaskReadID extends Component {
 
             <span className="Task partner">{task.partner}</span>
             <br />
+          
             Monetary Compensation: {'  '}
 
             <span className="Task monetaryCompensation">{task.monetaryCompensation}</span>
@@ -91,6 +96,11 @@ class TaskReadID extends Component {
             <br />
 
 
+            <br />
+            <button className="btn btn-primay" onClick={this.onDelete}>Delete this Task</button>
+            <br />
+
+            
           </div>
         </div>
       ) : (
